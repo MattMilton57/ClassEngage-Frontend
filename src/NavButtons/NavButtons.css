@@ -1,0 +1,10 @@
+.Buttons {
+    background-color: navy;
+    text-align: center;
+}
+
+.button {
+    background-color: gray;
+    color: navy;
+    font-weight: bold;
+}

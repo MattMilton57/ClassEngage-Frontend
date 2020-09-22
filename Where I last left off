@@ -1,16 +1,9 @@
-Working on the edit class page. Just got the functionality working on the generate the student body page. 
-I found that I had to make sure that I wasnt sending multiple "undefined" calls to my roster generator component
-(i had them coming from my classHome component as well as my Generate current class list component) because 
-with each call the roster generator was trying to map through the unefined packet and getting fucked. 
-
-next up. work on getting the current class list to appear possibly add a blank array to the current class state
-for now just so that we can get the actual logic going. Add the button onto the student body generator so that 
-you can add the student to the new class and remove them from the student body After that work on the fetches 
-needed to create the registration and the logic to change state fro student body and enrolled. might need a state
-for registrations connected to the current class.  Dont forget to look at ClassEngage 1.0 as im pretty sure a lot 
-of the logic for this is in there. Might be something you can cull from it. 
-
-Holy crap this chair is amazing. 
-
-
-test for git yay
+sending the list of students from the assessment container to the individual assessment card. 
+First get the list sent, 
+then work on getting the button to send just five, 
+get the cards to dissapear onClick
+then get it to randomize, 
+after that work on getting it to cycle.
+then start on the rest of the assessment card structure 
+and the fetch to post the new assessment
+the stat on the assessment card

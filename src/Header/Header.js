@@ -1,4 +1,6 @@
 import React from 'react';
+import './Header.css';
+
 const DefaultButtons = [
   {Label:"Landing Page", Destination:'/'},
   {Label:"Class Menu", Destination:'/selectClass'},
@@ -18,8 +20,8 @@ class Header extends React.Component {
 
   render(){
     return(
-      <div>
-          <h2>Header</h2>
+      <div className="header">
+          <h2>ClassEngage</h2>
       </div>
     )
   }

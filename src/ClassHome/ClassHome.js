@@ -6,6 +6,7 @@ const homeButtons = [
   {Label:"Edit Class", Destination:'/editclass'},
   {Label:"Landing Page", Destination:'/'},
   {Label:"Class Menu", Destination:'/selectClass'},
+  {Label:"Class Assessment", Destination:'/assess'},
   {Label:"ClassHome", Destination:'/classhome'}]
 
 class ClassHome extends React.Component {
@@ -32,10 +33,12 @@ class ClassHome extends React.Component {
       if (registration.class_period_id == this.state.thisPeriod){
         return this.state.studentBody.map(student => {
           if (student.id == registration.id){
+            let roster = this.state.classRoster
+            roster.push(student)
             this.setState({
-              classRoster:[...student]
+              classRoster:roster
             })
-          } console.log(this.state.classRoster)    
+          }
         })
       }
     })

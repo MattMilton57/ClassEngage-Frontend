@@ -3,7 +3,7 @@ import  Button from './Button';
 
 const ButtonContainer = ({buttons}) => {
 return(
-    <div id='Buttons'>
+    <div className='Buttons'>
         {buttons.map(button => <div key={button.id}><Button label={button.Label} destination={button.Destination}/></div>)}
     </div>
 ) 

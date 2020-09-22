@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 
 const Button = ({label, destination}) => {
 return(
-    <div id='button'>
+    <button className='button'>
         <Link to={destination}>
-                <h2>{label}</h2>
+            {label}
         </Link>
-    </div>
+    </button>
 ) 
 }
 export default Button;

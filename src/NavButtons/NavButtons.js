@@ -1,5 +1,7 @@
 import React from 'react';
 import ButtonContainer from './ButtonContainer'
+import './NavButtons.css';
+
 
 class NavButtons extends React.Component {
 

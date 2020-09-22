@@ -31,7 +31,7 @@ class EditClass extends React.Component {
         // console.log(e)
     // this.props.sendRegistration({class_period_id:this.state.thisClass.id, student_id:e.id})
     const registration = {
-      class_period_id: this.state.thisPeriod.id,
+      class_period_id: this.state.thisPeriod,
       student_id: e.id,
       }
     this.props.sendRegistration(registration)  

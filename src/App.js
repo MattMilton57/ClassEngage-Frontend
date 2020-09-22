@@ -6,12 +6,14 @@ import ClassHome from './ClassHome/ClassHome.js'
 import EditClass from './EditClass/EditClass.js'
 import NavButtons from './NavButtons/NavButtons.js'
 import Header from './Header/Header'
+import AssessClass from './AssessClass/AssessClass.js'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 const API = "http://localhost:3000/"
 const DefaultButtons = [
   {Label:"Landing Page", Destination:'/'},
   {Label:"Class Menu", Destination:'/selectClass'},
+  {Label:"Class Assessment", Destination:'/assess'},
   {Label:"ClassHome", Destination:'/classhome'}]
 
 class App extends React.Component {
@@ -165,6 +167,10 @@ class App extends React.Component {
           render={ props => 
           <EditClass thisPeriod={this.state.currentPeriod} studentBody={this.state.students} loggedIn={this.state.currentTeacher} navButtons={this.setButtons} sendRegistration={this.postRegistration}/>
           }/>
+          <Route exact path = "/assess"
+          render={ props => 
+          <AssessClass thisPeriod={this.state.currentPeriod} roster={this.state.currentClass} loggedIn={this.state.currentTeacher} navButtons={this.setButtons} />
+          }/>          
         </div>
         <NavButtons buttons={this.state.buttons}/>
       </Router>
