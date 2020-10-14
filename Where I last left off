@@ -1,9 +1,7 @@
-sending the list of students from the assessment container to the individual assessment card. 
-First get the list sent, 
-then work on getting the button to send just five, 
-get the cards to dissapear onClick
-then get it to randomize, 
-after that work on getting it to cycle.
-then start on the rest of the assessment card structure 
-and the fetch to post the new assessment
-the stat on the assessment card
+working on the logic that sends 5 students to the assessment container.
+currently hitting a bug where the list of students is sometimes less than 5 so this causes the app to crash when it runs out of students short of 5.
+need to work on ligic that will make sure that the list is at 5, a loop that takes all of the students that are not in the lowest ammount of 
+times assessed and cuts off the lowest number of them that is necessary to bring the to be asessed list up to 10.  
+dont worry about randomizing these students for now, get to that later. 
+
+overall pretty good work today, need to move the monitor down. 

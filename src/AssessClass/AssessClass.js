@@ -23,7 +23,9 @@ class AssessClass extends React.Component {
       toAssess:[],
       assessing:[],
       score:'',
-      sessionCounter: 0
+      sessionCounter: 0,
+      floorScore:'',
+      test:''
     }
   }
 
@@ -35,6 +37,7 @@ class AssessClass extends React.Component {
   assessmentList = () => {
     let allAssessmentIndex = []
     let readyToAssess = []
+    // map through all of the assessments and create a list (allAssessmentIndex) that contains an array for each student with the student object and an integer representing the number of times that student has been assessed.
     this.state.classRoster.map(student =>{
       let counter = 0
         this.state.assessments.map(assessment => {
@@ -47,25 +50,63 @@ class AssessClass extends React.Component {
       this.setState({
         assessmentIndex:allAssessmentIndex
     })
-    }) 
-    allAssessmentIndex.map (student => {
-      let index = (allAssessmentIndex.length - 1)
-      if (allAssessmentIndex[0][1] > allAssessmentIndex[index][1])
-          {console.log(student)
-          console.log(index)}
-          else
-          {console.log(student+' no')}
     })
-    allAssessmentIndex.map (student => {
-      readyToAssess.push(student[0])
+    this.filterAssessments(allAssessmentIndex)
+
+    // first attempt at building code that will create a list of the students who have been assessed the least. not working 
+    
+
+
+    // allAssessmentIndex.map (student => {
+    //   let index = (allAssessmentIndex.length - 1)
+    //   if (allAssessmentIndex[0][1] > allAssessmentIndex[index][1])
+    //       {console.log(student)
+    //       console.log(index)}
+    //       else
+    //       {console.log(student+' no')}
+    // })
+    // allAssessmentIndex.map (student => {
+    //   readyToAssess.push(student[0])
+    // })
+    // this.setState({
+    //   toAssess:readyToAssess
+    // })
+  }
+
+  filterAssessments(list){
+    // console.log(list)
+    let floorScore = ''
+    list.map(student => {
+      if (floorScore == ''){floorScore = student[1]}
+        else{
+      if (student[1] < floorScore){floorScore = student[1]}}
+      // this.setState({
+      //   floorScore:floorScore
+      // })
     })
-    this.setState({
-      toAssess:readyToAssess
-    })
+    this.eligibleList(list, floorScore)
+  }
+
+  eligibleList = (list, floorScore) => {
+    let eligible = []
+    let ineligable = []
+    list.map(student => {
+      if(student[1] == floorScore) {eligible.push(student[0])} else {ineligable.push(student)}
+    },)
+    // console.log(eligible) 
+    if (eligible.length < 10){
+
+      const sorted = ineligable.sort((a,b) => a[[1]] - b[[1]])
+      let newbase = sorted[0][1]
+      sorted.map(student=>{if(student[1]==newbase){eligible.push(student[0])}})
+      // console.log(eligible)
+    }
+    this.setState({toAssess:eligible})
   }
 
   nextAssessment = () => {
     let pool = this.state.toAssess
+    console.log(pool)
     let index = pool.length
     let now = pool[Math.floor(Math.random() * index)]
     let counter=this.state.sessionCounter
@@ -74,8 +115,8 @@ class AssessClass extends React.Component {
     })
     pool.map(student => {
       if (now.id === student.id){
-        console.log(now.name, student.name)
-        console.log(counter)
+        // console.log(now.name, student.name)
+        // console.log(counter)
       }
     })
   }
