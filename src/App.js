@@ -21,15 +21,16 @@ class App extends React.Component {
   constructor() {
     super();
     this.state= {
-      students: [],
-      teachers: [],
-      classPeriods: [],
-      registrations: [],
-      assessments: [],
-      currentTeacher: '',
+      allStudents: [],
+      allTeachers: [],
+      allClassPeriods: [],
+      allRegistrations: [],
+      allAssessments: [],
+      currentAssessments: [],
+      currentTeacher: 1,
       currentPeriod: 0,
-      currentClass:'',
-      buttons:DefaultButtons
+      currentClass:1,
+      currentButtons:DefaultButtons
     }
   }
 
@@ -44,7 +45,7 @@ class App extends React.Component {
       .then((data) => {
         this.setState(
           {
-            students: data,
+            allStudents: data,
           },
           console.log("student fetch")
         );this.fetchTeachers()
@@ -57,7 +58,7 @@ class App extends React.Component {
       .then((data) => {
         this.setState(
           {
-            teachers: data,
+            allTeachers: data,
           },
           console.log("teacher fetch")
         ); this.fetchClasses()
@@ -70,7 +71,7 @@ class App extends React.Component {
       .then((data) => {
         this.setState(
           {
-            classPeriods: data,
+            allClassPeriods: data,
           },
           console.log("class fetch")
         ); this.fetchRegistrations()
@@ -83,7 +84,7 @@ class App extends React.Component {
       .then((data) => {
         this.setState(
           {
-            registrations: data,
+            allRegistrations: data,
           },
           console.log("registrations fetch")
         ); this.fetchAssessments()
@@ -96,7 +97,7 @@ class App extends React.Component {
       .then((data) => {
         this.setState(
           {
-            assessments: data,
+            allAssessments: data,
           },
           console.log("assessments fetch")
         ); 
@@ -117,8 +118,23 @@ class App extends React.Component {
     .then(res => console.log("registration"+ res.id + "done"))
     console.log(registration)
     this.fetchRegistrations()
-
 }  
+
+  postAssessment = (assessment) => {
+    fetch((API+"assessments"), {
+        method: 'POST',
+        headers: {
+            'access-control-allow-origin':'*',
+            'Content-Type': 'application/json',
+            'Accept':'application/json'
+        }, 
+        body: JSON.stringify({assessment})
+    })
+    .then(res => res.json())
+    .then(res => console.log("assessment at index:"+ res.id + " done"))
+    console.log(assessment)
+    this.fetchAssessments()
+  } 
 
   setTeacher = (teacher) => {
     this.setState({
@@ -134,13 +150,19 @@ class App extends React.Component {
 
   setButtons = (navButtons) => {
     this.setState({
-      buttons: navButtons
+      currentButtons: navButtons
     })
   }
 
   setClass = (thisClass) => {
     this.setState({
       currentClass:thisClass
+    })
+  }
+
+  setAssessments = (currentClassAssessments) => {
+    this.setState ({
+      currentAssessments:currentClassAssessments
     })
   }
 
@@ -151,28 +173,59 @@ class App extends React.Component {
         <div>
           <Route exact path = "/"
           component={ props => 
-            <LandingPage teachers={this.state.teachers}whoAmI={this.setTeacher} navButtons={this.setButtons}/>
+            <LandingPage 
+              teachers={this.state.allTeachers} 
+              navButtons={this.setButtons}
+              whoAmI={this.setTeacher}/>
           }/>
 
           <Route exact path = "/selectClass"
           render={ props => 
-            <SelectClass classes={this.state.classPeriods} loggedIn={this.state.currentTeacher} selected={this.setPeriod} navButtons={this.setButtons}/>
+            <SelectClass 
+              classes={this.state.allClassPeriods} 
+              loggedIn={this.state.currentTeacher}
+              navButtons={this.setButtons} 
+              selected={this.setPeriod} 
+              />
           }/>
 
           <Route exact path = "/classhome"
           render={ props => 
-            <ClassHome thisPeriod={this.state.currentPeriod} studentBody={this.state.students} registrations={this.state.registrations} loggedIn={this.state.currentTeacher} setClass={this.setClass} navButtons={this.setButtons}/>
+            <ClassHome 
+              assessments={this.state.allAssessments} 
+              loggedIn={this.state.currentTeacher} 
+              registrations={this.state.allRegistrations} 
+              studentBody={this.state.allStudents} 
+              thisPeriod={this.state.currentPeriod} 
+              navButtons={this.setButtons}
+              setAssessments={this.setAssessments}
+              setClass={this.setClass} 
+              />
           }/>
           <Route exact path = "/editclass"
           render={ props => 
-          <EditClass thisPeriod={this.state.currentPeriod} studentBody={this.state.students} loggedIn={this.state.currentTeacher} navButtons={this.setButtons} sendRegistration={this.postRegistration}/>
+            <EditClass 
+              loggedIn={this.state.currentTeacher} 
+              studentBody={this.state.allStudents}  
+              thisPeriod={this.state.currentPeriod} 
+              navButtons={this.setButtons} 
+              sendRegistration={this.postRegistration}
+              />
           }/>
           <Route exact path = "/assess"
           render={ props => 
-          <AssessClass thisPeriod={this.state.currentPeriod} roster={this.state.currentClass} loggedIn={this.state.currentTeacher} navButtons={this.setButtons} />
+            <AssessClass 
+              assessments={this.state.currentAssessments}
+              loggedIn={this.state.currentTeacher} 
+              roster={this.state.currentClass} 
+              thisPeriod={this.state.currentPeriod} 
+              navButtons={this.setButtons} 
+              sendAssessment={this.postAssessment}
+              />
           }/>          
         </div>
-        <NavButtons buttons={this.state.buttons}/>
+        <NavButtons 
+          buttons={this.state.currentButtons}/>
       </Router>
       
 

@@ -2,6 +2,7 @@ import React from 'react';
 import RosterContainer from '../Recyclables/Roster/RosterContainer';
 import Graphics from '../Recyclables/Graphics/GraphicsContainer'
 import SelectClass from '../SelectClass/SelectClass';
+import AssessClass from '../AssessClass/AssessClass';
 const homeButtons = [
   {Label:"Edit Class", Destination:'/editclass'},
   {Label:"Landing Page", Destination:'/'},
@@ -17,13 +18,16 @@ class ClassHome extends React.Component {
       thisPeriod:props.thisPeriod,
       studentBody:props.studentBody,
       registrations:props.registrations,
-      classRoster:[]
+      assessments:props.assessments,
+      classRoster:[],
+      classAssessments:[]
     }
   }
 
   componentDidMount(){
     this.props.navButtons(homeButtons)
     this.gatherRoster()
+    this.gatherAssessments()
     console.log(this.state.thisPeriod)
     this.sendClass()
   }
@@ -44,10 +48,18 @@ class ClassHome extends React.Component {
     })
   }
 
-//   this.setState((prev) => {
-              
-//     classRoster: [...prev.classRoster,student]}
-// )
+  gatherAssessments = () => {
+    return this.state.assessments.map(assessment => {
+      if (assessment.teacher_id == this.props.loggedIn){
+        let classesAssessments = this.state.classAssessments
+        classesAssessments.push(assessment)
+        this.setState({
+          classAssessments:classesAssessments
+        })
+        this.props.setAssessments(this.state.classAssessments)
+      }
+    })
+  }
 
 
   sendClass = () => {
