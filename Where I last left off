@@ -1,7 +1,0 @@
-working on the logic that sends 5 students to the assessment container.
-currently hitting a bug where the list of students is sometimes less than 5 so this causes the app to crash when it runs out of students short of 5.
-need to work on ligic that will make sure that the list is at 5, a loop that takes all of the students that are not in the lowest ammount of 
-times assessed and cuts off the lowest number of them that is necessary to bring the to be asessed list up to 10.  
-dont worry about randomizing these students for now, get to that later. 
-
-overall pretty good work today, need to move the monitor down. 

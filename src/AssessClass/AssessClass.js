@@ -20,7 +20,7 @@ class AssessClass extends React.Component {
       thisPeriod:props.thisPeriod,
       classRoster:props.roster,
       assessmentIndex:'',
-      toAssess:[],
+      assessFrom:[],
       assessing:[],
       score:'',
       sessionCounter: 0,
@@ -37,7 +37,8 @@ class AssessClass extends React.Component {
   assessmentList = () => {
     let allAssessmentIndex = []
     let readyToAssess = []
-    // map through all of the assessments and create a list (allAssessmentIndex) that contains an array for each student with the student object and an integer representing the number of times that student has been assessed.
+    // map through all of the assessments and create a list (allAssessmentIndex) that contains an array for each student 
+    // with the student object and an integer representing the number of times that student has been assessed.
     this.state.classRoster.map(student =>{
       let counter = 0
         this.state.assessments.map(assessment => {
@@ -74,38 +75,56 @@ class AssessClass extends React.Component {
   }
 
   filterAssessments(list){
-    // console.log(list)
     let floorScore = ''
+      // map through list of students to establish the lowest # of assessments taken
     list.map(student => {
       if (floorScore == ''){floorScore = student[1]}
         else{
       if (student[1] < floorScore){floorScore = student[1]}}
-      // this.setState({
-      //   floorScore:floorScore
-      // })
     })
+      // send the list and the established lowest score to the function that creates the final list.
     this.eligibleList(list, floorScore)
   }
 
   eligibleList = (list, floorScore) => {
     let eligible = []
     let ineligable = []
+      // map through the full class roster and push all students with the lowest ammount of assessments into the eligible list
     list.map(student => {
-      if(student[1] == floorScore) {eligible.push(student[0])} else {ineligable.push(student)}
+      if(student[1] == floorScore) {{eligible.push(student[0])}{this.setState({assessFrom:eligible})}} else {ineligable.push(student)}
     },)
-    // console.log(eligible) 
+    // console.log(eligible)
+    console.log(eligible.length) 
     if (eligible.length < 10){
 
       const sorted = ineligable.sort((a,b) => a[[1]] - b[[1]])
-      let newbase = sorted[0][1]
-      sorted.map(student=>{if(student[1]==newbase){eligible.push(student[0])}})
-      // console.log(eligible)
+      let newbase = eligible
+      let counter = eligible.length
+      sorted.map(student=>{if(counter < 10){newbase.push(student[0])}{counter=(counter + 1)}{this.setState({assessFrom:newbase})}})
     }
-    this.setState({toAssess:eligible})
   }
 
+
+
+  // eligibleList = (list, floorScore) => {
+  //   let eligible = []
+  //   let ineligable = []
+  //   list.map(student => {
+  //     if(student[1] == floorScore) {eligible.push(student[0])} else {ineligable.push(student)}
+  //   },)
+  //   // console.log(eligible) 
+  //   if (eligible.length < 10){
+
+  //     const sorted = ineligable.sort((a,b) => a[[1]] - b[[1]])
+  //     let newbase = sorted[0][1]
+  //     sorted.map(student=>{if(student[1]==newbase){eligible.push(student[0])}})
+  //     // console.log(eligible)
+  //   }
+  //   this.setState({toAssess:eligible})
+  // }
+
   nextAssessment = () => {
-    let pool = this.state.toAssess
+    let pool = this.state.assessFrom
     console.log(pool)
     let index = pool.length
     let now = pool[Math.floor(Math.random() * index)]
@@ -138,7 +157,7 @@ class AssessClass extends React.Component {
   }
 
   reviseAssessList(assessedStudent){
-    let pool = this.state.toAssess
+    let pool = this.state.assessFrom
     let counter = 0
     pool.map(student => {
       counter++
@@ -147,11 +166,10 @@ class AssessClass extends React.Component {
         console.log(pool) 
         console.log(newPool)
         this.setState({
-          toAssess:newPool
+          assessFrom:newPool
         })
       }
     })
-    console.log(this.state.toAssess.length)
     this.nextAssessment()
   }
 

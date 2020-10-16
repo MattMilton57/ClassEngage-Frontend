@@ -67,11 +67,15 @@ class ClassHome extends React.Component {
     this.props.setClass(this.state.classRoster)   
   }
 
+  callback = (e) => {
+    console.log(e.name)
+  }
+
   render(){
     return(
       <div>
         Class Home Page
-        <RosterContainer students={this.state.classRoster} />
+        <RosterContainer score={'hat'} students={this.state.classRoster} callback={this.callback} />
         {/* {this.gatherRoster()} */}
         {/* <Graphics thisPeriod={this.state.thisPeriod}/> */}
       </div>
