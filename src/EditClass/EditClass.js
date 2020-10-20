@@ -1,4 +1,5 @@
 import React from 'react';
+import './EditClass.css';
 import ClassRosterContainer from './ClassRosterContainer'
 import StudentBodyContainer from './StudentBodyContainer'
 
@@ -39,7 +40,7 @@ class EditClass extends React.Component {
 
   render(){
     return(
-      <div>
+      <div name="hat" id='Rroster'>
         <ClassRosterContainer students={this.state.classRoster}/>
         <StudentBodyContainer students={this.state.allStudents} callback={this.register}/>
       </div>

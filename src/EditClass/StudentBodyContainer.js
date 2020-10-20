@@ -3,7 +3,7 @@ import React from 'react';
 
 const StudentBodyContainer = ({students, callback}) => {
 return(
-    <div id='Roster'>
+    <div name="hat" id='Students'>
         <h1>Current Hogwarts Students</h1>
         <div>
         <RosterContainer callback={callback} students={students}/>

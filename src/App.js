@@ -27,9 +27,9 @@ class App extends React.Component {
       allRegistrations: [],
       allAssessments: [],
       currentAssessments: [],
-      currentTeacher: 1,
-      currentPeriod: 0,
-      currentClass:1,
+      currentTeacher: '',
+      currentPeriod: '',
+      currentClass:'',
       currentButtons:DefaultButtons
     }
   }
@@ -115,12 +115,13 @@ class App extends React.Component {
         body: JSON.stringify({registration})
     })
     .then(res => res.json())
-    .then(res => console.log("registration"+ res.id + "done"))
-    console.log(registration)
+    // .then(res => console.log("registration"+ res.id + "done"))
+    // console.log(registration)
     this.fetchRegistrations()
 }  
 
   postAssessment = (assessment) => {
+    console.log(assessment)
     fetch((API+"assessments"), {
         method: 'POST',
         headers: {
@@ -131,8 +132,8 @@ class App extends React.Component {
         body: JSON.stringify({assessment})
     })
     .then(res => res.json())
-    .then(res => console.log("assessment at index:"+ res.id + " done"))
-    console.log(assessment)
+    // .then(res => console.log("assessment at index:"+ res.id + " done"))
+    // console.log(assessment)
     this.fetchAssessments()
   } 
 
@@ -161,15 +162,23 @@ class App extends React.Component {
   }
 
   setAssessments = (currentClassAssessments) => {
+    console.log(currentClassAssessments)
     this.setState ({
       currentAssessments:currentClassAssessments
     })
+  }
+
+  refresh = (e) => {
+    e.preventDefault()
+    this.fetchAssessments()
   }
 
   render(){
     return(
       <Router>
         <Header />
+        <NavButtons 
+          buttons={this.state.currentButtons}/>
         <div>
           <Route exact path = "/"
           component={ props => 
@@ -192,6 +201,7 @@ class App extends React.Component {
           <Route exact path = "/classhome"
           render={ props => 
             <ClassHome 
+              refresh={(e) => (this.refresh)}
               assessments={this.state.allAssessments} 
               loggedIn={this.state.currentTeacher} 
               registrations={this.state.allRegistrations} 
@@ -224,8 +234,6 @@ class App extends React.Component {
               />
           }/>          
         </div>
-        <NavButtons 
-          buttons={this.state.currentButtons}/>
       </Router>
       
 

@@ -3,12 +3,12 @@ const AssessmentCard = ({student, assessed, score, setScore}) => {
 
 const handleClick = (e) => {
   e.preventDefault()
-    console.log(student)
+    // console.log(student)
     assessed(student)
 }
 
 const handleChange = (score) => {
-    console.log(score)
+    // console.log(score)
     setScore(score)
 }
 
@@ -24,7 +24,7 @@ return(
                     /> True
                     <input
                     type="radio"
-                    value='false'
+                    value= 'false'
                     checked={score === 'false'}
                     // checked={false}
 

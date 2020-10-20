@@ -1,0 +1,19 @@
+to do:
+* time to start working on adding functionality to the "edit class" page. need to see a list of current students in the class as well as those students whi can be enrolled. this needs to be stateful so that we can see students get added and deleted in realtime. 
+- get css functional first so that the two lists are right next to each other. Dont be stubborn on this, look at old projects or tutorials first thing. - 
+
+
+
+
+
+
+
+* should I build a "current schedule* state object into each student that lsts their classes?
+might be usefull fr when im doing enrollments, wouldallow display of all classes and blocking of double registration in one period. 
+
+also, might make for a nice student status or initial enrollment page where you can pick each class from a dropdown menu to set a students initial schedule and then it displays the currently enrolled clas in that area if its filled
+
+perhaps the enroll student function is only present for administrator access? for principals and counselors but not for teachers?
+
+
+*bug: when i go back to the class menu page after doing assessments, the page is not updated with the new assessments

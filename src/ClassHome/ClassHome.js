@@ -4,11 +4,10 @@ import Graphics from '../Recyclables/Graphics/GraphicsContainer'
 import SelectClass from '../SelectClass/SelectClass';
 import AssessClass from '../AssessClass/AssessClass';
 const homeButtons = [
-  {Label:"Edit Class", Destination:'/editclass'},
   {Label:"Landing Page", Destination:'/'},
+  {Label:"Edit Class", Destination:'/editclass'},
   {Label:"Class Menu", Destination:'/selectClass'},
-  {Label:"Class Assessment", Destination:'/assess'},
-  {Label:"ClassHome", Destination:'/classhome'}]
+  {Label:"Assess Students", Destination:'/assess'}]
 
 class ClassHome extends React.Component {
 
@@ -20,7 +19,8 @@ class ClassHome extends React.Component {
       registrations:props.registrations,
       assessments:props.assessments,
       classRoster:[],
-      classAssessments:[]
+      classAssessments:[],
+      classScore:''
     }
   }
 
@@ -28,15 +28,16 @@ class ClassHome extends React.Component {
     this.props.navButtons(homeButtons)
     this.gatherRoster()
     this.gatherAssessments()
-    console.log(this.state.thisPeriod)
     this.sendClass()
   }
 
   gatherRoster = () => {
     return this.state.registrations.map(registration => {
       if (registration.class_period_id == this.state.thisPeriod){
+        // console.log(registration)
         return this.state.studentBody.map(student => {
-          if (student.id == registration.id){
+          if (student.id == registration.student_id){
+            // console.log(student)
             let roster = this.state.classRoster
             roster.push(student)
             this.setState({
@@ -48,34 +49,93 @@ class ClassHome extends React.Component {
     })
   }
 
+
+
   gatherAssessments = () => {
-    return this.state.assessments.map(assessment => {
-      if (assessment.teacher_id == this.props.loggedIn){
-        let classesAssessments = this.state.classAssessments
-        classesAssessments.push(assessment)
-        this.setState({
-          classAssessments:classesAssessments
-        })
-        this.props.setAssessments(this.state.classAssessments)
+    // this.props.refresh()
+    // this.setState({assessments:this.props.assessments})
+    let allAssessments=this.props.assessments
+    // console.log(allAssessments)
+    let classAssessments=[]
+    allAssessments.map(assessment => {
+      if (assessment.class_period_id===this.props.thisPeriod){
+        // if (assessment.class_period_id===this.state.thisPeriod){
+        //   console.log(assessment)
+
+        //   // console.log(assessment)
+          classAssessments.push(assessment)
+
+        // }
+        console.log(assessment)
+
       }
     })
+    this.setState({
+      classAssessments:classAssessments
+    })
+    // this.props.refresh()
+  }
+
+  // gatherAssessments = () => {
+  //   let classesAssessments = this.state.classAssessments
+  //   return this.state.assessments.map(assessment => {
+  //     if (assessment.teacher_id == this.props.loggedIn){(
+  //       if (assessment.class_id = this.props.thisPeriod){
+  //         let classesAssessments = this.state.classAssessments
+  //         classesAssessments.push(assessment)
+  //         this.setState({
+  //           classAssessments:classesAssessments
+  //         })
+  //         this.props.setAssessments(this.state.classAssessments)
+  //       }this.classParticipation()
+  //     })
+  //   })
+  // }
+
+
+  // gatherAssessments = () => {
+  //   return this.state.assessments.map(assessment => {
+  //     if (assessment.teacher_id == this.props.loggedIn){
+  //       let classesAssessments = this.state.classAssessments
+  //       classesAssessments.push(assessment)
+  //       this.setState({
+  //         classAssessments:classesAssessments
+  //       })
+  //       this.props.setAssessments(this.state.classAssessments)
+  //     }this.classParticipation()
+  //   })
+  // }
+
+  classParticipation = () => {
+    let totalScore=0
+    let totalAssessments = this.state.classAssessments.length
+    this.state.classAssessments.map( assessment => {if (assessment.participating == true) totalScore=(totalScore+1)})
+    let classScore=(totalScore/totalAssessments)
+    // this.setState({classScore:classScore})
+    return classScore
   }
 
 
   sendClass = () => {
-    console.log(this.state.classRoster) 
     this.props.setClass(this.state.classRoster)   
   }
 
   callback = (e) => {
-    console.log(e.name)
+    // console.log(e.name)
   }
 
   render(){
     return(
       <div>
         Class Home Page
-        <RosterContainer score={'hat'} students={this.state.classRoster} callback={this.callback} />
+        This class is at {this.classParticipation()} participation
+        {/* <button onClick={this.props.refresh()}>clickMe</button> */}
+        <RosterContainer 
+          assessments={this.state.classAssessments} 
+          score={true} 
+          students={this.state.classRoster} 
+          callback={this.callback}
+          classPeriod={this.props.thisPeriod} />
         {/* {this.gatherRoster()} */}
         {/* <Graphics thisPeriod={this.state.thisPeriod}/> */}
       </div>
