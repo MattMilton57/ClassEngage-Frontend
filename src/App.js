@@ -217,7 +217,8 @@ class App extends React.Component {
             <EditClass 
               loggedIn={this.state.currentTeacher} 
               studentBody={this.state.allStudents}  
-              thisPeriod={this.state.currentPeriod} 
+              thisPeriod={this.state.currentPeriod}
+              thisClass={this.state.currentClass} 
               navButtons={this.setButtons} 
               sendRegistration={this.postRegistration}
               />

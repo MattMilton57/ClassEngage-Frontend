@@ -80,8 +80,6 @@ class AssessClass extends React.Component {
     list.map(student => {
       if(student[1] == floorScore) {{eligible.push(student[0])}{this.setState({assessFrom:eligible})}} else {ineligable.push(student)}
     },)
-    // console.log(eligible)
-    // console.log(eligible.length) 
     if (eligible.length < 10){
 
       const sorted = ineligable.sort((a,b) => a[[1]] - b[[1]])
@@ -93,23 +91,15 @@ class AssessClass extends React.Component {
 
   nextAssessment = () => {
     let pool = this.state.assessFrom
-    // console.log(pool)
     let index = pool.length
     let now = pool[Math.floor(Math.random() * index)]
     let counter=this.state.sessionCounter
     this.setState({
       assessing:now
     })
-    pool.map(student => {
-      if (now.id === student.id){
-        // console.log(now.name, student.name)
-        // console.log(counter)
-      }
-    })
   }
 
   assessed = (e) =>{
-    // console.log(e.id)
     let counter=this.state.sessionCounter +1 
     let participation = ''
     let period = this.state.thisPeriod
@@ -119,8 +109,7 @@ class AssessClass extends React.Component {
       class_period_id:period,
       student_id:e.id,
     }
-    this.props.sendAssessment(assessment)
-    // console.log(assessment)  
+    this.props.sendAssessment(assessment) 
     this.setState({
       score:'',
       sessionCounter:counter
@@ -135,8 +124,6 @@ class AssessClass extends React.Component {
       counter++
       if (student == assessedStudent){
         const newPool = pool.filter(student => student !== assessedStudent)
-        // console.log(pool) 
-        // console.log(newPool)
         this.setState({
           assessFrom:newPool
         })
@@ -152,7 +139,6 @@ class AssessClass extends React.Component {
   }
 
   checkCallback = () => {
-    // console.log('callbackk button')
     this.nextAssessment()
   }
 
@@ -179,74 +165,3 @@ class AssessClass extends React.Component {
   }
 
 } export default AssessClass
-
-  // eligibleList = (list, floorScore) => {
-  //   let eligible = []
-  //   let ineligable = []
-  //   list.map(student => {
-  //     if(student[1] == floorScore) {eligible.push(student[0])} else {ineligable.push(student)}
-  //   },)
-  //   // console.log(eligible) 
-  //   if (eligible.length < 10){
-
-  //     const sorted = ineligable.sort((a,b) => a[[1]] - b[[1]])
-  //     let newbase = sorted[0][1]
-  //     sorted.map(student=>{if(student[1]==newbase){eligible.push(student[0])}})
-  //     // console.log(eligible)
-  //   }
-  //   this.setState({toAssess:eligible})
-  // }
-
-
-
-    // first attempt at building code that will create a list of the students who have been assessed the least. not working 
-    
-
-
-    // allAssessmentIndex.map (student => {
-    //   let index = (allAssessmentIndex.length - 1)
-    //   if (allAssessmentIndex[0][1] > allAssessmentIndex[index][1])
-    //       {console.log(student)
-    //       console.log(index)}
-    //       else
-    //       {console.log(student+' no')}
-    // })
-    // allAssessmentIndex.map (student => {
-    //   readyToAssess.push(student[0])
-    // })
-    // this.setState({
-    //   toAssess:readyToAssess
-    // })
-
-    // displayPage(){
-    //   let count = this.state.sessionCounter
-    //   if (count < 5 ) {
-  
-    //   return(
-    //   //   <div>
-    //   //     Asses Class Page
-    //   //     {/* <div onClick={() => this.nextAssessment()}>Click Me</div> */}
-    //   //     {/* {this.todaysAssessment()} */}
-    //       <AssessmentContainer assessButton={ (e) => this.checkCallback()} classRoster={this.state.assessing} score={this.state.score} setScore={this.setScore} assessed={(e) => this.assessed(e)}/>
-    //     // </div>
-    //   )
-    //   } else {
-    //     return(
-    //       <div>thats all for today</div>
-    //     )
-    //   }
-    // }
-
-    // render(){
-    //   return(
-    //     // <div>
-    //     //   Asses Class Page
-    //     //   {/* <div onClick={() => this.nextAssessment()}>Click Me</div> */}
-    //     //   {/* {this.todaysAssessment()} */}
-    //     //   <AssessmentContainer assessButton={ (e) => this.checkCallback()} classRoster={this.state.assessing} score={this.state.score} setScore={this.setScore} assessed={(e) => this.assessed(e)}/>
-    //     // </div>
-    //     <div>
-    //       {this.displayPage()}
-    //     </div>
-    //   )
-    // }

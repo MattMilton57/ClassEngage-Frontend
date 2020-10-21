@@ -21,8 +21,9 @@ class EditClass extends React.Component {
   componentDidMount(){
     this.props.navButtons(DefaultButtons)
     this.setState({
+      classRoster: this.props.thisClass,
       allStudents:this.props.studentBody,
-      thisPeriod:this.props.thisPeriod
+      thisPeriod:this.props.thisPeriod,
     })
   }
 
@@ -36,13 +37,20 @@ class EditClass extends React.Component {
       student_id: e.id,
       }
     this.props.sendRegistration(registration)  
+    this.setState({
+      classRoster:this.props.thisClass
+    })
+  }
+
+  addToClass = (e) => {
+    console.log(e[0])
   }
 
   render(){
     return(
       <div name="hat" id='Rroster'>
         <ClassRosterContainer students={this.state.classRoster}/>
-        <StudentBodyContainer students={this.state.allStudents} callback={this.register}/>
+        <StudentBodyContainer students={this.state.allStudents} callback={e => this.addToClass(e)}/>
       </div>
     )
   }
