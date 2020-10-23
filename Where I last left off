@@ -17,3 +17,5 @@ perhaps the enroll student function is only present for administrator access? fo
 
 
 *bug: when i go back to the class menu page after doing assessments, the page is not updated with the new assessments
+
+*bug: in edit class, need to write logic to remove a kid from this.state.gonekids if they are put back into the class and vice versa

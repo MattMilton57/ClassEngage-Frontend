@@ -37,6 +37,10 @@ class App extends React.Component {
   componentDidMount(){
     console.log('mounted')
     this.fetchStudents("bob")
+    this.fetchTeachers()
+    this.fetchClasses()
+    this.fetchRegistrations()
+    this.fetchAssessments()
   }
 
   fetchStudents = (C) => {
@@ -48,7 +52,7 @@ class App extends React.Component {
             allStudents: data,
           },
           console.log("student fetch")
-        );this.fetchTeachers()
+        );
       });
   };
 
@@ -61,7 +65,7 @@ class App extends React.Component {
             allTeachers: data,
           },
           console.log("teacher fetch")
-        ); this.fetchClasses()
+        ); 
       });
   };
 
@@ -74,7 +78,7 @@ class App extends React.Component {
             allClassPeriods: data,
           },
           console.log("class fetch")
-        ); this.fetchRegistrations()
+        ); 
       });
   };
 
@@ -87,7 +91,7 @@ class App extends React.Component {
             allRegistrations: data,
           },
           console.log("registrations fetch")
-        ); this.fetchAssessments()
+        ); 
       });
   };
 
@@ -104,7 +108,9 @@ class App extends React.Component {
       });
   };
 
-  postRegistration = (registration) => {
+
+  postRegistration = (newRegistrations) => {
+    newRegistrations.map(registration =>{
     fetch((API+"registrations"), {
         method: 'POST',
         headers: {
@@ -115,10 +121,26 @@ class App extends React.Component {
         body: JSON.stringify({registration})
     })
     .then(res => res.json())
-    // .then(res => console.log("registration"+ res.id + "done"))
-    // console.log(registration)
-    this.fetchRegistrations()
+    .then(this.fetchRegistrations())})
 }  
+
+//   postRegistration = (registration) => {
+//     console.log(registration+"top")
+//     fetch((API+"registrations"), {
+//         method: 'POST',
+//         headers: {
+//             'access-control-allow-origin':'*',
+//             'Content-Type': 'application/json',
+//             'Accept':'application/json'
+//         }, 
+//         body: JSON.stringify({registration})
+//     })
+//     .then(res => res.json())
+//     .then(res=>console.log(res))
+//     // .then(res => console.log("registration"+ res.id + "done"))
+//     console.log(registration+"bottom")
+//     this.fetchRegistrations()
+// }  
 
   postAssessment = (assessment) => {
     console.log(assessment)
@@ -132,10 +154,21 @@ class App extends React.Component {
         body: JSON.stringify({assessment})
     })
     .then(res => res.json())
-    // .then(res => console.log("assessment at index:"+ res.id + " done"))
-    // console.log(assessment)
-    this.fetchAssessments()
-  } 
+    .then(res => console.log(res))
+    .then(res => this.fetchAssessments())    
+  }
+  
+  deleteRegistrations = (student) => {
+    this.state.allRegistrations.map(registration=>{
+      if (registration.student_id == student.id){
+        let candidate = registration
+        if (candidate.class_period_id == this.state.currentPeriod){
+            fetch(API + "registrations/" + registration.id, {
+            method: 'DELETE',
+          }).then (res => console.log(res))
+        }this.fetchRegistrations()
+      }}
+    )}
 
   setTeacher = (teacher) => {
     this.setState({
@@ -221,6 +254,7 @@ class App extends React.Component {
               thisClass={this.state.currentClass} 
               navButtons={this.setButtons} 
               sendRegistration={this.postRegistration}
+              deleteRegistration={this.deleteRegistrations}
               />
           }/>
           <Route exact path = "/assess"

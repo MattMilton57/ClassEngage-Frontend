@@ -14,7 +14,10 @@ class EditClass extends React.Component {
     this.state= {
       allStudents: [],
       classRoster: [],
-      thisPeriod:''
+      thisPeriod:'',
+      newKids:[],
+      goneKids:[],
+      registerFrom:[]
     }
   }
 
@@ -22,40 +25,43 @@ class EditClass extends React.Component {
     this.props.navButtons(DefaultButtons)
     this.setState({
       classRoster: this.props.thisClass,
-      allStudents:this.props.studentBody,
       thisPeriod:this.props.thisPeriod,
-      newKids:[],
-      goneKids:''
     })
+    this.remainingStudents()
+  }
+
+  remainingStudents = () => {
+    let studentBody=this.props.studentBody
+    let classRoster=this.props.thisClass
+    let registerFrom=[]
+    // console.log(classRoster)
+      studentBody.map(student=>{
+        if (classRoster.includes(student)==false)
+        {registerFrom.push(student)}
+      }) 
+    this.setState({allStudents:registerFrom})  
   }
 
   addToClass = (e)=> {
     let currentClass=this.state.classRoster
     let studentBody=this.state.allStudents
-    // if (this.state.newKids=''){let newKids=["hat"]}else{let newKids = this.state.newKids}
-    // console.log(newKids)
-    // let newKids= this.state.newKids
-    // let addAKid= (newKids.push(e))
-    // console.log(addAKid)
     let newKids=this.state.newKids
     newKids.push(e)
-    // console.log(newKids)
     let newBody=studentBody.filter(studentBody => studentBody !== e)
     currentClass.push(e) 
     this.setState(
       {classRoster:currentClass, 
       allStudents:newBody,
       newKids:newKids})
-      // newKids:addAKid})
   }
 
   removeFromClass = (e) => {
     let currentClass=this.state.classRoster
     let studentBody=this.state.allStudents
     let goneKids=this.state.goneKids
+    goneKids.push(e)
     let newClass=currentClass.filter(currentClass => currentClass !== e)
     studentBody.push(e) 
-    goneKids.push(e)
     this.setState(
       {classRoster:newClass, 
       allStudents:studentBody,
@@ -64,9 +70,7 @@ class EditClass extends React.Component {
 
   setClass=(e)=>{
     this.register()
-    // let currentClass=this.state.newKids
-    // let studentBody=this.state.allStudents
-    // currentClass.map(student=>{this.register(student)})
+    this.deRegister()
   }
 
   register = (e) => {
@@ -81,13 +85,22 @@ class EditClass extends React.Component {
     // keep below!!!!!!
     // console.log(mapMe)
     // mapMe.map(student=>{console.log(student.name)})
+    let newRegistrations = []
     mapMe.map(student=> {
     const registration = {
       class_period_id: this.state.thisPeriod,
       student_id: student.id,
       }
-    this.props.sendRegistration(registration)     
+    newRegistrations.push(registration)     
   })
+  this.props.sendRegistration(newRegistrations) 
+  this.setState({newKids:[]})
+  }
+
+  deRegister=()=>{
+    let toDeregister = this.state.goneKids
+    toDeregister.map(student=>{this.props.deleteRegistration(student)})
+    this.setState({goneKids:[]})
   }
 
   render(){
