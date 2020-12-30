@@ -53,6 +53,8 @@ class EditClass extends React.Component {
       {classRoster:currentClass, 
       allStudents:newBody,
       newKids:newKids})
+      this.props.sendRegistration({class_period_id:this.state.thisPeriod, student_id:e.id})
+      this.sendClass()
   }
 
   removeFromClass = (e) => {
@@ -61,47 +63,59 @@ class EditClass extends React.Component {
     let goneKids=this.state.goneKids
     goneKids.push(e)
     let newClass=currentClass.filter(currentClass => currentClass !== e)
+    console.log(newClass) 
+    console.log(currentClass)
     studentBody.push(e) 
     this.setState(
       {classRoster:newClass, 
       allStudents:studentBody,
       goneKids:goneKids})
+    console.log(e)
+      this.props.deleteRegistration(e)
+      this.sendClass()
   }
 
-  setClass=(e)=>{
-    this.register()
-    this.deRegister()
+  sendClass = () => {
+    this.props.setClass(this.state.classRoster)   
   }
 
-  register = (e) => {
-    // console.log(this.state.newKids)
-    let mapMe=this.state.newKids
-    // mapMe.map(student=>{console.log(student.name)})
-    // console.log(e)
-    // this.props.sendRegistration({class_period_id:this.state.thisClass.id, student_id:e.id})
-        // console.log(e)
-    // this.props.sendRegistration({class_period_id:this.state.thisClass.id, student_id:e.id})
+
+//origional functions for using the submit button to send all of the class fetches to the app fetch at once. Did not work. nope. 
+
+  // setClass=(e)=>{
+  //   this.register()
+  //   this.deRegister()
+  // }
+
+  // register = (e) => {
+  //   // console.log(this.state.newKids)
+  //   let mapMe=this.state.newKids
+  //   // mapMe.map(student=>{console.log(student.name)})
+  //   // console.log(e)
+  //   // this.props.sendRegistration({class_period_id:this.state.thisClass.id, student_id:e.id})
+  //       // console.log(e)
+  //   // this.props.sendRegistration({class_period_id:this.state.thisClass.id, student_id:e.id})
     
-    // keep below!!!!!!
-    // console.log(mapMe)
-    // mapMe.map(student=>{console.log(student.name)})
-    let newRegistrations = []
-    mapMe.map(student=> {
-    const registration = {
-      class_period_id: this.state.thisPeriod,
-      student_id: student.id,
-      }
-    newRegistrations.push(registration)     
-  })
-  this.props.sendRegistration(newRegistrations) 
-  this.setState({newKids:[]})
-  }
+  //   // keep below!!!!!!
+  //   // console.log(mapMe)
+  //   // mapMe.map(student=>{console.log(student.name)})
+  //   let newRegistrations = []
+  //   mapMe.map(student=> {
+  //   const registration = {
+  //     class_period_id: this.state.thisPeriod,
+  //     student_id: student.id,
+  //     }
+  //   newRegistrations.push(registration)     
+  // })
+  // this.props.sendRegistration(newRegistrations) 
+  // this.setState({newKids:[]})
+  // }
 
-  deRegister=()=>{
-    let toDeregister = this.state.goneKids
-    toDeregister.map(student=>{this.props.deleteRegistration(student)})
-    this.setState({goneKids:[]})
-  }
+  // deRegister=()=>{
+  //   let toDeregister = this.state.goneKids
+  //   toDeregister.map(student=>{this.props.deleteRegistration(student)})
+  //   this.setState({goneKids:[]})
+  // }
 
   render(){
     return(

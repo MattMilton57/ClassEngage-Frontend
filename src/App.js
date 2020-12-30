@@ -3,6 +3,7 @@ import './App.css';
 import LandingPage from './LandingPage/LandingPage.js'
 import SelectClass from './SelectClass/SelectClass.js'
 import ClassHome from './ClassHome/ClassHome.js'
+import StudentHome from './StudentHome/StudentHome.js'
 import EditClass from './EditClass/EditClass.js'
 import NavButtons from './NavButtons/NavButtons.js'
 import Header from './Header/Header'
@@ -27,6 +28,7 @@ class App extends React.Component {
       allRegistrations: [],
       allAssessments: [],
       currentAssessments: [],
+      currentStudent:'',
       currentTeacher: '',
       currentPeriod: '',
       currentClass:'',
@@ -109,23 +111,9 @@ class App extends React.Component {
   };
 
 
-  postRegistration = (newRegistrations) => {
-    newRegistrations.map(registration =>{
-    fetch((API+"registrations"), {
-        method: 'POST',
-        headers: {
-            'access-control-allow-origin':'*',
-            'Content-Type': 'application/json',
-            'Accept':'application/json'
-        }, 
-        body: JSON.stringify({registration})
-    })
-    .then(res => res.json())
-    .then(this.fetchRegistrations())})
-}  
-
-//   postRegistration = (registration) => {
-//     console.log(registration+"top")
+//   postRegistration = (newRegistrations) => {
+//     console.log(newRegistrations)
+//     // newRegistrations.map(registration =>{
 //     fetch((API+"registrations"), {
 //         method: 'POST',
 //         headers: {
@@ -133,14 +121,45 @@ class App extends React.Component {
 //             'Content-Type': 'application/json',
 //             'Accept':'application/json'
 //         }, 
-//         body: JSON.stringify({registration})
+//         body: JSON.stringify({newRegistrations})
+//     })
+//     .then(res => res.json())
+//     .then(this.fetchRegistrations())
+//   // })
+// }  
+
+//   postRegistration = (newRegistrations) => {
+//     console.log(newRegistrations)
+//     fetch((API+"registrations"), {
+//         method: 'POST',
+//         headers: {
+//             'access-control-allow-origin':'*',
+//             'Content-Type': 'application/json',
+//             'Accept':'application/json'
+//         }, 
+//         body: JSON.stringify({newRegistrations})
 //     })
 //     .then(res => res.json())
 //     .then(res=>console.log(res))
 //     // .then(res => console.log("registration"+ res.id + "done"))
-//     console.log(registration+"bottom")
+//     console.log(newRegistrations)
 //     this.fetchRegistrations()
 // }  
+
+postRegistration = (registration) => {
+  fetch((API+"registrations"), {
+      method: 'POST',
+      headers: {
+          'access-control-allow-origin':'*',
+          'Content-Type': 'application/json',
+          'Accept':'application/json'
+      }, 
+      body: JSON.stringify({registration})
+  })
+  .then(res => res.json())
+  .then(res => console.log(res))
+  .then(this.fetchRegistrations())
+} 
 
   postAssessment = (assessment) => {
     console.log(assessment)
@@ -155,7 +174,7 @@ class App extends React.Component {
     })
     .then(res => res.json())
     .then(res => console.log(res))
-    .then(res => this.fetchAssessments())    
+    this.fetchAssessments()   
   }
   
   deleteRegistrations = (student) => {
@@ -166,9 +185,25 @@ class App extends React.Component {
             fetch(API + "registrations/" + registration.id, {
             method: 'DELETE',
           }).then (res => console.log(res))
-        }this.fetchRegistrations()
-      }}
+          .then (console.log(student.name + " removed"))
+          .then(this.fetchRegistrations())
+        }
+      }this.fetchRegistrations()}
     )}
+
+    // deleteRegistrations = (student) => {
+    //   this.state.allRegistrations.map(registration=>{
+    //     if (registration.student_id == student.id){
+    //       let candidate = registration
+    //       if (candidate.class_period_id == this.state.currentPeriod){
+    //           fetch(API + "registrations/" + registration.id, {
+    //           method: 'DELETE',
+    //         }).then (res => console.log(res))
+    //         .then (console.log(student.name + " removed"))
+    //         .then(this.fetchRegistrations())
+    //       }
+    //     }}
+    //   )}
 
   setTeacher = (teacher) => {
     this.setState({
@@ -191,6 +226,13 @@ class App extends React.Component {
   setClass = (thisClass) => {
     this.setState({
       currentClass:thisClass
+    })
+  }
+
+  setStudent = (thisStudent) => {
+    console.log(thisStudent)
+    this.setState({
+      currentStudent:thisStudent
     })
   }
 
@@ -243,8 +285,11 @@ class App extends React.Component {
               navButtons={this.setButtons}
               setAssessments={this.setAssessments}
               setClass={this.setClass} 
+              fetchReg={this.fetchRegistrations}
+              setStudent={this.setStudent}
               />
           }/>
+
           <Route exact path = "/editclass"
           render={ props => 
             <EditClass 
@@ -255,8 +300,10 @@ class App extends React.Component {
               navButtons={this.setButtons} 
               sendRegistration={this.postRegistration}
               deleteRegistration={this.deleteRegistrations}
+              setClass={this.setClass} 
               />
           }/>
+
           <Route exact path = "/assess"
           render={ props => 
             <AssessClass 
@@ -267,7 +314,23 @@ class App extends React.Component {
               navButtons={this.setButtons} 
               sendAssessment={this.postAssessment}
               />
-          }/>          
+          }/>  
+          <Route exact path = "/studenthome"
+          render={ props => 
+            <StudentHome 
+              refresh={(e) => (this.refresh)}
+              assessments={this.state.allAssessments} 
+              loggedIn={this.state.currentTeacher} 
+              registrations={this.state.allRegistrations} 
+              studentBody={this.state.allStudents} 
+              thisPeriod={this.state.currentPeriod} 
+              navButtons={this.setButtons}
+              setAssessments={this.setAssessments}
+              setClass={this.setClass} 
+              fetchReg={this.fetchRegistrations}
+              currentStudent={this.state.currentStudent}
+              />
+          }/>        
         </div>
       </Router>
       

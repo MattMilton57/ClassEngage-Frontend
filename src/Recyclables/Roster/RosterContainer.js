@@ -3,7 +3,7 @@ import  Student from './Student';
 import  StudentScore from './StudentScore';
 
 
-const RosterContainer = ({students, callback, score, assessments, classPeriod}) => {  
+const RosterContainer = ({students, callback, score, assessments, classPeriod, linkTo}) => {  
     
     const filterAssessments = (id) => {
         // console.log(assessments)
@@ -33,7 +33,8 @@ if (score===true){
                             callback={callback} 
                             student={student} 
                             assessments={assessments} 
-                            showScore={score}/>
+                            showScore={score}
+                            linkTo={linkTo}/>
                     </div>
                     <div id="score">
                         <StudentScore

@@ -1,16 +1,33 @@
 import React from 'react';
-const Student = ({student, callback, assessments, totalScore, showScore}) => {
+import { Link } from 'react-router-dom'
+const Student = ({student, callback, linkTo, assessments, totalScore, showScore}) => {
 
 const handleClick = (e) => {
     // totalScore(student)
     callback(e)
 }
 
-return(
+if (linkTo == true) {
+    return(
+        <div onClick={()=> handleClick(student)}>
+            <Link to={'/studenthome'}>
+                {student.name}
+            </Link>
+        </div>)
+}else{
+    return(
         <div onClick={()=> handleClick(student)}>
             <li key={student.id}>{student.name}</li>
         </div>  
     ) 
+}
+
+
+// return(
+//         <div onClick={()=> handleClick(student)}>
+//             <li key={student.id}>{student.name}</li>
+//         </div>  
+//     ) 
 // }
 }
 

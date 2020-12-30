@@ -26,6 +26,7 @@ class ClassHome extends React.Component {
 
   componentDidMount(){
     this.props.navButtons(homeButtons)
+    this.props.fetchReg()
     this.gatherRoster()
     this.gatherAssessments()
     this.sendClass()
@@ -63,9 +64,13 @@ class ClassHome extends React.Component {
   classParticipation = () => {
     let totalScore=0
     let totalAssessments = this.state.classAssessments.length
+    if (totalAssessments>0){
     this.state.classAssessments.map( assessment => {if (assessment.participating == true) totalScore=(totalScore+1)})
     let classScore=(totalScore/totalAssessments)
-    return classScore
+    return <div>This class is at {(classScore*100)} % participation </div>
+    }else{
+      return(<div>No assessments yet</div>)
+    }
   }
 
   sendClass = () => {
@@ -73,20 +78,21 @@ class ClassHome extends React.Component {
   }
 
   callback = (e) => {
-    console.log(e.name)
+    this.props.setStudent(e)
   }
 
   render(){
     return(
       <div>
         Class Home Page
-        This class is at {this.classParticipation()} participation
+        {this.classParticipation()}
         <RosterContainer 
           assessments={this.state.classAssessments} 
           score={true} 
           students={this.state.classRoster} 
           callback={this.callback}
-          classPeriod={this.props.thisPeriod} />
+          classPeriod={this.props.thisPeriod} 
+          linkTo={true}/>
       </div>
     )
   }
