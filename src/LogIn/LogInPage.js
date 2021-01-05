@@ -1,10 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
 const DefaultButtons = [
   {Label:"Landing Page", Destination:'/'},
   {Label:"Class Menu", Destination:'/selectClass'},
   {Label:"ClassHome", Destination:'/classhome'}]
-class LandingPage extends React.Component {
+class LogInPage extends React.Component {
 
   constructor(props) {
     super(props);
@@ -30,18 +29,13 @@ class LandingPage extends React.Component {
 
   render(){
     return(
-      // <div className="loginForm">
-      //   <h2>Please log in</h2>
-      //   <label>Username</label>
-      //   <input type="text" name="username" placeholder="username" onChange={this.onChange}/>
-      //   <label>password</label>
-      //   <input type="password" name="password" placeholder="password" onChange={this.onChange}/>
-      //   <input type="submit" value="login" className="button" onClick={this.login}/>
-      // </div>
-      <div>
-      <div>Welcome to classEngage 2.500</div>
-      <Link to={'/logIn'}> log in</Link>
-      <Link to={'/register'}> register</Link>
+      <div className="loginForm">
+        <h2>Please log in</h2>
+        <label>Username</label>
+        <input type="text" name="username" placeholder="username" onChange={this.onChange}/>
+        <label>password</label>
+        <input type="password" name="password" placeholder="password" onChange={this.onChange}/>
+        <input type="submit" value="login" className="button" onClick={this.login}/>
       </div>
     )
   }
@@ -56,4 +50,4 @@ class LandingPage extends React.Component {
   //   )
   // }
 
-} export default LandingPage
+} export default LogInPage

@@ -8,6 +8,8 @@ import EditClass from './EditClass/EditClass.js'
 import NavButtons from './NavButtons/NavButtons.js'
 import Header from './Header/Header'
 import AssessClass from './AssessClass/AssessClass.js'
+import LogIn from './LogIn/LogInPage.js'
+import Register from './Register/RegisterPage.js'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 const API = "http://localhost:3000/"
@@ -146,6 +148,22 @@ class App extends React.Component {
 //     this.fetchRegistrations()
 // }  
 
+postTeacher = (teacher) => {
+  // console.log(teacher)
+  fetch((API+"teachers"), {
+      method: 'POST',
+      headers: {
+          'access-control-allow-origin':'*',
+          'Content-Type': 'application/json',
+          'Accept':'application/json'
+      }, 
+      body: JSON.stringify({teacher})
+  })
+  .then(res => res.json())
+  .then(res => console.log(res))
+  .then(this.fetchTeachers())
+} 
+
 postRegistration = (registration) => {
   fetch((API+"registrations"), {
       method: 'POST',
@@ -261,6 +279,19 @@ postRegistration = (registration) => {
               teachers={this.state.allTeachers} 
               navButtons={this.setButtons}
               whoAmI={this.setTeacher}/>
+          }/>
+
+          <Route exact path = "/logIn"
+          component={ props => 
+            <LogIn  
+              navButtons={this.setButtons}/>
+          }/>
+
+          <Route exact path = "/register"
+          component={ props => 
+            <Register  
+              navButtons={this.setButtons}
+              postTeacher={this.postTeacher}/>
           }/>
 
           <Route exact path = "/selectClass"
