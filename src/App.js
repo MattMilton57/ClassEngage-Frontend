@@ -271,6 +271,7 @@ postRegistration = (registration) => {
     const newstate = {...this.state.auth, user: {...data}}
     localStorage.setItem("token", data.jwt)
     this.setState({ auth:newstate})
+
   }
 
   onLogout = () => {
@@ -279,16 +280,18 @@ postRegistration = (registration) => {
   }
 
   render(){
+    const {user} = this.state.auth
     return(
       <Router>
         <Header />
         <NavButtons 
-          buttons={this.state.currentButtons}/>
+          buttons={this.state.currentButtons} user={this.state.auth.user}/>
         <div> <button onClick={this.onLogout}>Log Out</button></div>  
         <div>
           <Route exact path = "/"
           component={ props => 
             <LandingPage 
+              {...props}
               teachers={this.state.allTeachers} 
               navButtons={this.setButtons}
               whoAmI={this.setTeacher}/>
@@ -297,7 +300,8 @@ postRegistration = (registration) => {
           <Route exact path = "/logIn"
           component={ props => 
             <LogIn
-              onLogIn={this.onLogin}    
+              {...props}
+              logIn={this.onLogin}    
               navButtons={this.setButtons}/>
           }/>
 
@@ -312,6 +316,8 @@ postRegistration = (registration) => {
           <Route exact path = "/selectClass"
           render={ props => 
             <SelectClass 
+              {...props}
+              user={user}
               classes={this.state.allClassPeriods} 
               loggedIn={this.state.currentTeacher}
               navButtons={this.setButtons} 

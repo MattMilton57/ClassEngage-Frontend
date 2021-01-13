@@ -21,7 +21,8 @@ class SelectClass extends React.Component {
   render(){
     return(
       <div>
-        <ClassListContainer classes={this.props.classes} teacher={this.props.loggedIn} selected={this.props.selected}/>
+        the select class page for {this.props.user.user.username}
+        {/* <ClassListContainer classes={this.props.classes} teacher={this.props.loggedIn} selected={this.props.selected}/> */}
       </div>
     )
   }

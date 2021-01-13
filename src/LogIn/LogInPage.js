@@ -28,16 +28,18 @@ class LogInPage extends React.Component {
   }
 
   onLogIn = () => {
+      const username = (this.state.username)
+      const password = (this.state.password)
     fetch(('http://localhost:3000/api/v1/auth'), {
         method:"POST",
         headers: 
             {"Content-Type": "application/json", 
             Accept: "application/json",
         },
-        body: JSON.stringify(this.state)
+        body: JSON.stringify({user:{username:username, password:password}})
     })
     .then(res => res.json())
-    .then(res => {console.log(res)
+    .then(res => {this.props.logIn(res); this.props.history.push('/selectClass')
     // if (!res.error) {
     //     this.props.onLogIn(res)
     //     }
