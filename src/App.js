@@ -34,7 +34,8 @@ class App extends React.Component {
       currentTeacher: '',
       currentPeriod: '',
       currentClass:'',
-      currentButtons:DefaultButtons
+      currentButtons:DefaultButtons,
+      auth:{user:{}}
     }
   }
 
@@ -149,7 +150,6 @@ class App extends React.Component {
 // }  
 
 postTeacher = (teacher) => {
-  // console.log(teacher)
   fetch((API+"teachers"), {
       method: 'POST',
       headers: {
@@ -266,12 +266,25 @@ postRegistration = (registration) => {
     this.fetchAssessments()
   }
 
+  onLogin = (data) => {
+    console.log(data)
+    const newstate = {...this.state.auth, user: {...data}}
+    localStorage.setItem("token", data.jwt)
+    this.setState({ auth:newstate})
+  }
+
+  onLogout = () => {
+    localStorage.removeItem("token")
+    this.setState({ auth: {user:{}}})
+  }
+
   render(){
     return(
       <Router>
         <Header />
         <NavButtons 
           buttons={this.state.currentButtons}/>
+        <div> <button onClick={this.onLogout}>Log Out</button></div>  
         <div>
           <Route exact path = "/"
           component={ props => 
@@ -283,13 +296,15 @@ postRegistration = (registration) => {
 
           <Route exact path = "/logIn"
           component={ props => 
-            <LogIn  
+            <LogIn
+              onLogIn={this.onLogin}    
               navButtons={this.setButtons}/>
           }/>
 
           <Route exact path = "/register"
           component={ props => 
-            <Register  
+            <Register
+              onSignUp={this.onLogin}  
               navButtons={this.setButtons}
               postTeacher={this.postTeacher}/>
           }/>

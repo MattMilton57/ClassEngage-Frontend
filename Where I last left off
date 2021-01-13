@@ -1,7 +1,5 @@
-to do:
-* time to start working on adding functionality to the "edit class" page. need to see a list of current students in the class as well as those students whi can be enrolled. this needs to be stateful so that we can see students get added and deleted in realtime. 
-- get css functional first so that the two lists are right next to each other. Dont be stubborn on this, look at old projects or tutorials first thing. - 
-
+1-12-2021:
+* Working on login functionality, trying to figure out why im having trouble issuing a JWT token on login.
 
 
 

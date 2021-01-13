@@ -8,13 +8,12 @@ class RegisterPage extends React.Component {
   constructor(props) {
     super(props);
     this.state= {
-    //   firstname:'',
-    //   lastname:'',
-      name:'',
-    //   email:'',
-    //   password:'',
-    //   confirmedpassword:''
-    }
+        password_confirmation:'',
+        user:{username: '',
+        password: '',
+        bio: '',
+        avatar: ''}}
+    
   }
 
   componentDidMount(){
@@ -22,13 +21,33 @@ class RegisterPage extends React.Component {
   }
 
   onChange(state,value){
-    this.setState({[state]:value})
+      const newState = {...this.state.user, [state]:value}
+    this.setState({user: newState})
   }
 
   onSubmit = (e) =>{
       e.preventDefault()
     // console.log(this.state)
-    this.props.postTeacher(this.state)
+    // this.postUser()
+    if (this.state.password_confirmation === this.state.user.password) {
+        this.postUser()
+        console.log(this.state.user)
+    } else {
+        alert('not good')
+    }
+  }
+
+  postUser = () => {
+      fetch(('http://localhost:3000/api/v1/users'), {
+          method:"POST",
+          headers: {"Content-Type": "application/json", Accept: "application/json"},
+          body: JSON.stringify(this.state)
+      })
+      .then(res => res.json())
+      .then(res => {console.log(res)
+      if (!res.error) {
+          this.props.onSignUp(res)
+      }}) 
   }
 
 
@@ -38,43 +57,23 @@ class RegisterPage extends React.Component {
             <h3>Sign Up</h3>
 
             <div className="form-group">
-                <label>First Name</label>
-                <input 
-                    type="text" 
-                    className="form-control" 
-                    placeholder="First Name" 
-                    value={this.state.firstname}
-                    onChange={(e) => this.onChange("firstname", e.target.value)}/>
-            </div>
-
-            <div className="form-group">
-                <label>Last Name</label>
-                <input 
-                    type="text" 
-                    className="form-control" 
-                    placeholder="Last Name"
-                    value={this.state.lastname}
-                    onChange={(e) => this.onChange("lastname", e.target.value)}/>
-            </div>
-
-            <div className="form-group">
                 <label>Username</label>
                 <input 
                     type="text" 
                     className="form-control" 
                     placeholder="Username"
                     value={this.state.username}
-                    onChange={(e) => this.onChange("name", e.target.value)}/>
+                    onChange={(e) => this.onChange("username", e.target.value)}/>
             </div>
 
             <div className="form-group">
-                <label>Email</label>
+                <label>Bio</label>
                 <input 
-                    type="email" 
+                    type="text" 
                     className="form-control" 
-                    placeholder="Email"
-                    value={this.state.email}
-                    onChange={(e) => this.onChange("email", e.target.value)}/>
+                    placeholder="bio"
+                    value={this.state.bio}
+                    onChange={(e) => this.onChange("bio", e.target.value)}/>
             </div>
 
             <div className="form-group">
@@ -94,8 +93,19 @@ class RegisterPage extends React.Component {
                     className="form-control" 
                     placeholder="Confirm Password"
                     value={this.state.confirmedpassword}
-                    onChange={(e) => this.onChange("confirmedpassword", e.target.value)}/>
+                    onChange={(e) => this.setState({password_confirmation:e.target.value})}/>
             </div>
+
+            <div className="form-group">
+                <label>Avatar</label>
+                <input 
+                    type="text" 
+                    className="form-control" 
+                    placeholder="Avatar"
+                    value={this.state.password}
+                    onChange={(e) => this.onChange("avatar", e.target.value)}/>
+            </div>
+
 
             <button className="btn-primary btn-block" >Sign Up</button>
         </form>

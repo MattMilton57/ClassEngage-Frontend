@@ -8,19 +8,41 @@ class LogInPage extends React.Component {
   constructor(props) {
     super(props);
     this.state= {
-      username:'',
-      password:''
+        user:{
+            username:'',
+            password:''
+        }
     }
-    this.login = this.login.bind(this);
+    // this.login = this.login.bind(this);
   }
 
   componentDidMount(){
     // console.log('landingPage')
   }
 
-  login(){
-    console.log(this.state.username)
+  token = () =>{localStorage.getItem("token")}
+
+  onSubmit = (e) => {
+    e.preventDefault()
+    this.onLogIn()
   }
+
+  onLogIn = () => {
+    fetch(('http://localhost:3000/api/v1/auth'), {
+        method:"POST",
+        headers: 
+            {"Content-Type": "application/json", 
+            Accept: "application/json",
+        },
+        body: JSON.stringify(this.state)
+    })
+    .then(res => res.json())
+    .then(res => {console.log(res)
+    // if (!res.error) {
+    //     this.props.onLogIn(res)
+    //     }
+    }) 
+}
 
   onChange = (e) =>{
     this.setState({[e.target.name]: e.target.value})
@@ -35,7 +57,7 @@ class LogInPage extends React.Component {
         <input type="text" name="username" placeholder="username" onChange={this.onChange}/>
         <label>password</label>
         <input type="password" name="password" placeholder="password" onChange={this.onChange}/>
-        <input type="submit" value="login" className="button" onClick={this.login}/>
+        <input type="submit" value="login" className="button" onClick={this.onSubmit}/>
       </div>
     )
   }
