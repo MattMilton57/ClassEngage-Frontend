@@ -4,6 +4,7 @@ import Graphics from '../Recyclables/Graphics/GraphicsContainer'
 import SelectClass from '../SelectClass/SelectClass';
 import AssessClass from '../AssessClass/AssessClass';
 import AssessmentContainer from '../Recyclables/Assessment/AssessmentContainer'
+import { api } from '../services/api'
 
 const homeButtons = [
   {Label:"Landing Page", Destination:'/'},
@@ -24,7 +25,18 @@ class StudentHome extends React.Component {
   }
 
   componentDidMount(){
+    this.getAssessments()
   }
+
+  getAssessments = () => {
+    let id = {student_id:this.props.currentStudent.id}
+    api.get.studentsAssessments(id)
+    .then(res => this.setState({
+      assessments:res
+    }))
+  }
+
+  
 
   render(){
     return(
