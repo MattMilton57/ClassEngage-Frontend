@@ -2,6 +2,9 @@ import React from 'react';
 import './EditClass.css';
 import ClassRosterContainer from './ClassRosterContainer'
 import StudentBodyContainer from './StudentBodyContainer'
+import NewStudentContainer from './NewStudentContainer';
+import { api } from '../services/api'
+
 
 const DefaultButtons = [
   {Label:"Landing Page", Destination:'/'},
@@ -14,32 +17,75 @@ class EditClass extends React.Component {
     this.state= {
       allStudents: [],
       classRoster: [],
-      thisPeriod:'',
+      thisPeriod:25,
       newKids:[],
       goneKids:[],
-      registerFrom:[]
+      registerFrom:[],
+      registrations:'',
+      hat:[]
     }
   }
 
   componentDidMount(){
+    // const id = this.props.thisPeriod
+    //////// REMOVE ///////////
+    const id = 25
     this.props.navButtons(DefaultButtons)
-    this.setState({
-      classRoster: this.props.thisClass,
-      thisPeriod:this.props.thisPeriod,
-    })
-    this.remainingStudents()
+    this.fetchStudents()
+    this.fetchClass(id)
+    this.fetchRegistrations(id)
+  }
+
+  fetchStudents = () => {
+    api.get.fetchStudents()
+    // .then(res => console.log(res))
+    .then(res => this.setState({allStudents:res}))
+    // .then(this.remainingStudents)
+  }
+
+  fetchRegistrations = (id) => {
+    (api.get.filteredRegistrations({class_period_id:id}))
+    .then(res => this.setState({registrations:res}))
+    // .then(this.remainingStudents)
+  }
+
+  fetchClass = (id) => {
+    (api.get.classList({class_period_id:id}))
+    // .then(res => console.log(res))
+    .then(res => this.setState({classRoster:res}))
+    .then(res => this.remainingStudents())
   }
 
   remainingStudents = () => {
-    let studentBody=this.props.studentBody
-    let classRoster=this.props.thisClass
-    let registerFrom=[]
-    // console.log(classRoster)
-      studentBody.map(student=>{
-        if (classRoster.includes(student)==false)
-        {registerFrom.push(student)}
-      }) 
-    this.setState({allStudents:registerFrom})  
+    ///create array of enrolled student ID numbers///
+    let classRoster=this.state.classRoster
+    let rosterNumbers=[]
+    classRoster.map(s=>{rosterNumbers.push(s.id)})
+  
+    ///create array of all student ID numbers///
+    let allStudents = this.state.allStudents
+    let allNumbers=[]
+    allStudents.map(s=>{allNumbers.push(s.id)})
+
+    ///create array of non enrolled student ID numbers///
+    let registerNumbers=[]
+    allNumbers.map(student=>{
+      if (rosterNumbers.includes(student)==false)
+      {registerNumbers.push(student)}
+    }) 
+
+    ///translate that array into list of non enrolled students///
+    let registerFrom = [] 
+    registerNumbers.map( number => {
+      allStudents.map( student => {
+        if(number == student.id){
+          registerFrom.push(student)
+        }
+      })
+    })
+    // .then(this.setState({registerFrom:registerFrom}))
+  console.log(registerFrom)
+    this.setState({allStudents:registerFrom})
   }
 
   addToClass = (e)=> {
@@ -53,7 +99,7 @@ class EditClass extends React.Component {
       {classRoster:currentClass, 
       allStudents:newBody,
       newKids:newKids})
-      this.props.sendRegistration({class_period_id:this.state.thisPeriod, student_id:e.id})
+      api.posts.postRegistration({class_period_id:this.state.thisPeriod, student_id:e.id})
       this.sendClass()
   }
 
@@ -71,15 +117,45 @@ class EditClass extends React.Component {
       allStudents:studentBody,
       goneKids:goneKids})
     console.log(e)
-      this.props.deleteRegistration(e)
+      this.removeFetch(e.id)
       this.sendClass()
+  }
+
+  removeFetch = (id) => {
+    let registrations = this.state.registrations
+    registrations.map( r => {if (r.student_id == id)
+      {api.delete.deleteRegistration(r.id)}})
   }
 
   sendClass = () => {
     this.props.setClass(this.state.classRoster)   
   }
+  
+  render(){
+    return(
+      <div>
+        <div id="submit button">
+          <button onClick={this.setClass}>Set Class</button>
+        </div>
+        <div name="hat" id='Rroster'>
+          <ClassRosterContainer 
+            students={this.state.classRoster} 
+            callback={this.removeFromClass}/>
+          <StudentBodyContainer 
+            students={this.state.allStudents} 
+            callback={this.addToClass}/>
+          <NewStudentContainer
+            callback={this.fetchStudents}/>
 
+        </div>
+      </div>
+    )
+  }
+  
+} export default EditClass
 
+// t.integer "class_period_id", null: false
+// t.integer "student_id", null: false
 //origional functions for using the submit button to send all of the class fetches to the app fetch at once. Did not work. nope. 
 
   // setClass=(e)=>{
@@ -116,26 +192,3 @@ class EditClass extends React.Component {
   //   toDeregister.map(student=>{this.props.deleteRegistration(student)})
   //   this.setState({goneKids:[]})
   // }
-
-  render(){
-    return(
-      <div>
-        <div id="submit button">
-          <button onClick={this.setClass}>Set Class</button>
-        </div>
-        <div name="hat" id='Rroster'>
-          <ClassRosterContainer 
-            students={this.state.classRoster} 
-            callback={this.removeFromClass}/>
-          <StudentBodyContainer 
-            students={this.state.allStudents} 
-            callback={this.addToClass}/>
-        </div>
-      </div>
-    )
-  }
-
-} export default EditClass
-
-// t.integer "class_period_id", null: false
-// t.integer "student_id", null: false

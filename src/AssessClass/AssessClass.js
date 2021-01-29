@@ -2,6 +2,7 @@ import React from 'react';
 import RosterContainer from '../Recyclables/Roster/RosterContainer';
 import Graphics from '../Recyclables/Graphics/GraphicsContainer'
 import AssessmentContainer from './AssessmentContainer'
+import { api } from '../services/api'
 
 
 const homeButtons = [
@@ -16,6 +17,7 @@ class AssessClass extends React.Component {
     super(props);
     this.state= {
       assessments:props.assessments,
+      classesAssessments:'',
       teacher:props.loggedIn,
       thisPeriod:'',
       classRoster:props.roster,
@@ -31,35 +33,74 @@ class AssessClass extends React.Component {
 
   componentDidMount(props){
     this.props.navButtons(homeButtons)
-    this.assessmentList()
-    console.log(this.state.assessments)
-    this.setPeriod()
+    this.fetchClass(this.props.thisPeriod)
+    // this.assessmentList()
+    // console.log(this.state.assessments)
+    // this.setPeriod()
   }
 
-  setPeriod(){
-    this.setState({thisPeriod:this.props.thisPeriod})
+  fetchStudentsAssessments = (e) => {
+    e.preventDefault()
+    api.get.studentsAssessments({student_id:1})
+    // .then(res => this.setState({registrations:res}))
+    .then(res => console.log(res))
   }
 
-  assessmentList = () => {
+  fetchClass = (id) => {
+    (api.get.classList({class_period_id:id}))
+    // .then(res => console.log(res))
+    .then(res => this.fetchClassesAssessments(id, res))
+    .then(res => this.setState({classRoster:res}))
+  }
+
+  fetchClassesAssessments = (id, classList) => {
+    api.get.classesAssessments({class_period_id:id})
+    .then(res => this.newAssessmentList(res, classList))
+    // .then(res => (this.setState({classesAssessments:res})))
+  }
+
+  newAssessmentList = (assessments, classList) => {
+    this.setState({        
+      classesAssessments:assessments,
+      classRoster:classList})
     let allAssessmentIndex = []
-    let readyToAssess = []
-    // map through all of the assessments and create a list (allAssessmentIndex) that contains an array for each student 
-    // with the student object and an integer representing the number of times that student has been assessed.
-    this.state.classRoster.map(student =>{
-      let counter = 0
-        this.state.assessments.map(assessment => {
+    classList.map(student => {
+      let counter = 0 
+        assessments.map( assessment => {
           if (assessment.student_id === student.id){
-            counter = counter+1
-          } 
+            counter = counter=1
+            // console.log(student.id, assessment.student_id)
+          }
         })
       let studentEntry = [student, counter]
       allAssessmentIndex.push(studentEntry)
       this.setState({
-        assessmentIndex:allAssessmentIndex
+        assessmentIndex:allAssessmentIndex,
     })
     })
     this.filterAssessments(allAssessmentIndex)
   }
+
+  // assessmentList = () => {
+  //   let allAssessmentIndex = []
+  //   let readyToAssess = []
+  //   // map through all of the assessments and create a list (allAssessmentIndex) that contains an array for each student 
+  //   // with the student object and an integer representing the number of times that student has been assessed.
+  //   this.state.classRoster.map(student =>{
+  //     let counter = 0
+  //       this.state.assessments.map(assessment => {
+  //         if (assessment.student_id === student.id){
+  //           counter = counter+1
+  //         } 
+  //       })
+  //     let studentEntry = [student, counter]
+  //     allAssessmentIndex.push(studentEntry)
+  //     this.setState({
+  //       assessmentIndex:allAssessmentIndex
+  //   })
+  //   })
+  //   this.filterAssessments(allAssessmentIndex)
+  // }
 
   filterAssessments(list){
     let floorScore = ''
@@ -102,14 +143,14 @@ class AssessClass extends React.Component {
   assessed = (e) =>{
     let counter=this.state.sessionCounter +1 
     let participation = ''
-    let period = this.state.thisPeriod
+    let period = this.props.thisPeriod
     if (this.state.score == 'true') {participation = true} else {participation = false}
     const assessment = {
       participating:participation,
       class_period_id:period,
       student_id:e.id,
     }
-    this.props.sendAssessment(assessment) 
+    api.posts.postAssessment(assessment) 
     this.setState({
       score:'',
       sessionCounter:counter
@@ -159,6 +200,9 @@ class AssessClass extends React.Component {
   render(){
     return(
       <div>
+        <button onClick={(e)=>this.fetchStudentsAssessments(e)}>fetch students assessments</button>
+        <br></br>
+        <button onClick={(e)=>this.fetchClassesAssessments(e)}>fetch classes assessments</button>
         {this.displayPage()}
       </div>
     )

@@ -1,5 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { api } from '../services/api'
+
 const DefaultButtons = [
   {Label:"Landing Page", Destination:'/'},
   {Label:"Class Menu", Destination:'/selectClass'},
@@ -28,6 +30,11 @@ class LandingPage extends React.Component {
 
   }
 
+  test = (e) => {
+    e.preventDefault()
+    api.get.filteredClasses({class_period:1})
+  }
+
   render(){
     return(
       // <div className="loginForm">
@@ -42,6 +49,7 @@ class LandingPage extends React.Component {
       <div>Welcome to classEngage 2.500</div>
       <Link to={'/logIn'}> log in</Link>
       <Link to={'/register'}> register</Link>
+      <button onClick={(e) => this.test(e)}>getclasses</button>
       </div>
     )
   }

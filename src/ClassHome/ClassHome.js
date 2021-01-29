@@ -3,6 +3,7 @@ import RosterContainer from '../Recyclables/Roster/RosterContainer';
 import Graphics from '../Recyclables/Graphics/GraphicsContainer'
 import SelectClass from '../SelectClass/SelectClass';
 import AssessClass from '../AssessClass/AssessClass';
+import { api } from '../services/api'
 const homeButtons = [
   {Label:"Landing Page", Destination:'/'},
   {Label:"Edit Class", Destination:'/editclass'},
@@ -16,50 +17,91 @@ class ClassHome extends React.Component {
     this.state= {
       thisPeriod:props.thisPeriod,
       studentBody:props.studentBody,
-      registrations:props.registrations,
+      registrations:'',
       assessments:props.assessments,
       classRoster:[],
       classAssessments:[],
-      classScore:''
+      classScore:'',
+      allStudents:''
     }
   }
 
   componentDidMount(){
+    const id = this.props.thisPeriod
     this.props.navButtons(homeButtons)
-    this.props.fetchReg()
-    this.gatherRoster()
-    this.gatherAssessments()
-    this.sendClass()
+    this.fetchRegistrations(id)
+    this.fetchClassesAssessments(id)
+    // this.fetchStudents()
+    // this.props.fetchReg()
+    // this.gatherRoster()
+    // this.gatherAssessments()
+    // this.sendClass()
   }
 
-  gatherRoster = () => {
-    return this.state.registrations.map(registration => {
-      if (registration.class_period_id == this.state.thisPeriod){
-        return this.state.studentBody.map(student => {
-          if (student.id == registration.student_id){
-            let roster = this.state.classRoster
-            roster.push(student)
-            this.setState({
-              classRoster:roster
-            })
-          }
-        })
-      }
+  fetchRegistrations = (id) => {
+    (api.get.filteredRegistrations({class_period_id:id}))
+    .then(res => this.setState({registrations:res}))
+    .then(this.fetchStudents)
+  }
+
+  fetchStudents = () => {
+    api.get.fetchStudents()
+    .then(res => this.setState({allStudents:res}))
+    // .then(console.log(this.state.allStudents))
+    // .then(console.log(res))
+
+    .then(res => this.buildClassList())
+  }
+
+  fetchClassesAssessments = (id) => {
+    api.get.classesAssessments({class_period_id:id})
+    .then(res => this.setState({classAssessments:res}))
+    // .then(res => (this.setState({classesAssessments:res})))
+  }
+
+  buildClassList = () => {
+    // console.log(this.state.allStudents)
+    return this.state.registrations.map (registration => {
+      return this.state.allStudents.map (student => {
+        if (student.id == registration.student_id){
+          let roster = this.state.classRoster
+          roster.push(student)
+          this.setState({
+            classRoster:roster
+          })
+        }
+      })
     })
   }
 
-  gatherAssessments = () => {
-    let allAssessments=this.props.assessments
-    let classAssessments=[]
-    allAssessments.map(assessment => {
-      if (assessment.class_period_id===this.props.thisPeriod){
-          classAssessments.push(assessment)
-      }
-    })
-    this.setState({
-      classAssessments:classAssessments
-    })
-  }
+  // gatherRoster = () => {
+  //   return this.state.registrations.map(registration => {
+  //     if (registration.class_period_id == this.state.thisPeriod){
+  //       return this.state.studentBody.map(student => {
+  //         if (student.id == registration.student_id){
+  //           let roster = this.state.classRoster
+  //           roster.push(student)
+  //           this.setState({
+  //             classRoster:roster
+  //           })
+  //         }
+  //       })
+  //     }
+  //   })
+  // }
+
+  // gatherAssessments = () => {
+  //   let allAssessments=this.props.assessments
+  //   let classAssessments=[]
+  //   allAssessments.map(assessment => {
+  //     if (assessment.class_period_id===this.props.thisPeriod){
+  //         classAssessments.push(assessment)
+  //     }
+  //   })
+  //   this.setState({
+  //     classAssessments:classAssessments
+  //   })
+  // }
 
   classParticipation = () => {
     let totalScore=0

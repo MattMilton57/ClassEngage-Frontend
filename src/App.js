@@ -11,6 +11,7 @@ import AssessClass from './AssessClass/AssessClass.js'
 import LogIn from './LogIn/LogInPage.js'
 import Register from './Register/RegisterPage.js'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { api } from './services/api'
 
 const API = "http://localhost:3000/"
 const DefaultButtons = [
@@ -32,7 +33,7 @@ class App extends React.Component {
       currentAssessments: [],
       currentStudent:'',
       currentTeacher: '',
-      currentPeriod: '',
+      currentPeriod: 25,
       currentClass:'',
       currentButtons:DefaultButtons,
       auth:{user:{}}
@@ -41,11 +42,11 @@ class App extends React.Component {
 
   componentDidMount(){
     console.log('mounted')
-    this.fetchStudents("bob")
-    this.fetchTeachers()
-    this.fetchClasses()
-    this.fetchRegistrations()
-    this.fetchAssessments()
+    // this.fetchStudents("bob")
+    // this.fetchTeachers()
+    // this.fetchClasses()
+    // this.fetchRegistrations()
+    // this.fetchAssessments()
   }
 
   fetchStudents = (C) => {
@@ -230,9 +231,10 @@ postRegistration = (registration) => {
   }
 
   setPeriod = (thisPeriod) => {
-    this.setState({
-      currentPeriod:thisPeriod.id
-    })
+    // this.setState({
+    //   currentPeriod:thisPeriod.id
+    // })
+    console.log("app 233, should set class id to "+thisPeriod)
   }
 
   setButtons = (navButtons) => {

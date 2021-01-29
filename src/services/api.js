@@ -1,0 +1,148 @@
+const API_ROOT = "http://localhost:3000/api/v1"
+
+const userToken = () => {return localStorage.getItem("token")}
+
+const headers = () => {
+    return {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: userToken()
+    };
+  };
+
+/////////////General Fetches/////////////
+const fetchStudents = () => {
+    return fetch(`${API_ROOT}/students`)
+      .then((res) => res.json())
+  };
+
+const fetchRegistrations = () => {
+    return fetch(`${API_ROOT}/registrations`)
+      .then((res) => res.json())
+  };
+
+const fetchAssessments = () => {
+    return fetch(`${API_ROOT}/assessments`)
+    .then((res) => res.json())
+}
+
+/////////////Post Fetches/////////////
+const postClass = (newClass) => {
+    return fetch((`${API_ROOT}/class_periods`), {
+        method:"POST",
+        headers:headers(),
+        body: JSON.stringify(newClass)
+    })
+    .then(res => res.json())
+}
+
+const postStudent = (newStudent) => {
+    return fetch((`${API_ROOT}/students`), {
+        method:"POST",
+        headers:headers(),
+        body: JSON.stringify(newStudent)
+    })
+    .then(res => res.json())
+}
+
+const postRegistration = (newRegistration) => {
+    return fetch((`${API_ROOT}/registrations`), {
+        method:"POST",
+        headers:headers(),
+        body: JSON.stringify(newRegistration)
+    })
+    .then(res => res.json())
+}
+
+const postAssessment = (newRegistration) => {
+    return fetch((`${API_ROOT}/assessments`), {
+        method:"POST",
+        headers:headers(),
+        body: JSON.stringify(newRegistration)
+    })
+    .then(res => res.json())
+}
+
+/////////////Delete Fetches//////////////
+const deleteRegistration = (toDelete) => {
+    // console.log(toDelete)
+    return fetch((`${API_ROOT}/registrations/${toDelete}`), {
+        method:"DELETE",
+        headers:headers()
+    })
+    .then(res => res.json())
+}
+
+/////////////Specialty Fetches/////////////
+const filteredClasses = (id) => {
+    // console.log("FC "+id)
+    return fetch((`${API_ROOT}/filterCP/`), {
+        method:"POST",
+        headers:headers(),
+        body: JSON.stringify(id)
+    })
+    .then(res=>res.json())
+}
+
+const filteredRegistrations = (id) => {
+    // console.log("FR "+id)
+    return fetch((`${API_ROOT}/filterR/`), {
+        method:"POST",
+        headers:headers(),
+        body: JSON.stringify(id)
+    })
+    .then(res=>res.json())
+}
+
+const classList = (id) =>{
+    return fetch((`${API_ROOT}/classList/`), {
+        method:"POST",
+        headers:headers(),
+        body: JSON.stringify(id)
+    })
+    .then(res=>res.json())
+}
+
+const classesAssessments = (id) => {
+    // console.log("FR "+id)
+    return fetch((`${API_ROOT}/classAssessments/`), {
+        method:"POST",
+        headers:headers(),
+        body: JSON.stringify(id)
+    })
+    .then(res=>res.json())
+}
+
+const studentsAssessments = (id) => {
+        // console.log("FR "+id)
+    return fetch((`${API_ROOT}/studentAssessments/`), {
+    method:"POST",
+    headers:headers(),
+    body: JSON.stringify(id)
+    })
+    .then(res=>res.json())
+}
+
+export const api = {
+    posts: {
+        postClass,
+        postStudent,
+        postRegistration,
+        postAssessment,
+    },
+
+    get: {
+        fetchStudents,
+        fetchRegistrations,
+        fetchAssessments,
+        filteredClasses,
+        filteredRegistrations,
+        classList,
+        classesAssessments,
+        studentsAssessments,
+    },
+
+    delete: {
+        deleteRegistration,
+    }
+}

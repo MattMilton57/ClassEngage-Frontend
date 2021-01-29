@@ -28,6 +28,7 @@ class LogInPage extends React.Component {
   }
 
   onLogIn = () => {
+      const token = localStorage.getItem("token")
       const username = (this.state.username)
       const password = (this.state.password)
     fetch(('http://localhost:3000/api/v1/auth'), {
@@ -35,6 +36,7 @@ class LogInPage extends React.Component {
         headers: 
             {"Content-Type": "application/json", 
             Accept: "application/json",
+            Authorization: token
         },
         body: JSON.stringify({user:{username:username, password:password}})
     })
