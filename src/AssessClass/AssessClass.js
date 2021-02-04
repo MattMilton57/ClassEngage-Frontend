@@ -17,123 +17,58 @@ class AssessClass extends React.Component {
   constructor(props) {
     super(props);
     this.state= {
-      assessments:props.assessments,
-      classesAssessments:'',
-      teacher:props.loggedIn,
-      thisPeriod:'',
-      classRoster:props.roster,
-      assessmentIndex:'',
-      assessFrom:[],
+      // assessments:props.assessments,
+      assessments:this.props.assessments,
+      // teacher:props.loggedIn,
+      // thisPeriod:'',
+      roster:this.props.roster,
+      toAssess:'',
+      // assessFrom:[],
       assessing:[],
-      score: true,
+      // score: true,
       sessionCounter: 0,
-      floorScore:'',
-      test:''
+      // floorScore:'',
+      // test:''
     }
   }
 
   componentDidMount(props){
-    // this.props.navButtons(homeButtons)
-    
-    this.fetchClass(this.props.thisPeriod)
-    // this.assessmentList()
-    // console.log(this.state.assessments)
-    // this.setPeriod()
+    this.buildAssessmentIndex()
+    const {match} = this.props
+    const id = (parseInt(match.params))
+    console.log(match)
   }
 
-  fetchStudentsAssessments = (e) => {
-    e.preventDefault()
-    api.get.studentsAssessments({student_id:1})
-    // .then(res => this.setState({registrations:res}))
-    .then(res => console.log(res))
-  }
-
-  fetchClass = (id) => {
-    (api.get.classList({class_period_id:id}))
-    // .then(res => console.log(res))
-    .then(res => this.fetchClassesAssessments(id, res))
-    .then(res => this.setState({classRoster:res}))
-  }
-
-  fetchClassesAssessments = (id, classList) => {
-    api.get.classesAssessments({class_period_id:id})
-    .then(res => this.newAssessmentList(res, classList))
-    // .then(res => (this.setState({classesAssessments:res})))
-  }
-
-  newAssessmentList = (assessments, classList) => {
-    this.setState({        
-      classesAssessments:assessments,
-      classRoster:classList})
+  buildAssessmentIndex = () => {
+    let roster=this.state.roster
+    let assessments=this.state.assessments
     let allAssessmentIndex = []
-    classList.map(student => {
-      let counter = 0 
+    roster.map(student => {
+      let counter = 1 
         assessments.map( assessment => {
           if (assessment.student_id === student.id){
-            counter = counter=1
-            // console.log(student.id, assessment.student_id)
+            counter = counter+1
           }
         })
       let studentEntry = [student, counter]
       allAssessmentIndex.push(studentEntry)
-      this.setState({
-        assessmentIndex:allAssessmentIndex,
     })
-    })
-    this.filterAssessments(allAssessmentIndex)
+    console.log(allAssessmentIndex)
+    const sortMe = allAssessmentIndex.sort((a,b) => a[[1]] - b[[1]])
+    this.makeList(allAssessmentIndex)
   }
 
-  // assessmentList = () => {
-  //   let allAssessmentIndex = []
-  //   let readyToAssess = []
-  //   // map through all of the assessments and create a list (allAssessmentIndex) that contains an array for each student 
-  //   // with the student object and an integer representing the number of times that student has been assessed.
-  //   this.state.classRoster.map(student =>{
-  //     let counter = 0
-  //       this.state.assessments.map(assessment => {
-  //         if (assessment.student_id === student.id){
-  //           counter = counter+1
-  //         } 
-  //       })
-  //     let studentEntry = [student, counter]
-  //     allAssessmentIndex.push(studentEntry)
-  //     this.setState({
-  //       assessmentIndex:allAssessmentIndex
-  //   })
-  //   })
-  //   this.filterAssessments(allAssessmentIndex)
-  // }
-
-  filterAssessments(list){
-    let floorScore = ''
-      // map through list of students to establish the lowest # of assessments taken
-    list.map(student => {
-      if (floorScore == ''){floorScore = student[1]}
-        else{
-      if (student[1] < floorScore){floorScore = student[1]}}
-    })
-      // send the list and the established lowest score to the function that creates the final list.
-    this.eligibleList(list, floorScore)
-  }
-
-  eligibleList = (list, floorScore) => {
-    let eligible = []
-    let ineligable = []
-      // map through the full class roster and push all students with the lowest ammount of assessments into the eligible list
-    list.map(student => {
-      if(student[1] == floorScore) {{eligible.push(student[0])}{this.setState({assessFrom:eligible})}} else {ineligable.push(student)}
-    },)
-    if (eligible.length < 10){
-
-      const sorted = ineligable.sort((a,b) => a[[1]] - b[[1]])
-      let newbase = eligible
-      let counter = eligible.length
-      sorted.map(student=>{if(counter < 10){newbase.push(student[0])}{counter=(counter + 1)}{this.setState({assessFrom:newbase})}})
-    }
+  makeList = (list) => {
+    let toAssess = []
+    var i
+    let number = (list.length*.4).toFixed(0)
+    for (i = 0; i < number; i++)
+    {toAssess.push(list[i][0])}
+    this.setState({toAssess:toAssess})
   }
 
   nextAssessment = () => {
-    let pool = this.state.assessFrom
+    let pool = this.state.toAssess
     let index = pool.length
     let now = pool[Math.floor(Math.random() * index)]
     let counter=this.state.sessionCounter
@@ -161,7 +96,7 @@ class AssessClass extends React.Component {
   }
 
   reviseAssessList(assessedStudent){
-    let pool = this.state.assessFrom
+    let pool = this.state.toAssess
     let counter = 0
     pool.map(student => {
       counter++
@@ -190,8 +125,8 @@ class AssessClass extends React.Component {
     if (count < 5 ) {
 
     return(
-        // <AssessmentContainer assessButton={ (e) => this.checkCallback()} classRoster={this.state.assessing} score={this.state.score} setScore={this.setScore} assessed={(e) => this.assessed(e)}/>
-    <li>placeholder</li>
+        <AssessmentContainer assessButton={ (e) => this.checkCallback()} classRoster={this.state.assessing} score={this.state.score} setScore={this.setScore} assessed={(e) => this.assessed(e)}/>
+    // <li>placeholder</li>
         )
     } else {
       return(
@@ -207,12 +142,73 @@ class AssessClass extends React.Component {
   render(){
     return(
       <div>
+        working assess component
         {/* <button onClick={(e)=>this.fetchStudentsAssessments(e)}>fetch students assessments</button>
         <br></br>
         <button onClick={(e)=>this.fetchClassesAssessments(e)}>fetch classes assessments</button> */}
+        
+        
         {this.displayPage()}
+      
       </div>
     )
   }
 
 } export default AssessClass
+
+  // assessmentList = () => {
+  //   let allAssessmentIndex = []
+  //   let readyToAssess = []
+  //   // map through all of the assessments and create a list (allAssessmentIndex) that contains an array for each student 
+  //   // with the student object and an integer representing the number of times that student has been assessed.
+  //   this.state.classRoster.map(student =>{
+  //     let counter = 0
+  //       this.state.assessments.map(assessment => {
+  //         if (assessment.student_id === student.id){
+  //           counter = counter+1
+  //         } 
+  //       })
+  //     let studentEntry = [student, counter]
+  //     allAssessmentIndex.push(studentEntry)
+  //     this.setState({
+  //       assessmentIndex:allAssessmentIndex
+  //   })
+  //   })
+  //   this.filterAssessments(allAssessmentIndex)
+  // }
+
+    // fetchStudentsAssessments = (e) => {
+  //   e.preventDefault()
+  //   api.get.studentsAssessments({student_id:1})
+  //   // .then(res => this.setState({registrations:res}))
+  //   .then(res => console.log(res))
+  // }
+
+  // fetchClass = (id) => {
+  //   (api.get.classList({class_period_id:id}))
+  //   // .then(res => console.log(res))
+  //   .then(res => this.fetchClassesAssessments(id, res))
+  //   .then(res => this.setState({classRoster:res}))
+  // }
+
+  // fetchClassesAssessments = (id, classList) => {
+  //   api.get.classesAssessments({class_period_id:id})
+  //   .then(res => this.newAssessmentList(res, classList))
+  //   // .then(res => (this.setState({classesAssessments:res})))
+  // }
+
+    // eligibleList = (list, floorScore) => {
+  //   let eligible = []
+  //   let ineligable = []
+  //     // map through the full class roster and push all students with the lowest ammount of assessments into the eligible list
+  //   list.map(student => {
+  //     if(student[1] == floorScore) {{eligible.push(student[0])}{this.setState({assessFrom:eligible})}} else {ineligable.push(student)}
+  //   },)
+  //   if (eligible.length < 10){
+
+  //     const sorted = ineligable.sort((a,b) => a[[1]] - b[[1]])
+  //     let newbase = eligible
+  //     let counter = eligible.length
+  //     sorted.map(student=>{if(counter < 10){newbase.push(student[0])}{counter=(counter + 1)}{this.setState({assessFrom:newbase})}})
+  //   }
+  // }

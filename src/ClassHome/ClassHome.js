@@ -142,10 +142,16 @@ class ClassHome extends React.Component {
               students={this.state.classRoster} 
               callback={this.callback}
               classPeriod={this.props.thisPeriod} 
-              linkTo={true}/>
+              linkTo={true}
+              />
             </Route>
-            <Route exact path={`${match.url}/assess`}>
-              <AssessClass/>
+            <Route exact path={`${match.url}/assess`} render={props =>
+              <AssessClass
+              {...props}
+                roster={this.state.classRoster}
+                assessments={this.state.classAssessments}
+                />
+            }>    
             </Route>
           </Switch>
         </Router>
