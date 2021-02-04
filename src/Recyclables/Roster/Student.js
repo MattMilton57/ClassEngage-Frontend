@@ -10,7 +10,7 @@ const handleClick = (e) => {
 if (linkTo == true) {
     return(
         <div onClick={()=> handleClick(student)}>
-            <Link to={'/studenthome'}>
+            <Link to={`/studenthome/${student.id}`}>
                 {student.name}
             </Link>
         </div>)

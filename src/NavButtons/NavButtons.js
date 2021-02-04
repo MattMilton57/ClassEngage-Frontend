@@ -6,7 +6,7 @@ import './NavButtons.css';
 class NavButtons extends React.Component {
 
 genButtons = () => {
-  return <ButtonContainer buttons={this.props.buttons} />
+  return <ButtonContainer onLogOut={this.props.onLogOut} buttons={this.props.buttons} />
 } 
 
   render(){

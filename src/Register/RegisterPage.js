@@ -46,7 +46,7 @@ class RegisterPage extends React.Component {
       .then(res => res.json())
       .then(res => {console.log(res)
       if (!res.error) {
-          this.props.onSignUp(res)
+          this.props.logIn(res); this.props.history.push('/selectClass')
       }}) 
   }
 

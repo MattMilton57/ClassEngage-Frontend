@@ -1,6 +1,7 @@
 import React from 'react';
 import RosterContainer from '../Recyclables/Roster/RosterContainer';
 import Graphics from '../Recyclables/Graphics/GraphicsContainer'
+import { Link } from 'react-router-dom';
 import AssessmentContainer from './AssessmentContainer'
 import { api } from '../services/api'
 
@@ -32,7 +33,8 @@ class AssessClass extends React.Component {
   }
 
   componentDidMount(props){
-    this.props.navButtons(homeButtons)
+    // this.props.navButtons(homeButtons)
+    
     this.fetchClass(this.props.thisPeriod)
     // this.assessmentList()
     // console.log(this.state.assessments)
@@ -188,11 +190,16 @@ class AssessClass extends React.Component {
     if (count < 5 ) {
 
     return(
-        <AssessmentContainer assessButton={ (e) => this.checkCallback()} classRoster={this.state.assessing} score={this.state.score} setScore={this.setScore} assessed={(e) => this.assessed(e)}/>
-    )
+        // <AssessmentContainer assessButton={ (e) => this.checkCallback()} classRoster={this.state.assessing} score={this.state.score} setScore={this.setScore} assessed={(e) => this.assessed(e)}/>
+    <li>placeholder</li>
+        )
     } else {
       return(
-        <div>thats all for today</div>
+        <div>
+          thats all for today
+          <br></br>
+          <button><Link to={'/classHome'}>Return to class home page</Link></button>
+        </div>
       )
     }
   }
@@ -200,9 +207,9 @@ class AssessClass extends React.Component {
   render(){
     return(
       <div>
-        <button onClick={(e)=>this.fetchStudentsAssessments(e)}>fetch students assessments</button>
+        {/* <button onClick={(e)=>this.fetchStudentsAssessments(e)}>fetch students assessments</button>
         <br></br>
-        <button onClick={(e)=>this.fetchClassesAssessments(e)}>fetch classes assessments</button>
+        <button onClick={(e)=>this.fetchClassesAssessments(e)}>fetch classes assessments</button> */}
         {this.displayPage()}
       </div>
     )

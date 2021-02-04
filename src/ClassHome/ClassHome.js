@@ -1,4 +1,12 @@
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useParams,
+  useRouteMatch
+} from "react-router-dom";
 import RosterContainer from '../Recyclables/Roster/RosterContainer';
 import Graphics from '../Recyclables/Graphics/GraphicsContainer'
 import SelectClass from '../SelectClass/SelectClass';
@@ -22,20 +30,22 @@ class ClassHome extends React.Component {
       classRoster:[],
       classAssessments:[],
       classScore:'',
-      allStudents:''
+      allStudents:'',
+      fetchedRoster:[]
     }
   }
 
   componentDidMount(){
-    const id = this.props.thisPeriod
+    const {match} = this.props
+    // console.log(parseInt(match.params.id))
+    const id = (parseInt(match.params.id))
+    // const id = this.props.thisPeriod
+    console.log(id)
     this.props.navButtons(homeButtons)
-    this.fetchRegistrations(id)
+    // this.fetchRegistrations(id)
     this.fetchClassesAssessments(id)
-    // this.fetchStudents()
-    // this.props.fetchReg()
-    // this.gatherRoster()
-    // this.gatherAssessments()
-    // this.sendClass()
+    this.fetchClass(id)
+
   }
 
   fetchRegistrations = (id) => {
@@ -59,49 +69,25 @@ class ClassHome extends React.Component {
     // .then(res => (this.setState({classesAssessments:res})))
   }
 
-  buildClassList = () => {
-    // console.log(this.state.allStudents)
-    return this.state.registrations.map (registration => {
-      return this.state.allStudents.map (student => {
-        if (student.id == registration.student_id){
-          let roster = this.state.classRoster
-          roster.push(student)
-          this.setState({
-            classRoster:roster
-          })
-        }
-      })
-    })
+  fetchClass = (id) => {
+    api.get.classList({class_period_id:id})
+    .then(res => this.setState({classRoster:res}))
   }
 
-  // gatherRoster = () => {
-  //   return this.state.registrations.map(registration => {
-  //     if (registration.class_period_id == this.state.thisPeriod){
-  //       return this.state.studentBody.map(student => {
-  //         if (student.id == registration.student_id){
-  //           let roster = this.state.classRoster
-  //           roster.push(student)
-  //           this.setState({
-  //             classRoster:roster
-  //           })
-  //         }
-  //       })
-  //     }
-  //   })
-  // }
-
-  // gatherAssessments = () => {
-  //   let allAssessments=this.props.assessments
-  //   let classAssessments=[]
-  //   allAssessments.map(assessment => {
-  //     if (assessment.class_period_id===this.props.thisPeriod){
-  //         classAssessments.push(assessment)
-  //     }
-  //   })
-  //   this.setState({
-  //     classAssessments:classAssessments
-  //   })
-  // }
+  buildClassList = () => {
+    // console.log(this.state.allStudents)
+    // return this.state.registrations.map (registration => {
+    //   return this.state.allStudents.map (student => {
+    //     if (student.id == registration.student_id){
+    //       let roster = this.state.classRoster
+    //       roster.push(student)
+    //       this.setState({
+    //         classRoster:roster
+    //       })
+    //     }
+    //   })
+    // })
+  }
 
   classParticipation = () => {
     let totalScore=0
@@ -123,20 +109,68 @@ class ClassHome extends React.Component {
     this.props.setStudent(e)
   }
 
+  test = (e) => {
+    e.preventDefault()
+    const {match} = this.props
+    console.log(match.url)
+  }
+
   render(){
+    const {match} = this.props
     return(
       <div>
+              <button onClick={e=> this.test(e)}>Button for tests</button>
+
         Class Home Page
-        {this.classParticipation()}
-        <RosterContainer 
-          assessments={this.state.classAssessments} 
-          score={true} 
-          students={this.state.classRoster} 
-          callback={this.callback}
-          classPeriod={this.props.thisPeriod} 
-          linkTo={true}/>
+        {/* {this.classParticipation()} */}
+        <Router>
+          <l1>
+            <Link to={`${match.url}/roster`}>Class Home</Link>
+          </l1>
+          <l1>
+            <Link to={`${match.url}/assess`}>Assess class</Link>
+          </l1>
+
+          <hr />
+
+          <Switch>
+            <Route exact path={`${match.url}/roster`}>
+            {this.classParticipation()}
+                <RosterContainer 
+              assessments={this.state.classAssessments} 
+              score={true} 
+              students={this.state.classRoster} 
+              callback={this.callback}
+              classPeriod={this.props.thisPeriod} 
+              linkTo={true}/>
+            </Route>
+            <Route exact path={`${match.url}/assess`}>
+              <AssessClass/>
+            </Route>
+          </Switch>
+        </Router>
+
+
       </div>
     )
   }
+
+  // render(){
+  //   return(
+  //     <div>
+  //             <button onClick={e=> this.test(e)}>Button for tests</button>
+
+  //       Class Home Page
+  //       {this.classParticipation()}
+  //       <RosterContainer 
+  //         assessments={this.state.classAssessments} 
+  //         score={true} 
+  //         students={this.state.classRoster} 
+  //         callback={this.callback}
+  //         classPeriod={this.props.thisPeriod} 
+  //         linkTo={true}/>
+  //     </div>
+  //   )
+  // }
 
 } export default ClassHome

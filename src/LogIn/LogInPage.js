@@ -8,12 +8,11 @@ class LogInPage extends React.Component {
   constructor(props) {
     super(props);
     this.state= {
-        user:{
-            username:'',
-            password:''
-        }
+      user:{
+          username:'',
+          password:''
+      }
     }
-    // this.login = this.login.bind(this);
   }
 
   componentDidMount(){
@@ -29,8 +28,8 @@ class LogInPage extends React.Component {
 
   onLogIn = () => {
       const token = localStorage.getItem("token")
-      const username = (this.state.username)
-      const password = (this.state.password)
+      const username = (this.state.user.username)
+      const password = (this.state.user.password)
     fetch(('http://localhost:3000/api/v1/auth'), {
         method:"POST",
         headers: 
@@ -41,26 +40,29 @@ class LogInPage extends React.Component {
         body: JSON.stringify({user:{username:username, password:password}})
     })
     .then(res => res.json())
-    .then(res => {this.props.logIn(res); this.props.history.push('/selectClass')
-    // if (!res.error) {
-    //     this.props.onLogIn(res)
-    //     }
-    }) 
-}
-
-  onChange = (e) =>{
-    this.setState({[e.target.name]: e.target.value})
-
+    .then(res => this.handleLogIn(res))
   }
+
+  handleLogIn = (res) => {
+    if (!res.error) 
+      {this.props.logIn(res); this.props.history.push('/selectClass')}
+        else
+      {this.onChange('password', ''); alert("Try again")}
+  }
+
+onChange = (state,value) => {
+  const newState = {...this.state.user, [state]:value}
+this.setState({user: newState})
+}
 
   render(){
     return(
       <div className="loginForm">
         <h2>Please log in</h2>
         <label>Username</label>
-        <input type="text" name="username" placeholder="username" onChange={this.onChange}/>
+        <input type="text" name="username" placeholder="username" onChange={ (e) => this.onChange("username", e.target.value)}/>
         <label>password</label>
-        <input type="password" name="password" placeholder="password" onChange={this.onChange}/>
+        <input type="password" name="password" placeholder="password" value={this.state.user.password} onChange={ (e) => this.onChange("password", e.target.value)}/>
         <input type="submit" value="login" className="button" onClick={this.onSubmit}/>
       </div>
     )

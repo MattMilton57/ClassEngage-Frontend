@@ -17,7 +17,7 @@ class EditClass extends React.Component {
     this.state= {
       allStudents: [],
       classRoster: [],
-      thisPeriod:25,
+      thisPeriod:this.props.currentPeriod,
       newKids:[],
       goneKids:[],
       registerFrom:[],
@@ -29,9 +29,9 @@ class EditClass extends React.Component {
   componentDidMount(){
     // const id = this.props.thisPeriod
     //////// REMOVE ///////////
-    const id = 25
+    const id = this.props.thisPeriod
     this.props.navButtons(DefaultButtons)
-    this.fetchStudents()
+    this.fetchStudents(id)
     this.fetchClass(id)
     this.fetchRegistrations(id)
   }
@@ -99,7 +99,7 @@ class EditClass extends React.Component {
       {classRoster:currentClass, 
       allStudents:newBody,
       newKids:newKids})
-      api.posts.postRegistration({class_period_id:this.state.thisPeriod, student_id:e.id})
+      api.posts.postRegistration({class_period_id:this.props.thisPeriod, student_id:e.id})
       this.sendClass()
   }
 

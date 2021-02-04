@@ -16,22 +16,29 @@ class SelectClass extends React.Component {
     this.state= {
       selectedClass: '',
       allclasses:'',
-      id:props.user.user.id
+      id:''
     }
   }
 
   componentDidMount(){
-    const id = this.props.user.user.id
-    this.gatherList(id)
+    this.checkUser()
   }
 
-  gatherList = (id) => {
-    // const teacher = this.state.user.user.id
-    (api.get.filteredClasses({user_id:id}))
-        // .then(res => console.log(res))
+  test = (e) => {
+    e.preventDefault()
+    const {match} = this.props
+    console.log(match)
+  }
 
+  checkUser = () => {
+    (api.get.fetchCurrentUser())
+    .then (res => this.setState({id:res.id}))
+    .then (res => this.gatherList())
+  }
+
+  gatherList = () => {
+    return (api.get.filteredClasses({user_id:this.state.id}))
     .then (res => this.setState({allclasses:res}))
-    // return(<h1>hats!</h1>)
   }
 
   showList = () => {
@@ -43,10 +50,11 @@ class SelectClass extends React.Component {
   render(){
     return(
       <div>
-        the select class page for {this.props.user.user.username}
+         <button onClick={e=> this.test(e)}>Button for tests</button>
+        {/* the select class page for {this.props.user.user.username} */}
         {this.showList()}
 
-        <CreateAClass props={this.props}/>
+        <CreateAClass gatherList={this.gatherList} id={this.state.id}/>
         {/* <ClassListContainer classes={this.props.classes} teacher={this.props.loggedIn} selected={this.props.selected}/> */}
       </div>
     )

@@ -26,6 +26,14 @@ const fetchAssessments = () => {
     .then((res) => res.json())
 }
 
+const fetchCurrentUser = () => {
+    return fetch(`${API_ROOT}/current_user`,{
+        headers: headers()
+    })
+    .then(res => res.json())
+    // .then(res => console.log(res))
+}  
+
 /////////////Post Fetches/////////////
 const postClass = (newClass) => {
     return fetch((`${API_ROOT}/class_periods`), {
@@ -74,6 +82,15 @@ const deleteRegistration = (toDelete) => {
 }
 
 /////////////Specialty Fetches/////////////
+const currentStudent = (id) => {
+    // console.log("FC "+id)
+    return fetch((`${API_ROOT}/current_student/${id}/`), {
+        headers:headers(),
+    })
+    .then(res=>res.json())
+}
+
+
 const filteredClasses = (id) => {
     // console.log("FC "+id)
     return fetch((`${API_ROOT}/filterCP/`), {
@@ -132,6 +149,7 @@ export const api = {
     },
 
     get: {
+        fetchCurrentUser,
         fetchStudents,
         fetchRegistrations,
         fetchAssessments,
@@ -140,6 +158,7 @@ export const api = {
         classList,
         classesAssessments,
         studentsAssessments,
+        currentStudent
     },
 
     delete: {

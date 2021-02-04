@@ -32,7 +32,8 @@ class LandingPage extends React.Component {
 
   test = (e) => {
     e.preventDefault()
-    api.get.filteredClasses({class_period:1})
+    const {match} = this.props.match
+    console.log(match)
   }
 
   render(){
@@ -49,7 +50,7 @@ class LandingPage extends React.Component {
       <div>Welcome to classEngage 2.500</div>
       <Link to={'/logIn'}> log in</Link>
       <Link to={'/register'}> register</Link>
-      <button onClick={(e) => this.test(e)}>getclasses</button>
+      <button onClick={e=> this.test(e)}>Button for tests</button>
       </div>
     )
   }

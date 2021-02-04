@@ -17,31 +17,42 @@ class StudentHome extends React.Component {
   constructor(props) {
     super(props);
     this.state= {
-      thisPeriod:props.thisPeriod,
-      thisStudent:props.currentStudent,
-      registrations:props.registrations,
-      assessments:props.assessments,
+      thisStudent:'',
+      registrations:[],
+      assessments:[],
     }
   }
 
   componentDidMount(){
-    this.getAssessments()
+    const {match} = this.props
+    const id = (parseInt(match.params.id))
+    console.log(id)
+    // this.getAssessments()
+    api.get.currentStudent(id)
+    .then(res => this.setState({thisStudent:res}))
+    .then(res => this.getAssessments())
   }
 
   getAssessments = () => {
-    let id = {student_id:this.props.currentStudent.id}
+    let id = {student_id:this.state.thisStudent.id}
     api.get.studentsAssessments(id)
     .then(res => this.setState({
       assessments:res
     }))
   }
 
-  
+  test = (e) => {
+    e.preventDefault()
+    // const {match} = this.props
+    // console.log(this.props.params)
+    console.log(this.state.thisStudent)
+  }
 
   render(){
     return(
       <div>
         Student home
+        <button onClick={e=> this.test(e)}>Button for tests</button>
         <br></br>
         {this.state.thisStudent.name}
         <br></br>
