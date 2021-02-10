@@ -7,7 +7,7 @@ return(
         {/* <div id='Period' onClick={e=>(selected(classObject))}> */}
         <div id='Period'>
 
-            <Link to={`/classhome/${classObject.id}`}>
+            <Link to={`/classhome/${classObject.id}/roster`}>
                 <li>{subject} {level}: Period {period} </li>
             </Link>
         </div>

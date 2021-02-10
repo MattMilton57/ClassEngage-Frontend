@@ -3,7 +3,7 @@ import  Student from './Student';
 import  StudentScore from './StudentScore';
 
 
-const RosterContainer = ({students, callback, score, assessments, classPeriod, linkTo}) => {  
+const RosterContainer = ({ url, students, callback, score, assessments, classPeriod, linkTo}) => {  
     
     const filterAssessments = (id) => {
         // console.log(assessments)
@@ -26,9 +26,10 @@ if (score===true){
     <div id='Roster'>
         <div>
             {students.map(student => 
-                <div id="student">
+                <div id="student" key={student.name}>
                     <div id="name">
                         <Student 
+                            url={url}
                             totalScore={filterAssessments(student.id)} 
                             callback={callback} 
                             student={student} 
@@ -53,7 +54,7 @@ if (score===true){
                     <div id='Roster'>
                         <div>
                             {students.map(student => 
-                                <div id="student">
+                                <div id="student" key={student.name}>
                                     <div id="name">
                                         <Student 
                                             totalScore={filterAssessments(student.id)} 

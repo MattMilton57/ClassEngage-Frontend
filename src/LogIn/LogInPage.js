@@ -1,8 +1,5 @@
 import React from 'react';
-const DefaultButtons = [
-  {Label:"Landing Page", Destination:'/'},
-  {Label:"Class Menu", Destination:'/selectClass'},
-  {Label:"ClassHome", Destination:'/classhome'}]
+
 class LogInPage extends React.Component {
 
   constructor(props) {
@@ -16,7 +13,7 @@ class LogInPage extends React.Component {
   }
 
   componentDidMount(){
-    // console.log('landingPage')
+    console.log('Log in page mounted')
   }
 
   token = () =>{localStorage.getItem("token")}
@@ -67,15 +64,5 @@ this.setState({user: newState})
       </div>
     )
   }
-
-  // render(){
-  //   return(
-  //     <div>
-  //       Welcome to Hogwarts!<br></br>
-  //       Which member of our esteemed faculty are you?
-  //       <TeacherContainer teachers={this.props.teachers} whoAmI={this.props.whoAmI} />
-  //     </div>
-  //   )
-  // }
 
 } export default LogInPage

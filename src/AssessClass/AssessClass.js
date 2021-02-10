@@ -6,12 +6,6 @@ import AssessmentContainer from './AssessmentContainer'
 import { api } from '../services/api'
 
 
-const homeButtons = [
-  {Label:"Edit Class", Destination:'/editclass'},
-  {Label:"Landing Page", Destination:'/'},
-  {Label:"Class Menu", Destination:'/selectClass'},
-  {Label:"ClassHome", Destination:'/classhome'}]
-
 class AssessClass extends React.Component {
 
   constructor(props) {
@@ -39,6 +33,12 @@ class AssessClass extends React.Component {
     console.log(match)
   }
 
+  logEach = (e) => {
+    // e.preventDefault()
+    // console.log(e)
+    e.map( item => {console.log(item.name)})
+  }
+
   buildAssessmentIndex = () => {
     let roster=this.state.roster
     let assessments=this.state.assessments
@@ -47,6 +47,7 @@ class AssessClass extends React.Component {
       let counter = 1 
         assessments.map( assessment => {
           if (assessment.student_id === student.id){
+            console.log(assessment.student_id)
             counter = counter+1
           }
         })
@@ -75,18 +76,22 @@ class AssessClass extends React.Component {
     this.setState({
       assessing:now
     })
+    // console.log(pool)
+    // this.logEach(now)
   }
 
   assessed = (e) =>{
     let counter=this.state.sessionCounter +1 
     let participation = ''
-    let period = this.props.thisPeriod
+    // let period = this.props.classPeriod
     if (this.state.score == 'true') {participation = true} else {participation = false}
     const assessment = {
       participating:participation,
-      class_period_id:period,
+      // class_period_id:period,
+      class_period_id:this.props.classPeriod,
       student_id:e.id,
     }
+    // console.log(assessment)
     api.posts.postAssessment(assessment) 
     this.setState({
       score:'',
@@ -96,6 +101,7 @@ class AssessClass extends React.Component {
   }
 
   reviseAssessList(assessedStudent){
+    console.log("assessed and removed " + assessedStudent.name)
     let pool = this.state.toAssess
     let counter = 0
     pool.map(student => {
@@ -103,7 +109,7 @@ class AssessClass extends React.Component {
       if (student == assessedStudent){
         const newPool = pool.filter(student => student !== assessedStudent)
         this.setState({
-          assessFrom:newPool
+          toAssess:newPool
         })
       }
     })
@@ -128,12 +134,13 @@ class AssessClass extends React.Component {
         <AssessmentContainer assessButton={ (e) => this.checkCallback()} classRoster={this.state.assessing} score={this.state.score} setScore={this.setScore} assessed={(e) => this.assessed(e)}/>
     // <li>placeholder</li>
         )
-    } else {
+    } 
+    else {
       return(
         <div>
           thats all for today
           <br></br>
-          <button><Link to={'/classHome'}>Return to class home page</Link></button>
+          <button onClick={this.props.fetchAssessments}><Link to={`/classHome/${this.props.classPeriod}/roster`}>Return to class home page</Link></button>
         </div>
       )
     }

@@ -12,7 +12,7 @@ const findAScore = () => {
     let yes = positiveAssessments.length
     let totalScore = ((yes/all))
     if (all > 0){
-    return (totalScore*100)+"%"} else {return("No Score Yet")}
+    return (totalScore*100).toFixed(0)+"%"} else {return("No Score Yet")}
 }
 
 return(

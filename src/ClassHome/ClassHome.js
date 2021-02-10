@@ -7,86 +7,85 @@ import {
   useParams,
   useRouteMatch
 } from "react-router-dom";
-import RosterContainer from '../Recyclables/Roster/RosterContainer';
 import Graphics from '../Recyclables/Graphics/GraphicsContainer'
-import SelectClass from '../SelectClass/SelectClass';
 import AssessClass from '../AssessClass/AssessClass';
+import EditClass from '../EditClass/EditClass2.js';
+import ShowRoster from '../ShowRoster/ShowRoster';
+import StudentHome from '../StudentHome/StudentHome';
 import { api } from '../services/api'
-const homeButtons = [
-  {Label:"Landing Page", Destination:'/'},
-  {Label:"Edit Class", Destination:'/editclass'},
-  {Label:"Class Menu", Destination:'/selectClass'},
-  {Label:"Assess Students", Destination:'/assess'}]
-
 class ClassHome extends React.Component {
 
   constructor(props) {
     super(props);
     this.state= {
-      thisPeriod:props.thisPeriod,
-      studentBody:props.studentBody,
-      registrations:'',
-      assessments:props.assessments,
+      classPeriod:'',
       classRoster:[],
       classAssessments:[],
-      classScore:'',
-      allStudents:'',
-      fetchedRoster:[]
+      allStudents:[],
+      registrations:''
     }
   }
 
   componentDidMount(){
     const {match} = this.props
-    // console.log(parseInt(match.params.id))
     const id = (parseInt(match.params.id))
-    // const id = this.props.thisPeriod
-    console.log(id)
-    this.props.navButtons(homeButtons)
-    // this.fetchRegistrations(id)
-    this.fetchClassesAssessments(id)
-    this.fetchClass(id)
+    this.fetchClassesAssessments()
+    this.fetchClass()
+    this.fetchStudents()
+    this.fetchRegistrations(id)
+    this.setState({
+      classPeriod:id
+    })
 
   }
 
   fetchRegistrations = (id) => {
+    // const {match} = this.props
+    // const id = (parseInt(match.params.id))
     (api.get.filteredRegistrations({class_period_id:id}))
     .then(res => this.setState({registrations:res}))
-    .then(this.fetchStudents)
   }
 
   fetchStudents = () => {
     api.get.fetchStudents()
     .then(res => this.setState({allStudents:res}))
-    // .then(console.log(this.state.allStudents))
-    // .then(console.log(res))
-
-    .then(res => this.buildClassList())
   }
 
-  fetchClassesAssessments = (id) => {
+  fetchClassesAssessments = () => {
+    const {match} = this.props
+    const id = (parseInt(match.params.id))
     api.get.classesAssessments({class_period_id:id})
     .then(res => this.setState({classAssessments:res}))
-    // .then(res => (this.setState({classesAssessments:res})))
+    // .then(res => console.log(res))
   }
 
-  fetchClass = (id) => {
+  fetchClass = () => {
+    const {match} = this.props
+    const id = (parseInt(match.params.id))
     api.get.classList({class_period_id:id})
     .then(res => this.setState({classRoster:res}))
   }
 
-  buildClassList = () => {
-    // console.log(this.state.allStudents)
-    // return this.state.registrations.map (registration => {
-    //   return this.state.allStudents.map (student => {
-    //     if (student.id == registration.student_id){
-    //       let roster = this.state.classRoster
-    //       roster.push(student)
-    //       this.setState({
-    //         classRoster:roster
-    //       })
-    //     }
-    //   })
-    // })
+  postRegistration = (e) => {
+    const {match} = this.props
+    const id = (parseInt(match.params.id))
+    api.posts.postRegistration({class_period_id:id, student_id:e.id})
+    .then(res => {this.fetchClass(); this.fetchRegistrations(id)})
+  }
+
+  deleteRegistration = (e) => {
+    const {match} = this.props
+    const id = (parseInt(match.params.id))
+    // let registrations = this.state.registrations
+    // registrations.map( r => {if (r.student_id == e.id)
+    //   {api.delete.deleteRegistration(r.id)
+    //   .then(res => this.fetchClass(res))}})
+    api.delete.deleteRegistration(e)
+    // .then (res => res.json())
+
+    .then(res =>{if (res){this.fetchRegistrations(id); this.fetchClass() }})
+    // .then(res => this.fetchRegistrations(id))
+    // .then(res => this.fetchClass())
   }
 
   classParticipation = () => {
@@ -95,24 +94,27 @@ class ClassHome extends React.Component {
     if (totalAssessments>0){
     this.state.classAssessments.map( assessment => {if (assessment.participating == true) totalScore=(totalScore+1)})
     let classScore=(totalScore/totalAssessments)
-    return <div>This class is at {(classScore*100)} % participation </div>
+    return <div>This class is at {(classScore*100).toFixed(0)} % participation </div>
     }else{
       return(<div>No assessments yet</div>)
     }
   }
 
-  sendClass = () => {
-    this.props.setClass(this.state.classRoster)   
-  }
+  // sendClass = () => {
+  //   this.props.setClass(this.state.classRoster)   
+  // }
 
   callback = (e) => {
-    this.props.setStudent(e)
+    console.log('testingCallback')
   }
 
   test = (e) => {
-    e.preventDefault()
-    const {match} = this.props
-    console.log(match.url)
+    this.fetchStudents()
+  }
+
+  handleReFetch = (e) => {
+    this.fetchStudents()
+    console.log("handle reFetch")
   }
 
   render(){
@@ -122,36 +124,80 @@ class ClassHome extends React.Component {
               <button onClick={e=> this.test(e)}>Button for tests</button>
 
         Class Home Page
-        {/* {this.classParticipation()} */}
+        {this.classParticipation()}
         <Router>
+            <br/>
           <l1>
             <Link to={`${match.url}/roster`}>Class Home</Link>
           </l1>
+            <br/>
           <l1>
             <Link to={`${match.url}/assess`}>Assess class</Link>
+          </l1>
+            <br/>
+          <l1>
+            <Link to={`${match.url}/edit`}>Edit class</Link>
           </l1>
 
           <hr />
 
           <Switch>
-            <Route exact path={`${match.url}/roster`}>
-            {this.classParticipation()}
-                <RosterContainer 
-              assessments={this.state.classAssessments} 
-              score={true} 
-              students={this.state.classRoster} 
-              callback={this.callback}
-              classPeriod={this.props.thisPeriod} 
-              linkTo={true}
+            <Route exact path={`${match.url}/roster`} render={props =>
+              <ShowRoster
+                {...props}
+                assessments={this.state.classAssessments} 
+                score={true} 
+                students={this.state.classRoster} 
+                callback={this.callback}
+                classPeriod={this.state.classPeriod} 
+                linkTo={true}
+                url={`${match.url}/studenthome/`}
               />
+            }>
             </Route>
             <Route exact path={`${match.url}/assess`} render={props =>
               <AssessClass
-              {...props}
+                {...props}
                 roster={this.state.classRoster}
                 assessments={this.state.classAssessments}
+                classPeriod={this.state.classPeriod}
+                fetchAssessments={this.fetchClassesAssessments(this.state.classPeriod)} 
+                // fetchAssessments={console.log('what the hell')} 
+
                 />
             }>    
+            </Route>
+            <Route exact path={`${match.url}/edit`} render={props =>
+              <EditClass
+                {...props}
+                roster={this.state.classRoster}
+                registrations={this.state.registrations}
+                studentBody={this.state.allStudents}
+                classPeriod={this.state.classPeriod}
+                fetchClass={e => this.handleReFetch(e)}
+                register={e => this.postRegistration(e)}
+                deRegister={e => this.deleteRegistration(e)}
+                test={e => this.test(e)}
+                // fetchClass={console.log('?')}
+
+                />
+            }>     
+            </Route>
+            <Route exact path={`${match.url}/studenthome/:id`} render={props =>
+              <StudentHome
+                {...props}
+                roster={this.state.classRoster}
+                registrations={this.state.registrations}
+                studentBody={this.state.allStudents}
+                classPeriod={this.state.classPeriod}
+                fetchClass={e => this.handleReFetch(e)}
+                register={e => this.postRegistration(e)}
+                deRegister={e => this.deleteRegistration(e)}
+                test={e => this.test(e)}
+                // fetchClass={console.log('?')}
+
+                />
+            }>  
             </Route>
           </Switch>
         </Router>

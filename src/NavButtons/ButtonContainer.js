@@ -12,7 +12,7 @@ const ButtonContainer = ({buttons, onLogOut}) => {
 
 return(
     <div className='Buttons'>
-        {buttons.map(button => <div key={button.id}><Button label={button.Label} destination={button.Destination}/></div>)}
+        {buttons.map(button => <div id="button" key={button.id}><Button label={button.Label} destination={button.Destination}/></div>)}
         {/* <div> <button onClick={onLogout}>Log Out</button></div>   */}
         <div> <button onClick={onLogOut}><Link to={'/'}>Log Out</Link></button></div>  
 

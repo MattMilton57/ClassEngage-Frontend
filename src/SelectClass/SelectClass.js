@@ -1,20 +1,13 @@
 import React from 'react';
-import ClassListContainer from './ClassListContainer';
 import NewClassListContainer from './NewClassListContainer';
 import CreateAClass from './CreateAClass';
-import ClassHome from '../ClassHome/ClassHome.js'
 import { api } from '../services/api'
-// const id = this.props.user.user.id
-const DefaultButtons = [
-  {Label:"Landing Page", Destination:'/'},
-  {Label:"Class Menu", Destination:'/selectClass'},
-  {Label:"ClassHome", Destination:'/classhome'}]
+
 class SelectClass extends React.Component {
 
   constructor(props) {
     super();
     this.state= {
-      selectedClass: '',
       allclasses:'',
       id:''
     }
@@ -22,12 +15,12 @@ class SelectClass extends React.Component {
 
   componentDidMount(){
     this.checkUser()
+    console.log('Select Class mounted')
   }
 
   test = (e) => {
     e.preventDefault()
-    const {match} = this.props
-    console.log(match)
+    console.log('test')
   }
 
   checkUser = () => {
@@ -37,7 +30,7 @@ class SelectClass extends React.Component {
   }
 
   gatherList = () => {
-    return (api.get.filteredClasses({user_id:this.state.id}))
+    api.get.filteredClasses({user_id:this.state.id})
     .then (res => this.setState({allclasses:res}))
   }
 
@@ -51,11 +44,9 @@ class SelectClass extends React.Component {
     return(
       <div>
          <button onClick={e=> this.test(e)}>Button for tests</button>
-        {/* the select class page for {this.props.user.user.username} */}
         {this.showList()}
 
         <CreateAClass gatherList={this.gatherList} id={this.state.id}/>
-        {/* <ClassListContainer classes={this.props.classes} teacher={this.props.loggedIn} selected={this.props.selected}/> */}
       </div>
     )
   }

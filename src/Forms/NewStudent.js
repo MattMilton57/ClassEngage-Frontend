@@ -1,3 +1,4 @@
+import { createHashHistory } from 'history';
 import React from 'react';
 import { api } from '../services/api'
 
@@ -20,21 +21,18 @@ export default class NewStudentForm extends React.Component {
     onSubmit = (e) =>{
         e.preventDefault()
         this.postStudent()
+        this.props.callback()
     }
     
     postStudent = () => {
         let newStudent = this.state
-        // let newState = {...this.state.student, name:''}
         api.posts.postStudent(newStudent)
-        .then(this.resetList())
-        // .then(this.props.callback())
-        // .then(this.setState({student: newState}))
+        .then(res => this.resetList())
     }
 
     resetList = () => {
         let newState = {...this.state.student, name:''}
         this.setState({student: newState})
-        this.props.callback()
     }
     
     render(){
@@ -52,7 +50,7 @@ export default class NewStudentForm extends React.Component {
                     onChange={(e) => this.onChange("name", e.target.value)}/>
             </div>
     
-            <button className="btn-primary btn-block" >Create Student</button>
+            <button onClick={(e)=> this.onSubmit(e)} className="btn-primary btn-block" >Create Student</button>
         </form>
     ) 
         }

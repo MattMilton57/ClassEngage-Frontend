@@ -1,8 +1,5 @@
 import React from 'react';
-const DefaultButtons = [
-  {Label:"Landing Page", Destination:'/'},
-  {Label:"Class Menu", Destination:'/selectClass'},
-  {Label:"ClassHome", Destination:'/classhome'}]
+
 class RegisterPage extends React.Component {
 
   constructor(props) {
@@ -17,7 +14,7 @@ class RegisterPage extends React.Component {
   }
 
   componentDidMount(){
-    // console.log('landingPage')
+    console.log('Register Page mounted')
   }
 
   onChange(state,value){
@@ -27,8 +24,6 @@ class RegisterPage extends React.Component {
 
   onSubmit = (e) =>{
       e.preventDefault()
-    // console.log(this.state)
-    // this.postUser()
     if (this.state.password_confirmation === this.state.user.password) {
         this.postUser()
         console.log(this.state.user)
@@ -111,17 +106,5 @@ class RegisterPage extends React.Component {
         </form>
     )
   }
-//   render(){
-//     return(
-//       <div className="loginForm">
-//         <h2>Please register</h2>
-//         <label>Username</label>
-//         <input type="text" name="username" placeholder="username" onChange={this.onChange}/>
-//         <label>password</label>
-//         <input type="password" name="password" placeholder="password" onChange={this.onChange}/>
-//         <input type="submit" value="login" className="button" onClick={this.login}/>
-//       </div>
-//     )
-//   }
 
 } export default RegisterPage

@@ -33,13 +33,21 @@ class StudentHome extends React.Component {
     .then(res => this.getAssessments())
   }
 
-  getAssessments = () => {
+    getAssessments = () => {
     let id = {student_id:this.state.thisStudent.id}
     api.get.studentsAssessments(id)
     .then(res => this.setState({
       assessments:res
     }))
   }
+
+  // getAssessments = () => {
+  //   let id = {student_id:this.state.thisStudent.id}
+  //   api.get.studentsAssessments(id)
+  //   .then(res => this.setState({
+  //     assessments:res
+  //   }))
+  // }
 
   test = (e) => {
     e.preventDefault()
