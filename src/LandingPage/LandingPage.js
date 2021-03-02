@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './LandingPage.css';
 // import { api } from '../services/api'
 
 class LandingPage extends React.Component {
@@ -15,10 +16,11 @@ class LandingPage extends React.Component {
   render(){
     return(
       <div>
-      <div>Welcome to classEngage 2.500</div>
-      <Link to={'/logIn'}> log in</Link>
-      <Link to={'/register'}> register</Link>
-      <button onClick={e=> this.test(e)}>Button for tests</button>
+      <div class="title">Welcome to classEngage 2.500</div>
+      <div class="logInLink"><Link to={'/logIn'}> log in</Link></div>
+      <div class="registerLink"><Link to={'/register'}> register</Link></div>
+      <br></br>
+      <button class='btn' onClick={e=> this.test(e)}>Button for tests</button>
       </div>
     )
   }

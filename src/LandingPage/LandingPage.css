@@ -1,0 +1,80 @@
+.title {
+    /* background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.192),
+            #e66a068c
+                ,rgb(252, 122, 1)
+    ); */
+    text-align: center;
+    font-weight: bolder;
+    color: gray;
+    background-position: bottom;
+    position:relative;
+}
+
+.logInLink {
+    text-align: center;
+    font-weight: bolder;
+    font-size: larger;
+    color:purple;
+    background-color: red;
+    background-position: bottom;
+    position:relative;
+}
+
+.btn:link,
+.btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 40px;
+    display: inline-block;
+    border-radius: 100px;
+    transition: all .2s;
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    position: relative;
+}
+
+.btn:hover {
+    transform:translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,.2);
+}
+
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+
+.btn-white {
+    background-color: #fff;
+    color:#777
+}
+
+.btn::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s;
+}
+
+.btn-white::after {
+    background-color: #fff;
+}
+
+.btn:hover::after{
+    transform: scalex(1.4) scaleY(1.6);
+    opacity: 0; 
+}
+
+.btn-animated{
+    animation: moveInBottom .5s ease-out .5s;
+    animation-fill-mode: backwards;
+    /* animation-duration: .5s;
+    animation-timing-function: ease-out .75s; */
+}
+

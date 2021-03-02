@@ -4,6 +4,7 @@ import LandingPage from './LandingPage/LandingPage.js'
 import SelectClass from './SelectClass/SelectClass.js'
 import ClassHome from './ClassHome/ClassHome.js'
 import Header from './Header/Header'
+import Footer from './Footer/Footer'
 import LogIn from './LogIn/LogInPage.js'
 import Register from './Register/RegisterPage.js'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
@@ -64,11 +65,14 @@ class App extends React.Component {
     const {user} = this.state.auth
     const {currentUser} = this.state.currentUser
     return(
+      <body>
       <Router>
+        <div class="header">
         <Header 
           onLogOut={this.onLogout}
           user={this.state.currentUser} 
-          buttons={this.state.currentButtons} />     
+          buttons={this.state.currentButtons} />   
+        </div>  
         <div>
           <Route exact path = "/"
           component={ props => 
@@ -107,7 +111,9 @@ class App extends React.Component {
               />
           }/>
         </div>
+        <Footer/>
       </Router>
+      </body>
     )
   }
 } export default App

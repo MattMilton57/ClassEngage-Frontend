@@ -13,6 +13,7 @@ import EditClass from '../EditClass/EditClass2.js';
 import ShowRoster from '../ShowRoster/ShowRoster';
 import StudentHome from '../StudentHome/StudentHome';
 import { api } from '../services/api'
+import { functions } from '../services/functions'
 class ClassHome extends React.Component {
 
   constructor(props) {
@@ -22,7 +23,9 @@ class ClassHome extends React.Component {
       classRoster:[],
       classAssessments:[],
       allStudents:[],
-      registrations:''
+      registrations:'',
+      masterList:[],
+      score:''
     }
   }
 
@@ -40,8 +43,6 @@ class ClassHome extends React.Component {
   }
 
   fetchRegistrations = (id) => {
-    // const {match} = this.props
-    // const id = (parseInt(match.params.id))
     (api.get.filteredRegistrations({class_period_id:id}))
     .then(res => this.setState({registrations:res}))
   }
@@ -63,7 +64,7 @@ class ClassHome extends React.Component {
     const {match} = this.props
     const id = (parseInt(match.params.id))
     api.get.classList({class_period_id:id})
-    .then(res => this.setState({classRoster:res}))
+    .then(res => {this.setState({classRoster:res}); this.buildMastList()})
   }
 
   postRegistration = (e) => {
@@ -89,16 +90,22 @@ class ClassHome extends React.Component {
   }
 
   classParticipation = () => {
-    let totalScore=0
     let totalAssessments = this.state.classAssessments.length
     if (totalAssessments>0){
-    this.state.classAssessments.map( assessment => {if (assessment.participating == true) totalScore=(totalScore+1)})
-    let classScore=(totalScore/totalAssessments)
-    return <div>This class is at {(classScore*100).toFixed(0)} % participation </div>
+    return <div>This class is at {this.totalPar()} % participation </div>
     }else{
       return(<div>No assessments yet</div>)
     }
   }
+
+  totalPar = () => {
+    let masterList = this.state.masterList
+    let score = 0
+    masterList.map(student => {score = (score + parseInt(student[2])); console.log(score)})
+    return (((score/masterList.length)*100).toFixed(0))
+  }
+
+
 
   // sendClass = () => {
   //   this.props.setClass(this.state.classRoster)   
@@ -108,8 +115,19 @@ class ClassHome extends React.Component {
     console.log('testingCallback')
   }
 
-  test = (e) => {
-    this.fetchStudents()
+  buildMastList = (e) => {
+   let masterList = (functions.build.buildList(
+      this.state.classRoster,
+      this.state.classAssessments
+    ))
+    this.setState({masterList:masterList})
+   
+    // (res => console.log(res))
+    
+    
+    // .then(res => console.log))
+    
+
   }
 
   handleReFetch = (e) => {
@@ -121,7 +139,7 @@ class ClassHome extends React.Component {
     const {match} = this.props
     return(
       <div>
-              <button onClick={e=> this.test(e)}>Button for tests</button>
+              {/* <button onClick={e=> this.test(e)}>Button for tests</button> */}
 
         Class Home Page
         {this.classParticipation()}
