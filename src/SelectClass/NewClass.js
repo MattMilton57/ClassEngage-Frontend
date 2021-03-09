@@ -1,17 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const NewClass = ({subject, level, period, selected, classObject}) => {
+const NewClass = ({subject, level, period, classObject}) => {
 return(
-    <div>
-        {/* <div id='Period' onClick={e=>(selected(classObject))}> */}
-        <div id='Period'>
 
-            <Link to={`/classhome/${classObject.id}/roster`}>
-                <li>{subject} {level}: Period {period} </li>
+        // <div className="class-list__class" id='Period'>
+        <li className="class-list__class-item">
+            <Link className="class-list__class link" to={`/classhome/${classObject.id}`}>
+                <div className="class-list__class--name">
+                    {subject}
+                </div>
+                <div className="class-list__class--period">
+                    P: {period}
+                </div>
             </Link>
-        </div>
-    </div>
+        </li>
+
 ) 
 }
 

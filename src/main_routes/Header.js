@@ -1,7 +1,4 @@
 import React from 'react';
-import NavButtons from '../NavButtons/NavButtons.js';
-import './Header.css';
-import Logo from "../img/test.jpg"
 
 class Header extends React.Component {
 
@@ -22,7 +19,6 @@ class Header extends React.Component {
     if(a == []|| a == '')
     {return (
       <div class="title">
-        
         <l1 class="title-1">Class</l1>
         <br></br>
         <l1 class="title-2">Engage</l1>
@@ -31,11 +27,7 @@ class Header extends React.Component {
       else 
     {return(
       <div>
-        Welcome {a.username}
-        <NavButtons 
-            onLogOut={this.props.onLogOut}
-            user={this.props.user}
-            buttons={this.props.buttons}/>
+        {/* Welcome {a.username} */}
         </div>)}
   }
 
@@ -43,11 +35,13 @@ class Header extends React.Component {
     return(
       <div className="header">
                     <div class="logo">
+                      {/* relocated header */}
 
         {/* <img src={Logo}></img> */}
                     </div>
 
         {this.user()}
+        <br></br>
       </div>
     )
   }

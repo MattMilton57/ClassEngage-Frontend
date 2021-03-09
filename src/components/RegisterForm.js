@@ -1,6 +1,6 @@
 import React from 'react';
 
-class RegisterPage extends React.Component {
+class RegisterForm extends React.Component {
 
   constructor(props) {
     super(props);
@@ -48,63 +48,65 @@ class RegisterPage extends React.Component {
 
   render(){
     return(
+        <div class="landing-form__register landing-form">
         <form onSubmit={(e)=> this.onSubmit(e)}>
-            <h3>Sign Up</h3>
+        <h2 class="landing-form__heading">Register</h2>
 
-            <div className="form-group">
-                <label>Username</label>
+
+                <label class= "landing-form__label">Username</label>
                 <input 
                     type="text" 
-                    className="form-control" 
+                    className="landing-form__textbox" 
                     placeholder="Username"
                     value={this.state.username}
                     onChange={(e) => this.onChange("username", e.target.value)}/>
-            </div>
 
-            <div className="form-group">
-                <label>Bio</label>
+
+
+                <label class= "landing-form__label">Bio</label>
                 <input 
                     type="text" 
-                    className="form-control" 
+                    className="landing-form__textbox" 
                     placeholder="bio"
                     value={this.state.bio}
                     onChange={(e) => this.onChange("bio", e.target.value)}/>
-            </div>
 
-            <div className="form-group">
-                <label>Password</label>
+
+
+                <label class= "landing-form__label">Password</label>
                 <input 
                     type="password" 
-                    className="form-control" 
+                    className="landing-form__textbox" 
                     placeholder="Password"
                     value={this.state.password}
                     onChange={(e) => this.onChange("password", e.target.value)}/>
-            </div>
 
-            <div className="form-group">
-                <label>Confirm Password</label>
+
+
+                <label class= "landing-form__label">Confirm Password</label>
                 <input 
                     type="password" 
-                    className="form-control" 
+                    className="landing-form__textbox" 
                     placeholder="Confirm Password"
                     value={this.state.confirmedpassword}
                     onChange={(e) => this.setState({password_confirmation:e.target.value})}/>
-            </div>
 
-            <div className="form-group">
-                <label>Avatar</label>
+
+
+                <label class= "landing-form__label">Avatar</label>
                 <input 
                     type="text" 
-                    className="form-control" 
+                    className="landing-form__textbox"
                     placeholder="Avatar"
                     value={this.state.password}
                     onChange={(e) => this.onChange("avatar", e.target.value)}/>
-            </div>
 
 
-            <button className="btn-primary btn-block" >Sign Up</button>
+
+            <button className="btn btn-dark" type="submit" value="Sign Up" >Sign Up</button>
         </form>
+        </div>
     )
   }
 
-} export default RegisterPage
+} export default RegisterForm

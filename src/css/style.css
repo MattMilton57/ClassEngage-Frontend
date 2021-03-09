@@ -1,0 +1,249 @@
+@keyframes moveLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem); }
+  80% {
+    transform: translateX(1rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+* {
+  margin: 0;
+  padding: 0; }
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box; }
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; }
+
+body {
+  font-weight: 300;
+  background-image: linear-gradient(to right bottom, black, rgba(0, 0, 0, 0.9));
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  color: white; }
+
+.container {
+  max-width: 120rem;
+  margin: 5rem auto;
+  height: 90vh;
+  box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column; }
+
+.header {
+  height: 7rem; }
+
+.footer {
+  height: 7rem; }
+
+h2 {
+  font-size: 4rem;
+  font-weight: 200; }
+
+.link {
+  text-decoration: none;
+  color: black; }
+
+.btn {
+  height: 5rem;
+  color: white;
+  background-image: linear-gradient(to right bottom, black, rgba(0, 0, 0, 0.9));
+  border: none;
+  border-radius: 1rem;
+  width: 30rem;
+  font-size: 3rem;
+  font-weight: 100; }
+
+.class-list {
+  height: 100%;
+  list-style: none;
+  text-decoration: none;
+  font-size: 3rem;
+  display: flex;
+  flex-direction: column; }
+  .class-list__container {
+    list-style: none; }
+  .class-list__class {
+    position: relative;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr;
+    width: 100;
+    padding: 1rem;
+    color: white;
+    margin: 1rem 0rem;
+    background-image: linear-gradient(to right bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7));
+    text-decoration: none;
+    text-transform: uppercase; }
+    .class-list__class::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 3px;
+      background-color: rgba(0, 0, 0, 0.7);
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform .15s, width .2s .15s; }
+    .class-list__class:hover::before {
+      transform: scaleY(1);
+      width: 100%; }
+    .class-list__class:hover {
+      color: #CB6D51; }
+    .class-list__class--name {
+      grid-column: 1 / span 1;
+      z-index: 200;
+      transition: all .2s; }
+    .class-list__class--period {
+      grid-column: 2 / span 1;
+      z-index: 200;
+      transition: all .35s; }
+
+.landing-form {
+  grid-row: 1 / 4;
+  grid-column: 2;
+  margin: 10rem;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 115vh;
+  max-height: 120vh;
+  width: 40vw;
+  color: white;
+  z-index: 400;
+  transform: translatex(80vw) translateY(-25vh);
+  transition: all .5s;
+  padding: 5rem;
+  background-image: linear-gradient(to bottom right, rgba(203, 109, 81, 0.4), rgba(212, 120, 92, 0.3), rgba(218, 138, 104, 0.4), rgba(221, 155, 114, 0.3)); }
+  .landing-form__textbox {
+    font-size: 3rem;
+    font-weight: 100;
+    margin: 1rem;
+    height: 6rem;
+    color: grey; }
+  .landing-form__label {
+    margin: 1rem;
+    margin-bottom: .25rem;
+    font-size: 3rem;
+    font-weight: 200; }
+  .landing-form__login {
+    grid-template-rows: repeat(6, 1fr); }
+  .landing-form__register {
+    grid-template-rows: repeat(13, 1fr); }
+
+.menu-footer {
+  display: flex;
+  justify-content: space-around;
+  font-size: 3rem;
+  font-weight: 200;
+  align-items: center;
+  align-content: center;
+  height: 100%; }
+
+.menu-header {
+  display: flex; }
+  .menu-header__logo {
+    max-height: 100%;
+    max-width: 60%;
+    margin: 1rem; }
+
+.landing {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 120rem;
+  height: 90vh;
+  background-image: linear-gradient(to right bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7)), url(../img/landing-page.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; }
+  .landing__logo {
+    align-self: end; }
+    .landing__logo--box {
+      transform: translateY(20vh);
+      grid-row: 1;
+      grid-column: 1;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      width: 100%; }
+  .landing__checkbox {
+    display: none; }
+  .landing__checkbox-login:checked ~ .landing-form__login {
+    transform: translatex(40vw) translateY(-25vh); }
+  .landing__checkbox-register:checked ~ .landing-form__register {
+    transform: translatex(40vw) translateY(-25vh); }
+  .landing__formbox--register {
+    grid-row: 2 / 4;
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 20vh;
+    justify-content: center;
+    background-color: white;
+    transform: translatex(50vw);
+    transition: all 1s; }
+  .landing__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.75rem;
+    color: black;
+    text-transform: uppercase;
+    background-image: linear-gradient(to bottom right, #cb6d51, #d4785c, #da8a68, #dd9b72);
+    transition: .1s;
+    height: 4rem;
+    border-radius: .5rem;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
+    margin: 0 3rem; }
+    .landing__button--login {
+      grid-row: 2;
+      grid-column: 1;
+      align-self: end; }
+    .landing__button--register {
+      grid-row: 3;
+      grid-column: 1;
+      margin: 3rem; }
+    .landing__button:hover {
+      transform: scale(1.02);
+      opacity: .9; }
+    .landing__button:active {
+      transform: translatey(1px); }
+
+.select-class {
+  height: 90vh;
+  background-color: rgba(128, 128, 128, 0.5);
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 1fr 4fr 11fr;
+  font-style: unset;
+  align-content: space-between; }
+  .select-class__sidebar {
+    background-image: linear-gradient(to bottom right, #cb6d51, #d4785c, #da8a68, #dd9b72);
+    grid-row: 1 / span 3;
+    grid-column: 1 /span 1;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 4fr 1fr; }
+    .select-class__sidebar--header {
+      grid-row: 1 / span 1;
+      grid-column: 1 /span 1;
+      background-color: rgba(128, 128, 128, 0.5); }
+    .select-class__sidebar--class-list {
+      grid-row: 2 / span 1;
+      grid-column: 1 /span 1; }
+    .select-class__sidebar--footer {
+      grid-row: 3 / span 1;
+      grid-column: 1 /span 1;
+      background-color: rgba(128, 128, 128, 0.5); }

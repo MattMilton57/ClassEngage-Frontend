@@ -1,0 +1,43 @@
+.select-class {
+    height: 90vh;
+    background-color: rgba(gray, 0.5);
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 1fr 4fr 11fr;
+    font-style: unset;
+    align-content: space-between;
+
+    &__sidebar {
+        background-image: $copper-gradient;
+        grid-row: 1 / span 3;
+        grid-column: 1 /span 1;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 4fr 1fr;
+
+        &--header{
+            grid-row: 1 / span 1;
+            grid-column: 1 /span 1;
+            background-color: rgba(gray, 0.5);
+            
+        }
+
+        &--class-list {
+            grid-row: 2 / span 1;
+            grid-column: 1 /span 1;
+        }
+
+        &--footer{
+            grid-row: 3 / span 1;
+            grid-column: 1 /span 1;
+            background-color: rgba(gray, 0.5);
+        }
+        
+    }
+
+
+
+
+
+
+}

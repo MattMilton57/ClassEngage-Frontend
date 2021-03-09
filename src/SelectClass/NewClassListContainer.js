@@ -3,13 +3,9 @@ import  NewClass from './NewClass';
 
 const NewClassListContainer = ({classes, selected}) => {
 return(
-    <div id='Teacher'>
-        <div>
-            I am testing my props. my teacher is some dude, Here are some classes:
-        </div>
-            <br></br>
-        <div>
-            {classes.map (aClass => {return <div><NewClass subject={aClass.subject} level={aClass.level} period={aClass.period} classObject={aClass} selected={selected}/></div>})}
+    <div class="class-list" id='Teacher'>
+        <ul class="class-list__container">
+            {classes.map (aClass => {return <div><NewClass subject={aClass.subject} level={aClass.level} period={aClass.period} classObject={aClass}/></div>})}
             {/* {classes.map(aClass => {if (aClass.teacher_id == teacher)
                 return <div>
                             <Class 
@@ -22,7 +18,7 @@ return(
                                 thisClass={aClass.id}/>
                                 
                         </div>})} */}
-        </div>
+        </ul>
     </div>
 ) 
 }

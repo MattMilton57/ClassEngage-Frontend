@@ -1,0 +1,54 @@
+.landing-form {
+    grid-row: 1 / 4;
+    grid-column: 2;
+    margin: 10rem;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // grid-template-columns: 1fr 3fr 1fr;
+
+    justify-content: center;
+    min-height: 115vh;
+    max-height: 120vh;
+    width: 40vw;
+    color: white;
+    // justify-content: stretch;
+    // background-color: white;
+    z-index: 400;
+    transform: translatex(80vw) translateY(-25vh);
+    transition: all .5s;
+    padding: 5rem;
+    background-image:linear-gradient( to bottom right,
+    (rgba($color-copper-1, .4)),
+    (rgba($color-copper-2, .3)), 
+    (rgba($color-copper-3, .4)), 
+    (rgba($color-copper-4, .3)));
+
+
+    &__textbox{
+        font-size: 3rem;
+        font-weight: 100;
+        margin:1rem;
+        height: 6rem;
+        color: grey;
+
+    }
+
+    &__label {
+        margin:1rem;
+        margin-bottom: .25rem;
+        // margin-left: 4rem;
+        font-size: 3rem;
+        font-weight: 200;
+
+    }
+
+    &__login {
+        grid-template-rows: repeat(6, 1fr);
+    }
+
+    &__register {
+        grid-template-rows: repeat(13, 1fr);
+    }
+}

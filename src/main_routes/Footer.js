@@ -1,5 +1,4 @@
 import React from 'react';
-import './Footer.css';
 
 class Footer extends React.Component {
 
@@ -17,7 +16,8 @@ class Footer extends React.Component {
   render(){
     return(
       <div className="footer">
-        thisisthefooter
+        <br></br>
+        {/* Relocated FOOTER */}
       </div>
     )
   }

@@ -9,6 +9,8 @@ const headers = () => {
       Authorization: userToken()
     };
   };
+/////////////Log In / Log Out/////////////
+
 
 /////////////General Fetches/////////////
 const fetchStudents = () => {

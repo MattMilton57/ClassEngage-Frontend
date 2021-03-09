@@ -14,6 +14,10 @@ import ShowRoster from '../ShowRoster/ShowRoster';
 import StudentHome from '../StudentHome/StudentHome';
 import { api } from '../services/api'
 import { functions } from '../services/functions'
+import NewClassListContainer from '../SelectClass/NewClassListContainer';
+
+import MenuHeader from "../components/MenuHeader"
+import MenuFooter from "../components/MenuFooter"
 class ClassHome extends React.Component {
 
   constructor(props) {
@@ -25,6 +29,7 @@ class ClassHome extends React.Component {
       allStudents:[],
       registrations:'',
       masterList:[],
+      allclasses:'',
       score:''
     }
   }
@@ -34,12 +39,24 @@ class ClassHome extends React.Component {
     const id = (parseInt(match.params.id))
     this.fetchClassesAssessments()
     this.fetchClass()
+    this.checkUser()
     this.fetchStudents()
     this.fetchRegistrations(id)
     this.setState({
       classPeriod:id
     })
 
+  }
+
+  checkUser = () => {
+    (api.get.fetchCurrentUser())
+    // .then (res => this.setState({id:res.id}))
+    .then (res => this.fetchClasses(res.id))
+  }
+
+  fetchClasses = (id) => {
+    api.get.filteredClasses({user_id:id})
+    .then (res => this.setState({allclasses:res}))
   }
 
   fetchRegistrations = (id) => {
@@ -130,6 +147,12 @@ class ClassHome extends React.Component {
 
   }
 
+  showList = () => {
+    if (this.state.allclasses == ''){return <div class="select-class__welcome">Loading.</div>}
+    else
+    {return <NewClassListContainer classes={this.state.allclasses}/>}
+  }
+
   handleReFetch = (e) => {
     this.fetchStudents()
     console.log("handle reFetch")
@@ -139,14 +162,25 @@ class ClassHome extends React.Component {
     const {match} = this.props
     return(
       <div>
-              {/* <button onClick={e=> this.test(e)}>Button for tests</button> */}
+          <div className="select-class__sidebar">
+            <div className="select-class__header select-class__sidebar--header">
+              <MenuHeader/>
+            </div>
 
-        Class Home Page
+            <div className="select-class__class-list select-class__sidebar--class-list">
+            {this.showList()}
+            </div>
+
+            <div className="select-class__footer select-class__sidebar--footer">
+            <MenuFooter/>
+            </div>
+          </div>
+
         {this.classParticipation()}
         <Router>
             <br/>
           <l1>
-            <Link to={`${match.url}/roster`}>Class Home</Link>
+            <Link to={`${match.url}`}>Class Home</Link>
           </l1>
             <br/>
           <l1>
@@ -160,7 +194,7 @@ class ClassHome extends React.Component {
           <hr />
 
           <Switch>
-            <Route exact path={`${match.url}/roster`} render={props =>
+            <Route exact path={`${match.url}`} render={props =>
               <ShowRoster
                 {...props}
                 assessments={this.state.classAssessments} 

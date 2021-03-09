@@ -1,6 +1,8 @@
 import React from 'react';
 import NewClassListContainer from './NewClassListContainer';
 import CreateAClass from './CreateAClass';
+import MenuHeader from "../components/MenuHeader"
+import MenuFooter from "../components/MenuFooter"
 import { api } from '../services/api'
 
 class SelectClass extends React.Component {
@@ -35,18 +37,30 @@ class SelectClass extends React.Component {
   }
 
   showList = () => {
-    if (this.state.allclasses == ''){return <li>Welcome! Please create some classes.</li>}
+    if (this.state.allclasses == ''){return <div class="select-class__welcome">Welcome! Please create some classes.</div>}
     else
-    {return <NewClassListContainer selected={this.props.selected} classes={this.state.allclasses}/>}
+    {return <NewClassListContainer classes={this.state.allclasses}/>}
   }
 
   render(){
     return(
-      <div>
-         <button onClick={e=> this.test(e)}>Button for tests</button>
-        {this.showList()}
+      <div className="select-class">
+         {/* <button onClick={e=> this.test(e)}>Button for tests</button> */}
+          <div className="select-class__sidebar">
+            <div className="select-class__header select-class__sidebar--header">
+              <MenuHeader/>
+            </div>
 
-        <CreateAClass gatherList={this.gatherList} id={this.state.id}/>
+            <div className="select-class__class-list select-class__sidebar--class-list">
+              {this.showList()}
+            </div>
+
+            <div className="select-class__footer select-class__sidebar--footer">
+            <MenuFooter/>
+            </div>
+          </div>
+
+          <CreateAClass gatherList={this.gatherList} id={this.state.id}/>
       </div>
     )
   }

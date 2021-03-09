@@ -1,6 +1,6 @@
 import React from 'react';
 
-class LogInPage extends React.Component {
+class LogInForm extends React.Component {
 
   constructor(props) {
     super(props);
@@ -51,18 +51,18 @@ onChange = (state,value) => {
   const newState = {...this.state.user, [state]:value}
 this.setState({user: newState})
 }
-
   render(){
     return(
-      <div className="loginForm">
-        <h2>Please log in</h2>
-        <label>Username</label>
-        <input type="text" name="username" placeholder="username" onChange={ (e) => this.onChange("username", e.target.value)}/>
-        <label>password</label>
-        <input type="password" name="password" placeholder="password" value={this.state.user.password} onChange={ (e) => this.onChange("password", e.target.value)}/>
-        <input type="submit" value="login" className="button" onClick={this.onSubmit}/>
+      
+      <div className="landing-form__login landing-form">
+        <h2 className="landing-form__heading">Please log in</h2>
+        <label className= "landing-form__label">Username</label>
+        <input className= "landing-form__textbox" type="text" placeholder="username" onChange={ (e) => this.onChange("username", e.target.value)}/>
+        <label className= "landing-form__label">Password</label>
+        <input className="landing-form__textbox"  type="password" name="password" placeholder="password" value={this.state.user.password} onChange={ (e) => this.onChange("password", e.target.value)}/>
+        <input className="btn btn-dark" type="submit" value="login" onClick={this.onSubmit}/>
+
       </div>
     )
   }
-
-} export default LogInPage
+} export default LogInForm

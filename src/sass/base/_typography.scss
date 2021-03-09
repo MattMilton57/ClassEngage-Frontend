@@ -1,0 +1,17 @@
+body {
+
+}
+
+h2{
+    font-size: 4rem;
+    font-weight: 200;
+}
+
+.link {
+text-decoration: none;
+color: black;
+
+    &:visited {
+
+    }
+}

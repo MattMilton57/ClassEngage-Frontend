@@ -1,25 +1,18 @@
 import React from 'react';
-import './App.css';
-import LandingPage from './LandingPage/LandingPage.js'
+import './css/style.css';
+import LandingPage from './main_routes/LandingPage.js'
 import SelectClass from './SelectClass/SelectClass.js'
 import ClassHome from './ClassHome/ClassHome.js'
-import Header from './Header/Header'
-import Footer from './Footer/Footer'
-import LogIn from './LogIn/LogInPage.js'
-import Register from './Register/RegisterPage.js'
+import Header from './main_routes/Header'
+import Footer from './main_routes/Footer'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { api } from './services/api'
-
-const DefaultButtons = [
-  {Label:"Landing Page", Destination:'/'},
-  {Label:"My Classes", Destination:'/selectClass'},]
 
 class App extends React.Component {
 
   constructor() {
     super();
     this.state= {
-      currentButtons:DefaultButtons,
       auth:{user:{}},
       currentUser:[]
     }
@@ -28,7 +21,6 @@ class App extends React.Component {
   componentDidMount(){
     this.setUser()
     console.log('App mounted')
-
   }
 
   setUser = () => {
@@ -60,60 +52,54 @@ class App extends React.Component {
         auth:{user:{}}
       })
   }
+  
 
   render(){
     const {user} = this.state.auth
     const {currentUser} = this.state.currentUser
     return(
-      <body>
-      <Router>
-        <div class="header">
-        <Header 
-          onLogOut={this.onLogout}
-          user={this.state.currentUser} 
-          buttons={this.state.currentButtons} />   
-        </div>  
-        <div>
-          <Route exact path = "/"
-          component={ props => 
-            <LandingPage 
-              {...props}/>
-          }/>
+        <div className="container">
 
-          <Route exact path = "/logIn"
-          component={ props => 
-            <LogIn
-              {...props}
-              logIn={this.onLogin}/>
-          }/>
+          {/* <div class="header">
+            <Header 
+              onLogOut={this.onLogout}
+              user={this.state.currentUser} 
+              buttons={this.state.currentButtons} />   
+          </div>   */}
 
-          <Route exact path = "/register"
-          component={ props => 
-            <Register
-              {...props}
-              logIn={this.onLogin}  
-              />
-          }/>
+          <div className="content">
+            <Router>
+              <div>
+                <Route exact path = "/"
+                component={ props => 
+                  <LandingPage 
+                    {...props}
+                    logIn={this.onLogin}/>
+                }/>
 
-          <Route exact path = "/selectClass"
-          render={ props => 
-            <SelectClass 
-              {...props}
-              user={this.state.currentUser}
-              logIn={this.onLogin} 
-              />
-          }/>
+                <Route exact path = "/selectClass"
+                render={ props => 
+                  <SelectClass 
+                    {...props}
+                    user={this.state.currentUser}
+                    logIn={this.onLogin} 
+                    />
+                }/>
 
-          <Route path = "/classhome/:id"
-          render={ props => 
-            <ClassHome 
-              {...props}
-              />
-          }/>
+                <Route path = "/classhome/:id"
+                render={ props => 
+                  <ClassHome 
+                    {...props}
+                    />
+                }/>
+              </div>
+            </Router>
+          </div>
+
+          {/* <div className="footer">
+            <Footer/>
+          </div> */}
         </div>
-        <Footer/>
-      </Router>
-      </body>
     )
   }
 } export default App
