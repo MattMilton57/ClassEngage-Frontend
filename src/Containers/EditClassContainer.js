@@ -29,11 +29,11 @@ const  EditClassContainer = ({roster, studentBody, deRegister, register, registr
 
     return(
       <div className="edit-class">
-          <div className="edit-class__current-roster">
+          <div className="edit-class__roster-container">
                 Current class
             <Roster roster={roster} callback={findReg}/>
           </div>
-          <div className="edit-class__student-body">
+          <div className="edit-class__student-body-container">
                 Student Body
             <RosterRemainder roster={roster} studentBody={studentBody} callback={handleAdd}/>
           </div>

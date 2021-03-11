@@ -61,11 +61,11 @@ const Roster = ({ url, roster, callback, score, assessments, classPeriod, linkTo
     )
             }else{
                 return(
-                    <div id='Roster'>
-                        <div>
+                    <div className='roster'>
+                        <ul>
                             {roster.map(student => 
-                                <div className="roster__student--name-only" id="student" key={student.name}>
-                                    <div id="name">
+                                <li className="roster__student roster__student--name-only" id="student" key={student.name}>
+                                    <div className="roster__student--name" id="name">
                                         <Student 
                                             totalScore={filterAssessments(student.id)} 
                                             callback={callback} 
@@ -73,8 +73,8 @@ const Roster = ({ url, roster, callback, score, assessments, classPeriod, linkTo
                                             assessments={assessments} 
                                             showScore={score}/>
                                     </div>
-                                </div>)}
-                        </div>
+                                </li>)}
+                        </ul>
                     </div>
                 )            
             } 
