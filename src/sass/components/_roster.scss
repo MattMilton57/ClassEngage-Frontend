@@ -1,0 +1,40 @@
+.roster {
+
+    padding: 1rem;
+
+    &__student {
+        display: grid;
+        grid-template-columns: 1fr max-content;
+        grid-template-rows: 1fr;
+        margin: .5rem 0;
+        font-size: 3rem;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: 300;
+        font-size: 2rem;
+
+        &:hover {
+
+        }
+
+        &--name {
+            grid-row: 1 / span 1;
+            grid-column: 1 / span 1;
+            margin-left: 1rem;
+            
+            a{
+                color: white;
+                text-decoration: none;
+            }
+
+
+        }
+
+        &--score {
+            grid-row: 1 / span 1;
+            grid-column: 2 / span 1;
+            margin: 0 1rem;
+            color: $color-copper-1;
+        }
+    }
+}

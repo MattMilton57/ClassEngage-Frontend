@@ -1,0 +1,26 @@
+.class-stats {
+    display: grid;
+    grid-template-columns: max-content 3fr;
+    grid-template-rows: 1fr;
+    grid-column-gap: 2rem;
+    height: 75vh;
+    padding: 2rem;
+    justify-content: stretch;
+
+    &__roster-container {
+        grid-row: 1 / span 1;
+        grid-column: 1 / span 1;
+
+        background-color: $color-grey-dark;
+        border-radius: $border;
+    
+    }
+
+    &__graphics {
+        grid-row: 1 / span 1;
+        grid-column: 2 / span 1;
+        background-color: $color-grey-dark;
+        border-radius: $border;
+
+    }
+}

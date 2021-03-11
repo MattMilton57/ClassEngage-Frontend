@@ -1,39 +1,4 @@
-$color-primary: #55c57a;
-$color-primary-light: #7ed56f;
-$color-primary-dark: #28b485; 
-
-$color-secondary-light: #ffb900;
-$color-secondary-dark: #ff7730;
-
-$color-tertiary-light: #2998ff;
-$color-tertiary-dark: #5643fa;
-
-$color-gray-light-1: #f7f7f7;
-$color-gray-light-2: #eee;
-
-$color-gray-dark: #777;
-$color-gray-dark-2: #999;
-$color-gray-dark-3: #333;
-
-$color-white: #fff;
-$color-black: #000;
-
-//FONT//
-$default-font-size: 1.6rem;
-
-
-//GRID//
-$grid-width: 114rem;
-$gutter-vertical: 8rem;
-$gutter-vertical-small: 6rem;
-$gutter-horizontal: 6rem;
-
-//FORMAT//
-$border-curves: 3px;
-$testvar: "testing";
-
-//my colors//
-
+// COLORS //
 $gradient-dark: linear-gradient(to right bottom, rgba(black, 1), rgba(black, .9));
 $gradient-dark-mid: linear-gradient(to right bottom, rgba(black, 0.4), rgba(black, .7));
 
@@ -41,6 +6,9 @@ $color-copper-1:#CB6D51;
 $color-copper-2:#D4785C;
 $color-copper-3:#DA8A68;
 $color-copper-4:#DD9B72;
+
+$color-grey-dark:#0a0a0a;
+$color-grey-mid:#111111;
 
 $copper-gradient: linear-gradient( to bottom right,
                     (rgba($color-copper-1, 1)),
@@ -50,3 +18,4 @@ $copper-gradient: linear-gradient( to bottom right,
 
 //formatting//
 $box-shadow-large: 0 1rem 3rem rgba(black, .1);
+$border: 1rem;

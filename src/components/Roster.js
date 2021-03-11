@@ -1,9 +1,9 @@
 import React from 'react';
-import  Student from './Student';
-import  StudentScore from './StudentScore';
+import  Student from '../components/Student';
+import  StudentScore from '../components/StudentScore';
 
 
-const RosterContainer = ({ url, students, callback, score, assessments, classPeriod, linkTo}) => {  
+const Roster = ({ url, students, callback, score, assessments, classPeriod, linkTo}) => {  
     
     const filterAssessments = (id) => {
         // console.log(assessments)
@@ -23,11 +23,11 @@ const RosterContainer = ({ url, students, callback, score, assessments, classPer
 
 if (score===true){
     return(
-    <div id='Roster'>
-        <div>
+    <div className='roster'>
+        <ul>
             {students.map(student => 
-                <div id="student" key={student.name}>
-                    <div id="name">
+                <li className="roster__student" key={student.name}>
+                    <div className="roster__student--name" id="name">
                         <Student 
                             url={url}
                             totalScore={filterAssessments(student.id)} 
@@ -37,7 +37,7 @@ if (score===true){
                             showScore={score}
                             linkTo={linkTo}/>
                     </div>
-                    <div id="score">
+                    <div className="roster__student--score" id="score">
                         <StudentScore
                             student={student}
                             assessments={assessments}
@@ -45,8 +45,8 @@ if (score===true){
                         
                         />
                     </div>
-                </div>)}
-        </div>
+                </li>)}
+        </ul>
     </div>
 )
             }else{
@@ -54,7 +54,7 @@ if (score===true){
                     <div id='Roster'>
                         <div>
                             {students.map(student => 
-                                <div id="student" key={student.name}>
+                                <div className="roster__student--name-only" id="student" key={student.name}>
                                     <div id="name">
                                         <Student 
                                             totalScore={filterAssessments(student.id)} 
@@ -68,5 +68,34 @@ if (score===true){
                     </div>
                 )            
             } 
+
+
+
 }
-export default RosterContainer;
+export default Roster;
+
+{/* <div id='Roster'>
+<div>
+    {students.map(student => 
+        <div id="student" key={student.name}>
+            <div id="name">
+                <Student 
+                    url={url}
+                    totalScore={filterAssessments(student.id)} 
+                    callback={callback} 
+                    student={student} 
+                    assessments={assessments} 
+                    showScore={score}
+                    linkTo={linkTo}/>
+            </div>
+            <div id="score">
+                <StudentScore
+                    student={student}
+                    assessments={assessments}
+                    classPeriod={classPeriod}
+                
+                />
+            </div>
+        </div>)}
+</div>
+</div> */}

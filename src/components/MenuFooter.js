@@ -13,15 +13,25 @@ class MenuHeader extends React.Component {
   }
 
   render(){
-    return(
-      <div className="menu-footer select-class__menu-footer">
-        <div className="menu-footer__name">
-          Mr Milton
+    if (this.props.listType == "home") {
+      return(
+        <div className="menu-footer class-home__menu-footer">
+          <div className="menu-footer__avatar">
+            avatar
+          </div>
         </div>
-        <div className="menu-footer__avatar">
-          avatar
+      )
+    }else{
+      return(
+        <div className="menu-footer select-class__menu-footer">
+          <div className="menu-footer__name">
+            Mr Milton
+          </div>
+          <div className="menu-footer__avatar">
+            avatar
+          </div>
         </div>
-      </div>
-    )
+      )
+    }
   }
 } export default MenuHeader

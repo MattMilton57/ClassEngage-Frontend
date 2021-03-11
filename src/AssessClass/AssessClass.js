@@ -1,6 +1,4 @@
 import React from 'react';
-import RosterContainer from '../Recyclables/Roster/RosterContainer';
-import Graphics from '../Recyclables/Graphics/GraphicsContainer'
 import { Link } from 'react-router-dom';
 import AssessmentContainer from './AssessmentContainer'
 import { api } from '../services/api'
@@ -30,7 +28,6 @@ class AssessClass extends React.Component {
     this.buildAssessmentIndex()
     const {match} = this.props
     const id = (parseInt(match.params))
-    console.log(match)
   }
 
   logEach = (e) => {
@@ -40,8 +37,8 @@ class AssessClass extends React.Component {
   }
 
   buildAssessmentIndex = () => {
-    let roster=this.state.roster
-    let assessments=this.state.assessments
+    let roster=this.props.roster
+    let assessments=this.props.assessments
     let allAssessmentIndex = []
     roster.map(student => {
       let counter = 1 
@@ -145,17 +142,33 @@ class AssessClass extends React.Component {
       )
     }
   }
+
+
+
+
+
+  makeCards = () => {
+    if (this.state.toAssess == '') {
+      return(
+        <div className="hat">
+          loading
+        </div>
+      )
+    }else{
+      return(
+        <div className="l">
+          loaded
+        </div>
+      )
+    }
+
+  }
  
   render(){
     return(
-      <div>
-        working assess component
-        {/* <button onClick={(e)=>this.fetchStudentsAssessments(e)}>fetch students assessments</button>
-        <br></br>
-        <button onClick={(e)=>this.fetchClassesAssessments(e)}>fetch classes assessments</button> */}
-        
-        
-        {this.displayPage()}
+      <div>        
+        {this.makeCards()}
+        {/* {this.displayPage()} */}
       
       </div>
     )

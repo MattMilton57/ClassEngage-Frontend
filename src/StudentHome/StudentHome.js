@@ -1,5 +1,5 @@
 import React from 'react';
-import StudentScore from '../Recyclables/Roster/StudentScore';
+// import StudentScore from '../Recyclables/Roster/StudentScore';
 import Graphics from '../Recyclables/Graphics/GraphicsContainer'
 import SelectClass from '../SelectClass/SelectClass';
 import AssessClass from '../AssessClass/AssessClass';
@@ -64,7 +64,7 @@ class StudentHome extends React.Component {
         <br></br>
         {this.state.thisStudent.name}
         <br></br>
-        Total participation score: <StudentScore student={this.state.thisStudent} assessments={this.state.assessments} />
+        {/* Total participation score: <StudentScore student={this.state.thisStudent} assessments={this.state.assessments} /> */}
 
         <AssessmentContainer thisStudent={this.state.thisStudent} assessments={this.state.assessments} />
       </div>

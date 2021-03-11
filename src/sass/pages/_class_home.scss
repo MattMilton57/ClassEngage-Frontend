@@ -1,0 +1,85 @@
+.class-home {
+    display: grid;
+    grid-template-rows: 1;
+    grid-template-columns: 1fr 6fr;
+    background-color: $color-grey-mid;
+    border-radius: 1rem;
+
+    &__sidebar {
+        grid-column: 1 / span 1;
+        grid-row: 1 / span 1;
+        background-color: $color-grey-dark;
+
+        height: 90vh;
+
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 4fr 1fr;
+
+        &--header {
+            grid-row: 1 / span 1;
+            grid-column: 1 / span 1;
+            background-color: rgba(black, 0.2);
+        }
+
+        &--class-list {
+            grid-row: 2/ span 1;
+            grid-column: 1 / span 1;
+        }
+
+        &--footer {
+            grid-row: 3 / span 1;
+            grid-column: 1 / span 1;
+            background-color: rgba(black, 0.2);
+        }
+    }
+
+    &__content {
+        grid-row: 1 / span 1;
+        grid-column: 2 / span 1;
+        display: grid;
+        grid-template-rows: 5fr 1fr;
+        grid-template-columns: 1fr;
+        font-size: 2rem;
+
+        &--display {
+            grid-row: 1 / span 1;
+            grid-column: 1 / span 1;
+            // background-color: gray;
+        }
+
+        &--links {
+            grid-row: 2 / span 1;
+            grid-column: 1 / span 1;
+            display: flex;
+            justify-content: space-around;
+            margin: 0 2rem;
+            margin-bottom: 2rem;
+
+            &-link {
+                background-color: rebeccapurple;
+                width: calc(100% / 3);
+                background-color: $color-grey-dark;
+                border-radius: $border;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                font-size: 2.5rem;
+
+                a{
+                    color: $color-copper-1;
+                    text-decoration: none;
+                }
+
+                &:not(:last-child){
+                    margin-right: 2rem;
+                }
+            }
+
+        }
+
+    }
+
+
+}

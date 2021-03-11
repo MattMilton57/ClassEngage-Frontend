@@ -67,7 +67,8 @@ h2 {
   text-decoration: none;
   font-size: 3rem;
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+  border-radius: 1rem; }
   .class-list__container {
     list-style: none; }
   .class-list__class {
@@ -77,7 +78,7 @@ h2 {
     grid-template-rows: 1fr;
     width: 100;
     padding: 1rem;
-    color: white;
+    color: #CB6D51;
     margin: 1rem 0rem;
     background-image: linear-gradient(to right bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7));
     text-decoration: none;
@@ -89,7 +90,7 @@ h2 {
       left: 0;
       height: 100%;
       width: 3px;
-      background-color: rgba(0, 0, 0, 0.7);
+      background-image: linear-gradient(to bottom right, #cb6d51, #d4785c, #da8a68, #dd9b72);
       transform: scaleY(0);
       transform-origin: top;
       transition: transform .15s, width .2s .15s; }
@@ -97,7 +98,7 @@ h2 {
       transform: scaleY(1);
       width: 100%; }
     .class-list__class:hover {
-      color: #CB6D51; }
+      color: #111111; }
     .class-list__class--name {
       grid-column: 1 / span 1;
       z-index: 200;
@@ -156,6 +157,108 @@ h2 {
     max-height: 100%;
     max-width: 60%;
     margin: 1rem; }
+
+.roster {
+  padding: 1rem; }
+  .roster__student {
+    display: grid;
+    grid-template-columns: 1fr max-content;
+    grid-template-rows: 1fr;
+    margin: .5rem 0;
+    font-size: 3rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 2rem; }
+    .roster__student--name {
+      grid-row: 1 / span 1;
+      grid-column: 1 / span 1;
+      margin-left: 1rem; }
+      .roster__student--name a {
+        color: white;
+        text-decoration: none; }
+    .roster__student--score {
+      grid-row: 1 / span 1;
+      grid-column: 2 / span 1;
+      margin: 0 1rem;
+      color: #CB6D51; }
+
+.class-stats {
+  display: grid;
+  grid-template-columns: max-content 3fr;
+  grid-template-rows: 1fr;
+  grid-column-gap: 2rem;
+  height: 75vh;
+  padding: 2rem;
+  justify-content: stretch; }
+  .class-stats__roster-container {
+    grid-row: 1 / span 1;
+    grid-column: 1 / span 1;
+    background-color: #0a0a0a;
+    border-radius: 1rem; }
+  .class-stats__graphics {
+    grid-row: 1 / span 1;
+    grid-column: 2 / span 1;
+    background-color: #0a0a0a;
+    border-radius: 1rem; }
+
+.class-home {
+  display: grid;
+  grid-template-rows: 1;
+  grid-template-columns: 1fr 6fr;
+  background-color: #111111;
+  border-radius: 1rem; }
+  .class-home__sidebar {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+    background-color: #0a0a0a;
+    height: 90vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 4fr 1fr; }
+    .class-home__sidebar--header {
+      grid-row: 1 / span 1;
+      grid-column: 1 / span 1;
+      background-color: rgba(0, 0, 0, 0.2); }
+    .class-home__sidebar--class-list {
+      grid-row: 2/ span 1;
+      grid-column: 1 / span 1; }
+    .class-home__sidebar--footer {
+      grid-row: 3 / span 1;
+      grid-column: 1 / span 1;
+      background-color: rgba(0, 0, 0, 0.2); }
+  .class-home__content {
+    grid-row: 1 / span 1;
+    grid-column: 2 / span 1;
+    display: grid;
+    grid-template-rows: 5fr 1fr;
+    grid-template-columns: 1fr;
+    font-size: 2rem; }
+    .class-home__content--display {
+      grid-row: 1 / span 1;
+      grid-column: 1 / span 1; }
+    .class-home__content--links {
+      grid-row: 2 / span 1;
+      grid-column: 1 / span 1;
+      display: flex;
+      justify-content: space-around;
+      margin: 0 2rem;
+      margin-bottom: 2rem; }
+      .class-home__content--links-link {
+        background-color: rebeccapurple;
+        width: calc(100% / 3);
+        background-color: #0a0a0a;
+        border-radius: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 2.5rem; }
+        .class-home__content--links-link a {
+          color: #CB6D51;
+          text-decoration: none; }
+        .class-home__content--links-link:not(:last-child) {
+          margin-right: 2rem; }
 
 .landing {
   display: grid;
@@ -226,7 +329,7 @@ h2 {
   background-color: rgba(128, 128, 128, 0.5);
   display: grid;
   grid-template-columns: 1fr 3fr;
-  grid-template-rows: 1fr 4fr 11fr;
+  grid-template-rows: 1fr;
   font-style: unset;
   align-content: space-between; }
   .select-class__sidebar {

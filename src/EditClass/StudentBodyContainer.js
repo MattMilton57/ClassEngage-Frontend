@@ -1,10 +1,10 @@
-import RosterContainer from '../Recyclables/Roster/RosterContainer';
+import Roster from '../components/Roster';
 import React from 'react';
 
 const StudentBodyContainer = ({students, callback}) => {
 return(
         <div>
-        <RosterContainer callback={callback} students={students}/>
+        <Roster callback={callback} students={students}/>
         </div>
     ) 
 }
