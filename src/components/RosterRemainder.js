@@ -1,0 +1,45 @@
+import React from 'react';
+import Roster from "../components/Roster";
+
+const  RosterRemainder = ({roster, studentBody, callback, }) => {
+
+    const remainingStudents = () => {
+        ///create array of enrolled student ID numbers///
+        let rosterNumbers=[]
+        roster.map(s=>{rosterNumbers.push(s.id)})
+      
+        ///create array of all student ID numbers///
+        let allNumbers=[]
+        studentBody.map(s=>{allNumbers.push(s.id)})
+    
+        ///create array of non enrolled student ID numbers///
+        let registerNumbers=[]
+        allNumbers.map(student=>{
+          if (rosterNumbers.includes(student)==false)
+          {registerNumbers.push(student)}
+        }) 
+    
+        ///translate that array into list of non enrolled students///
+        let registerFrom = [] 
+        registerNumbers.map( number => {
+          studentBody.map( student => {
+            if(number == student.id){
+              registerFrom.push(student)
+            }
+          })
+        })
+    
+        return(         
+           <Roster 
+          roster={registerFrom} 
+          callback={callback}/>
+        ) 
+      }
+
+      return(
+          <div>
+              {remainingStudents()}
+          </div>
+      )
+} 
+export default RosterRemainder

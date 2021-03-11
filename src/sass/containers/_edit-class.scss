@@ -1,0 +1,15 @@
+.edit-class {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr .25fr;
+
+    &__current-roster {
+        grid-row: 1 / span 1;
+        grid-column: 1 / span 1;
+    }
+
+    &__student-body {
+        grid-row: 1 / span 1;
+        grid-column: 2 / span 1;
+    }
+}

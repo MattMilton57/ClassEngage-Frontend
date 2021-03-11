@@ -202,6 +202,17 @@ h2 {
     background-color: #0a0a0a;
     border-radius: 1rem; }
 
+.edit-class {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr .25fr; }
+  .edit-class__current-roster {
+    grid-row: 1 / span 1;
+    grid-column: 1 / span 1; }
+  .edit-class__student-body {
+    grid-row: 1 / span 1;
+    grid-column: 2 / span 1; }
+
 .class-home {
   display: grid;
   grid-template-rows: 1;

@@ -72,5 +72,6 @@ class AssessClass extends React.Component {
       </div>
     )
   }
+  
 
 } export default AssessClass

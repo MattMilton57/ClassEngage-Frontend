@@ -1,7 +1,7 @@
 import React from 'react';
 import Roster from "../components/Roster"
 
-const  ClassStatsContainer = ({assessments, students, callback, classPeriod, url}) => {
+const  ClassStatsContainer = ({assessments, roster, callback, classPeriod, url}) => {
 
     return(
       <div className="class-stats">
@@ -9,7 +9,7 @@ const  ClassStatsContainer = ({assessments, students, callback, classPeriod, url
           <Roster
           assessments={assessments} 
           score={true} 
-          students={students} 
+          roster={roster} 
           callback={callback}
           classPeriod={classPeriod} 
           linkTo={true}

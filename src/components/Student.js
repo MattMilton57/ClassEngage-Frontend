@@ -3,21 +3,21 @@ import { Link } from 'react-router-dom'
 const Student = ({student, callback, linkTo, url, assessments, totalScore, showScore}) => {
 
 const handleClick = (e) => {
-    // totalScore(student)
-    callback(e)
+    e.preventDefault(e)
+    callback(student)
 }
 
 if (linkTo == true) {
     return(
-        <div onClick={()=> handleClick(student)} key={student.name}>
+        <div value={student} onClick={(e)=> handleClick(e)} key={student.name}>
             <Link to={`${url}${student.id}`}>
                 {student.name}
             </Link>
         </div>)
 }else{
     return(
-        <div id={student.name} onClick={()=> handleClick(student)}>
-            <li key={student.id}>{student.name}</li>
+        <div id={student.name} onClick={(e)=> handleClick(e)}>
+            <li value={student} key={student.id}>{student.name}</li>
         </div>  
     ) 
 }
