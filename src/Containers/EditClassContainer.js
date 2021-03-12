@@ -34,14 +34,14 @@ const  EditClassContainer = ({roster, studentBody, deRegister, register, registr
           </div>
           <div className="edit-class__roster-container">
 
-            <Roster roster={roster} callback={findReg}/>
+            <Roster roster={roster} callback={findReg} registerAction="Remove"/>
           </div>
 
           <div className="edit-class__headline--student-body">
             <div className="edit-class__headline--title">Student Body</div>
           </div>
           <div className="edit-class__student-body-container">
-            <RosterRemainder roster={roster} studentBody={studentBody} callback={handleAdd}/>
+            <RosterRemainder roster={roster} studentBody={studentBody} callback={handleAdd} registerAction="Register"/>
           </div>
           <div className="edit-class__new-student">
               NS

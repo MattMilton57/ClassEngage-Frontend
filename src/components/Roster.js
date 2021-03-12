@@ -3,7 +3,7 @@ import  Student from '../components/Student';
 import  StudentScore from '../components/StudentScore';
 
 
-const Roster = ({ url, roster, callback, score, assessments, classPeriod, linkTo}) => {  
+const Roster = ({ url, roster, callback, score, assessments, classPeriod, linkTo, registerAction}) => {  
     
     const filterAssessments = (id) => {
         // console.log(assessments)
@@ -64,14 +64,15 @@ const Roster = ({ url, roster, callback, score, assessments, classPeriod, linkTo
                     <div className='roster'>
                         <ul>
                             {roster.map(student => 
-                                <li className="roster__student roster__student--name-only" id="student" key={student.name}>
+                                <li className="roster__student" id="student" key={student.name}>
                                     <div className="roster__student--name" id="name">
                                         <Student 
                                             totalScore={filterAssessments(student.id)} 
                                             callback={callback} 
                                             student={student} 
                                             assessments={assessments} 
-                                            showScore={score}/>
+                                            showScore={score}
+                                            registerAction={registerAction}/>
                                     </div>
                                 </li>)}
                         </ul>

@@ -340,7 +340,7 @@ h2 {
   box-sizing: border-box; }
   .roster__student {
     display: grid;
-    grid-template-columns: 1fr max-content;
+    grid-template-columns: 1fr 1fr max-content;
     grid-template-rows: 1fr;
     margin: .5rem 0;
     font-size: 3rem;
@@ -348,7 +348,8 @@ h2 {
     text-transform: uppercase;
     font-weight: 300;
     font-size: 2rem;
-    min-width: 0; }
+    min-width: 0;
+    list-style: none; }
     .roster__student--name {
       grid-row: 1 / span 1;
       grid-column: 1 / span 1;
@@ -357,8 +358,12 @@ h2 {
         color: white;
         text-decoration: none; }
       .roster__student--name-only {
-        color: white;
-        list-style: none; }
+        color: white; }
+    .roster__student--caption {
+      grid-row: 1 / span 1;
+      grid-column: 2 / span 1;
+      margin: 0 1rem;
+      color: #CB6D51; }
     .roster__student--score {
       grid-row: 1 / span 1;
       grid-column: 2 / span 1;

@@ -1,7 +1,7 @@
 import React from 'react';
 import Roster from "../components/Roster";
 
-const  RosterRemainder = ({roster, studentBody, callback, }) => {
+const  RosterRemainder = ({roster, studentBody, callback, registerAction}) => {
 
     const remainingStudents = () => {
         ///create array of enrolled student ID numbers///
@@ -32,7 +32,8 @@ const  RosterRemainder = ({roster, studentBody, callback, }) => {
         return(         
            <Roster 
           roster={registerFrom} 
-          callback={callback}/>
+          callback={callback}
+          registerAction={registerAction}/>
         ) 
       }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-const Student = ({student, callback, linkTo, url, assessments, totalScore, showScore}) => {
+const Student = ({student, callback, linkTo, url, assessments, totalScore, showScore, registerAction}) => {
 
 const handleClick = (e) => {
     e.preventDefault(e)
@@ -18,6 +18,7 @@ if (linkTo == true) {
     return(
         <div id={student.name} onClick={(e)=> handleClick(e)}>
             <li value={student} key={student.id}>{student.name}</li>
+            <div className="roster__student--caption">{registerAction}</div>
         </div>  
     ) 
 }
