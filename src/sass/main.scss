@@ -1,3 +1,4 @@
+@import "abstracts/mixins";
 @import "abstracts/variables";
 
 @import "base/animations";
@@ -5,6 +6,7 @@
 @import "base/layout";
 @import "base/typography";
 
+@import "components/assessment-card";
 @import "components/button";
 @import "components/class-list";
 @import "components/landing-form";
@@ -13,6 +15,7 @@
 @import "components/roster";
 @import "components/stats-display";
 
+@import "containers/assess-class";
 @import "containers/class-stats";
 @import "containers/edit-class";
 

@@ -27,10 +27,12 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   height: 100vh;
+  width: auto;
   color: white; }
 
 .container {
   max-width: 120rem;
+  min-width: 50vw;
   margin: 5rem auto;
   height: 90vh;
   box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.5);
@@ -50,6 +52,178 @@ h2 {
 .link {
   text-decoration: none;
   color: black; }
+
+.assessment-card {
+  display: grid;
+  grid-template-rows: 55% 45%;
+  grid-template-columns: 45% 50% 5%;
+  height: calc(100% / 5);
+  place-items: stretch;
+  height: 100%;
+  background-color: #0a0a0a;
+  border-radius: 1rem;
+  box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  font-weight: 100;
+  position: relative;
+  transition: all 2s; }
+  .assessment-card__flipcard {
+    position: relative;
+    transition: all .8s ease;
+    display: flex; }
+    .assessment-card__flipcard--side {
+      grid-row: 1 / span 2;
+      grid-column: 1 / span 1;
+      padding: 1rem;
+      font-size: 5rem;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.5s ease;
+      position: absolute;
+      backface-visibility: hidden;
+      height: 100%;
+      width: 100%; }
+    .assessment-card__flipcard--front {
+      display: flex;
+      transition: all 0.5s ease;
+      justify-content: center;
+      align-items: center;
+      background-color: #0a0a0a; }
+    .assessment-card__flipcard--back {
+      display: flex;
+      background-color: #0a0a0a;
+      transition: all 0.5s ease;
+      opacity: 50%;
+      font-size: 2rem;
+      transform: rotateX(180deg); }
+    .assessment-card__flipcard--name {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+      border: solid;
+      border-width: 1px;
+      border-color: #111111; }
+    .assessment-card__flipcard--comment {
+      display: flex;
+      align-items: center;
+      background-color: transparent;
+      color: white;
+      height: 100%;
+      width: 100%;
+      border: 1px solid #111111;
+      padding: 2rem;
+      font-size: 2rem;
+      resize: none;
+      z-index: 2000; }
+      .assessment-card__flipcard--comment-name {
+        opacity: 5%;
+        display: flex; }
+    .assessment-card__flipcard--checkbox {
+      display: none; }
+  .assessment-card__flipcard--checkbox:checked ~ .assessment-card__flipcard--front {
+    transform: rotateX(-180deg); }
+  .assessment-card__flipcard--checkbox:checked ~ .assessment-card__flipcard--back {
+    opacity: 100%;
+    transform: rotateX(0); }
+  .assessment-card__comment {
+    grid-row: 1 / 3;
+    grid-column: 3 / span 1;
+    display: flex;
+    align-content: stretch;
+    background-color: rgba(255, 255, 255, 0.541); }
+    .assessment-card__comment--checkbox {
+      display: none; }
+    .assessment-card__comment--label {
+      display: flex;
+      transform: rotate(90deg);
+      height: 100%;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      color: black;
+      font-weight: 500; }
+  .assessment-card textarea:focus, .assessment-card input:focus {
+    outline: 1px solid #D4785C; }
+  .assessment-card__score {
+    grid-row: 1 / span 1;
+    grid-column: 2 / span 1;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(2, 1fr); }
+    .assessment-card__score--true {
+      grid-row: 1 / span 1;
+      grid-column: 1 / span 1;
+      margin: 1rem;
+      border-radius: 1rem;
+      background-color: #111111;
+      color: #D4785C;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 4rem;
+      transition: all .25s; }
+      .assessment-card__score--true:hover {
+        transform: scale(1.05); }
+      .assessment-card__score--true:checked {
+        background-image: linear-gradient(to bottom right, #cb6d51, #d4785c, #da8a68, #dd9b72);
+        color: black; }
+    .assessment-card__score--false {
+      grid-row: 1 / span 1;
+      grid-column: 2 / span 1;
+      margin: 1rem;
+      border-radius: 1rem;
+      background-color: #111111;
+      color: #D4785C;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 4rem;
+      transition: all .25s; }
+      .assessment-card__score--false:hover {
+        transform: scale(1.05); }
+      .assessment-card__score--false:checked {
+        background-image: linear-gradient(to bottom right, #cb6d51, #d4785c, #da8a68, #dd9b72);
+        color: black; }
+  .assessment-card__radio-input {
+    display: none; }
+  .assessment-card__radio-input:checked + .assessment-card__radio-label {
+    background-image: linear-gradient(to bottom right, #cb6d51, #d4785c, #da8a68, #dd9b72);
+    color: black;
+    font-weight: 300; }
+  .assessment-card__btn {
+    grid-row: 2 / span 1;
+    grid-column: 2 / span 1; }
+    .assessment-card__btn--submit {
+      margin: 1rem;
+      border-radius: 1rem;
+      background-color: #111111;
+      color: #D4785C;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 4rem;
+      font-weight: 100;
+      border: none;
+      cursor: pointer; }
+    .assessment-card__btn--checkbox {
+      display: none;
+      z-index: 5000;
+      position: absolute; }
+  .assessment-card__testing {
+    position: absolute;
+    z-index: 5000; }
+  .assessment-card__btn--checkbox:checked + .assessment-card__0 {
+    display: none;
+    transition: all 1s; }
+  .assessment-card__btn--checkbox:checked + .assessment-card__1 {
+    display: none; }
+  .assessment-card__btn--checkbox:checked + .assessment-card__2 {
+    display: none; }
+  .assessment-card__btn--checkbox:checked + .assessment-card__3 {
+    display: none; }
+  .assessment-card__btn--checkbox:checked + .assessment-card__4 {
+    display: none; }
 
 .btn {
   height: 5rem;
@@ -191,6 +365,26 @@ h2 {
       margin: 0 1rem;
       color: #CB6D51; }
 
+.assess-class {
+  min-height: 0;
+  /* NEW */
+  min-width: 0; }
+  .assess-class__card-container {
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: 1fr;
+    justify-content: stretch;
+    grid-row-gap: 2rem;
+    height: 75vh;
+    padding: 2rem;
+    justify-content: stretch;
+    min-height: 0;
+    /* NEW */
+    min-width: 0;
+    list-style: none;
+    overflow: hidden;
+    transition: all 1s; }
+
 .class-stats {
   display: grid;
   grid-template-columns: max-content 3fr;
@@ -208,6 +402,7 @@ h2 {
     grid-column: 1 / span 1;
     background-color: #0a0a0a;
     border-radius: 1rem;
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
     overflow: auto;
     /* NEW */
     min-width: 0; }
@@ -223,12 +418,14 @@ h2 {
     grid-row: 1 / span 1;
     grid-column: 2 / span 1;
     background-color: #0a0a0a;
-    border-radius: 1rem; }
+    border-radius: 1rem;
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05); }
 
 .edit-class {
   display: grid;
-  grid-template-rows: 1fr;
+  grid-template-rows: .1fr 1fr;
   grid-template-columns: 1fr 1fr .25fr;
+  grid-row-gap: 2rem;
   grid-column-gap: 2rem;
   padding: 2rem;
   height: 75vh;
@@ -237,11 +434,36 @@ h2 {
   /* NEW */
   min-width: 0;
   justify-content: stretch; }
-  .edit-class__roster-container {
+  .edit-class__headline--roster {
     grid-row: 1 / span 1;
+    grid-column: 1 / span 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0a0a0a;
+    border-radius: 1rem;
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
+    font-size: 1rem;
+    color: #D4785C; }
+  .edit-class__headline--student-body {
+    grid-row: 1 / span 1;
+    grid-column: 2 / span 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0a0a0a;
+    border-radius: 1rem;
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
+    font-size: 3rem;
+    color: #D4785C; }
+  .edit-class__headline--title {
+    font-size: 3rem; }
+  .edit-class__roster-container {
+    grid-row: 2 / span 1;
     grid-column: 1 / span 1;
     background-color: #0a0a0a;
     border-radius: 1rem;
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
     overflow: auto;
     /* NEW */
     padding: 2rem; }
@@ -251,24 +473,32 @@ h2 {
       -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); }
     .edit-class__roster-container:hover::-webkit-scrollbar-thumb {
       background-image: linear-gradient(to bottom right, #cb6d51, #d4785c, #da8a68, #dd9b72);
-      outline: 1px solid slategrey;
-      opacity: 0.5; }
+      opacity: 0.5;
+      border-radius: 1rem; }
   .edit-class__student-body-container {
-    grid-row: 1 / span 1;
+    grid-row: 2 / span 1;
     grid-column: 2 / span 1;
     background-color: #0a0a0a;
     border-radius: 1rem;
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
     overflow: auto;
     /* NEW */
-    min-width: 0; }
+    min-width: 0;
+    padding: 2rem; }
     .edit-class__student-body-container:hover::-webkit-scrollbar {
       width: 10px; }
     .edit-class__student-body-container:hover::-webkit-scrollbar-track {
       -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); }
     .edit-class__student-body-container:hover::-webkit-scrollbar-thumb {
       background-image: linear-gradient(to bottom right, #cb6d51, #d4785c, #da8a68, #dd9b72);
-      outline: 1px solid slategrey;
-      opacity: 0.5; }
+      opacity: 0.5;
+      border-radius: 1rem; }
+  .edit-class__new-student {
+    grid-row: 1 / span 2;
+    grid-column: 3 / span 1;
+    background-color: #0a0a0a;
+    border-radius: 1rem;
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05); }
 
 .class-home {
   display: grid;
@@ -317,16 +547,23 @@ h2 {
         width: calc(100% / 3);
         background-color: #0a0a0a;
         border-radius: 1rem;
+        box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        font-size: 2.5rem; }
+        font-size: 2.5rem;
+        transition: all, .25s; }
         .class-home__content--links-link a {
           color: #CB6D51;
           text-decoration: none; }
         .class-home__content--links-link:not(:last-child) {
           margin-right: 2rem; }
+        .class-home__content--links-link:hover {
+          transform: scale(1.02);
+          box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.2); }
+      .class-home__content--links-icon {
+        color: white !important; }
 
 .landing {
   display: grid;
@@ -376,7 +613,7 @@ h2 {
     transition: .1s;
     height: 4rem;
     border-radius: .5rem;
-    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.2);
     margin: 0 3rem; }
     .landing__button--login {
       grid-row: 2;

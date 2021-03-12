@@ -149,10 +149,10 @@ class ClassHome extends React.Component {
 
           <div className="class-home__content">
             <Router>
-              <div className="class-home__content--links">
+              <div  className="class-home__content--links">
                 <div className="class-home__content--links-link" onClick={e => this.handleReFetch(e)}>
                   <div className="icon">Icon</div>
-                  <Link to={`${match.url}`}>Class Home</Link>
+                  <Link to={`${match.url}`}><div>Class Home</div></Link>
                 </div>
                 <div className="class-home__content--links-link">
                   <div className="icon">Icon</div>

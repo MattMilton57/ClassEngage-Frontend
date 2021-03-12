@@ -13,9 +13,7 @@
     &__roster-container {
         grid-row: 1 / span 1;
         grid-column: 1 / span 1;
-
-        background-color: $color-grey-dark;
-        border-radius: $border;
+        @include component-format;
         overflow: auto;  /* NEW */
         min-width: 0;
         &:hover{
@@ -37,8 +35,7 @@
     &__graphics {
         grid-row: 1 / span 1;
         grid-column: 2 / span 1;
-        background-color: $color-grey-dark;
-        border-radius: $border;
+        @include component-format;
 
     }
 }

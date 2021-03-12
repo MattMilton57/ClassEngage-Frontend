@@ -47,19 +47,25 @@ class AssessClass extends React.Component {
     this.setState({assess:assess})
   }
 
+  nextAssessment = () => {
+    let assessments=this.state.assess
+    assessments.shift()
+    this.setState({assess:assessments})
+  }
+
   ///// Send students from index to AssesmentCard component /////
   makeCards = () => {
     let students = this.state.assess
     if (this.state.assess == []) {
       return(
-        <div className="hat">
+        <div className="assess-class__loading">
           loading
         </div>
       )
     }else{
       return(
-        <ul className="cards">
-            {students.map(student => <li className="card"><AssessmentCard classID={this.props.classPeriod} index={student[1]} student={student[0]}/></li> )}
+        <ul className="assess-class__card-container">
+            {students.map(student => <li className="assess-class__card-container--card"><AssessmentCard classID={this.props.classPeriod} index={student[1]} nextAssessment={this.nextAssessment} student={student[0]}/></li> )}
         </ul>
       )
     }
@@ -67,7 +73,7 @@ class AssessClass extends React.Component {
  
   render(){
     return(
-      <div>      
+      <div className="assess-class">      
         {this.makeCards()}
       </div>
     )

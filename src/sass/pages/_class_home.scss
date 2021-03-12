@@ -56,25 +56,36 @@
             margin: 0 2rem;
             margin-bottom: 2rem;
 
+
             &-link {
                 background-color: rebeccapurple;
                 width: calc(100% / 3);
-                background-color: $color-grey-dark;
-                border-radius: $border;
+                @include component-format;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
                 font-size: 2.5rem;
+                transition: all, .25s;
 
                 a{
                     color: $color-copper-1;
                     text-decoration: none;
+      
                 }
 
                 &:not(:last-child){
                     margin-right: 2rem;
                 }
+
+                &:hover{
+                    transform: scale(1.02);
+                    box-shadow: $box-shadow-large;
+                }
+            }
+
+            &-icon {
+                color: white !important;
             }
 
         }
