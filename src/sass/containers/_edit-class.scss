@@ -1,7 +1,7 @@
 .edit-class {
     display: grid;
     grid-template-rows:  .1fr 1fr;
-    grid-template-columns: 1fr 1fr .25fr;
+    grid-template-columns: 1fr 1fr .10fr;
     grid-row-gap: 2rem;
     grid-column-gap: 2rem;
     padding: 2rem;
@@ -86,10 +86,71 @@
         }
     }
 
+
+    ////////////WORKING HERE////////////
     &__new-student {
         grid-row: 1 / span 2;
         grid-column: 3 / span 1;
         @include component-format;
+        height: 100%;
+        width: 50px;
+        display: flex;
+        justify-content: stretch;
+        align-content: stretch;
+        overflow: hidden;
+        transition: all .5s;
+
+        &-toggle {
+            grid-row: 1 / span 1;
+
+
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr;
+            // height: 75vh;
+            height: 100%;
+            width: 50px;
+            color: white;
+            // background-color: red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 200;
+            font-size: 2rem;
+            transition: all .5s;
+            grid-column: 3 / span 1;
+            // background-image: $color-grey-dark;
+            border-radius: $border;
+
+
+            &-content{
+                grid-row: 2 / span 1;
+                transform: rotate(90deg);
+                white-space: nowrap;
+                // background-color: rebeccapurple;
+                display: flex;
+                flex-wrap: nowrap;
+                height: 100%;
+                width: 100%;
+                height: min-content;
+                justify-content: center;
+                align-items: center;
+                transition: all .5s;
+
+                // color: black;
+                
+            }
+            &:hover{
+                // color: $
+                color: $color-copper-2;
+                font-weight: 400;
+                background-color: $gradient-dark-mid;
+                // border: 1px solid $color-copper-2;
+                // transform: scalex(1.1);
+            }
+
+        }
+        
     }
 
 

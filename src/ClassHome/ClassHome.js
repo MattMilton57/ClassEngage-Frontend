@@ -6,6 +6,8 @@ import StudentHome from '../StudentHome/StudentHome';
 import NewClassListContainer from '../SelectClass/NewClassListContainer';
 import MenuHeader from "../components/MenuHeader"
 import MenuFooter from "../components/MenuFooter"
+import NewStudentForm from "../components/NewStudentForm"
+
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import { api } from '../services/api'
 import { functions } from '../services/functions'
@@ -108,6 +110,9 @@ class ClassHome extends React.Component {
     console.log('testingCallback')
   }
 
+
+
+//////////Work in progress//////////
   buildMastList = (e) => {
    let masterList = (functions.build.buildList(
       this.state.roster,
@@ -126,6 +131,14 @@ class ClassHome extends React.Component {
   handleReFetch = (e) => {
     e.preventDefault(e)
     this.fetchClassesAssessments()
+  }
+
+  reFetchStudentBody = () => {
+    // e.preventDefault(e)
+    this.fetchStudents()
+    this.fetchClass()
+    // console.log(1)
+    // console.log(2)
   }
 
   render(){
@@ -200,6 +213,7 @@ class ClassHome extends React.Component {
                       // fetchClass={e => this.handleReFetch(e)}
                       register={e => this.postRegistration(e)}
                       deRegister={e => this.deleteRegistration(e)}
+                      reFetchStudentBody={e => this.reFetchStudentBody(e)}
                       test={e => this.test(e)}
                       />
                   }>     
@@ -222,6 +236,7 @@ class ClassHome extends React.Component {
               </div>
             </Router>
         </div>
+        <NewStudentForm reFetchStudentBody={e => this.reFetchStudentBody(e)}/>
       </div>
     )
   }

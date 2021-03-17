@@ -1,8 +1,9 @@
 import React from 'react';
 import Roster from "../components/Roster";
 import RosterRemainder from "../components/RosterRemainder";
+// import NewStudentForm from "../components/NewStudentForm"
 
-const  EditClassContainer = ({roster, studentBody, deRegister, register, registrations }) => {
+const  EditClassContainer = ({roster, studentBody, deRegister, register, registrations, reFetchStudentBody }) => {
 
     // const register = (student) => {
     //     console.log(student)
@@ -34,18 +35,21 @@ const  EditClassContainer = ({roster, studentBody, deRegister, register, registr
           </div>
           <div className="edit-class__roster-container">
 
-            <Roster roster={roster} callback={findReg} registerAction="Remove"/>
+            <Roster roster={roster} callback={findReg} registerAction="-"/>
           </div>
 
           <div className="edit-class__headline--student-body">
             <div className="edit-class__headline--title">Student Body</div>
           </div>
           <div className="edit-class__student-body-container">
-            <RosterRemainder roster={roster} studentBody={studentBody} callback={handleAdd} registerAction="Register"/>
+            <RosterRemainder roster={roster} studentBody={studentBody} callback={handleAdd} registerAction="+"/>
           </div>
           <div className="edit-class__new-student">
-              NS
+          <label className="edit-class__new-student-toggle" for="new-student-form__checkbox">
+                            <span className="edit-class__new-student-toggle-content">New Student</span>
+                        </label>
           </div>
+              {/* <NewStudentForm reFetchStudentBody={reFetchStudentBody}/> */}
 
       </div>
     )

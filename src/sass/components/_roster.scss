@@ -8,27 +8,39 @@
 
     &__student {
         display: grid;
-        grid-template-columns: 1fr 1fr max-content;
+        grid-template-columns: max-content max-content;
         grid-template-rows: 1fr;
-        margin: .5rem 0;
+        // margin: .5rem 0;
+    justify-content: space-between;
         font-size: 3rem;
         text-decoration: none;
         text-transform: uppercase;
         font-weight: 300;
         font-size: 2rem;
+        margin: .25rem 0;
         // overflow: hidden;  /* NEW */
+        align-items: center;
         min-width: 0;
         list-style: none;
+        padding: .5rem 0rem;
+        border-radius: $border;
+        background-color: $color-grey-mid;
+        background-image: linear-gradient( 120deg, transparent 0%, transparent 50%,
+        (rgba($color-copper-1, 1)),
+        (rgba($color-copper-2, 1)), 
+        (rgba($color-copper-3, 1)), 
+        (rgba($color-copper-4, 1)));;
+        background-size: 220%;
+        transition: all 0.4s;
+        cursor: pointer;
 
-        &:hover {
 
-        }
+
 
         &--name {
             grid-row: 1 / span 1;
-            grid-column: 1 / span 1;
-            margin-left: 1rem;
-            
+            grid-column: 1;
+            margin-left: 1rem;            
             a{
                 color: white;
                 text-decoration: none;
@@ -42,17 +54,12 @@
 
         }
 
-        &--caption {
-            // display: none;
-            grid-row: 1 / span 1;
-            grid-column: 2 / span 1;
-            margin: 0 1rem;
-            color: $color-copper-1;
-        }
-
         &--score {
             grid-row: 1 / span 1;
             grid-column: 2 / span 1;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
             margin: 0 1rem;
             color: $color-copper-1;
         }
@@ -60,6 +67,81 @@
 
 
 
+
+
+    &__edit-student {
+        display: grid;
+        grid-template-columns: max-content max-content;
+        grid-template-rows: 1fr;
+        margin: .5rem 0;
+        justify-content: space-between;
+        font-size: 3rem;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: 300;
+        font-size: 2rem;
+        // overflow: hidden;  /* NEW */
+        align-items: center;
+        min-width: 0;
+        list-style: none;
+        padding: .5rem 0rem;
+        border-radius: $border;
+        background-color: $color-grey-mid;
+        background-image: linear-gradient( 120deg, transparent 0%, transparent 50%,
+        (rgba($color-copper-1, 1)),
+        (rgba($color-copper-2, 1)), 
+        (rgba($color-copper-3, 1)), 
+        (rgba($color-copper-4, 1)));;
+        background-size: 220%;
+        transition: all 0.4s;
+        cursor: pointer;
+
+        &--caption {
+            grid-row: 1 / span 1;
+            grid-column: 2 /span 1;
+            display: flex;
+            margin: 0 1rem; 
+            color: $color-copper-1;
+            justify-content: center;
+            align-items: center;
+            transform: translatey(-2px);
+
+            &:hover {
+                color: white;
+                font-size: 3rem;
+                // font-weight: 500;
+            }
+        }
+
+        &:hover {
+            background-position: 109%;
+            // color: black;
+            color: white;
+
+            font-size: 3rem;
+
+            border: 1px solid $color-copper-2;
+            transform: scaley(1.05);
+            font-weight: 500;
+
+        }
+
+        &--name {
+            grid-row: 1 / span 1;
+            grid-column: 1;
+            margin-left: 2rem;            
+            a{
+                color: white;
+                text-decoration: none;
+            }
+
+            &-only {
+                color: white;
+
+            }
+        }
+        
+    }
 
 
 

@@ -101,6 +101,7 @@ h2 {
       align-items: center;
       height: 100%;
       width: 100%;
+      padding: 1rem;
       border: solid;
       border-width: 1px;
       border-color: #111111; }
@@ -332,6 +333,92 @@ h2 {
     max-width: 60%;
     margin: 1rem; }
 
+.new-student-form__content {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.8);
+  transform: scale(0.5);
+  transition: all .25s; }
+  .new-student-form__content--form {
+    background-color: #0a0a0a;
+    border-radius: 1rem;
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
+    grid-row: 2 / span 1;
+    grid-column: 2 / span 1;
+    display: grid;
+    z-index: 9950;
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: .5fr 1fr .5fr;
+    justify-items: center;
+    align-items: center;
+    padding: 3rem;
+    border: 1px solid #D4785C;
+    position: absolute; }
+    .new-student-form__content--form-title {
+      grid-row: 2 / span 1;
+      grid-column: 2 / span 1;
+      font-size: 5rem;
+      font-weight: 100;
+      color: #D4785C; }
+    .new-student-form__content--form-name {
+      grid-row: 3 / span 1;
+      grid-column: 2 / span 1;
+      height: 5rem;
+      font-size: 4rem;
+      border: 1px solid #111111;
+      background-color: #111111;
+      border-radius: 1rem;
+      color: white;
+      text-align: center; }
+    .new-student-form__content--form textarea:focus, .new-student-form__content--form input:focus {
+      outline: none; }
+    .new-student-form__content--form-submit {
+      grid-row: 4 / span 1;
+      grid-column: 2 / span 1;
+      color: #D4785C;
+      padding: .5rem 1rem;
+      background-image: linear-gradient(to bottom right, #cb6d51, #d4785c, #da8a68, #dd9b72);
+      border: none;
+      color: black;
+      border-radius: 1rem;
+      box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.8);
+      font-weight: 200;
+      font-size: 4rem;
+      transition: all .25s; }
+      .new-student-form__content--form-submit:hover {
+        background-image: linear-gradient(to right bottom, black, rgba(0, 0, 0, 0.9));
+        border: 0.25px solid #D4785C;
+        color: #D4785C;
+        transform: scale(1.1); }
+    .new-student-form__content--form-toggle {
+      grid-row: 1 / span 1;
+      grid-column: 3 / span 1;
+      font-size: 3rem;
+      margin: 2rem;
+      position: absolute;
+      z-index: 9960;
+      transform: translateY(-1.5rem);
+      transform: translateX(11.5rem); }
+      .new-student-form__content--form-toggle:hover {
+        color: #D4785C; }
+
+.new-student-form__checkbox {
+  display: none; }
+
+.new-student-form__checkbox:checked + .new-student-form__content {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1); }
+
 .roster {
   padding: 1rem;
   overflow: hidden;
@@ -340,35 +427,91 @@ h2 {
   box-sizing: border-box; }
   .roster__student {
     display: grid;
-    grid-template-columns: 1fr 1fr max-content;
+    grid-template-columns: max-content max-content;
     grid-template-rows: 1fr;
-    margin: .5rem 0;
+    justify-content: space-between;
     font-size: 3rem;
     text-decoration: none;
     text-transform: uppercase;
     font-weight: 300;
     font-size: 2rem;
+    margin: .25rem 0;
+    align-items: center;
     min-width: 0;
-    list-style: none; }
+    list-style: none;
+    padding: .5rem 0rem;
+    border-radius: 1rem;
+    background-color: #111111;
+    background-image: linear-gradient(120deg, transparent 0%, transparent 50%, #cb6d51, #d4785c, #da8a68, #dd9b72);
+    background-size: 220%;
+    transition: all 0.4s;
+    cursor: pointer; }
     .roster__student--name {
       grid-row: 1 / span 1;
-      grid-column: 1 / span 1;
+      grid-column: 1;
       margin-left: 1rem; }
       .roster__student--name a {
         color: white;
         text-decoration: none; }
       .roster__student--name-only {
         color: white; }
-    .roster__student--caption {
-      grid-row: 1 / span 1;
-      grid-column: 2 / span 1;
-      margin: 0 1rem;
-      color: #CB6D51; }
     .roster__student--score {
       grid-row: 1 / span 1;
       grid-column: 2 / span 1;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
       margin: 0 1rem;
       color: #CB6D51; }
+  .roster__edit-student {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    grid-template-rows: 1fr;
+    margin: .5rem 0;
+    justify-content: space-between;
+    font-size: 3rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 2rem;
+    align-items: center;
+    min-width: 0;
+    list-style: none;
+    padding: .5rem 0rem;
+    border-radius: 1rem;
+    background-color: #111111;
+    background-image: linear-gradient(120deg, transparent 0%, transparent 50%, #cb6d51, #d4785c, #da8a68, #dd9b72);
+    background-size: 220%;
+    transition: all 0.4s;
+    cursor: pointer; }
+    .roster__edit-student--caption {
+      grid-row: 1 / span 1;
+      grid-column: 2 /span 1;
+      display: flex;
+      margin: 0 1rem;
+      color: #CB6D51;
+      justify-content: center;
+      align-items: center;
+      transform: translatey(-2px); }
+      .roster__edit-student--caption:hover {
+        color: white;
+        font-size: 3rem; }
+    .roster__edit-student:hover {
+      background-position: 109%;
+      color: white;
+      font-size: 3rem;
+      border: 1px solid #D4785C;
+      transform: scaley(1.05);
+      font-weight: 500; }
+    .roster__edit-student--name {
+      grid-row: 1 / span 1;
+      grid-column: 1;
+      margin-left: 2rem; }
+      .roster__edit-student--name a {
+        color: white;
+        text-decoration: none; }
+      .roster__edit-student--name-only {
+        color: white; }
 
 .assess-class {
   min-height: 0;
@@ -429,7 +572,7 @@ h2 {
 .edit-class {
   display: grid;
   grid-template-rows: .1fr 1fr;
-  grid-template-columns: 1fr 1fr .25fr;
+  grid-template-columns: 1fr 1fr .10fr;
   grid-row-gap: 2rem;
   grid-column-gap: 2rem;
   padding: 2rem;
@@ -503,7 +646,46 @@ h2 {
     grid-column: 3 / span 1;
     background-color: #0a0a0a;
     border-radius: 1rem;
-    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05); }
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
+    height: 100%;
+    width: 50px;
+    display: flex;
+    justify-content: stretch;
+    align-content: stretch;
+    overflow: hidden;
+    transition: all .5s; }
+    .edit-class__new-student-toggle {
+      grid-row: 1 / span 1;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
+      height: 100%;
+      width: 50px;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 200;
+      font-size: 2rem;
+      transition: all .5s;
+      grid-column: 3 / span 1;
+      border-radius: 1rem; }
+      .edit-class__new-student-toggle-content {
+        grid-row: 2 / span 1;
+        transform: rotate(90deg);
+        white-space: nowrap;
+        display: flex;
+        flex-wrap: nowrap;
+        height: 100%;
+        width: 100%;
+        height: min-content;
+        justify-content: center;
+        align-items: center;
+        transition: all .5s; }
+      .edit-class__new-student-toggle:hover {
+        color: #D4785C;
+        font-weight: 400;
+        background-color: linear-gradient(to right bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)); }
 
 .class-home {
   display: grid;

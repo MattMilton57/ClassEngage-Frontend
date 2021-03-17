@@ -64,8 +64,8 @@ const Roster = ({ url, roster, callback, score, assessments, classPeriod, linkTo
                     <div className='roster'>
                         <ul>
                             {roster.map(student => 
-                                <li className="roster__student" id="student" key={student.name}>
-                                    <div className="roster__student--name" id="name">
+                                <li id="student" key={student.name}>
+                                    {/* <div className="roster__student--name" id="name"> */}
                                         <Student 
                                             totalScore={filterAssessments(student.id)} 
                                             callback={callback} 
@@ -73,7 +73,7 @@ const Roster = ({ url, roster, callback, score, assessments, classPeriod, linkTo
                                             assessments={assessments} 
                                             showScore={score}
                                             registerAction={registerAction}/>
-                                    </div>
+                                    {/* </div> */}
                                 </li>)}
                         </ul>
                     </div>

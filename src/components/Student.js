@@ -16,9 +16,9 @@ if (linkTo == true) {
         </div>)
 }else{
     return(
-        <div id={student.name} onClick={(e)=> handleClick(e)}>
-            <li value={student} key={student.id}>{student.name}</li>
-            <div className="roster__student--caption">{registerAction}</div>
+        <div className="roster__edit-student" onClick={(e)=> handleClick(e)}>
+            <div className="roster__edit-student--name" value={student} key={student.id}>{student.name}</div>
+            <div className="roster__edit-student--caption">{registerAction}</div>
         </div>  
     ) 
 }

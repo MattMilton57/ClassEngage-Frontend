@@ -87,7 +87,7 @@ class AssessmentCard extends React.Component{
                         </label>
                     </div>
 
-                    </form> 
+                </form> 
                     
                 {/* </div> */}
             </div>
