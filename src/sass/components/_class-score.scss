@@ -1,0 +1,30 @@
+.class-score {
+    // background-color: rebeccapurple;
+    height: 100%;
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__caption {
+
+        font-size: 5rem;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+
+    }
+
+    &__score {
+        color: $color-copper-2;
+
+        justify-content: center;
+        align-items: flex-end;
+
+        font-size: 19rem;
+        font-weight: 100;
+    }
+}

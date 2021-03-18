@@ -283,6 +283,42 @@ h2 {
       z-index: 200;
       transition: all .35s; }
 
+.class-score {
+  height: 100%;
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .class-score__caption {
+    font-size: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end; }
+  .class-score__score {
+    color: #D4785C;
+    justify-content: center;
+    align-items: flex-end;
+    font-size: 19rem;
+    font-weight: 100; }
+
+.class-title {
+  height: 100%;
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  align-items: center; }
+  .class-title__class-period {
+    font-weight: 200;
+    font-size: 7rem; }
+  .class-title__class-subject {
+    font-weight: 200;
+    font-size: 5rem;
+    margin-left: 2rem;
+    color: #D4785C;
+    align-items: baseline; }
+
 .landing-form {
   grid-row: 1 / 4;
   grid-column: 2;
@@ -535,8 +571,9 @@ h2 {
 
 .class-stats {
   display: grid;
+  grid-template-rows: 1fr 2fr 2fr;
   grid-template-columns: max-content 3fr;
-  grid-template-rows: 1fr;
+  grid-row-gap: 2rem;
   grid-column-gap: 2rem;
   height: 75vh;
   padding: 2rem;
@@ -546,7 +583,7 @@ h2 {
   /* NEW */
   min-width: 0; }
   .class-stats__roster-container {
-    grid-row: 1 / span 1;
+    grid-row: 1 / span 3;
     grid-column: 1 / span 1;
     background-color: #0a0a0a;
     border-radius: 1rem;
@@ -562,12 +599,27 @@ h2 {
       background-image: linear-gradient(to bottom right, #cb6d51, #d4785c, #da8a68, #dd9b72);
       outline: 1px solid slategrey;
       opacity: 0.5; }
-  .class-stats__graphics {
+  .class-stats__class-name {
     grid-row: 1 / span 1;
     grid-column: 2 / span 1;
     background-color: #0a0a0a;
     border-radius: 1rem;
-    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05); }
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
+    overflow: hidden; }
+  .class-stats__total-participation {
+    grid-row: 2 / span 1;
+    grid-column: 2 / span 1;
+    background-color: #0a0a0a;
+    border-radius: 1rem;
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
+    overflow: hidden; }
+  .class-stats__graphics {
+    grid-row: 3 / span 1;
+    grid-column: 2 / span 1;
+    background-color: #0a0a0a;
+    border-radius: 1rem;
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
+    overflow: hidden; }
 
 .edit-class {
   display: grid;

@@ -1,7 +1,8 @@
 .class-stats {
     display: grid;
+    grid-template-rows: 1fr 2fr 2fr;
     grid-template-columns: max-content 3fr;
-    grid-template-rows: 1fr;
+    grid-row-gap: 2rem;
     grid-column-gap: 2rem;
     height: 75vh;
     padding: 2rem;
@@ -11,7 +12,7 @@
     min-width: 0; 
 
     &__roster-container {
-        grid-row: 1 / span 1;
+        grid-row: 1 / span 3;
         grid-column: 1 / span 1;
         @include component-format;
         overflow: auto;  /* NEW */
@@ -32,10 +33,24 @@
     
     }
 
-    &__graphics {
+    &__class-name {
         grid-row: 1 / span 1;
         grid-column: 2 / span 1;
         @include component-format;
+        overflow: hidden;
+    }
 
+    &__total-participation {
+        grid-row: 2 / span 1;
+        grid-column: 2 / span 1;
+        @include component-format;
+        overflow: hidden;
+    }
+
+    &__graphics {
+        grid-row: 3 / span 1;
+        grid-column: 2 / span 1;
+        @include component-format;
+        overflow: hidden;
     }
 }

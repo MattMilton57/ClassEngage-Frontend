@@ -24,7 +24,9 @@ class ClassHome extends React.Component {
       registrations:'',
       masterList:[],
       allclasses:'',
-      score:''
+      classScore:'',
+      classObject:'',
+      graphInfo:''
     }
   }
 
@@ -33,7 +35,7 @@ class ClassHome extends React.Component {
     const id = (parseInt(match.params.id))
     this.fetchClassesAssessments()
     this.fetchClass()
-    this.checkUser()
+    this.checkUser(id)
     this.fetchStudents()
     this.fetchRegistrations(id)
     this.setState({
@@ -42,14 +44,14 @@ class ClassHome extends React.Component {
 
   }
 
-  checkUser = () => {
+  checkUser = (classID) => {
     (api.get.fetchCurrentUser())
-    .then (res => this.fetchClasses(res.id))
+    .then (res => this.fetchClasses(res.id, classID))
   }
 
-  fetchClasses = (id) => {
+  fetchClasses = (id, classID) => {
     api.get.filteredClasses({user_id:id})
-    .then (res => this.setState({allclasses:res}))
+    .then (res => {this.setState({allclasses:res}); this.findClassInfo(res, classID)})
   }
 
   fetchRegistrations = (id) => {
@@ -66,14 +68,21 @@ class ClassHome extends React.Component {
     const {match} = this.props
     const id = (parseInt(match.params.id))
     api.get.classesAssessments({class_period_id:id})
-    .then(res => this.setState({classAssessments:res}))
+    .then(res => {this.setState({classAssessments:res}); this.setParticipation(res); this.testDate(res)})
   }
 
   fetchClass = () => {
     const {match} = this.props
     const id = (parseInt(match.params.id))
     api.get.classList({class_period_id:id})
-    .then(res => {this.setState({roster:res}); this.buildMastList()})
+    .then(res => {this.setState({roster:res})})
+  }
+
+  findClassInfo = (classes, classID) => {
+    classes.map(classPeriod => {
+      if (classPeriod.id == classID)
+      {this.setState({classObject:classPeriod})}
+    }) 
   }
 
   postRegistration = (e) => {
@@ -90,36 +99,74 @@ class ClassHome extends React.Component {
     .then(res =>{if (res){this.fetchRegistrations(id); this.fetchClass() }})
   }
 
-  // classParticipation = () => {
-  //   let totalAssessments = this.state.classAssessments.length
-  //   if (totalAssessments>0){
-  //   return <div>This class is at {this.totalPar()} % participation </div>
-  //   }else{
-  //     return(<div>No assessments yet</div>)
-  //   }
-  // }
 
-  totalPar = () => {
-    let masterList = this.state.masterList
-    let score = 0
-    masterList.map(student => {score = (score + parseInt(student[2])); console.log(score)})
-    return (((score/masterList.length)*100).toFixed(0))
+
+
+  ////////////////////////////////////////Working////////////////////////////////////////
+
+  setParticipation = (assessments) => {
+    let totalScore=0
+    let totalAssessments = this.state.classAssessments.length
+    assessments.map( assessment => {if (assessment.participating == true) totalScore=(totalScore+1)})
+    let rawScore=(totalScore/totalAssessments)
+    let classScore = ((rawScore*100).toFixed(0))
+    this.setState({classScore:classScore})
   }
 
+  testDate = (assessments) => {
+    let dateArray = []
+    let fullArray = []
+    assessments.map(assessment => {
+      let date = assessment.created_at; 
+      let split = date.split('T'); 
+      let dateOnly=split[0]; 
+      let dateSplit=dateOnly.split('-');
+      let dateString = dateSplit.toString() 
+      dateArray.push(dateString)
+      fullArray.push([dateString, assessment])})
+      // console.log(dateArray)
+      this.makeArraysForDates(dateArray, fullArray)
+  }
+
+  makeArraysForDates = (dateArray, fullArray) => {
+    let bigNewArray = []
+    dateArray.map(item => {if (bigNewArray.includes(item) == false) {bigNewArray.push(item)}})
+    let dateIndex = []
+    bigNewArray.map(date => {dateIndex.push({date:date, assessments:[]})})
+    // console.log(dateIndex)
+    let assessmentArray = fullArray
+    let finalArray = []
+    dateIndex.map(date => {
+      assessmentArray.map(assessment => {
+        if (date.date == assessment[0])
+        {date.assessments.push(assessment[1])}
+      })
+      finalArray.push(date)
+    })
+    this.buildFinalArray(dateIndex, finalArray)
+  }
+
+  buildFinalArray = (dateIndex, finalArray) => {
+    let scoreIndex = []
+    finalArray.map(data => {
+      let totalDaysAssessments = data.assessments.length
+      let totalScore = 0
+      data.assessments.map( assessment => {if (assessment.participating == true) totalScore=(totalScore+1)})
+      let rawScore=(totalScore/totalDaysAssessments)
+      let daysScore = ((rawScore*100).toFixed(0))
+      scoreIndex.push({date:data.date, totalDaysAssessments:totalDaysAssessments, positiveAssessments:totalScore, daysScore:daysScore})
+     })
+     this.setState({graphInfo:scoreIndex})
+  }
+
+
+
+
+
+
+////////////////////////////////////////Working ^////////////////////////////////////////
   callback = (e) => {
     console.log('testingCallback')
-  }
-
-
-
-//////////Work in progress//////////
-  buildMastList = (e) => {
-   let masterList = (functions.build.buildList(
-      this.state.roster,
-      this.state.classAssessments
-      )
-    )
-    this.setState({masterList:masterList})
   }
 
   showList = () => {
@@ -187,6 +234,9 @@ class ClassHome extends React.Component {
                       roster={this.state.roster} 
                       callback={this.callback}
                       classPeriod={this.state.classPeriod} 
+                      classObject={this.state.classObject} 
+                      classScore={this.state.classScore} 
+                      graphInfo={this.state.graphInfo}
                       linkTo={true}
                       url={`${match.url}/studenthome/`}/>
                   }>
