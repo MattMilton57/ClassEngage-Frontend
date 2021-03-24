@@ -2,11 +2,13 @@ import React from 'react';
 import AssessClassContainer from '../Containers/AssessClassContainer';
 import EditClassContainer from '../Containers/EditClassContainer.js';
 import ClassStatsContainer from '../Containers/ClassStatsContainer';
+import StudentHomeContainer from '../Containers/StudentHomeContainer';
 import StudentHome from '../StudentHome/StudentHome';
 import NewClassListContainer from '../SelectClass/NewClassListContainer';
 import MenuHeader from "../components/MenuHeader"
 import MenuFooter from "../components/MenuFooter"
 import NewStudentForm from "../components/NewStudentForm"
+import sprite from "../img/sprite.svg"
 
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import { api } from '../services/api'
@@ -26,7 +28,8 @@ class ClassHome extends React.Component {
       allclasses:'',
       classScore:'',
       classObject:'',
-      graphInfo:''
+      graphInfo:'',
+      stateLables:[]
     }
   }
 
@@ -68,7 +71,7 @@ class ClassHome extends React.Component {
     const {match} = this.props
     const id = (parseInt(match.params.id))
     api.get.classesAssessments({class_period_id:id})
-    .then(res => {this.setState({classAssessments:res}); this.setParticipation(res); this.testDate(res)})
+    .then(res => {this.setState({classAssessments:res}); this.testDate(res)})
   }
 
   fetchClass = () => {
@@ -101,17 +104,7 @@ class ClassHome extends React.Component {
 
 
 
-
-  ////////////////////////////////////////Working////////////////////////////////////////
-
-  setParticipation = (assessments) => {
-    let totalScore=0
-    let totalAssessments = this.state.classAssessments.length
-    assessments.map( assessment => {if (assessment.participating == true) totalScore=(totalScore+1)})
-    let rawScore=(totalScore/totalAssessments)
-    let classScore = ((rawScore*100).toFixed(0))
-    this.setState({classScore:classScore})
-  }
+  ////////////////////////////////////////graph data////////////////////////////////////////
 
   testDate = (assessments) => {
     let dateArray = []
@@ -156,13 +149,43 @@ class ClassHome extends React.Component {
       let daysScore = ((rawScore*100).toFixed(0))
       scoreIndex.push({date:data.date, totalDaysAssessments:totalDaysAssessments, positiveAssessments:totalScore, daysScore:daysScore})
      })
-     this.setState({graphInfo:scoreIndex})
+      this.cumulativeGraphScore(scoreIndex, dateIndex)
   }
 
+  cumulativeGraphScore = (scoreIndex, dateIndex) => {
+    var loops=scoreIndex.length
+    var i
+    var assessmentScore = [0]
+    var totalAssessments = [0]
+    var totalScore = [0]
+    var date =[]
+    for (i=0; i < loops; i++) {
+      var newScore=(assessmentScore[i]+scoreIndex[i].positiveAssessments)
+      var newAssessmentNum=(totalAssessments[i]+scoreIndex[i].totalDaysAssessments)
+      var rawDaysScore=(newScore/newAssessmentNum)
+      let daysScore = ((rawDaysScore*100).toFixed(0))
+      let parsedScore = parseInt(daysScore)
+      date.push(dateIndex[i].date)
+      assessmentScore.push(newScore)
+      totalAssessments.push(newAssessmentNum)
+      totalScore.push(parsedScore)
 
-
-
-
+    }
+    assessmentScore.shift()
+    totalAssessments.shift()
+    totalScore.shift()
+    console.log(dateIndex)
+    console.log(date)
+    const dates = dateIndex
+    this.setState({
+      stateLables:date,
+      data:totalScore,
+      dataObject:{
+        stateLables:dates,
+        data:totalScore,
+      }
+    })
+  }
 
 ////////////////////////////////////////Working ^////////////////////////////////////////
   callback = (e) => {
@@ -181,11 +204,8 @@ class ClassHome extends React.Component {
   }
 
   reFetchStudentBody = () => {
-    // e.preventDefault(e)
     this.fetchStudents()
     this.fetchClass()
-    // console.log(1)
-    // console.log(2)
   }
 
   render(){
@@ -211,16 +231,24 @@ class ClassHome extends React.Component {
             <Router>
               <div  className="class-home__content--links">
                 <div className="class-home__content--links-link" onClick={e => this.handleReFetch(e)}>
-                  <div className="icon">Icon</div>
-                  <Link to={`${match.url}`}><div>Class Home</div></Link>
+                <svg className="class-home__content--links-icon">
+                    <use href={sprite + "#icon-gauge"} ></use>
+                  </svg>
+                  <Link to={`${match.url}`}><div>Class Stats</div></Link>
                 </div>
+
                 <div className="class-home__content--links-link">
-                  <div className="icon">Icon</div>
-                  <Link to={`${match.url}/assess`}>Assess class</Link>
+                  <svg className="class-home__content--links-icon">
+                    <use href={sprite + "#icon-clipboard"} ></use>
+                  </svg>
+                  <Link to={`${match.url}/assess`}>Assess Students</Link>
                 </div>
+
                 <div className="class-home__content--links-link">
-                  <div className="icon">Icon</div>
-                  <Link to={`${match.url}/edit`}>Edit class</Link>
+                <svg className="class-home__content--links-icon">
+                    <use href={sprite + "#icon-pencil"} ></use>
+                  </svg>
+                  <Link to={`${match.url}/edit`}>Edit Roster</Link>
                 </div>
               </div>
 
@@ -235,8 +263,9 @@ class ClassHome extends React.Component {
                       callback={this.callback}
                       classPeriod={this.state.classPeriod} 
                       classObject={this.state.classObject} 
-                      classScore={this.state.classScore} 
-                      graphInfo={this.state.graphInfo}
+                      graphInfoData={this.state.data}
+                      stateLables={this.state.stateLables}
+                      dataObject={this.state.dataObject}
                       linkTo={true}
                       url={`${match.url}/studenthome/`}/>
                   }>
@@ -269,7 +298,7 @@ class ClassHome extends React.Component {
                   }>     
                   </Route>
                   <Route exact path={`${match.url}/studenthome/:id`} render={props =>
-                    <StudentHome
+                    <StudentHomeContainer
                       {...props}
                       roster={this.state.roster}
                       registrations={this.state.registrations}

@@ -7,8 +7,11 @@ const NewClass = ({ listType, subject, level, period, classObject}) => {
         return(
             <li className="class-list__class-item">
                 <Link className="class-list__class link" to={`/classhome/${classObject.id}`}>
+                <div className="class-list__class--name">
+                        {subject}
+                    </div>
                     <div className="class-list__class--period">
-                        P: {period}
+                     {period}
                     </div>
                 </Link>
             </li>
@@ -23,7 +26,7 @@ const NewClass = ({ listType, subject, level, period, classObject}) => {
                         {subject}
                     </div>
                     <div className="class-list__class--period">
-                        P: {period}
+                        {period}
                     </div>
                 </Link>
             </li>

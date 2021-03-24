@@ -1,37 +1,49 @@
+import { render } from '@testing-library/react';
 import React from 'react';
-
-class Graphics extends React.Component {
-
-    componentDidMount(){
-        this.lineGraphProgression()
-    }
-
-    lineGraphProgression = () => {
-        return(
-                    console.log(this.props.graphInfo)
-        )
+import {Bar, Line, Pie} from 'react-chartjs-2'
 
 
-        // console.log(this.props.graphInfo)
-        // let graphData=this.props.graphInfo
-        // let dates = []
-        // let scores = []
-        // let counter = 0
+const Graphics = (props) => { 
+    const checkData = (props.graphData)
+    const checkLables = (props.stateLables)
 
 
-        // return(graphData.map(data => {
-        //     counter=(counter+1)
-        //     console.log(counter)
-        // }))
-    }
+    console.log(checkLables)
 
-    render(){
-        return(
-            <div className="graphics">
-                Graphics component
-            </div>
-        )
-    }
-}
+const data = {
+    labels: checkLables,
+    datasets: [
+      {
+        label: 'Class Participation Rate',
+        data: checkData,
+        fill: false,
+        backgroundColor: 'rgb(212, 120, 92)',
+        borderColor: 'rgb(212, 120, 92,.6)',
+      },
+    ],
+  }
+  
+  const options = {
+      
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            beginAtZero: false,
+          },
+        },
+      ],
+    },
+  }
+  
+  return (
+    <div classname="graph">
+      <Line data={data} options={options}   width={700}
+  height={200}
+  options={{ maintainAspectRatio: false }}/>
+    </div>
+  )
+
+  }
 export default Graphics
 

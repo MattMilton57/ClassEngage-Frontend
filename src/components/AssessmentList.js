@@ -1,11 +1,10 @@
 import React from 'react';
-import  Assessment from './Assessment';
+import  Assessment from '../components/Assessment';
 
 
-const AssessmentContainer = ({thisStudent, callback, score, assessments, classPeriod, linkTo}) => {  
+const AssessmentList = ({thisStudent, assessments}) => {  
     
-    const filterAssessments = (id) => {
-        // console.log(assessments)
+    const filterAssessments = () => {
         if (assessments ===''){
             return(<div>No scores yet</div>)
         }else{
@@ -15,7 +14,7 @@ const AssessmentContainer = ({thisStudent, callback, score, assessments, classPe
 
 
     return(
-    <div id='Assessments'>
+    <div id='assessment-list'>
         <div>
                 {filterAssessments()}
         </div>
@@ -23,4 +22,4 @@ const AssessmentContainer = ({thisStudent, callback, score, assessments, classPe
     )
     
 }
-export default AssessmentContainer;
+export default AssessmentList;

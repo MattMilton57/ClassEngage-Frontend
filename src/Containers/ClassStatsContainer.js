@@ -4,7 +4,7 @@ import ClassTitle from "../components/ClassTitle"
 import ClassScore from "../components/ClassScore"
 import Graphics from "../components/Graphics"
 
-const  ClassStatsContainer = ({assessments, roster, callback, classPeriod, classObject, classScore, url, graphInfo}) => {
+const  ClassStatsContainer = ({assessments, roster, callback, classPeriod, classObject, url, graphInfoData, dataObject, stateLables}) => {
 
     return(
       <div className="class-stats">
@@ -26,12 +26,16 @@ const  ClassStatsContainer = ({assessments, roster, callback, classPeriod, class
         </div>
         <div className="class-stats__total-participation">
           <ClassScore
-            classScore={classScore}
+            assessments={assessments}
             />
         </div>
         <div className="class-stats__graphics">
           <Graphics 
-          graphInfo={graphInfo}
+
+          graphData={graphInfoData}
+          stateLables={stateLables}
+          assessments={assessments}
+          dataObject={dataObject}
           />
         </div>
       </div>

@@ -1,22 +1,24 @@
-.class-stats {
+.student-home{
+    height: 75vh;
+    overflow: hidden;
     display: grid;
-    grid-template-rows: 1fr 2fr 2fr;
-    grid-template-columns: max-content 3fr;
+    grid-template-rows: .5fr repeat(2, 1fr);
+    grid-template-columns: .5fr 1fr;
     grid-row-gap: 2rem;
     grid-column-gap: 2rem;
-    height: 75vh;
-    padding: 2rem;
-    justify-content: stretch;
-    overflow: hidden;
     min-height: 0;  /* NEW */
     min-width: 0; 
-
-    &__roster-container {
+    padding: 2rem;
+    
+    &__assessments {
         grid-row: 1 / span 3;
         grid-column: 1 / span 1;
-        @include component-format;
-        overflow: auto;  /* NEW */
-        min-width: 0;
+        overflow-x: hidden;
+        overflow-y: auto;  /* NEW */
+        // min-width: 0;s
+
+        
+
         &:hover{
             &::-webkit-scrollbar {
                 width: 10px;
@@ -26,35 +28,26 @@
             }
             &::-webkit-scrollbar-thumb {
               background-image: $copper-gradient;
-              outline: 1px solid slategrey;
               opacity: 0.5;
+              border-radius: $border;
             }
         }
-    
     }
 
-    &__class-name {
+    &__name {
         grid-row: 1 / span 1;
         grid-column: 2 / span 1;
         @include component-format;
-        overflow: hidden;
     }
 
-    &__total-participation {
+    &__score {
         grid-row: 2 / span 1;
         grid-column: 2 / span 1;
-        @include component-format;
-        overflow: hidden;
-    }
+        @include component-format;    }
 
     &__graphics {
         grid-row: 3 / span 1;
         grid-column: 2 / span 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-basis: fill;
-        @include component-format;
-        overflow: hidden;
-    }
+        @include component-format;    }
+
 }

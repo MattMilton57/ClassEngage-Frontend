@@ -3,6 +3,8 @@ import NewClassListContainer from './NewClassListContainer';
 import CreateAClass from './CreateAClass';
 import MenuHeader from "../components/MenuHeader"
 import MenuFooter from "../components/MenuFooter"
+import logo_svg from "../img/logo-hand.svg";
+
 import { api } from '../services/api'
 
 class SelectClass extends React.Component {
@@ -61,6 +63,8 @@ class SelectClass extends React.Component {
           </div>
 
           <CreateAClass gatherList={this.gatherList} id={this.state.id}/>
+          <embed src={logo_svg} alt="Logo" class="select-class__logo--box"/>
+
       </div>
     )
   }

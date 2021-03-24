@@ -37,9 +37,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-    
   },
   "devDependencies": {
-    "node-sass": "^5.0.0"
+    "chart.js": "^2.9.4",
+    "node-sass": "^5.0.0",
+    "react-chartjs-2": "^2.11.1"
   }
 }

@@ -7,10 +7,11 @@
 @import "base/typography";
 
 @import "components/assessment-card";
-@import "components/button";
+@import "components/assessment-list";
 @import "components/class-list";
 @import "components/class-score";
 @import "components/class-title";
+@import "components/graphics";
 @import "components/landing-form";
 @import "components/menu-footer";
 @import "components/menu-header";
@@ -21,6 +22,7 @@
 @import "containers/assess-class";
 @import "containers/class-stats";
 @import "containers/edit-class";
+@import "containers/student-home";
 
 @import "pages/class_home";
 @import "pages/landing_page";
