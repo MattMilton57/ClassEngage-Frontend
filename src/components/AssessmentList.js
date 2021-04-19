@@ -2,22 +2,20 @@ import React from 'react';
 import  Assessment from '../components/Assessment';
 
 
-const AssessmentList = ({thisStudent, assessments}) => {  
+const AssessmentList = ({thisStudent, thisClass, assessments}) => {  
     
     const filterAssessments = () => {
         if (assessments ===''){
             return(<div>No scores yet</div>)
         }else{
             return(
-        assessments.map(assessment => {if(assessment.student_id == thisStudent.id) return(<Assessment assessment={assessment} score={assessment.participating}/>)})
+        assessments.map(assessment => {if(assessment.class_period_id == thisClass) return(<Assessment assessment={assessment} score={assessment.participating}/>)})
              ) }}
 
 
     return(
-    <div id='assessment-list'>
-        <div>
+    <div className='assessment-list'>
                 {filterAssessments()}
-        </div>
     </div>
     )
     

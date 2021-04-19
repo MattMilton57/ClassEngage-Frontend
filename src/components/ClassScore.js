@@ -1,12 +1,15 @@
 import React from 'react';
 
-const ClassScore = ({assessments}) => {
+const ClassScore = ({assessments, classPeriod}) => {
 
     const  setParticipation = () => {
         if (assessments == []){return(<div>Loading</div>)}else{
+        let classAssessments = []
+        assessments.map( assessment => {if (assessment.class_period_id == classPeriod ) classAssessments.push(assessment)})
+
         let totalScore=0
-        let totalAssessments = assessments.length
-        assessments.map( assessment => {if (assessment.participating == true) totalScore=(totalScore+1)})
+        let totalAssessments = classAssessments.length
+        classAssessments.map( assessment => {if (assessment.participating == true) totalScore=(totalScore+1)})
         let rawScore=(totalScore/totalAssessments)
         let classScore = ((rawScore*100).toFixed(0))
         if (classScore == "NaN") {
@@ -17,7 +20,12 @@ const ClassScore = ({assessments}) => {
             }else{
                 return(
                     <div className="class-score__score">
-                        {classScore}%
+                        <div className="class-score__score--number">
+                            {classScore}
+                        </div>
+                        <div className="class-score__score--percent">
+                            %
+                        </div>
                     </div>
                 )
             }

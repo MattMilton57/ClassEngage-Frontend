@@ -3,7 +3,7 @@
     overflow: hidden;
     display: grid;
     grid-template-rows: .5fr repeat(2, 1fr);
-    grid-template-columns: .5fr 1fr;
+    grid-template-columns: .8fr 2fr;
     grid-row-gap: 2rem;
     grid-column-gap: 2rem;
     min-height: 0;  /* NEW */

@@ -1,6 +1,6 @@
 import React from 'react';
 import Roster from "../components/Roster"
-import ClassTitle from "../components/ClassTitle"
+import TitleBox from "../components/TitleBox"
 import ClassScore from "../components/ClassScore"
 import Graphics from "../components/Graphics"
 
@@ -20,13 +20,14 @@ const  ClassStatsContainer = ({assessments, roster, callback, classPeriod, class
           />
         </div>
         <div className="class-stats__class-name">
-          <ClassTitle
-            classObject={classObject}
+          <TitleBox
+            title={classObject.subject}
             />
         </div>
         <div className="class-stats__total-participation">
           <ClassScore
             assessments={assessments}
+            classPeriod={classPeriod}
             />
         </div>
         <div className="class-stats__graphics">

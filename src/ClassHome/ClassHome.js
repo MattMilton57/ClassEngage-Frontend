@@ -1,10 +1,11 @@
 import React from 'react';
+import NavBarContainer from '../Containers/NavBarContainer';
 import AssessClassContainer from '../Containers/AssessClassContainer';
 import EditClassContainer from '../Containers/EditClassContainer.js';
 import ClassStatsContainer from '../Containers/ClassStatsContainer';
 import StudentHomeContainer from '../Containers/StudentHomeContainer';
-import StudentHome from '../StudentHome/StudentHome';
 import NewClassListContainer from '../SelectClass/NewClassListContainer';
+
 import MenuHeader from "../components/MenuHeader"
 import MenuFooter from "../components/MenuFooter"
 import NewStudentForm from "../components/NewStudentForm"
@@ -46,6 +47,9 @@ class ClassHome extends React.Component {
     })
 
   }
+
+    ////////////////////////////////////////fetches////////////////////////////////////////
+
 
   checkUser = (classID) => {
     (api.get.fetchCurrentUser())
@@ -189,18 +193,19 @@ class ClassHome extends React.Component {
 
 ////////////////////////////////////////Working ^////////////////////////////////////////
   callback = (e) => {
-    console.log('testingCallback')
+    // this.fetchRegistrations(id)
   }
 
   showList = () => {
     if (this.state.allclasses == ''){return <div class="select-class__welcome">Loading.</div>}
     else
-    {return <NewClassListContainer listType="home" classes={this.state.allclasses}/>}
+    {return <NewClassListContainer callback={e => this.callback(e)} listType="home" classes={this.state.allclasses}/>}
   }
 
   handleReFetch = (e) => {
-    e.preventDefault(e)
+    // e.preventDefault(e)
     this.fetchClassesAssessments()
+    console.log('refetching')
   }
 
   reFetchStudentBody = () => {
@@ -213,7 +218,7 @@ class ClassHome extends React.Component {
     return(
       <div className="class-home">
 
-            <div className="class-home__sidebar">
+            {/* <div className="class-home__sidebar">
               <div className="select-class__header class-home__sidebar--header">
                 <MenuHeader/>
               </div>
@@ -225,11 +230,47 @@ class ClassHome extends React.Component {
               <div className="select-class__footer class-home__sidebar--footer">
               <MenuFooter listType="home"/>
               </div>
-            </div>
+            </div> */}
 
-          <div className="class-home__content">
+          {/* <div className="class-home__sidebar">
+              <NavBarContainer classes={this.state.allclasses} classPeriod={this.state.classPeriod} match={match} />
+          </div>  */}
+
+          {/* <div className="class-home"> */}
             <Router>
-              <div  className="class-home__content--links">
+            <div className="class-home__nav">
+              <NavBarContainer classes={this.state.allclasses} classPeriod={this.state.classPeriod} reFetch={e => this.handleReFetch(e)} match={match} />
+          </div> 
+
+
+
+{/*/////current/////*/}
+              {/* <div  className="class-home__nav">
+                <div className="class-home__nav--links-link" onClick={e => this.handleReFetch(e)}>
+                <svg className="class-home__nav--links-icon">
+                    <use href={sprite + "#icon-gauge"} ></use>
+                  </svg>
+                  <Link to={`${match.url}`}><div>Class Stats</div></Link>
+                </div>
+
+                <div className="class-home__nav--links-link">
+                  <svg className="class-home__nav--links-icon">
+                    <use href={sprite + "#icon-clipboard"} ></use>
+                  </svg>
+                  <Link to={`${match.url}/assess`}>Assess Students</Link>
+                </div>
+
+                <div className="class-home__nav--links-link">
+                <svg className="class-home__nav--links-icon">
+                    <use href={sprite + "#icon-pencil"} ></use>
+                  </svg>
+                  <Link to={`${match.url}/edit`}>Edit Roster</Link>
+                </div>
+              </div> */}
+
+
+
+              {/* <div  className="class-home__content--links">
                 <div className="class-home__content--links-link" onClick={e => this.handleReFetch(e)}>
                 <svg className="class-home__content--links-icon">
                     <use href={sprite + "#icon-gauge"} ></use>
@@ -250,9 +291,9 @@ class ClassHome extends React.Component {
                   </svg>
                   <Link to={`${match.url}/edit`}>Edit Roster</Link>
                 </div>
-              </div>
+              </div> */}
 
-              <div className="class-home__content--display">
+              <div className="class-home__content">
                 <Switch>
                   <Route exact path={`${match.url}`} render={props =>
                     <ClassStatsContainer 
@@ -314,7 +355,7 @@ class ClassHome extends React.Component {
                 </Switch>
               </div>
             </Router>
-        </div>
+        {/* </div> */}
         <NewStudentForm reFetchStudentBody={e => this.reFetchStudentBody(e)}/>
       </div>
     )

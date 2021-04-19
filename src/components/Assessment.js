@@ -29,19 +29,19 @@ const assessmentDate = () => {
 }
 
 const parsedDate = (date) => {
-    console.log(date)
     if (date > 9){return(date)}else{const parsedDate = parseInt(date, 10); return(parsedDate)} 
 }
 
 const isParticipating = () => {
 //    if (assessment.participating === true) {return("Yes")} else {return "No"}
-   if (assessment.participating === true) {
+   if (assessment.participating == true) {
        return(           
-        <svg className="assessment-list__assessment--score-icon assessment-list__assessment--score-icon-up">
-            <use href={sprite + "#icon-thumbs-up"} ></use>
-        </svg>
+            <svg className="assessment-list__assessment--score-icon assessment-list__assessment--score-icon-up">
+                <use href={sprite + "#icon-thumbs-up"} ></use>
+            </svg>
         )
-     } else {
+     }
+     else{
          return(           
             <svg className="assessment-list__assessment--score-icon assessment-list__assessment--score-icon-down">
                 <use href={sprite + "#icon-thumbs-down"} ></use>

@@ -37,38 +37,34 @@ export default class NewStudentForm extends React.Component {
     render(){
         return(
             <div className="new-student-form">
-
-                {/* <div className="new-student-form__toggle"> */}
-                    {/* <div className="new-student-form__toggle--content"> */}
-
-
-                    {/* </div> */}
-                {/* </div> */}
-
-
-
                 <input type="checkbox" id="new-student-form__checkbox" className="new-student-form__checkbox"/>
                 <div className="new-student-form__content">
 
-                        <label className="new-student-form__content--form-toggle" for="new-student-form__checkbox">
-                            <span className="new-student-form__content--form-toggle">X</span>
-                        </label>
-                <form  className="new-student-form__content--form" onSubmit={(e)=> this.onSubmit(e)}>
+                    <label className="new-student-form__content--form-toggle" for="new-student-form__checkbox">
+                        <span className="new-student-form__content--form-toggle">X</span>
+                    </label>
 
-                <div className="new-student-form__content--form-title">Create a student</div>
-                    <input 
-                        type="text" 
-                        id="new_student-form__content--form-name"
-                        className="new-student-form__content--form-name" 
-                        placeholder="New Student"
-                        value={this.state.student.name}
-                        onChange={(e) => this.onChange("name", e.target.value)}/>
-        
-                <button onClick={(e)=> this.onSubmit(e)} className="new-student-form__content--form-submit" >
-                    <span className="new-student-form__content--form-submit-test">Submit</span>
-                </button>
 
-                </form>
+
+                    <form  className="new-student-form__content--form" onSubmit={(e)=> this.onSubmit(e)}>
+
+                    <div className="new-student-form__content--form-title">Create a student</div>
+                        <input 
+                            type="text" 
+                            id="new_student-form__content--form-name"
+                            className="new-student-form__content--form-name" 
+                            placeholder="New Student"
+                            value={this.state.student.name}
+                            onChange={(e) => this.onChange("name", e.target.value)}/>
+            
+                    <button onClick={(e)=> this.onSubmit(e)} className="new-student-form__content--form-submit" >
+                        <span className="new-student-form__content--form-submit-test">Submit</span>
+                    </button>
+
+
+
+
+                    </form>
                 </div>
             </div>
 

@@ -51,6 +51,53 @@
         &--class-list {
             grid-row: 2 / span 1;
             grid-column: 1 /span 1;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 2fr .5fr ;
+
+            &-selection {
+                grid-row: 1 / span 1;
+                grid-column: 1 /span 1;
+            }
+
+            &-create-class {
+                grid-row: 2 / span 1;
+                grid-column: 1 /span 1;
+
+                &-checkBox {
+                // display: none;
+                }
+
+                &-button {
+                    display:flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    &-span {
+                        z-index: 2000;
+                        background-color: transparent;
+                        width: 100;
+                        font-size: 1.5rem;
+                        font-weight: 200;
+                    }
+            
+                    &:hover {
+                        color: $color-grey-mid;
+                    }
+                }
+
+                &-form{
+                    display: none;
+                }
+
+                &-checkBox:checked + &-form {
+                    opacity: 1;
+                    display: flex;
+                    transform: scale(1);
+                    // background-color: rebeccapurple;
+                }
+            }
+
         }
 
         &--footer{

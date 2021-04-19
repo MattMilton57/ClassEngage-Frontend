@@ -1,18 +1,18 @@
 import React from 'react';
 
-const ClassTitle = ({classObject}) => {
+const TitleBox = ({title}) => {
 
     return(
-        <div className="class-title">
+        <div className="title-box">
             {/* <div className="class-title__class-period">
                 P: {classObject.period}
             </div> */}
             <div className="class-title__class-subject">
                 <p>
-                    {classObject.subject} 
+                    {title} 
                 </p>
             </div>
         </div>
     )
 }
-export default ClassTitle
+export default TitleBox

@@ -1,5 +1,5 @@
 import React from 'react';
-import ClassTitle from "../components/ClassTitle"
+import TitleBox from "../components/TitleBox"
 import ClassScore from "../components/ClassScore"
 import Graphics from "../components/Graphics"
 import { api } from '../services/api'
@@ -35,34 +35,21 @@ class StudentHomeContainer extends React.Component{
       assessments:res
     }))
   }
-
-  setParticipation = () => {
-    if (this.state.assessments == []){return(<div>Loading</div>)}else{
-    let totalScore=0
-    let assessments = this.state.assessments
-    let totalAssessments = this.state.assessments.length
-    assessments.map( assessment => {if (assessment.participating == true) totalScore=(totalScore+1)})
-    let rawScore=(totalScore/totalAssessments)
-    let classScore = ((rawScore*100).toFixed(0))
-    return(
-      <div className="score">{classScore}</div>
-    )
-    }
-  }
   
   render(){
     return(
       <div className="student-home">
-        <div className="student-home__name">{this.state.thisStudent.name}
+        <div className="student-home__name">
+          <TitleBox title={this.state.thisStudent.name} />
         </div>
         <div className="student-home__assessments">
-        <AssessmentList thisStudent={this.state.thisStudent} assessments={this.state.assessments} />
+        <AssessmentList thisClass={this.props.classPeriod} assessments={this.state.assessments} />
         </div>
         <div className="student-home__graphics">
           eventua graphics section
         </div>
         <div className="student-home__score">
-          <ClassScore assessments={this.state.assessments}/>
+          <ClassScore classPeriod={this.props.classPeriod} assessments={this.state.assessments}/>
         </div>
       </div>
     )

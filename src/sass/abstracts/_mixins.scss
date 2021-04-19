@@ -3,3 +3,9 @@
     border-radius: $border;
     box-shadow: $box-shadow-medium;
 }
+
+@mixin item-format {
+    background-color: $color-grey-dark;
+    border-radius: $item-border;
+    box-shadow: $box-shadow-medium;
+}

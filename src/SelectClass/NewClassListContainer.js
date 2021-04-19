@@ -1,11 +1,11 @@
 import React from 'react';
 import  NewClass from './NewClass';
 
-const NewClassListContainer = ({classes, listType}) => {
+const NewClassListContainer = ({classes, listType, callback, classNumber}) => {
 return(
     <div class="class-list" id='Teacher'>
         <ul class="class-list__container">
-            {classes.map (aClass => {return <div><NewClass listType={listType} subject={aClass.subject} level={aClass.level} period={aClass.period} classObject={aClass}/></div>})}
+            {classes.map (aClass => {return <div><NewClass classNumber={classNumber} callback={callback} listType={listType} subject={aClass.subject} level={aClass.level} period={aClass.period} classObject={aClass}/></div>})}
             {/* {classes.map(aClass => {if (aClass.teacher_id == teacher)
                 return <div>
                             <Class 

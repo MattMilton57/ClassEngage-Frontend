@@ -1,5 +1,6 @@
 .assessment-list {
-    
+
+
     &__assessment{
         display: grid;
         grid-template-rows: 1fr;
@@ -37,11 +38,11 @@
                 transform: translatex(-9rem);
                 
                 &-up {
-                    fill:rgba(0, 255, 128, 0.2)
+                    fill:rgba(0, 255, 128, 0.2);
                 }
 
                 &-down {
-                    fill:rgba(255, 0, 0, 0.419)
+                    fill:rgba(255, 0, 0, 0.419);
                 }
             }
         }

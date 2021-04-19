@@ -14,7 +14,8 @@ class App extends React.Component {
     super();
     this.state= {
       auth:{user:{}},
-      currentUser:[]
+      currentUser:[],
+      classNumber:''
     }
   }
 
@@ -51,6 +52,11 @@ class App extends React.Component {
       { currentUser:'', 
         auth:{user:{}}
       })
+  }
+
+  classNumber = (res) => {
+
+    this.setState({classNumber:res})
   }
   
 

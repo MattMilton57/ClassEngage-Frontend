@@ -22,9 +22,22 @@
         color: $color-copper-2;
 
         justify-content: center;
-        align-items: flex-end;
+        align-items: flex-start;
+        display: flex;
 
-        font-size: 19rem;
-        font-weight: 100;
+        &--number {
+            font-size: 22rem;
+            font-weight: 100;
+        }
+
+        &--percent {
+            margin-top: 5rem;
+            font-size: 5rem;
+            color: white;
+            font-weight: 100;
+        }
+
+
+
     }
 }
