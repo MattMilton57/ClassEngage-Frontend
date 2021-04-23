@@ -1,5 +1,5 @@
 import React from 'react';
-import NewClassListContainer from './NewClassListContainer';
+import ClassList from '../components/ClassList';
 import NewClassForm from "../components/NewClassForm"
 import MenuHeader from "../components/MenuHeader"
 import MenuFooter from "../components/MenuFooter"
@@ -41,7 +41,9 @@ class SelectClass extends React.Component {
   showList = () => {
     if (this.state.allclasses == ''){return <div class="select-class__welcome">Welcome! Please create some classes.</div>}
     else
-    {return <NewClassListContainer classNumber={this.props.classNumber} classes={this.state.allclasses}/>}
+    // {return <NewClassListContainer classNumber={this.props.classNumber} classes={this.state.allclasses}/>}
+    {return <ClassList classNumber={this.props.classNumber} classes={this.state.allclasses}/>}
+
   }
 
   render(){

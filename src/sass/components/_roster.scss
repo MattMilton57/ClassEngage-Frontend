@@ -5,6 +5,10 @@
     min-width: 0;
     min-height: 0;
     box-sizing: border-box;
+    font-size: 1.5rem;
+    font-weight: 200;
+    list-style: none;
+    -webkit-list-style: none;
 
     &__student {
         display: grid;
@@ -12,11 +16,8 @@
         grid-template-rows: 1fr;
         // margin: .5rem 0;
         justify-content: space-between;
-        font-size: 3rem;
         text-decoration: none;
         text-transform: uppercase;
-        font-weight: 300;
-        font-size: 2rem;
         margin: .25rem 0;
         // overflow: hidden;  /* NEW */
         align-items: center;
@@ -31,7 +32,7 @@
         (rgba($color-copper-3, 1)), 
         (rgba($color-copper-4, 1)));;
         background-size: 220%;
-        transition: all 0.4s;
+        transition: all 0.2s;
         cursor: pointer;
 
 
@@ -75,11 +76,11 @@
         grid-template-rows: 1fr;
         margin: .5rem 0;
         justify-content: space-between;
-        font-size: 3rem;
+        // font-size: 3rem;
         text-decoration: none;
         text-transform: uppercase;
-        font-weight: 300;
-        font-size: 2rem;
+        // font-weight: 300;
+        // font-size: 2rem;
         // overflow: hidden;  /* NEW */
         align-items: center;
         min-width: 0;
@@ -93,7 +94,7 @@
         (rgba($color-copper-3, 1)), 
         (rgba($color-copper-4, 1)));;
         background-size: 220%;
-        transition: all 0.4s;
+        transition: all 0.24s;
         cursor: pointer;
 
         &--caption {
@@ -109,20 +110,20 @@
             &:hover {
                 color: white;
                 font-size: 3rem;
-                // font-weight: 500;
+                font-weight: 500;
             }
         }
 
         &:hover {
             background-position: 109%;
             // color: black;
-            color: white;
+            color: black;
 
-            font-size: 3rem;
+            font-size: 1.6rem;
 
             border: 1px solid $color-copper-2;
-            transform: scaley(1.05);
-            font-weight: 500;
+            transform: scaley(1.06);
+            font-weight: 300;
 
         }
 

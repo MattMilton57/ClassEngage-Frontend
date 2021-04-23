@@ -1,14 +1,16 @@
 .class-home {
+    height:90vh;
     display: grid;
     grid-template-rows: 1;
     grid-template-columns: 1fr 6fr;
     background-color: $color-grey-mid;
     border-radius: 1rem;
+    align-content: space-between;
 
     &__nav {
         grid-column: 1 / span 1;
         grid-row: 1 / span 1;
-        background-color: rebeccapurple;
+        background-color: $color-grey-dark;
     }
 
     // &__sidebar {
@@ -44,7 +46,7 @@
         grid-row: 1 / span 1;
         grid-column: 2 / span 1;
         display: grid;
-        grid-template-rows: 4fr 1fr;
+        grid-template-rows: 1fr;
         grid-template-columns: 1fr;
         font-size: 2rem;
 

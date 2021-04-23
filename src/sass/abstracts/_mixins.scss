@@ -2,6 +2,8 @@
     background-color: $color-grey-dark;
     border-radius: $border;
     box-shadow: $box-shadow-medium;
+    text-transform: uppercase;
+    font-weight: 200;
 }
 
 @mixin item-format {

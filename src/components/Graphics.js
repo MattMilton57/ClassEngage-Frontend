@@ -38,9 +38,9 @@ const data = {
   
   return (
     <div classname="graph">
-      <Line data={data} options={options}   width={700}
-  height={200}
-  options={{ maintainAspectRatio: false }}/>
+      <Line data={data} options={options}   width={600}
+        height={200}
+        options={{ maintainAspectRatio: false }}/>
     </div>
   )
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import Roster from "../components/Roster";
 import RosterRemainder from "../components/RosterRemainder";
+import InfoBox from "../components/InfoBox";
 // import NewStudentForm from "../components/NewStudentForm"
 
 const  EditClassContainer = ({roster, studentBody, deRegister, register, registrations, reFetchStudentBody }) => {
@@ -30,24 +31,38 @@ const  EditClassContainer = ({roster, studentBody, deRegister, register, registr
 
     return(
       <div className="edit-class">
-          <div className="edit-class__headline--roster">
-            <div className="edit-class__headline--title">Roster</div>
-          </div>
+        <div className="edit-class__header">Edit Class</div>
+
           <div className="edit-class__roster-container">
-
-            <Roster roster={roster} callback={findReg} registerAction="-"/>
+            <div className="edit-class__headline--roster">
+              <div className="edit-class__headline--title">Roster</div>
+            </div>
+              <Roster roster={roster} callback={findReg} registerAction="-"/>
           </div>
 
-          <div className="edit-class__headline--student-body">
-            <div className="edit-class__headline--title">Student Body</div>
-          </div>
           <div className="edit-class__student-body-container">
-            <RosterRemainder roster={roster} studentBody={studentBody} callback={handleAdd} registerAction="+"/>
+            <div className="edit-class__headline--student-body">
+              <div className="edit-class__headline--title">Student Body</div>
+            </div>
+              <RosterRemainder roster={roster} studentBody={studentBody} callback={handleAdd} registerAction="+"/>
           </div>
+
+          <div className="edit-class__class-graph">
+            graph
+          </div>
+
+          <div className="edit-class__class-count">
+            <InfoBox text={"class size"} data={roster.length}/>
+          </div>
+
           <div className="edit-class__new-student">
-          <label className="edit-class__new-student-toggle" for="new-student-form__checkbox">
-                            <span className="edit-class__new-student-toggle-content">New Student</span>
-                        </label>
+            <label className="edit-class__new-student-toggle" for="new-student-form__checkbox">
+                              <span className="edit-class__new-student-toggle-content">New Student</span>
+                          </label>
+          </div>
+
+          <div className="edit-class__preferences">
+            class preferences
           </div>
               {/* <NewStudentForm reFetchStudentBody={reFetchStudentBody}/> */}
 

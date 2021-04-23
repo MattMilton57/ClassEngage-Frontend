@@ -3,11 +3,14 @@ import Roster from "../components/Roster"
 import TitleBox from "../components/TitleBox"
 import ClassScore from "../components/ClassScore"
 import Graphics from "../components/Graphics"
+import LastAssessment from "../components/LastAssessment"
+import TotalAssessments from '../components/TotalAssessments';
 
 const  ClassStatsContainer = ({assessments, roster, callback, classPeriod, classObject, url, graphInfoData, dataObject, stateLables}) => {
 
     return(
       <div className="class-stats">
+
         <div className="class-stats__roster-container">
           <Roster
           assessments={assessments} 
@@ -19,17 +22,20 @@ const  ClassStatsContainer = ({assessments, roster, callback, classPeriod, class
           url={url}
           />
         </div>
+
         <div className="class-stats__class-name">
           <TitleBox
             title={classObject.subject}
             />
         </div>
+
         <div className="class-stats__total-participation">
           <ClassScore
             assessments={assessments}
             classPeriod={classPeriod}
             />
         </div>
+
         <div className="class-stats__graphics">
           <Graphics 
 
@@ -39,6 +45,19 @@ const  ClassStatsContainer = ({assessments, roster, callback, classPeriod, class
           dataObject={dataObject}
           />
         </div>
+
+        <div className="class-stats__total-assessments">
+          <TotalAssessments 
+          assessments={assessments}/>
+
+        </div>
+
+        <div className="class-stats__last-assessment">
+          <LastAssessment
+            assessment={assessments[assessments.length-1]}
+            />
+        </div>
+
       </div>
     )
 } 

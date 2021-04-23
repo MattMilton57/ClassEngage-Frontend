@@ -1,0 +1,24 @@
+.total-assessments {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    padding: 1rem;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr;
+    align-items: center;
+    justify-content: center;
+    // column-gap: .5rem;
+    text-transform: uppercase;
+
+    &__text {
+        justify-self: end;
+        font-size: 3rem;
+        text-align: right;
+
+    }
+
+    &__total {
+        color: $color-copper-2;
+        font-size: 7.3rem;
+    }
+}

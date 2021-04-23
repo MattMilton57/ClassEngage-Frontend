@@ -1,10 +1,10 @@
 .class-stats {
     display: grid;
-    grid-template-rows: 1fr 2fr 2fr;
-    grid-template-columns: max-content 3fr;
+    grid-template-rows: 1fr 2fr 2fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     grid-row-gap: 2rem;
     grid-column-gap: 2rem;
-    height: 75vh;
+    height: 90vh;
     padding: 2rem;
     justify-content: stretch;
     overflow: hidden;
@@ -12,7 +12,7 @@
     min-width: 0; 
 
     &__roster-container {
-        grid-row: 1 / span 3;
+        grid-row: 1 / span 4;
         grid-column: 1 / span 1;
         @include component-format;
         overflow: auto;  /* NEW */
@@ -35,26 +35,38 @@
 
     &__class-name {
         grid-row: 1 / span 1;
-        grid-column: 2 / span 1;
+        grid-column: 2 / span 2;
         @include component-format;
         overflow: hidden;
     }
 
     &__total-participation {
         grid-row: 2 / span 1;
-        grid-column: 2 / span 1;
+        grid-column: 2 / span 2;
         @include component-format;
         overflow: hidden;
     }
 
     &__graphics {
         grid-row: 3 / span 1;
-        grid-column: 2 / span 1;
+        grid-column: 2 / span 2;
         display: flex;
         justify-content: center;
         align-items: center;
         flex-basis: fill;
         @include component-format;
         overflow: hidden;
+    }
+
+    &__total-assessments {
+        grid-row: 4 / span 1;
+        grid-column: 2 / span 1;
+        @include component-format;
+    }
+
+    &__last-assessment {
+        grid-row: 4 / span 1;
+        grid-column: 3 / span 1;
+        @include component-format;
     }
 }

@@ -1,10 +1,9 @@
 import React from 'react';
 import './css/style.css';
 import LandingPage from './main_routes/LandingPage.js'
-import SelectClass from './SelectClass/SelectClass.js'
-import ClassHome from './ClassHome/ClassHome.js'
-import Header from './main_routes/Header'
-import Footer from './main_routes/Footer'
+// import SelectClass from './SelectClass/SelectClass.js'
+import SelectClass from './main_routes/SelectClass.js'
+import ClassHome from './main_routes/ClassHome.js'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { api } from './services/api'
 
@@ -66,13 +65,6 @@ class App extends React.Component {
     return(
         <div className="container">
 
-          {/* <div class="header">
-            <Header 
-              onLogOut={this.onLogout}
-              user={this.state.currentUser} 
-              buttons={this.state.currentButtons} />   
-          </div>   */}
-
           <div className="content">
             <Router>
               <div>
@@ -102,9 +94,6 @@ class App extends React.Component {
             </Router>
           </div>
 
-          {/* <div className="footer">
-            <Footer/>
-          </div> */}
         </div>
     )
   }

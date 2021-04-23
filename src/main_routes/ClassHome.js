@@ -4,7 +4,6 @@ import AssessClassContainer from '../Containers/AssessClassContainer';
 import EditClassContainer from '../Containers/EditClassContainer.js';
 import ClassStatsContainer from '../Containers/ClassStatsContainer';
 import StudentHomeContainer from '../Containers/StudentHomeContainer';
-import NewClassListContainer from '../SelectClass/NewClassListContainer';
 
 import MenuHeader from "../components/MenuHeader"
 import MenuFooter from "../components/MenuFooter"
@@ -118,10 +117,9 @@ class ClassHome extends React.Component {
       let split = date.split('T'); 
       let dateOnly=split[0]; 
       let dateSplit=dateOnly.split('-');
-      let dateString = dateSplit.toString() 
-      dateArray.push(dateString)
-      fullArray.push([dateString, assessment])})
-      // console.log(dateArray)
+      let monthDay = (dateSplit[1]+ ","+dateSplit[2])
+      dateArray.push(monthDay)
+      fullArray.push([monthDay, assessment])})
       this.makeArraysForDates(dateArray, fullArray)
   }
 
@@ -191,19 +189,11 @@ class ClassHome extends React.Component {
     })
   }
 
-////////////////////////////////////////Working ^////////////////////////////////////////
   callback = (e) => {
     // this.fetchRegistrations(id)
   }
 
-  showList = () => {
-    if (this.state.allclasses == ''){return <div class="select-class__welcome">Loading.</div>}
-    else
-    {return <NewClassListContainer callback={e => this.callback(e)} listType="home" classes={this.state.allclasses}/>}
-  }
-
-  handleReFetch = (e) => {
-    // e.preventDefault(e)
+  reFetchAssessments = (e) => {
     this.fetchClassesAssessments()
     console.log('refetching')
   }
@@ -218,81 +208,10 @@ class ClassHome extends React.Component {
     return(
       <div className="class-home">
 
-            {/* <div className="class-home__sidebar">
-              <div className="select-class__header class-home__sidebar--header">
-                <MenuHeader/>
-              </div>
-
-              <div className="select-class__class-list class-home__sidebar--class-list">
-              {this.showList()}
-              </div>
-
-              <div className="select-class__footer class-home__sidebar--footer">
-              <MenuFooter listType="home"/>
-              </div>
-            </div> */}
-
-          {/* <div className="class-home__sidebar">
-              <NavBarContainer classes={this.state.allclasses} classPeriod={this.state.classPeriod} match={match} />
-          </div>  */}
-
-          {/* <div className="class-home"> */}
             <Router>
             <div className="class-home__nav">
-              <NavBarContainer classes={this.state.allclasses} classPeriod={this.state.classPeriod} reFetch={e => this.handleReFetch(e)} match={match} />
+              <NavBarContainer classes={this.state.allclasses} classPeriod={this.state.classPeriod} reFetch={e => this.reFetchAssessments(e)} match={match} />
           </div> 
-
-
-
-{/*/////current/////*/}
-              {/* <div  className="class-home__nav">
-                <div className="class-home__nav--links-link" onClick={e => this.handleReFetch(e)}>
-                <svg className="class-home__nav--links-icon">
-                    <use href={sprite + "#icon-gauge"} ></use>
-                  </svg>
-                  <Link to={`${match.url}`}><div>Class Stats</div></Link>
-                </div>
-
-                <div className="class-home__nav--links-link">
-                  <svg className="class-home__nav--links-icon">
-                    <use href={sprite + "#icon-clipboard"} ></use>
-                  </svg>
-                  <Link to={`${match.url}/assess`}>Assess Students</Link>
-                </div>
-
-                <div className="class-home__nav--links-link">
-                <svg className="class-home__nav--links-icon">
-                    <use href={sprite + "#icon-pencil"} ></use>
-                  </svg>
-                  <Link to={`${match.url}/edit`}>Edit Roster</Link>
-                </div>
-              </div> */}
-
-
-
-              {/* <div  className="class-home__content--links">
-                <div className="class-home__content--links-link" onClick={e => this.handleReFetch(e)}>
-                <svg className="class-home__content--links-icon">
-                    <use href={sprite + "#icon-gauge"} ></use>
-                  </svg>
-                  <Link to={`${match.url}`}><div>Class Stats</div></Link>
-                </div>
-
-                <div className="class-home__content--links-link">
-                  <svg className="class-home__content--links-icon">
-                    <use href={sprite + "#icon-clipboard"} ></use>
-                  </svg>
-                  <Link to={`${match.url}/assess`}>Assess Students</Link>
-                </div>
-
-                <div className="class-home__content--links-link">
-                <svg className="class-home__content--links-icon">
-                    <use href={sprite + "#icon-pencil"} ></use>
-                  </svg>
-                  <Link to={`${match.url}/edit`}>Edit Roster</Link>
-                </div>
-              </div> */}
-
               <div className="class-home__content">
                 <Switch>
                   <Route exact path={`${match.url}`} render={props =>
@@ -309,20 +228,19 @@ class ClassHome extends React.Component {
                       dataObject={this.state.dataObject}
                       linkTo={true}
                       url={`${match.url}/studenthome/`}/>
-                  }>
+                      }>
                   </Route>
-                  <Route exact path={`${match.url}/assess`} render={props =>
-                    <AssessClassContainer
-                    // <testContainer
 
+                  <Route exact path={`${match.url}/assess`} render={props =>
+                      <AssessClassContainer
                       {...props}
                       roster={this.state.roster}
                       assessments={this.state.classAssessments}
                       classPeriod={this.state.classPeriod}
-                      // fetchAssessments={this.fetchClassesAssessments(this.state.classPeriod)} 
                       />
-                  }>    
+                      }>    
                   </Route>
+
                   <Route exact path={`${match.url}/edit`} render={props =>
                     <EditClassContainer
                       {...props}
@@ -330,7 +248,6 @@ class ClassHome extends React.Component {
                       registrations={this.state.registrations}
                       studentBody={this.state.allStudents}
                       classPeriod={this.state.classPeriod}
-                      // fetchClass={e => this.handleReFetch(e)}
                       register={e => this.postRegistration(e)}
                       deRegister={e => this.deleteRegistration(e)}
                       reFetchStudentBody={e => this.reFetchStudentBody(e)}
@@ -338,6 +255,7 @@ class ClassHome extends React.Component {
                       />
                   }>     
                   </Route>
+
                   <Route exact path={`${match.url}/studenthome/:id`} render={props =>
                     <StudentHomeContainer
                       {...props}
@@ -345,7 +263,7 @@ class ClassHome extends React.Component {
                       registrations={this.state.registrations}
                       studentBody={this.state.allStudents}
                       classPeriod={this.state.classPeriod}
-                      fetchClass={e => this.handleReFetch(e)}
+                      fetchClass={e => this.reFetchAssessments(e)}
                       register={e => this.postRegistration(e)}
                       deRegister={e => this.deleteRegistration(e)}
                       test={e => this.test(e)}
@@ -355,7 +273,6 @@ class ClassHome extends React.Component {
                 </Switch>
               </div>
             </Router>
-        {/* </div> */}
         <NewStudentForm reFetchStudentBody={e => this.reFetchStudentBody(e)}/>
       </div>
     )
