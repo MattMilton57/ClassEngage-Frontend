@@ -16,7 +16,9 @@ const assessmentDate = () => {
     const dateString = dateSplit.toString() 
     return(<div>
         <div className="assessment-list__assessment-card--date-month">
-            {parsedDate(month)}/{parsedDate(day)}/{dateSplit[0]}
+            {/* {parsedDate(month)}/{parsedDate(day)}/{dateSplit[0]} */}
+            {" " + parsedDate(month)}/{parsedDate(day)}
+
 
         </div>
         {/* <div className="assessment-list__assessment-card--date-day">
@@ -49,24 +51,65 @@ const isParticipating = () => {
             )}
 }
 
-const hasComment = () => {
-    if (assessment.comment != null)
-        {return(<div className="assessment-list__assessment--comment-trigger">comment</div>)
-    }else{
-        console.log('no comment')
-    }}
+    const buildCard = () => {
+        if ((assessment.comment == "") || (assessment.comment == null)){
+            return(
+                <div className="assessment-list__assessment assessment-list__assessment-no-comment">
+                    <div className="assessment-list__assessment--date">
+                        <div className="assessment-list__assessment--date-text">
+                            assessment date: 
+                        </div>
+                        <div className="assessment-list__assessment--date-number">
+                            {assessmentDate()}
+                        </div>
+                    </div> 
+                    <div className="assessment-list__assessment--score">
+                    <div className="assessment-list__assessment--score-text">
+                            student was Engaged
+                        </div>
+                        {/* <div className="assessment-list__assessment--score-icon">
+                            {isParticipating()}
+                        </div> */}
+                    </div>
+                </div>
+            ) 
+
+        }else{
+            return(
+                <div className="assessment-list__assessment assessment-list__assessment-comment">
+                    <div className="assessment-list__assessment--date">
+                        <div className="assessment-list__assessment--date-text">
+                            assessment date: 
+                        </div>
+                        <div className="assessment-list__assessment--date-number">
+                            {assessmentDate()}
+                        </div>
+                    </div> 
+                    <div className="assessment-list__assessment--score">
+                        <div className="assessment-list__assessment--score-text">
+                        not engaged in activity
+                        </div>
+                        {/* <div className="assessment-list__assessment--score-icon">
+                            {isParticipating()}
+                        </div> */}
+                    </div>
+                    <div className="assessment-list__assessment--comment">
+                        <div className="assessment-list__assessment--comment-header">
+                            Instructor comment: 
+                        </div>
+
+                        <div className="assessment-list__assessment--comment-text">
+                            {assessment.comment}
+                        </div>
+
+                    </div>
+                </div>
+            ) 
+        }}
 
     return(
         <div className="assessment-list__assessment">
-            <div className="assessment-list__assessment--date">
-                {assessmentDate()}
-            </div> 
-            <div className="assessment-list__assessment--score">
-                {isParticipating()}
-            </div>
-            <div className="assessment-list__assessment--comment">
-                {hasComment()}
-            </div>
+                {buildCard()}
         </div>
     ) 
 }

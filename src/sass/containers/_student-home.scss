@@ -1,21 +1,28 @@
 .student-home{
-    height: 75vh;
+    height: 90vh;
     overflow: hidden;
     display: grid;
-    grid-template-rows: .5fr repeat(2, 1fr);
-    grid-template-columns: .8fr 2fr;
+    // grid-template-rows: repeat(2, 1fr) 3fr 2fr 1fr;
+    grid-template-rows: 2rem 1fr 3fr 2fr .5fr;
+
+    grid-template-columns: 1fr 1fr 1fr;
     grid-row-gap: 2rem;
     grid-column-gap: 2rem;
     min-height: 0;  /* NEW */
     min-width: 0; 
     padding: 2rem;
+
+    &__header {
+        grid-row: 1 / span 1;
+        grid-column: 1 / span 2;
+    }
     
     &__assessments {
-        grid-row: 1 / span 3;
+        grid-row: 2 / span 4;
         grid-column: 1 / span 1;
         overflow-x: hidden;
-        overflow-y: auto;  /* NEW */
-        // min-width: 0;s
+        overflow-y: auto;
+        @include component-format;
 
         
 
@@ -35,19 +42,33 @@
     }
 
     &__name {
-        grid-row: 1 / span 1;
-        grid-column: 2 / span 1;
+        grid-row: 2 / span 1;
+        grid-column: 2 / span 2;
         @include component-format;
     }
 
     &__score {
-        grid-row: 2 / span 1;
-        grid-column: 2 / span 1;
-        @include component-format;    }
+        grid-row: 3 / span 1;
+        grid-column: 2 / span 2;
+        @include component-format;    
+    }
 
     &__graphics {
-        grid-row: 3 / span 1;
+        grid-row: 4 / span 1;
+        grid-column: 2 / span 2;
+        @include component-format;    
+    }
+
+    &__ranking {
+        grid-row: 5 / span 1;
         grid-column: 2 / span 1;
-        @include component-format;    }
+        @include component-format;    
+    }
+
+    &__preferences {
+        grid-row: 5 / span 1;
+        grid-column: 3 / span 1;
+        @include component-format;    
+    }
 
 }

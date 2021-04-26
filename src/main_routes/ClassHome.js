@@ -1,13 +1,13 @@
 import React from 'react';
-import NavBarContainer from '../Containers/NavBarContainer';
-import AssessClassContainer from '../Containers/AssessClassContainer';
-import EditClassContainer from '../Containers/EditClassContainer.js';
-import ClassStatsContainer from '../Containers/ClassStatsContainer';
-import StudentHomeContainer from '../Containers/StudentHomeContainer';
-
+import NavBarContainer from '../containers/NavBarContainer';
+import AssessClassContainer from '../containers/AssessClassContainer';
+import EditClassContainer from '../containers/EditClassContainer.js';
+import ClassStatsContainer from '../containers/ClassStatsContainer';
+import StudentHomeContainer from '../containers/StudentHomeContainer';
 import MenuHeader from "../components/MenuHeader"
 import MenuFooter from "../components/MenuFooter"
-import NewStudentForm from "../components/NewStudentForm"
+import NewStudentForm from "../forms/NewStudentForm"
+
 import sprite from "../img/sprite.svg"
 
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
@@ -109,7 +109,7 @@ class ClassHome extends React.Component {
 
   ////////////////////////////////////////graph data////////////////////////////////////////
 
-  testDate = (assessments) => {
+    testDate = (assessments) => {
     let dateArray = []
     let fullArray = []
     assessments.map(assessment => {
@@ -263,6 +263,9 @@ class ClassHome extends React.Component {
                       registrations={this.state.registrations}
                       studentBody={this.state.allStudents}
                       classPeriod={this.state.classPeriod}
+                      graphInfoData={this.state.data}
+                      stateLables={this.state.stateLables}
+                      buildGraph={e => this.testDate(e)}
                       fetchClass={e => this.reFetchAssessments(e)}
                       register={e => this.postRegistration(e)}
                       deRegister={e => this.deleteRegistration(e)}

@@ -31,14 +31,15 @@ class StudentHomeContainer extends React.Component{
     getAssessments = () => {
     let id = {student_id:this.state.thisStudent.id}
     api.get.studentsAssessments(id)
-    .then(res => this.setState({
+    .then(res => (this.setState({
       assessments:res
-    }))
+    }), this.props.buildGraph(res)))
   }
   
   render(){
     return(
       <div className="student-home">
+        <div className="student-home__header">Student Home</div>
         <div className="student-home__name">
           <TitleBox title={this.state.thisStudent.name} />
         </div>
@@ -46,10 +47,24 @@ class StudentHomeContainer extends React.Component{
         <AssessmentList thisClass={this.props.classPeriod} assessments={this.state.assessments} />
         </div>
         <div className="student-home__graphics">
-          eventua graphics section
+        <Graphics 
+
+graphData={this.props.graphInfoData}
+stateLables={this.props.stateLables}
+// assessments={assessments}
+// dataObject={dataObject}
+/>
         </div>
         <div className="student-home__score">
-          <ClassScore classPeriod={this.props.classPeriod} assessments={this.state.assessments}/>
+          <ClassScore classPeriod={this.props.classPeriod} assessments={this.state.assessments} roster={[this.state.thisStudent]}/>
+        </div>
+
+        <div className="student-home__ranking">
+          class ranking
+        </div>
+
+        <div className="student-home__preferences">
+          preferences
         </div>
       </div>
     )

@@ -31,6 +31,7 @@ const  ClassStatsContainer = ({assessments, roster, callback, classPeriod, class
 
         <div className="class-stats__total-participation">
           <ClassScore
+            roster={roster} 
             assessments={assessments}
             classPeriod={classPeriod}
             />

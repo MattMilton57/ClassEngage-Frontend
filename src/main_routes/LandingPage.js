@@ -2,10 +2,9 @@ import React from 'react';
 import logo_svg from "../img/logo-hand.svg";
 import logo_hand from "../img/logo-hand.png";
 import logo_copper from "../img/logo-copper-box.png";
-import LogInForm from '../components/LogInForm';
-import RegisterForm from '../components/RegisterForm';
+import LogInForm from '../forms/LogInForm';
+import RegisterForm from '../forms/RegisterForm';
 import { Route, Navlink, Link } from "react-router-dom";
-// import './LandingPage.css';
 // import { api } from '../services/api'
 
 const LandingPage = (props) => {

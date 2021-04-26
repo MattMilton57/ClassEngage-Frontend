@@ -1,57 +1,127 @@
 .assessment-list {
-
+    // padding: 1rem;
+    overflow: hidden;
+    height: 100;
+    width: 100;
+    // min-width: 0;
+    // min-height: 0;
+    box-sizing: border-box;
+    font-size: 2.5rem;
+    list-style: none;
+    -webkit-list-style: none;
 
     &__assessment{
-        display: grid;
-        grid-template-rows: 1fr;
-        grid-template-columns: 65% 30% 5%;
-        margin-bottom: 2rem;
+        // grid-row-gap: 1rem;
+        font-size: 2rem;
+        margin: 1rem;
+        padding: .02rem;
         @include component-format;
+        // background-color: $color-grey-mid;
+        background-color: black;
+        align-content: center;
+        justify-content: center;
+        // padding: .5rem;
+
+        &-no-comment {
+            display: grid;
+            grid-template-rows: repeat(2, min-content);
+            grid-template-columns: 1fr;
+        }
+
+        &-comment {
+            display: grid;
+            grid-template-rows: repeat(3, min-content);
+            grid-template-columns: 1fr;
+        }
+
+
 
         &--date {
-            grid-row: 1;
-            grid-column: 1;
-            display: flex;
-            font-size: 4rem;
-            align-items: center;
-            justify-content: center;
-            // background-color: rebeccapurple;
+            grid-row: 1 / span 1;
+            grid-column: 1/ span 1;
+            display:flex;
+            // @include component-format;
+            // text-align: center;
+            font-weight: 200;
 
+            &-number{
+                color: $color-copper-1;
+                font-weight: 300;
+            }
+
+            // display: flex;
+            // font-size: 4rem;
+            // align-items: center;
+            // justify-content: center;
+            // background-color: rebeccapurple;
         }
 
         &--score {
-            grid-row: 1;
-            grid-column: 2;
+            grid-row: 2/ span 1;
+            grid-column: 1/ span 1;
             // background-color: royalblue;
-            display: flex;
-            grid-template-columns: 1fr;
-            grid-template-rows: 1fr;
-            font-size: 4rem;
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            // grid-template-rows: 1fr;
+            // font-size: 4rem;
             align-items: center;
             justify-content: center;
-            width: min-content;
+            // width: min-content;
+
+            &-text{
+                grid-row: 1/ span 1;
+                grid-column: 1/ span 1;
+                font-weight: 400;
+                color: $color-grey-light;
+                font-size: 1.5rem;
+                // background-color: blue;
+
+            }
 
             &-icon{
                 height: 3rem;
-                grid-row: 1;
-                grid-column: 1;
-                transform: translatex(-9rem);
+                width: 3rem;
+                grid-row: 1/ span 1;
+                grid-column: 2/ span 1;
+                // background-color: red;
+
+                // transform: translatex(-9rem);
                 
                 &-up {
-                    fill:rgba(0, 255, 128, 0.2);
+                    // fill:rgba(0, 255, 128, 0.2);
+                    fill:$color-copper-1;
+
                 }
 
                 &-down {
-                    fill:rgba(255, 0, 0, 0.419);
+                    // fill:rgba(255, 0, 0, 0.419);
+                    fill:$color-copper-2;
                 }
             }
         }
 
         &--comment {
-            grid-row: 1;
-            grid-column: 3;
+            grid-row: 3/ span 1;
+            grid-column: 1/ span 1;
+            font-weight: 100;
+            @include component-format;
+            padding: .2rem;
+            font-weight: 400;
+            font-size: 1.5rem;
             &-trigger{
                 background-color: white;
+            }
+
+            &-header {
+                // color:$color-copper-1;
+                // font-weight: 200;
+            }
+
+            &-text {
+                color: $color-grey-light;
+
+                // color:$color-copper-1;
+                // font-weight: 100;
             }
 
         }

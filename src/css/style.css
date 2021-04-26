@@ -228,47 +228,80 @@ h2 {
   .assessment-card__btn--checkbox:checked + .assessment-card__4 {
     display: none; }
 
-.assessment-list__assessment {
-  display: grid;
-  grid-template-rows: 1fr;
-  grid-template-columns: 65% 30% 5%;
-  margin-bottom: 2rem;
-  background-color: #111111;
-  border-radius: 1rem;
-  box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
-  text-transform: uppercase;
-  font-weight: 200; }
-  .assessment-list__assessment--date {
-    grid-row: 1;
-    grid-column: 1;
-    display: flex;
-    font-size: 4rem;
-    align-items: center;
+.assessment-list {
+  overflow: hidden;
+  height: 100;
+  width: 100;
+  box-sizing: border-box;
+  font-size: 2.5rem;
+  list-style: none;
+  -webkit-list-style: none; }
+  .assessment-list__assessment {
+    font-size: 2rem;
+    margin: 1rem;
+    padding: .02rem;
+    background-color: #111111;
+    border-radius: 1rem;
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
+    text-transform: uppercase;
+    font-weight: 200;
+    background-color: black;
+    align-content: center;
     justify-content: center; }
-  .assessment-list__assessment--score {
-    grid-row: 1;
-    grid-column: 2;
-    display: flex;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-    font-size: 4rem;
-    align-items: center;
-    justify-content: center;
-    width: min-content; }
-    .assessment-list__assessment--score-icon {
-      height: 3rem;
-      grid-row: 1;
-      grid-column: 1;
-      transform: translatex(-9rem); }
-      .assessment-list__assessment--score-icon-up {
-        fill: rgba(0, 255, 128, 0.2); }
-      .assessment-list__assessment--score-icon-down {
-        fill: rgba(255, 0, 0, 0.419); }
-  .assessment-list__assessment--comment {
-    grid-row: 1;
-    grid-column: 3; }
-    .assessment-list__assessment--comment-trigger {
-      background-color: white; }
+    .assessment-list__assessment-no-comment {
+      display: grid;
+      grid-template-rows: repeat(2, min-content);
+      grid-template-columns: 1fr; }
+    .assessment-list__assessment-comment {
+      display: grid;
+      grid-template-rows: repeat(3, min-content);
+      grid-template-columns: 1fr; }
+    .assessment-list__assessment--date {
+      grid-row: 1 / span 1;
+      grid-column: 1/ span 1;
+      display: flex;
+      font-weight: 200; }
+      .assessment-list__assessment--date-number {
+        color: #CB6D51;
+        font-weight: 300; }
+    .assessment-list__assessment--score {
+      grid-row: 2/ span 1;
+      grid-column: 1/ span 1;
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      align-items: center;
+      justify-content: center; }
+      .assessment-list__assessment--score-text {
+        grid-row: 1/ span 1;
+        grid-column: 1/ span 1;
+        font-weight: 400;
+        color: #595858;
+        font-size: 1.5rem; }
+      .assessment-list__assessment--score-icon {
+        height: 3rem;
+        width: 3rem;
+        grid-row: 1/ span 1;
+        grid-column: 2/ span 1; }
+        .assessment-list__assessment--score-icon-up {
+          fill: #CB6D51; }
+        .assessment-list__assessment--score-icon-down {
+          fill: #D4785C; }
+    .assessment-list__assessment--comment {
+      grid-row: 3/ span 1;
+      grid-column: 1/ span 1;
+      font-weight: 100;
+      background-color: #111111;
+      border-radius: 1rem;
+      box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
+      text-transform: uppercase;
+      font-weight: 200;
+      padding: .2rem;
+      font-weight: 400;
+      font-size: 1.5rem; }
+      .assessment-list__assessment--comment-trigger {
+        background-color: white; }
+      .assessment-list__assessment--comment-text {
+        color: #595858; }
 
 .class-list {
   height: 100%;
@@ -1044,23 +1077,30 @@ h2 {
     align-items: center; }
 
 .student-home {
-  height: 75vh;
+  height: 90vh;
   overflow: hidden;
   display: grid;
-  grid-template-rows: 0.5fr repeat(2, 1fr);
-  grid-template-columns: .8fr 2fr;
+  grid-template-rows: 2rem 1fr 3fr 2fr .5fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-row-gap: 2rem;
   grid-column-gap: 2rem;
   min-height: 0;
   /* NEW */
   min-width: 0;
   padding: 2rem; }
+  .student-home__header {
+    grid-row: 1 / span 1;
+    grid-column: 1 / span 2; }
   .student-home__assessments {
-    grid-row: 1 / span 3;
+    grid-row: 2 / span 4;
     grid-column: 1 / span 1;
     overflow-x: hidden;
     overflow-y: auto;
-    /* NEW */ }
+    background-color: #111111;
+    border-radius: 1rem;
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
+    text-transform: uppercase;
+    font-weight: 200; }
     .student-home__assessments:hover::-webkit-scrollbar {
       width: 10px; }
     .student-home__assessments:hover::-webkit-scrollbar-track {
@@ -1070,24 +1110,40 @@ h2 {
       opacity: 0.5;
       border-radius: 1rem; }
   .student-home__name {
-    grid-row: 1 / span 1;
-    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+    grid-column: 2 / span 2;
     background-color: #111111;
     border-radius: 1rem;
     box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
     text-transform: uppercase;
     font-weight: 200; }
   .student-home__score {
-    grid-row: 2 / span 1;
-    grid-column: 2 / span 1;
+    grid-row: 3 / span 1;
+    grid-column: 2 / span 2;
     background-color: #111111;
     border-radius: 1rem;
     box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
     text-transform: uppercase;
     font-weight: 200; }
   .student-home__graphics {
-    grid-row: 3 / span 1;
+    grid-row: 4 / span 1;
+    grid-column: 2 / span 2;
+    background-color: #111111;
+    border-radius: 1rem;
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
+    text-transform: uppercase;
+    font-weight: 200; }
+  .student-home__ranking {
+    grid-row: 5 / span 1;
     grid-column: 2 / span 1;
+    background-color: #111111;
+    border-radius: 1rem;
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
+    text-transform: uppercase;
+    font-weight: 200; }
+  .student-home__preferences {
+    grid-row: 5 / span 1;
+    grid-column: 3 / span 1;
     background-color: #111111;
     border-radius: 1rem;
     box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);

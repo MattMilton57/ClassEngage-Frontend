@@ -1,11 +1,15 @@
 import React from 'react';
 
-const ClassScore = ({assessments, classPeriod}) => {
+const ClassScore = ({assessments, classPeriod, roster}) => {
 
     const  setParticipation = () => {
-        if (assessments == []){return(<div>Loading</div>)}else{
+        if ((assessments == [])){return(<div>Loading</div>)}else{
+
+        let classRoster = []
+        roster.map(student => {classRoster.push(student.id)})
+        console.log(classRoster)
         let classAssessments = []
-        assessments.map( assessment => {if (assessment.class_period_id == classPeriod ) classAssessments.push(assessment)})
+        assessments.map( assessment => {if ((assessment.class_period_id == classPeriod) && (classRoster.includes(assessment.student_id) == true) ) classAssessments.push(assessment)})
 
         let totalScore=0
         let totalAssessments = classAssessments.length
