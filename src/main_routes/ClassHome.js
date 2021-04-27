@@ -7,6 +7,7 @@ import StudentHomeContainer from '../containers/StudentHomeContainer';
 import MenuHeader from "../components/MenuHeader"
 import MenuFooter from "../components/MenuFooter"
 import NewStudentForm from "../forms/NewStudentForm"
+import DeleteStudentForm from "../forms/DeleteStudentForm"
 
 import sprite from "../img/sprite.svg"
 
@@ -105,6 +106,11 @@ class ClassHome extends React.Component {
     .then(res =>{if (res){this.fetchRegistrations(id); this.fetchClass() }})
   }
 
+  deleteStudent = (e) => {
+    api.delete.deleteStudent(e)
+    .then(res => console.log(res))
+  }
+
 
 
   ////////////////////////////////////////graph data////////////////////////////////////////
@@ -190,7 +196,8 @@ class ClassHome extends React.Component {
   }
 
   callback = (e) => {
-    // this.fetchRegistrations(id)
+    // e.preventDefault()
+    console.log(e)
   }
 
   reFetchAssessments = (e) => {
@@ -268,7 +275,8 @@ class ClassHome extends React.Component {
                       buildGraph={e => this.testDate(e)}
                       fetchClass={e => this.reFetchAssessments(e)}
                       register={e => this.postRegistration(e)}
-                      deRegister={e => this.deleteRegistration(e)}
+                      deleteStudent={e => this.deleteStudent(e)}
+                      deleteRegistration={e => this.deleteRegistration(e)}
                       test={e => this.test(e)}
                       />
                   }>  
@@ -277,6 +285,10 @@ class ClassHome extends React.Component {
               </div>
             </Router>
         <NewStudentForm reFetchStudentBody={e => this.reFetchStudentBody(e)}/>
+        <DeleteStudentForm 
+          roster={this.state.roster}
+          studentBody={this.state.allStudents}
+          callback={e => this.callback(e)}/>
       </div>
     )
   }

@@ -13,13 +13,10 @@
 @import "components/class-title";
 @import "components/graphics";
 @import "components/info-box";
-@import "components/landing-form";
 @import "components/last-assessment";
 @import "components/menu-footer";
 @import "components/menu-header";
 @import "components/navbar";
-@import "components/new-class-form";
-@import "components/new-student-form";
 @import "components/roster";
 @import "components/stats-display";
 @import "components/total-assessments";
@@ -28,6 +25,11 @@
 @import "containers/class-stats";
 @import "containers/edit-class";
 @import "containers/student-home";
+
+@import "forms/delete-student-form";
+@import "forms/landing-form";
+@import "forms/new-class-form";
+@import "forms/new-student-form";
 
 @import "pages/class_home";
 @import "pages/landing_page";

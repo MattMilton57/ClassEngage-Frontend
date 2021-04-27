@@ -35,6 +35,23 @@ class StudentHomeContainer extends React.Component{
       assessments:res
     }), this.props.buildGraph(res)))
   }
+
+  handleDelete = (e) => {
+    this.props.registrations.map(registration => {
+      if(registration.student_id == this.state.thisStudent.id)
+      {api.delete.deleteRegistration(registration.id)
+      .then(res => (console.log("done with" + res)))}
+
+
+    })
+    // console.log(this.state.thisStudent.id)
+    // this.props.deleteRegistration(this.state.thisStudent.id)
+  }
+
+  testfunct = (registration) => {
+      api.delete.deleteRegistration(registration.id)
+      .then(res => (console.log("done with" + res)))
+  }
   
   render(){
     return(
@@ -64,7 +81,7 @@ stateLables={this.props.stateLables}
         </div>
 
         <div className="student-home__preferences">
-          preferences
+          <input type="button" placeholder="test me" onClick={e => this.handleDelete(e)}/>
         </div>
       </div>
     )

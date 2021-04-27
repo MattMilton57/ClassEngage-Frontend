@@ -55,14 +55,26 @@ const  EditClassContainer = ({roster, studentBody, deRegister, register, registr
             <InfoBox text={"class size"} data={roster.length}/>
           </div>
 
-          <div className="edit-class__new-student">
+          {/* <div className="edit-class__new-student">
             <label className="edit-class__new-student-toggle" for="new-student-form__checkbox">
                               <span className="edit-class__new-student-toggle-content">New Student</span>
                           </label>
-          </div>
+          </div> */}
 
-          <div className="edit-class__preferences">
-            class preferences
+          <div className="edit-class__controll">
+
+            {/* <input type="checkbox" class="edit-class__controll-toggle" id="new-student-toggle"/> */}
+            <label for="new-student-form__checkbox" className="edit-class__controll-btn edit-class__controll-new-student">Add student</label>
+
+            {/* <input type="checkbox" class="edit-class__controll-toggle" id="delete-student-toggle"/> */}
+            <label for="delete-student-form__checkbox" className="edit-class__controll-btn edit-class__controll-delete-student">Delete student</label>
+
+            <input type="checkbox" class="edit-class__controll-toggle" id="rename-class-toggle"/>
+            <label for="rename-class-toggle" className="edit-class__controll-btn edit-class__controll-rename-class">Edit class</label>
+
+            <input type="checkbox" class="edit-class__controll-toggle" id="delete-class-toggle"/>
+            <label for="delete-class-toggle" className="edit-class__controll-btn edit-class__controll-delete-class">Delete class</label>
+
           </div>
               {/* <NewStudentForm reFetchStudentBody={reFetchStudentBody}/> */}
 

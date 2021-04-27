@@ -83,6 +83,15 @@ const deleteRegistration = (toDelete) => {
     .then(res => res.json())
 }
 
+const deleteStudent = (toDelete) => {
+    console.log(toDelete + " deleted")
+    return fetch((`${API_ROOT}/students/${toDelete}`), {
+        method:"DELETE",
+        headers:headers()
+    })
+    .then(res => res.json())
+}
+
 /////////////Specialty Fetches/////////////
 const currentStudent = (id) => {
     // console.log("FC "+id)
@@ -165,5 +174,6 @@ export const api = {
 
     delete: {
         deleteRegistration,
+        deleteStudent,
     }
 }
