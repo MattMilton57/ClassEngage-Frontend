@@ -75,7 +75,7 @@ const postAssessment = (newRegistration) => {
 
 /////////////Delete Fetches//////////////
 const deleteRegistration = (toDelete) => {
-    // console.log(toDelete)
+    console.log(toDelete)
     return fetch((`${API_ROOT}/registrations/${toDelete}`), {
         method:"DELETE",
         headers:headers()
@@ -86,6 +86,15 @@ const deleteRegistration = (toDelete) => {
 const deleteStudent = (toDelete) => {
     console.log(toDelete + " deleted")
     return fetch((`${API_ROOT}/students/${toDelete}`), {
+        method:"DELETE",
+        headers:headers()
+    })
+    .then(res => res.json())
+}
+
+const deleteAssessment = (toDelete) => {
+    console.log(toDelete + " deleted")
+    return fetch((`${API_ROOT}/assessments/${toDelete}`), {
         method:"DELETE",
         headers:headers()
     })
@@ -151,6 +160,16 @@ const studentsAssessments = (id) => {
     .then(res=>res.json())
 }
 
+const deleteStudentAssessments = (id) => {
+        // console.log("FR "+id)
+    return fetch((`${API_ROOT}/deleteStudentAssessments/`), {
+    method:"POST",
+    headers:headers(),
+    body: JSON.stringify(id)
+    })
+    .then(res=>res.json())
+}
+
 export const api = {
     posts: {
         postClass,
@@ -175,5 +194,7 @@ export const api = {
     delete: {
         deleteRegistration,
         deleteStudent,
+        deleteAssessment,
+        deleteStudentAssessments,
     }
 }

@@ -24,7 +24,9 @@ class ClassHome extends React.Component {
       roster:[],
       classAssessments:[],
       allStudents:[],
-      registrations:'',
+      allAssessments:[],
+      classRegistrations:'',
+      allRegistrations:'',
       masterList:[],
       allclasses:'',
       classScore:'',
@@ -37,11 +39,14 @@ class ClassHome extends React.Component {
   componentDidMount(){
     const {match} = this.props
     const id = (parseInt(match.params.id))
+    console.log(match, id)
     this.fetchClassesAssessments()
     this.fetchClass()
     this.checkUser(id)
     this.fetchStudents()
-    this.fetchRegistrations(id)
+    this.fetchAssessments()
+    this.fetchRegistrations()
+    this.fetchClassRegistrations(id)
     this.setState({
       classPeriod:id
     })
@@ -61,14 +66,24 @@ class ClassHome extends React.Component {
     .then (res => {this.setState({allclasses:res}); this.findClassInfo(res, classID)})
   }
 
-  fetchRegistrations = (id) => {
+  fetchClassRegistrations = (id) => {
     (api.get.filteredRegistrations({class_period_id:id}))
-    .then(res => this.setState({registrations:res}))
+    .then(res => this.setState({classRegistrations:res}))
   }
 
   fetchStudents = () => {
     api.get.fetchStudents()
     .then(res => this.setState({allStudents:res}))
+  }
+
+  fetchRegistrations = () => {
+    api.get.fetchRegistrations()
+    .then(res => this.setState({allRegistrations:res}))
+  }
+
+  fetchAssessments = () => {
+    api.get.fetchAssessments()
+    .then(res => this.setState({allAssessments:res}))
   }
 
   fetchClassesAssessments = () => {
@@ -96,19 +111,36 @@ class ClassHome extends React.Component {
     const {match} = this.props
     const id = (parseInt(match.params.id))
     api.posts.postRegistration({class_period_id:id, student_id:e.id})
-    .then(res => {this.fetchClass(); this.fetchRegistrations(id)})
+    .then(res => {this.fetchClass(); this.fetchClassRegistrations(id)})
   }
 
   deleteRegistration = (e) => {
     const {match} = this.props
     const id = (parseInt(match.params.id))
     api.delete.deleteRegistration(e)
-    .then(res =>{if (res){this.fetchRegistrations(id); this.fetchClass() }})
+    .then(res =>{if (res){this.fetchClassRegistrations(id); this.fetchClass() }})
   }
 
-  deleteStudent = (e) => {
-    api.delete.deleteStudent(e)
-    .then(res => console.log(res))
+  // deleteStudent = (student, registrations, assessments) => {
+  //   // console.log(registrations)
+  //   assessments.map(assessment => {api.delete.deleteAssessment(assessment)})
+  //   // registrations.map(registration => {api.delete.deleteRegistration(registration)})
+  //   // api.delete.deleteStudent(student)
+  // }
+
+  deleteStudentAssessments = (student, registrations, assessments) => {
+    const id = {student_id:student}
+    api.delete.deleteStudentAssessments(id)
+    .then(res => this.deleteStudentRegistrations(id))
+  }
+
+  deleteStudentRegistrations = (id) => {
+    api.delete.deleteStudentRegistrations(id)
+    .then(res => this.deleteStudent(id))
+  }
+
+  deleteStudent = (id) => {
+    api.delete.deleteStudent(id)
   }
 
 
@@ -252,7 +284,7 @@ class ClassHome extends React.Component {
                     <EditClassContainer
                       {...props}
                       roster={this.state.roster}
-                      registrations={this.state.registrations}
+                      registrations={this.state.classRegistrations}
                       studentBody={this.state.allStudents}
                       classPeriod={this.state.classPeriod}
                       register={e => this.postRegistration(e)}
@@ -267,7 +299,7 @@ class ClassHome extends React.Component {
                     <StudentHomeContainer
                       {...props}
                       roster={this.state.roster}
-                      registrations={this.state.registrations}
+                      registrations={this.state.classRegistrations}
                       studentBody={this.state.allStudents}
                       classPeriod={this.state.classPeriod}
                       graphInfoData={this.state.data}
@@ -284,11 +316,19 @@ class ClassHome extends React.Component {
                 </Switch>
               </div>
             </Router>
-        <NewStudentForm reFetchStudentBody={e => this.reFetchStudentBody(e)}/>
+
+        <NewStudentForm 
+          reFetchStudentBody={e => this.reFetchStudentBody(e)}/>
+
         <DeleteStudentForm 
           roster={this.state.roster}
           studentBody={this.state.allStudents}
-          callback={e => this.callback(e)}/>
+          assessments={this.state.allAssessments}
+          classes={this.state.allclasses}
+          registrations={this.state.allRegistrations}
+          callback={e => this.callback(e)}
+          deleteStudent={(student,registrations,assessments) => this.deleteStudentAssessments(student,registrations,assessments)}
+          user={this.props.user}/>
       </div>
     )
   }

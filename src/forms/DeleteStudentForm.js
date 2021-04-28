@@ -9,31 +9,54 @@ export default class DeleteStudentForm extends React.Component {
     constructor(props){
         super(props);
         this.state={
-            student:{
-                name:'',
-            }
+            selectedStudent:'',
+            studentRegistrations:'',
+            studentSchedule:'',
+            registrationIds:'',
+            assessments:''
+        }
+    }
+    
+    // resetForm = () => {
+    //     let newState = {...this.state.student, name:''}
+    //     this.setState({student: newState})
+    // }
+
+    onSelect = (student) => {
+        let studentAssessments = []
+        this.props.assessments.map(assessment => {if(assessment.student_id == student.id){studentAssessments.push(assessment.id)}})
+        let registrationList = []
+        this.props.registrations.map(registration => {if(registration.student_id == student.id){registrationList.push(registration)}})
+        let classList = []
+        let teachersRegistrations = []
+        let registrationIds = []
+        registrationList.map(registration=> {this.props.classes.map(classPeriod => {if ((registration.class_period_id == classPeriod.id) && (classPeriod.user_id == this.props.user.id)) {classList.push(classPeriod); teachersRegistrations.push(registration); registrationIds.push(registration.id)}}) })
+        this.setState({
+            selectedStudent:student,
+            studentRegistrations:teachersRegistrations,
+            studentSchedule:classList,
+            registrationIds:registrationIds,
+            studentAssessments:studentAssessments,
+        })
+    }
+
+    displaySchedule = () => {
+        if (this.state.studentSchedule != '' ){
+            return(
+                <div className="">
+                    Deleting this student will also delete their registrations from the following classes:
+                    <ul className="">
+                        {this.state.studentSchedule.map(classPeriod => {return(<li>{classPeriod.subject}</li>)})}
+                    </ul>
+                </div>
+            )
         }
     }
 
-    onChange(state,value){
-        const newState = {...this.state.student, [state]:value}
-      this.setState({student: newState})
-    }
-    
-    onSubmit = (e) =>{
-        e.preventDefault()
-        this.postStudent()
-    }
-    
-    postStudent = () => {
-        let newStudent = this.state
-        api.posts.postStudent(newStudent)
-        .then(res => {this.resetForm(); this.props.reFetchStudentBody()})
-    }
-
-    resetForm = () => {
-        let newState = {...this.state.student, name:''}
-        this.setState({student: newState})
+    onSubmit = (e) => {
+        e.preventDefault(e)
+        this.props.deleteStudent(this.state.selectedStudent.id, this.state.registrationIds, this.state.studentAssessments)
+        // console.log(this.state.selectedStudent.id, this.state.registrationIds)
     }
     
     render(){
@@ -42,7 +65,7 @@ export default class DeleteStudentForm extends React.Component {
                 <input type="checkbox" id="delete-student-form__checkbox" className="delete-student-form__checkbox"/>
                 <div className="delete-student-form__content">
 
-                    <label className="delete-student-form__content--form-toggle" for="delete-student-form__checkbox">
+                    <label className="delete-student-form__content--form-toggle delete-student-form__toggle" for="delete-student-form__checkbox">
                         <span className="delete-student-form__content--form-toggle">X</span>
                     </label>
 
@@ -50,11 +73,14 @@ export default class DeleteStudentForm extends React.Component {
 
                     <form  className="delete-student-form__content--form" onSubmit={(e)=> this.onSubmit(e)}>
 
-                    <div className="delete-student-form__content--form-roster">
-                    <div className="edit-class__headline--student-body">
-              <div className="edit-class__headline--title">Student Body</div>
-            </div>
-                        <RosterRemainder roster={this.props.roster} studentBody={this.props.studentBody} callback={this.props.callback} registerAction=""/>
+                    <div className="delete-student-form__content--form-roster-container">
+
+                        <div className="edit-class__headline--title">
+                            Student Body
+                        </div>
+                        
+                        <RosterRemainder roster={this.props.roster} studentBody={this.props.studentBody} callback={student => this.onSelect(student)} registerAction=""/>
+
                     </div>
 
                     <div className="delete-student-form__content--form-title">
@@ -62,7 +88,7 @@ export default class DeleteStudentForm extends React.Component {
                     </div>
 
                     <div className="delete-student-form__content--form-schedule">
-                        schedule list
+                        {this.displaySchedule()}
                     </div>
 
                     <button onClick={(e)=> this.onSubmit(e)} className="delete-student-form__content--form-submit" >

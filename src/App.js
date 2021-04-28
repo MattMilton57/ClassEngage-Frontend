@@ -88,6 +88,7 @@ class App extends React.Component {
                 render={ props => 
                   <ClassHome 
                     {...props}
+                    user={this.state.currentUser}
                     />
                 }/>
               </div>
