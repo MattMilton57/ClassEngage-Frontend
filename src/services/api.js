@@ -170,6 +170,16 @@ const deleteStudentAssessments = (id) => {
     .then(res=>res.json())
 }
 
+const deleteStudentRegistrations = (id) => {
+    // console.log("FR "+id)
+return fetch((`${API_ROOT}/deleteStudentRegistrations/`), {
+method:"POST",
+headers:headers(),
+body: JSON.stringify(id)
+})
+.then(res=>res.json())
+}
+
 export const api = {
     posts: {
         postClass,
@@ -196,5 +206,6 @@ export const api = {
         deleteStudent,
         deleteAssessment,
         deleteStudentAssessments,
+        deleteStudentRegistrations,
     }
 }

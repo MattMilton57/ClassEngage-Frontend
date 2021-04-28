@@ -136,7 +136,7 @@ class ClassHome extends React.Component {
 
   deleteStudentRegistrations = (id) => {
     api.delete.deleteStudentRegistrations(id)
-    .then(res => this.deleteStudent(id))
+    // .then(res => this.deleteStudent(id))
   }
 
   deleteStudent = (id) => {
