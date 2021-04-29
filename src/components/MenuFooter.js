@@ -13,23 +13,23 @@ class MenuHeader extends React.Component {
   }
 
   render(){
-    if (this.props.listType == "home") {
+    if (this.props.listType === "home") {
       return(
         <div className="menu-footer class-home__menu-footer">
-          <div className="menu-footer__avatar">
+          {/* <div className="menu-footer__avatar">
             avatar
-          </div>
+          </div> */}
         </div>
       )
     }else{
       return(
         <div className="menu-footer select-class__menu-footer">
-          <div className="menu-footer__name">
+          {/* <div className="menu-footer__name">
             Mr Milton
           </div>
           <div className="menu-footer__avatar">
             avatar
-          </div>
+          </div> */}
         </div>
       )
     }

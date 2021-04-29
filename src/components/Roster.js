@@ -9,9 +9,9 @@ const Roster = ({ url, roster, callback, score, assessments, classPeriod, linkTo
         // console.log(assessments)
         if (assessments ===''){
         let studentAssessments = []
-        assessments.map(assessment => {if(assessment.student_id == id) studentAssessments.push(assessment)})
+        assessments.forEach(assessment => {if(assessment.student_id === id) studentAssessments.push(assessment)})
         let positiveAssessments = []
-        studentAssessments.map(studentAssessment => {if(studentAssessment.participating == true) positiveAssessments.push(studentAssessment)})
+        studentAssessments.forEach(studentAssessment => {if(studentAssessment.participating === true) positiveAssessments.push(studentAssessment)})
         let all = studentAssessments.length
         let yes = positiveAssessments.length
         let totalScore = ((yes/all)+'%')
@@ -84,29 +84,3 @@ const Roster = ({ url, roster, callback, score, assessments, classPeriod, linkTo
 
 }
 export default Roster;
-
-{/* <div id='Roster'>
-<div>
-    {students.map(student => 
-        <div id="student" key={student.name}>
-            <div id="name">
-                <Student 
-                    url={url}
-                    totalScore={filterAssessments(student.id)} 
-                    callback={callback} 
-                    student={student} 
-                    assessments={assessments} 
-                    showScore={score}
-                    linkTo={linkTo}/>
-            </div>
-            <div id="score">
-                <StudentScore
-                    student={student}
-                    assessments={assessments}
-                    classPeriod={classPeriod}
-                
-                />
-            </div>
-        </div>)}
-</div>
-</div> */}

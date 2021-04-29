@@ -1,4 +1,3 @@
-import { render } from '@testing-library/react';
 import React from 'react';
 import {Bar, Line, Pie} from 'react-chartjs-2'
 
@@ -8,7 +7,7 @@ const Graphics = (props) => {
     const checkLables = (props.stateLables)
 
 
-    console.log(checkLables)
+    // console.log(checkLables)
 
 const data = {
     labels: checkLables,
@@ -37,7 +36,7 @@ const data = {
   }
   
   return (
-    <div classname="graph">
+    <div className="graph">
       <Line data={data} options={options}   width={600}
         height={200}
         options={{ maintainAspectRatio: false }}/>

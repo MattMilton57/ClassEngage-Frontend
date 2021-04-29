@@ -12,7 +12,6 @@ const assessmentDate = () => {
     const dateSplit=dateOnly.split('-');
     const month = dateSplit[1]
     const day = dateSplit[2]
-    const dateString = dateSplit.toString() 
     return(<div>
         <div className="last-assessment__date">
             {parsedDate(month)}/{parsedDate(day)}

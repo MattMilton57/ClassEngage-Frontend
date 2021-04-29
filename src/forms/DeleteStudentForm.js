@@ -1,8 +1,5 @@
-import { createHashHistory } from 'history';
 import React from 'react';
 import RosterRemainder from "../components/RosterRemainder";
-
-import { api } from '../services/api'
 
 export default class DeleteStudentForm extends React.Component {
     
@@ -24,13 +21,13 @@ export default class DeleteStudentForm extends React.Component {
 
     onSelect = (student) => {
         let studentAssessments = []
-        this.props.assessments.map(assessment => {if(assessment.student_id == student.id){studentAssessments.push(assessment.id)}})
+        this.props.assessments.forEach(assessment => {if(assessment.student_id === student.id){studentAssessments.push(assessment.id)}})
         let registrationList = []
-        this.props.registrations.map(registration => {if(registration.student_id == student.id){registrationList.push(registration)}})
+        this.props.registrations.forEach(registration => {if(registration.student_id === student.id){registrationList.push(registration)}})
         let classList = []
         let teachersRegistrations = []
         let registrationIds = []
-        registrationList.map(registration=> {this.props.classes.map(classPeriod => {if ((registration.class_period_id == classPeriod.id) && (classPeriod.user_id == this.props.user.id)) {classList.push(classPeriod); teachersRegistrations.push(registration); registrationIds.push(registration.id)}}) })
+        registrationList.forEach(registration=> {this.props.classes.forEach(classPeriod => {if ((registration.class_period_id === classPeriod.id) && (classPeriod.user_id === this.props.user.id)) {classList.push(classPeriod); teachersRegistrations.push(registration); registrationIds.push(registration.id)}}) })
         this.setState({
             selectedStudent:student,
             studentRegistrations:teachersRegistrations,
@@ -41,7 +38,7 @@ export default class DeleteStudentForm extends React.Component {
     }
 
     displaySchedule = () => {
-        if (this.state.studentSchedule != '' ){
+        if (this.state.studentSchedule !== '' ){
             return(
                 <div className="">
                     Deleting this student will also delete their registrations from the following classes:
@@ -55,6 +52,8 @@ export default class DeleteStudentForm extends React.Component {
 
     onSubmit = (e) => {
         e.preventDefault(e)
+        // console.log(this.state.selectedStudent.id, this.state.registrationIds, this.state.studentAssessments)
+
         this.props.deleteStudent(this.state.selectedStudent.id, this.state.registrationIds, this.state.studentAssessments)
         // console.log(this.state.selectedStudent.id, this.state.registrationIds)
     }
@@ -65,7 +64,7 @@ export default class DeleteStudentForm extends React.Component {
                 <input type="checkbox" id="delete-student-form__checkbox" className="delete-student-form__checkbox"/>
                 <div className="delete-student-form__content">
 
-                    <label className="delete-student-form__content--form-toggle delete-student-form__toggle" for="delete-student-form__checkbox">
+                    <label className="delete-student-form__content--form-toggle delete-student-form__toggle" htmlFor="delete-student-form__checkbox">
                         <span className="delete-student-form__content--form-toggle">X</span>
                     </label>
 

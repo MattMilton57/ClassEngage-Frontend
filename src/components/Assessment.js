@@ -1,10 +1,10 @@
 import React from 'react';
-import sprite from "../img/sprite.svg";
+
 
 const Assessment = ({assessment}) => {
 
 const assessmentDate = () => {
-    if (assessment.created_at == ''){
+    if (assessment.created_at === ''){
         return (<div>Loading</div>)
     }else{
     const date = assessment.created_at; 
@@ -13,7 +13,7 @@ const assessmentDate = () => {
     const dateSplit=dateOnly.split('-');
     const month = dateSplit[1]
     const day = dateSplit[2]
-    const dateString = dateSplit.toString() 
+
     return(<div>
         <div className="assessment-list__assessment-card--date-month">
             {/* {parsedDate(month)}/{parsedDate(day)}/{dateSplit[0]} */}
@@ -36,23 +36,23 @@ const parsedDate = (date) => {
 
 const isParticipating = () => {
 //    if (assessment.participating === true) {return("Yes")} else {return "No"}
-   if (assessment.participating == true) {
+   if (assessment.participating === true) {
        return(           
-            <svg className="assessment-list__assessment--score-icon assessment-list__assessment--score-icon-up">
-                <use href={sprite + "#icon-thumbs-up"} ></use>
-            </svg>
+            <div className="assessment-list__assessment--score-text-positive">
+                Student was engaged
+            </div>
         )
      }
      else{
          return(           
-            <svg className="assessment-list__assessment--score-icon assessment-list__assessment--score-icon-down">
-                <use href={sprite + "#icon-thumbs-down"} ></use>
-            </svg>
+            <div className="assessment-list__assessment--score-text-negative">
+                not engaged in activity
+            </div>
             )}
 }
 
     const buildCard = () => {
-        if ((assessment.comment == "") || (assessment.comment == null)){
+        if ((assessment.comment === "") || (assessment.comment == null)){
             return(
                 <div className="assessment-list__assessment assessment-list__assessment-no-comment">
                     <div className="assessment-list__assessment--date">
@@ -65,7 +65,7 @@ const isParticipating = () => {
                     </div> 
                     <div className="assessment-list__assessment--score">
                     <div className="assessment-list__assessment--score-text">
-                            student was Engaged
+                            {isParticipating()}
                         </div>
                         {/* <div className="assessment-list__assessment--score-icon">
                             {isParticipating()}
@@ -73,7 +73,6 @@ const isParticipating = () => {
                     </div>
                 </div>
             ) 
-
         }else{
             return(
                 <div className="assessment-list__assessment assessment-list__assessment-comment">
@@ -87,7 +86,7 @@ const isParticipating = () => {
                     </div> 
                     <div className="assessment-list__assessment--score">
                         <div className="assessment-list__assessment--score-text">
-                        not engaged in activity
+                            {isParticipating()}
                         </div>
                         {/* <div className="assessment-list__assessment--score-icon">
                             {isParticipating()}

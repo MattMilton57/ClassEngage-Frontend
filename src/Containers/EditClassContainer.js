@@ -2,9 +2,10 @@ import React from 'react';
 import Roster from "../components/Roster";
 import RosterRemainder from "../components/RosterRemainder";
 import InfoBox from "../components/InfoBox";
-// import NewStudentForm from "../components/NewStudentForm"
+import EditClassForm from "../forms/EditClassForm"
 
-const  EditClassContainer = ({roster, studentBody, deRegister, register, registrations, reFetchStudentBody }) => {
+
+const  EditClassContainer = ({roster, studentBody, deRegister, register, registrations, classObject, patchClassPeriod, reFetchStudentBody }) => {
 
     // const register = (student) => {
     //     console.log(student)
@@ -23,8 +24,8 @@ const  EditClassContainer = ({roster, studentBody, deRegister, register, registr
       }
     
     const findReg= (e) => {
-        registrations.map( r => {
-          if (r.student_id == e.id)
+        registrations.forEach( r => {
+          if (r.student_id === e.id)
           {handleRemove(r.id, e)}
         })
       }
@@ -48,6 +49,8 @@ const  EditClassContainer = ({roster, studentBody, deRegister, register, registr
           </div>
 
           <div className="edit-class__class-graph">
+            {classObject.subject}
+            <br></br>
             graph
           </div>
 
@@ -70,13 +73,22 @@ const  EditClassContainer = ({roster, studentBody, deRegister, register, registr
             <label for="delete-student-form__checkbox" className="edit-class__controll-btn edit-class__controll-delete-student">Delete student</label>
 
             <input type="checkbox" class="edit-class__controll-toggle" id="rename-class-toggle"/>
-            <label for="rename-class-toggle" className="edit-class__controll-btn edit-class__controll-rename-class">Edit class</label>
+            <label for="edit-class-form__checkbox" className="edit-class__controll-btn edit-class__controll-rename-class">Edit class</label>
 
-            <input type="checkbox" class="edit-class__controll-toggle" id="delete-class-toggle"/>
-            <label for="delete-class-toggle" className="edit-class__controll-btn edit-class__controll-delete-class">Delete class</label>
+            {/* <label for="edit-student-form__checkbox" className="edit-class__controll-btn edit-class__controll-new-student">edit student</label> */}
+            <EditClassForm 
+            classObject={classObject}
+            patchClassPeriod={patchClassPeriod}
+          // reFetchStudentBody={e => this.reFetchStudentBody(e)}
+          // student={this.state.thisStudent}
+          // patchStudent={this.props.patchStudent}
+          // handleEdit={e => this.handleEdit(e)} 
+          />
+
+            {/* <input type="checkbox" class="edit-class__controll-toggle" id="delete-class-toggle"/>
+            <label for="delete-class-toggle" className="edit-class__controll-btn edit-class__controll-delete-class">Delete class</label> */}
 
           </div>
-              {/* <NewStudentForm reFetchStudentBody={reFetchStudentBody}/> */}
 
       </div>
     )

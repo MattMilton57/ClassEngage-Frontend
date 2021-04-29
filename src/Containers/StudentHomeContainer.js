@@ -2,6 +2,8 @@ import React from 'react';
 import TitleBox from "../components/TitleBox"
 import ClassScore from "../components/ClassScore"
 import Graphics from "../components/Graphics"
+import EditStudentForm from "../forms/EditStudentForm"
+
 import { api } from '../services/api'
 import AssessmentList from '../components/AssessmentList'
 
@@ -21,7 +23,7 @@ class StudentHomeContainer extends React.Component{
   componentDidMount(){
     const {match} = this.props
     const id = (parseInt(match.params.id))
-    console.log(id)
+    // console.log(id)
     // this.getAssessments()
     api.get.currentStudent(id)
     .then(res => this.setState({thisStudent:res}))
@@ -30,15 +32,19 @@ class StudentHomeContainer extends React.Component{
 
     getAssessments = () => {
     let id = {student_id:this.state.thisStudent.id}
+    let classesAssessments = []
     api.get.studentsAssessments(id)
-    .then(res => (this.setState({
-      assessments:res
-    }), this.props.buildGraph(res)))
+    .then(res => (
+        res.forEach(assessment => {if(assessment.class_period_id === this.props.classPeriod){classesAssessments.push(assessment)}}),
+        this.setState({
+          assessments:classesAssessments
+            }), 
+        this.props.buildGraph(classesAssessments)))
   }
 
   handleDelete = (e) => {
-    this.props.registrations.map(registration => {
-      if(registration.student_id == this.state.thisStudent.id)
+    this.props.registrations.forEach(registration => {
+      if(registration.student_id === this.state.thisStudent.id)
       {api.delete.deleteRegistration(registration.id)
       .then(res => (console.log("done with" + res)))}
 
@@ -48,6 +54,13 @@ class StudentHomeContainer extends React.Component{
     // this.props.deleteRegistration(this.state.thisStudent.id)
   }
 
+  handleEdit = (e) => {
+    api.get.currentStudent(this.state.thisStudent.id)
+    .then(res => this.setState({thisStudent:e}))
+    // .then(res => console.log(res))
+
+  }
+
   testfunct = (registration) => {
       api.delete.deleteRegistration(registration.id)
       .then(res => (console.log("done with" + res)))
@@ -55,6 +68,7 @@ class StudentHomeContainer extends React.Component{
   
   render(){
     return(
+      <div className="">
       <div className="student-home">
         <div className="student-home__header">Student Home</div>
         <div className="student-home__name">
@@ -64,13 +78,7 @@ class StudentHomeContainer extends React.Component{
         <AssessmentList thisClass={this.props.classPeriod} assessments={this.state.assessments} />
         </div>
         <div className="student-home__graphics">
-        <Graphics 
-
-graphData={this.props.graphInfoData}
-stateLables={this.props.stateLables}
-// assessments={assessments}
-// dataObject={dataObject}
-/>
+        <Graphics graphData={this.props.graphInfoData} stateLables={this.props.stateLables} />
         </div>
         <div className="student-home__score">
           <ClassScore classPeriod={this.props.classPeriod} assessments={this.state.assessments} roster={[this.state.thisStudent]}/>
@@ -81,8 +89,14 @@ stateLables={this.props.stateLables}
         </div>
 
         <div className="student-home__preferences">
-          <input type="button" placeholder="test me" onClick={e => this.handleDelete(e)}/>
+        <label for="edit-student-form__checkbox" className="edit-class__controll-btn edit-class__controll-new-student">edit student</label>
         </div>
+      </div>
+      <EditStudentForm 
+          // reFetchStudentBody={e => this.reFetchStudentBody(e)}
+          student={this.state.thisStudent}
+          patchStudent={this.props.patchStudent}
+          handleEdit={e => this.handleEdit(e)} />
       </div>
     )
   }

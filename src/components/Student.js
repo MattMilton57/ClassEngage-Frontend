@@ -7,7 +7,7 @@ const handleClick = (e) => {
     callback(student)
 }
 
-if (linkTo == true) {
+if (linkTo === true) {
     return(
         <div value={student} onClick={(e)=> handleClick(e)} key={student.name}>
             <Link to={`${url}${student.id}`}>

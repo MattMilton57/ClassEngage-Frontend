@@ -1,11 +1,7 @@
 import React from 'react';
 import logo_svg from "../img/logo-hand.svg";
-import MenuFooter from "../components/MenuFooter"
-import NavLink from "../components/NavLink"
 import sprite from "../img/sprite.svg"
-import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
-
-import { api } from '../services/api'
+import {BrowserRouter as Link} from "react-router-dom";
 
 class NavBar extends React.Component {
 
@@ -16,7 +12,7 @@ class NavBar extends React.Component {
   }
 
   componentDidMount(props){
-    console.log("navbar mounted")
+    // console.log("navbar mounted")
   }
 
   reFetch = (e) => {
@@ -34,7 +30,7 @@ class NavBar extends React.Component {
                 <div className=" navBar__header menu-header select-class__menu-header">
 
                     <div className="menu-header__logo--box">
-                        <embed src={logo_svg} alt="Logo" class="menu-header__logo"/>
+                        <embed src={logo_svg} alt="Logo" className="menu-header__logo"/>
                     </div>
 
                 </div>
@@ -76,11 +72,11 @@ class NavBar extends React.Component {
                 </div>
 
                 
-                <div className="navBar__profile">
+                {/* <div className="navBar__profile">
 
                     <MenuFooter />
 
-                </div>
+                </div> */}
 
             </div>
 

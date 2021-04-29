@@ -1,5 +1,4 @@
 import React from 'react';
-import { SubjectSubscriber } from 'rxjs/internal/Subject';
 import { api } from '../services/api'
 
 class NewClassForm extends React.Component{

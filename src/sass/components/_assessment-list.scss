@@ -72,9 +72,16 @@
                 grid-row: 1/ span 1;
                 grid-column: 1/ span 1;
                 font-weight: 400;
-                color: $color-grey-light;
                 font-size: 1.5rem;
-                // background-color: blue;
+
+                &-positive {
+                    color: $color-copper-1;
+                }
+
+                &-negative {
+                    color: $color-grey-light;
+                }
+
 
             }
 

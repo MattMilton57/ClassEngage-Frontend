@@ -20,7 +20,7 @@ class App extends React.Component {
 
   componentDidMount(){
     this.setUser()
-    console.log('App mounted')
+    // console.log('App mounted')
   }
 
   setUser = () => {

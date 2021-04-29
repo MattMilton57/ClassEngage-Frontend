@@ -33,7 +33,6 @@ const fetchCurrentUser = () => {
         headers: headers()
     })
     .then(res => res.json())
-    // .then(res => console.log(res))
 }  
 
 /////////////Post Fetches/////////////
@@ -73,6 +72,26 @@ const postAssessment = (newRegistration) => {
     .then(res => res.json())
 }
 
+/////////////Patch Fetches//////////////
+
+const patchStudent = (student) => {
+    return fetch((`${API_ROOT}/students/${student.id}/`), {
+        method:"PUT",
+        headers:headers(),
+        body: JSON.stringify(student)
+    })
+    .then(res => res.json())
+}
+
+const patchClassPeriod = (classPeriod) => {
+    return fetch((`${API_ROOT}/class_periods/${classPeriod.id}/`), {
+        method:"PUT",
+        headers:headers(),
+        body: JSON.stringify(classPeriod)
+    })
+    .then(res => res.json())
+}
+
 /////////////Delete Fetches//////////////
 const deleteRegistration = (toDelete) => {
     console.log(toDelete)
@@ -101,9 +120,16 @@ const deleteAssessment = (toDelete) => {
     .then(res => res.json())
 }
 
+const deleteClassPeriod = (toDelete) => {
+    return fetch((`${API_ROOT}/class_periods/${toDelete}`), {
+        method:"DELETE",
+        headers:headers()
+    })
+    .then(res => res.json())
+}
+
 /////////////Specialty Fetches/////////////
 const currentStudent = (id) => {
-    // console.log("FC "+id)
     return fetch((`${API_ROOT}/current_student/${id}/`), {
         headers:headers(),
     })
@@ -112,7 +138,6 @@ const currentStudent = (id) => {
 
 
 const filteredClasses = (id) => {
-    // console.log("FC "+id)
     return fetch((`${API_ROOT}/filterCP/`), {
         method:"POST",
         headers:headers(),
@@ -122,7 +147,6 @@ const filteredClasses = (id) => {
 }
 
 const filteredRegistrations = (id) => {
-    // console.log("FR "+id)
     return fetch((`${API_ROOT}/filterR/`), {
         method:"POST",
         headers:headers(),
@@ -141,7 +165,6 @@ const classList = (id) =>{
 }
 
 const classesAssessments = (id) => {
-    // console.log("FR "+id)
     return fetch((`${API_ROOT}/classAssessments/`), {
         method:"POST",
         headers:headers(),
@@ -151,7 +174,6 @@ const classesAssessments = (id) => {
 }
 
 const studentsAssessments = (id) => {
-        // console.log("FR "+id)
     return fetch((`${API_ROOT}/studentAssessments/`), {
     method:"POST",
     headers:headers(),
@@ -161,7 +183,6 @@ const studentsAssessments = (id) => {
 }
 
 const deleteStudentAssessments = (id) => {
-        // console.log("FR "+id)
     return fetch((`${API_ROOT}/deleteStudentAssessments/`), {
     method:"POST",
     headers:headers(),
@@ -171,8 +192,25 @@ const deleteStudentAssessments = (id) => {
 }
 
 const deleteStudentRegistrations = (id) => {
-    // console.log("FR "+id)
 return fetch((`${API_ROOT}/deleteStudentRegistrations/`), {
+method:"POST",
+headers:headers(),
+body: JSON.stringify(id)
+})
+.then(res=>res.json())
+}
+
+const deleteClassPeriodRegistrations = (id) => {
+return fetch((`${API_ROOT}/deleteClassPeriodRegistrations/`), {
+method:"POST",
+headers:headers(),
+body: JSON.stringify(id)
+})
+.then(res=>res.json())
+}
+
+const deleteClassPeriodAssessments = (id) => {
+return fetch((`${API_ROOT}/deleteClassPeriodAssessments/`), {
 method:"POST",
 headers:headers(),
 body: JSON.stringify(id)
@@ -201,11 +239,19 @@ export const api = {
         currentStudent
     },
 
+    patch: {
+        patchStudent,
+        patchClassPeriod,
+    },
+
     delete: {
         deleteRegistration,
         deleteStudent,
         deleteAssessment,
         deleteStudentAssessments,
         deleteStudentRegistrations,
+        deleteClassPeriod,
+        deleteClassPeriodRegistrations,
+        deleteClassPeriodAssessments,
     }
 }

@@ -6,6 +6,7 @@ import ClassStatsContainer from '../containers/ClassStatsContainer';
 import StudentHomeContainer from '../containers/StudentHomeContainer';
 import MenuHeader from "../components/MenuHeader"
 import MenuFooter from "../components/MenuFooter"
+import EditStudentForm from "../forms/EditStudentForm"
 import NewStudentForm from "../forms/NewStudentForm"
 import DeleteStudentForm from "../forms/DeleteStudentForm"
 
@@ -32,14 +33,15 @@ class ClassHome extends React.Component {
       classScore:'',
       classObject:'',
       graphInfo:'',
-      stateLables:[]
+      stateLables:[],
+      studentToUpdate:''
     }
   }
 
   componentDidMount(){
     const {match} = this.props
     const id = (parseInt(match.params.id))
-    console.log(match, id)
+    // console.log(match, id)
     this.fetchClassesAssessments()
     this.fetchClass()
     this.checkUser(id)
@@ -55,6 +57,7 @@ class ClassHome extends React.Component {
 
     ////////////////////////////////////////fetches////////////////////////////////////////
 
+    //////////GET//////////
 
   checkUser = (classID) => {
     (api.get.fetchCurrentUser())
@@ -100,12 +103,7 @@ class ClassHome extends React.Component {
     .then(res => {this.setState({roster:res})})
   }
 
-  findClassInfo = (classes, classID) => {
-    classes.map(classPeriod => {
-      if (classPeriod.id == classID)
-      {this.setState({classObject:classPeriod})}
-    }) 
-  }
+    //////////POST//////////
 
   postRegistration = (e) => {
     const {match} = this.props
@@ -114,6 +112,21 @@ class ClassHome extends React.Component {
     .then(res => {this.fetchClass(); this.fetchClassRegistrations(id)})
   }
 
+    //////////PATCH//////////
+
+  patchStudent = (e) => {
+    api.patch.patchStudent(e)
+    .then(res => {this.fetchClass()})
+  }
+
+  patchClassPeriod = (e) => {
+    // console.log(e)
+    api.patch.patchClassPeriod(e)
+    .then(res => {this.componentDidMount()})
+  }
+
+    //////////DELETE//////////
+
   deleteRegistration = (e) => {
     const {match} = this.props
     const id = (parseInt(match.params.id))
@@ -121,33 +134,27 @@ class ClassHome extends React.Component {
     .then(res =>{if (res){this.fetchClassRegistrations(id); this.fetchClass() }})
   }
 
-  // deleteStudent = (student, registrations, assessments) => {
-  //   // console.log(registrations)
-  //   assessments.map(assessment => {api.delete.deleteAssessment(assessment)})
-  //   // registrations.map(registration => {api.delete.deleteRegistration(registration)})
-  //   // api.delete.deleteStudent(student)
-  // }
-
   deleteStudentAssessments = (student, registrations, assessments) => {
     const id = {student_id:student}
     api.delete.deleteStudentAssessments(id)
-    .then(res => this.deleteStudentRegistrations(id))
+    .then(res => {this.deleteStudentRegistrations(id)})
   }
 
   deleteStudentRegistrations = (id) => {
     api.delete.deleteStudentRegistrations(id)
-    // .then(res => this.deleteStudent(id))
+    .then(res => this.deleteStudent(id))
   }
 
   deleteStudent = (id) => {
-    api.delete.deleteStudent(id)
+    api.delete.deleteStudent(id.student_id)
+    .then(res => this.componentDidMount())
   }
 
 
 
   ////////////////////////////////////////graph data////////////////////////////////////////
 
-    testDate = (assessments) => {
+  testDate = (assessments) => {
     let dateArray = []
     let fullArray = []
     assessments.map(assessment => {
@@ -214,8 +221,6 @@ class ClassHome extends React.Component {
     assessmentScore.shift()
     totalAssessments.shift()
     totalScore.shift()
-    console.log(dateIndex)
-    console.log(date)
     const dates = dateIndex
     this.setState({
       stateLables:date,
@@ -228,18 +233,23 @@ class ClassHome extends React.Component {
   }
 
   callback = (e) => {
-    // e.preventDefault()
-    console.log(e)
+    
   }
 
   reFetchAssessments = (e) => {
     this.fetchClassesAssessments()
-    console.log('refetching')
   }
 
   reFetchStudentBody = () => {
     this.fetchStudents()
     this.fetchClass()
+  }
+
+  findClassInfo = (classes, classID) => {
+    classes.map(classPeriod => {
+      if (classPeriod.id == classID)
+      {this.setState({classObject:classPeriod})}
+    }) 
   }
 
   render(){
@@ -283,6 +293,7 @@ class ClassHome extends React.Component {
                   <Route exact path={`${match.url}/edit`} render={props =>
                     <EditClassContainer
                       {...props}
+                      classObject={this.state.classObject} 
                       roster={this.state.roster}
                       registrations={this.state.classRegistrations}
                       studentBody={this.state.allStudents}
@@ -290,6 +301,7 @@ class ClassHome extends React.Component {
                       register={e => this.postRegistration(e)}
                       deRegister={e => this.deleteRegistration(e)}
                       reFetchStudentBody={e => this.reFetchStudentBody(e)}
+                      patchClassPeriod={e => this.patchClassPeriod(e)}
                       test={e => this.test(e)}
                       />
                   }>     
@@ -307,6 +319,7 @@ class ClassHome extends React.Component {
                       buildGraph={e => this.testDate(e)}
                       fetchClass={e => this.reFetchAssessments(e)}
                       register={e => this.postRegistration(e)}
+                      patchStudent={e => this.patchStudent(e)}
                       deleteStudent={e => this.deleteStudent(e)}
                       deleteRegistration={e => this.deleteRegistration(e)}
                       test={e => this.test(e)}
@@ -316,6 +329,10 @@ class ClassHome extends React.Component {
                 </Switch>
               </div>
             </Router>
+
+        {/* <EditStudentForm 
+          reFetchStudentBody={e => this.reFetchStudentBody(e)}
+          roster={this.state.roster} /> */}
 
         <NewStudentForm 
           reFetchStudentBody={e => this.reFetchStudentBody(e)}/>

@@ -1,6 +1,5 @@
 import React from 'react';
 import AssessmentCard from '../components/AssessmentCard';
-import { api } from '../services/api'
 
 class AssessClass extends React.Component {
 
@@ -20,9 +19,9 @@ class AssessClass extends React.Component {
     let roster=this.props.roster
     let assessments=this.props.assessments
     let index = []
-    roster.map(student => {
+    roster.forEach(student => {
       let counter = 1 
-        assessments.map( assessment => {
+        assessments.forEach( assessment => {
           if (assessment.student_id === student.id){
             counter = counter+1
           }
@@ -38,7 +37,7 @@ class AssessClass extends React.Component {
   makeList = (index) => {
     let assess = []
     if (index.length <= 5) {
-      index.map(student => {assess.push(student[0])})
+      index.forEach(student => {assess.push(student[0])})
     }else{
       var i
       for (i = 0; i < 5; i++)
@@ -56,7 +55,7 @@ class AssessClass extends React.Component {
   ///// Send students from index to AssesmentCard component /////
   makeCards = () => {
     let students = this.state.assess
-    if (this.state.assess == []) {
+    if (this.state.assess === []) {
       return(
         <div className="assess-class__loading">
           loading
@@ -65,7 +64,7 @@ class AssessClass extends React.Component {
     }else{
       return(
         <ul className="assess-class__card-container">
-            {students.map(student => <li className="assess-class__card-container--card"><AssessmentCard classID={this.props.classPeriod} index={student[1]} nextAssessment={this.nextAssessment} student={student[0]}/></li> )}
+            {students.map(student => <li key={student.name} className="assess-class__card-container--card"><AssessmentCard classID={this.props.classPeriod} index={student[1]} nextAssessment={this.nextAssessment} student={student[0]}/></li> )}
         </ul>
       )
     }

@@ -7,7 +7,7 @@ const ClassScore = ({assessments, classPeriod, roster}) => {
 
         let classRoster = []
         roster.map(student => {classRoster.push(student.id)})
-        console.log(classRoster)
+        // console.log(classRoster)
         let classAssessments = []
         assessments.map( assessment => {if ((assessment.class_period_id == classPeriod) && (classRoster.includes(assessment.student_id) == true) ) classAssessments.push(assessment)})
 

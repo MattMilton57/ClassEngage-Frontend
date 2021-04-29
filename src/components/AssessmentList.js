@@ -9,7 +9,7 @@ const AssessmentList = ({thisStudent, thisClass, assessments}) => {
             return(<div>No scores yet</div>)
         }else{
             return(
-        assessments.map(assessment => {if(assessment.class_period_id == thisClass) return(<Assessment assessment={assessment} score={assessment.participating}/>)})
+        assessments.map(assessment => {if(assessment.class_period_id === thisClass) return(<Assessment assessment={assessment} score={assessment.participating}/>)})
              ) }}
 
 

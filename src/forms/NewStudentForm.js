@@ -1,4 +1,3 @@
-import { createHashHistory } from 'history';
 import React from 'react';
 import { api } from '../services/api'
 
@@ -40,7 +39,7 @@ export default class NewStudentForm extends React.Component {
                 <input type="checkbox" id="new-student-form__checkbox" className="new-student-form__checkbox"/>
                 <div className="new-student-form__content">
 
-                    <label className="new-student-form__content--form-toggle" for="new-student-form__checkbox">
+                    <label className="new-student-form__content--form-toggle" htmlFor="new-student-form__checkbox">
                         <span className="new-student-form__content--form-toggle">X</span>
                     </label>
 
