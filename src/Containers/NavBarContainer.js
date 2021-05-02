@@ -1,7 +1,7 @@
 import React from 'react';
 import logo_svg from "../img/logo-hand.svg";
-import sprite from "../img/sprite.svg"
-import {BrowserRouter as Link} from "react-router-dom";
+import sprite from "../img/sprite.svg";
+import {Link} from "react-router-dom";
 
 class NavBar extends React.Component {
 

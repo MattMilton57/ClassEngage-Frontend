@@ -310,6 +310,7 @@ class ClassHome extends React.Component {
                   <Route exact path={`${match.url}/studenthome/:id`} render={props =>
                     <StudentHomeContainer
                       {...props}
+                      assessments={this.state.classAssessments} 
                       roster={this.state.roster}
                       registrations={this.state.classRegistrations}
                       studentBody={this.state.allStudents}

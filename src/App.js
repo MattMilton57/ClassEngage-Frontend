@@ -60,8 +60,8 @@ class App extends React.Component {
   
 
   render(){
-    const {user} = this.state.auth
-    const {currentUser} = this.state.currentUser
+    // const {user} = this.state.auth
+    // const {currentUser} = this.state.currentUser
     return(
         <div className="container">
 

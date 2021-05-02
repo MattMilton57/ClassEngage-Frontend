@@ -3,20 +3,20 @@ import React from 'react';
 const ClassScore = ({assessments, classPeriod, roster}) => {
 
     const  setParticipation = () => {
-        if ((assessments == [])){return(<div>Loading</div>)}else{
+        if ((assessments === [])){return(<div>Loading</div>)}else{
 
         let classRoster = []
-        roster.map(student => {classRoster.push(student.id)})
+        roster.forEach(student => {classRoster.push(student.id)})
         // console.log(classRoster)
         let classAssessments = []
-        assessments.map( assessment => {if ((assessment.class_period_id == classPeriod) && (classRoster.includes(assessment.student_id) == true) ) classAssessments.push(assessment)})
+        assessments.forEach( assessment => {if ((assessment.class_period_id === classPeriod) && (classRoster.includes(assessment.student_id) === true) ) classAssessments.push(assessment)})
 
         let totalScore=0
         let totalAssessments = classAssessments.length
-        classAssessments.map( assessment => {if (assessment.participating == true) totalScore=(totalScore+1)})
+        classAssessments.forEach( assessment => {if (assessment.participating === true) totalScore=(totalScore+1)})
         let rawScore=(totalScore/totalAssessments)
         let classScore = ((rawScore*100).toFixed(0))
-        if (classScore == "NaN") {
+        if (classScore === "NaN") {
                 return(
                     <div className="class-score__score--loading">
                         Loading

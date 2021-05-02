@@ -1,6 +1,7 @@
 import React from 'react';
 import TitleBox from "../components/TitleBox"
 import ClassScore from "../components/ClassScore"
+import ClassRank from "../components/ClassRank"
 import Graphics from "../components/Graphics"
 import EditStudentForm from "../forms/EditStudentForm"
 
@@ -85,7 +86,10 @@ class StudentHomeContainer extends React.Component{
         </div>
 
         <div className="student-home__ranking">
-          class ranking
+          <ClassRank 
+          thisStudent={this.state.thisStudent}
+          roster={this.props.roster}
+          assessments={this.props.assessments}/>
         </div>
 
         <div className="student-home__preferences">
