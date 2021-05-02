@@ -21,5 +21,20 @@
     &__data {
         color: $color-copper-2;
         font-size: 7.3rem;
+
+        &-class-rank{
+            display:flex;
+
+            &-text{
+                color: white;
+                writing-mode: vertical-rl;
+                text-orientation: sideways-right;
+                font-size: 4rem;
+            }
+
+            &-score {
+
+            }
+        }
     }
 }

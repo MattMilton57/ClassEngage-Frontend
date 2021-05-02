@@ -423,6 +423,13 @@ h2 {
   .info-box__data {
     color: #D4785C;
     font-size: 7.3rem; }
+    .info-box__data-class-rank {
+      display: flex; }
+      .info-box__data-class-rank-text {
+        color: white;
+        writing-mode: vertical-rl;
+        text-orientation: sideways-right;
+        font-size: 4rem; }
 
 .last-assessment {
   height: 100%;
