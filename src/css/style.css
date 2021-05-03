@@ -1012,7 +1012,7 @@ h2 {
   opacity: 0;
   visibility: hidden;
   z-index: 2500;
-  transform: scale(0.5);
+  transform: scale(0.51);
   transition: all .25s; }
   .delete-class-form__content--form {
     background-color: #111111;
