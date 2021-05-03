@@ -42,7 +42,7 @@ class ClassHome extends React.Component {
     const {match} = this.props
     const id = (parseInt(match.params.id))
     // console.log(match, id)
-    this.fetchClassesAssessments()
+    // this.fetchClassesAssessments()
     this.fetchClass()
     this.checkUser(id)
     this.fetchStudents()
@@ -72,6 +72,7 @@ class ClassHome extends React.Component {
   fetchClassRegistrations = (id) => {
     (api.get.filteredRegistrations({class_period_id:id}))
     .then(res => this.setState({classRegistrations:res}))
+    .then(res => this.fetchClassesAssessments())
   }
 
   fetchStudents = () => {
@@ -93,7 +94,9 @@ class ClassHome extends React.Component {
     const {match} = this.props
     const id = (parseInt(match.params.id))
     api.get.classesAssessments({class_period_id:id})
-    .then(res => {this.setState({classAssessments:res}); this.testDate(res)})
+    // .then(res => {this.setState({classAssessments:res}); this.testDate(res)})
+    .then(res => {this.releventAssessments(res)})
+
   }
 
   fetchClass = () => {
@@ -232,8 +235,18 @@ class ClassHome extends React.Component {
     })
   }
 
+
+//////////callbacks//////////
+
   callback = (e) => {
     
+  }
+
+  releventAssessments = (assessments) => {
+    let releventAssessments=[]
+    assessments.forEach(assessment=>{this.state.roster.forEach(student=>{if(student.id===assessment.student_id){releventAssessments.push(assessment)}})})
+    this.setState({classAssessments:releventAssessments})
+    this.testDate(releventAssessments)
   }
 
   reFetchAssessments = (e) => {

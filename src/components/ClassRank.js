@@ -52,15 +52,15 @@ const ClassRank = ({assessments, roster, thisStudent}) => {
         }else{
             if(finalScore.tiedScores > 1)
             return(
-                <div className="info-box">
-                    <div className="class-rank__text info-box__text">
+                <div className="class-rank">
+                    <div className="class-rank__text">
                         Class Ranking
                     </div>
-                    <div className="class-rank__score-tied info-box__data info-box__data-class-rank">
-                        <div className="class-rank__score-tied-text info-box__data-class-rank-text">
+                    <div className="class-rank__score-tied">
+                        <div className="class-rank__score-tied-text">
                             Tied
                         </div>
-                        <div className="class-rank__score-tied-score info-box__data-class-rank-score">
+                        <div className="class-rank__score-tied-score">
                         {finalScore.rawIndex}/{fullStudentInfo.length}
                         </div>
 
@@ -69,11 +69,11 @@ const ClassRank = ({assessments, roster, thisStudent}) => {
             )
         else{
             return(
-                <div className="info-box">
-                <div className="class-rank__text info-box__text">
+                <div className="class-rank">
+                <div className="class-rank__text">
                     Class Ranking
                 </div>
-                <div className="class-rank__score-singular info-box__data">
+                <div className="class-rank__score-singular">
                 {finalScore.rawIndex}/{fullStudentInfo.length}
                 </div>
             </div>
@@ -83,7 +83,7 @@ const ClassRank = ({assessments, roster, thisStudent}) => {
     }
 
     return(
-        <div className="class-rank">
+        <div>
             {setParticipation()}
         </div>
     )

@@ -8,7 +8,7 @@ export default class DeleteStudentForm extends React.Component {
         this.state={
             selectedStudent:'',
             studentRegistrations:'',
-            studentSchedule:'',
+            studentSchedule:'welcome',
             registrationIds:'',
             assessments:''
         }
@@ -38,16 +38,52 @@ export default class DeleteStudentForm extends React.Component {
     }
 
     displaySchedule = () => {
+        if(this.state.studentSchedule === 'welcome'){
+            return(
+                <div className="delete-student-form__content--form-info-box-welcome">
+                    Select a student 
+                    <br></br>
+                    to delete
+                </div>
+                )
+        }
+
+        if(this.state.studentSchedule === "deleted"){
+            return(
+            <div className="delete-student-form__content--form-info-box-deleted">
+                <div className="delete-student-form__content--form-info-box-deleted-name">
+                    {this.state.selectedStudent.name} 
+                </div>
+                <div className="delete-student-form__content--form-info-box-deleted-text">
+                    deleted
+                </div>
+            </div>
+            )
+        }
+
         if (this.state.studentSchedule !== '' ){
             return(
-                <div className="">
-                    Deleting this student will also delete their registrations from the following classes:
-                    <ul className="">
+                <div className="delete-student-form__content--form-info-box-remove">
+                    <div className="delete-student-form__content--form-info-box-remove-text">
+                        Deleting this student will delete registrations from all classes
+                    </div>
+                    <ul className="delete-student-form__content--form-info-box-remove-schedule">
                         {this.state.studentSchedule.map(classPeriod => {return(<li>{classPeriod.subject}</li>)})}
                     </ul>
                 </div>
             )
         }
+
+        // if (this.state.studentSchedule !== '' ){
+        //     return(
+        //         <div className="">
+        //             Deleting this student will also delete their registrations from the following classes:
+        //             <ul className="">
+        //                 {this.state.studentSchedule.map(classPeriod => {return(<li>{classPeriod.subject}</li>)})}
+        //             </ul>
+        //         </div>
+        //     )
+        // }
     }
 
     onSubmit = (e) => {
@@ -55,6 +91,7 @@ export default class DeleteStudentForm extends React.Component {
         // console.log(this.state.selectedStudent.id, this.state.registrationIds, this.state.studentAssessments)
 
         this.props.deleteStudent(this.state.selectedStudent.id, this.state.registrationIds, this.state.studentAssessments)
+        this.setState({studentSchedule:'deleted'})
         // console.log(this.state.selectedStudent.id, this.state.registrationIds)
     }
     
@@ -86,7 +123,7 @@ export default class DeleteStudentForm extends React.Component {
                         delete a student
                     </div>
 
-                    <div className="delete-student-form__content--form-schedule">
+                    <div className="delete-student-form__content--form-info-box">
                         {this.displaySchedule()}
                     </div>
 

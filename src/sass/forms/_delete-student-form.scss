@@ -81,7 +81,7 @@
             &-title {
                 grid-row: 1 / span 1;
                 grid-column: 2 / span 1;
-                font-size: 5rem;
+                font-size: 3rem;
                 font-weight: 100;
                 height: 100%;
                 width: 100%;
@@ -94,12 +94,54 @@
 
             }
     
-            &-schedule {
+            &-info-box{
                 grid-row: 2 / span 1;
                 grid-column: 2 / span 1;
                 @include component-format;
                 height: 100%;
-                width: 100%;
+
+                display: flex;
+                justify-content: start;
+                align-items: center;
+                padding: 2rem;
+                width: 30rem;
+                font-size: 1.5rem;
+                &-welcome{
+                    font-size: 2rem;
+                    font-weight: 100;
+
+                }
+
+                &-deleted{
+                    &-name{
+                        color: $color-copper-2;
+                        font-size: 3rem;
+                    }
+
+                    &-text{
+
+                    }
+                }
+
+                &-blank-schedule{
+                    font-size: 2rem;
+                    font-weight: 100;
+                }
+
+                &-remove{
+
+                    &-text{
+                        font-size: 2rem;
+                        font-weight: 100;
+
+                    }
+                    &-schedule{
+                        list-style: none;
+                        // font-size: 1.5rem;
+                        color: $color-copper-2 ;
+
+                    }
+                }
             }
 
     
