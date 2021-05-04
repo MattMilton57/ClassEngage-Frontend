@@ -54,13 +54,27 @@ this.setState({user: newState})
   render(){
     return(
       
-      <div className="landing-form__login landing-form">
-        <h2 className="landing-form__heading">Please log in</h2>
-        <label className= "landing-form__label">Username</label>
-        <input className= "landing-form__textbox" type="text" placeholder="username" onChange={ (e) => this.onChange("username", e.target.value)}/>
-        <label className= "landing-form__label">Password</label>
-        <input className="landing-form__textbox"  type="password" name="password" placeholder="password" value={this.state.user.password} onChange={ (e) => this.onChange("password", e.target.value)}/>
-        <input className="btn btn-dark" type="submit" value="login" onClick={this.onSubmit}/>
+      <div className="landing-form__login">
+
+        <div className="landing-form__login-username landing-form__input">
+          <input className= "landing-form__textbox" type="text" placeholder="username" onChange={ (e) => this.onChange("username", e.target.value)}/>
+        </div>
+
+        <div className="landing-form__login-password landing-form__input">
+          <input className="landing-form__textbox"  type="password" name="password" placeholder="password" value={this.state.user.password} onChange={ (e) => this.onChange("password", e.target.value)}/>
+        </div>
+
+        <div className="landing-form__login-submit">
+          <input className="btn btn-dark" type="submit" value="login" onClick={this.onSubmit}/>
+        </div>
+
+        <div className="landing-form__login-forgot-password">
+          <div>forgot password?</div>
+        </div>
+
+        <div className="landing-form__login-register">
+          <div className="">register</div>
+        </div>
 
       </div>
     )
