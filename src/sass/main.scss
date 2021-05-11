@@ -8,6 +8,7 @@
 
 @import "components/assessment-card";
 @import "components/assessment-list";
+@import "components/button";
 @import "components/class-list";
 @import "components/class-rank";
 @import "components/class-score";
@@ -25,6 +26,7 @@
 @import "containers/assess-class";
 @import "containers/class-stats";
 @import "containers/edit-class";
+@import "containers/header";
 @import "containers/student-home";
 
 @import "forms/delete-class-form";
@@ -34,6 +36,7 @@
 @import "forms/landing-form";
 @import "forms/new-class-form";
 @import "forms/new-student-form";
+@import "forms/register-form";
 
 @import "pages/class_home";
 @import "pages/landing_page";

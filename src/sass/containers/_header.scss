@@ -1,0 +1,63 @@
+.header {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    align-items: center;
+
+    &__text{
+        grid-column: 1 / span 1;
+        margin-left: 2rem;
+        font-size: 3rem;
+        font-weight: 200;
+    }
+
+    &__user{
+        grid-column: 2 / span 1;
+        margin-right: 2rem;
+        justify-self: end;
+        font-size: 1.5rem;
+        font-weight: 300;
+        display: flex;
+
+        &-name {
+            margin-right: 1rem;
+        }
+
+        &-menu {
+            &-log-out{
+                color: $color-copper-2;
+            }
+        }
+    }
+
+    &__controll-toggle{
+        display: none;
+    }
+
+    &__dropdown{
+        grid-column: 2 / span 1;
+        // grid-row: 2 / span 1;
+        z-index: 9000;
+        // transform: translateY(2rem);
+        display: none;
+        // position: absolute;
+        // top: 6rem;
+        // right: 6rem;
+        // transform: scaleX(0);
+        transition: all .2s;
+        background-color: rebeccapurple;
+
+        &-log-out{
+
+        }
+
+        &-edit-profile{
+
+        }
+    }
+
+    &__controll-toggle:checked ~ &__dropdown {
+        // transform: scaleY(0);
+        display: flex;
+    }
+}

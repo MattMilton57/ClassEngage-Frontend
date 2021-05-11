@@ -4,7 +4,7 @@ const LastAssessment = ({assessment}) => {
 
 const assessmentDate = () => {
     if (!assessment){
-        return (<div>Loading</div>)
+        return (<div></div>)
     }else{
     const date = assessment.created_at; 
     const split = date.split('T'); 
@@ -12,11 +12,16 @@ const assessmentDate = () => {
     const dateSplit=dateOnly.split('-');
     const month = dateSplit[1]
     const day = dateSplit[2]
-    return(<div>
-        <div className="last-assessment__date">
-            {parsedDate(month)}/{parsedDate(day)}
+    return(
+        <div className="last-assessment">
+            <div className="last-assessment__text">
+                Last Assessment
+            </div>
+            <div className="last-assessment__date">
+                {parsedDate(month)}/{parsedDate(day)}
+            </div>
         </div>
-    </div>)}
+    )}
 }
 
 const parsedDate = (date) => {
@@ -24,10 +29,7 @@ const parsedDate = (date) => {
 }
 
         return(
-            <div className="last-assessment">
-                <div className="last-assessment__text">
-                    Last Assessment
-                </div>
+            <div >
                 {assessmentDate()}
             </div>
         ) 

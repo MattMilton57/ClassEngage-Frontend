@@ -1,10 +1,11 @@
 import React from 'react';
 import './css/style.css';
 import LandingPage from './main_routes/LandingPage.js'
-// import SelectClass from './SelectClass/SelectClass.js'
 import SelectClass from './main_routes/SelectClass.js'
 import ClassHome from './main_routes/ClassHome.js'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import TestHome from './main_routes/TestHome.js'
+import {ProtectedRoute} from './services/protected.route'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { api } from './services/api'
 
 class App extends React.Component {
@@ -20,7 +21,7 @@ class App extends React.Component {
 
   componentDidMount(){
     this.setUser()
-    // console.log('App mounted')
+    console.log('App mounted')
   }
 
   setUser = () => {
@@ -67,31 +68,48 @@ class App extends React.Component {
 
           <div className="content">
             <Router>
-              <div>
-                <Route exact path = "/"
-                component={ props => 
-                  <LandingPage 
-                    {...props}
-                    logIn={this.onLogin}/>
-                }/>
+              <Switch>
 
-                <Route exact path = "/selectClass"
-                render={ props => 
-                  <SelectClass 
-                    {...props}
-                    user={this.state.currentUser}
-                    logIn={this.onLogin} 
-                    />
-                }/>
+                <div>
+                  <Route exact path = "/"
+                  component={ props => 
+                    <LandingPage 
+                      {...props}
+                      logIn={this.onLogin}/>
+                  }/>
 
-                <Route path = "/classhome/:id"
-                render={ props => 
-                  <ClassHome 
-                    {...props}
-                    user={this.state.currentUser}
-                    />
-                }/>
-              </div>
+                  {/* <ProtectedRoute exact path = "/testhome"
+                  component={ props => 
+                    <TestHome 
+                      {...props}
+                      logIn={this.onLogin}/>
+                  }/> */}
+
+                  <ProtectedRoute exact path = "/selectClass"
+                  component={ props => 
+                    <SelectClass 
+                      {...props}
+                      user={this.state.currentUser}
+                      logOut={this.onLogout} 
+                      />
+                  }/>
+
+                  <ProtectedRoute path = "/classhome/:id"
+                  component={ props => 
+                    <ClassHome 
+                      {...props}
+                      user={this.state.currentUser}
+                      logOut={this.onLogout} 
+
+                      />
+                  }/>
+
+                  {/* <Route exact path = "*" 
+                  component={() => "404, page not found"} 
+                  /> */}
+                </div>
+
+              </Switch>
             </Router>
           </div>
 

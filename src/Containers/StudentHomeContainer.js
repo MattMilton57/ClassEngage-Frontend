@@ -24,6 +24,7 @@ class StudentHomeContainer extends React.Component{
   componentDidMount(){
     const {match} = this.props
     const id = (parseInt(match.params.id))
+    this.props.setHeader("Student Page")
     // console.log(id)
     // this.getAssessments()
     api.get.currentStudent(id)

@@ -1,15 +1,21 @@
 .class-home {
     height:90vh;
     display: grid;
-    grid-template-rows: 1;
+    grid-template-rows: 5rem 1fr;
     grid-template-columns: 1fr 6fr;
     background-color: $color-grey-mid;
     border-radius: 1rem;
     align-content: space-between;
 
+    &__header {
+        grid-column: 2 / span 1;
+        grid-row: 1 / span 1;
+        background-color: $color-grey-mid;
+    }
+
     &__nav {
         grid-column: 1 / span 1;
-        grid-row: 1 / span 1;
+        grid-row: 1 / span 2;
         background-color: $color-grey-dark;
     }
 
@@ -43,7 +49,7 @@
     // }
 
     &__content {
-        grid-row: 1 / span 1;
+        grid-row: 2 / span 1;
         grid-column: 2 / span 1;
         display: grid;
         grid-template-rows: 1fr;

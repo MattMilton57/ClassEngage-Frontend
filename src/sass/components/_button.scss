@@ -2,9 +2,45 @@
     height: 5rem;
     color: white;
     background-image: $gradient-dark;
+    // background-image: $gradient-dark;
     border: none;
-    border-radius: 1rem;
+    // border-radius: 1rem;
     width: 30rem;
     font-size: 3rem;
     font-weight: 100;
+    transition: all .05s;
+    position: relative;
+    display: inline-block;
+
+    cursor: pointer;
+
+    &:hover{
+        // background-image: $copper-gradient;
+        // outline:solid 1px rgba($color-copper-2, 1);
+        // background-image: $gradient-dark-mid;
+        box-shadow: 0 .4rem 2rem rgba(black,.2);
+        transform: scale(1.005);
+        // background-color: rgba($color-grey-dark, .7)
+    }
+
+    &:active,
+    &:focus  {
+        outline: none;
+        border: none;
+        transform: translateY(-1px);
+        box-shadow: 0 .2rem 1rem rgba(black, .2);
+    }
+
+    &::after {
+        content: "";
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        border-radius: 10rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        transition: all .4s;
+    }
 }

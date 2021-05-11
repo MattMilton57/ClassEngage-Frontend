@@ -1,4 +1,5 @@
 import React from 'react';
+import auth from '../services/auth';
 import logo_svg from "../img/logo-hand.svg";
 import LogInForm from '../forms/LogInForm';
 import RegisterForm from '../forms/RegisterForm';
@@ -15,19 +16,24 @@ const LandingPage = (props) => {
             <embed src={logo_svg} alt="Logo" class="landing-page__content-logo--box"/>
           </div>
 
-          <div className="landing-page__content-login">
-            <LogInForm {...props} logIn={logIn}/>
+          <div className="landing-page__content-form">
+          <input type="checkbox" className="landing-page__content-form-checkbox" id="landing-page-toggle"/>
+
+            <div className="landing-page__content-form-login">
+              <LogInForm {...props} logIn={logIn}/>
+            </div>
+            <div className="landing-page__content-form-register">
+              <RegisterForm {...props} logIn={logIn}/>
+            </div>
           </div>
         </div>
           
-            {/* <RegisterForm {...props} logIn={logIn}/> */}
           
-          {/* <input type="checkbox" class="landing-page__checkbox testclass landing-page__checkbox-login" id="login-toggle"/>
-          <label for="login-toggle" className="landing-page__button landing-page__button--login">Log in</label>
+          {/* {/* <input type="checkbox" class="landing-page__checkbox testclass landing-page__checkbox-login" id="login-toggle"/>
+          <label for="login-toggle" className="landing-page__button landing-page__button--login">Log in</label> */}
 
           
-          <input type="checkbox" class="landing-page__checkbox landing-page__checkbox-register" id="register-toggle"/>
-          <label for="register-toggle" className="landing-page__button landing-page__button--register">register</label> */}
+          {/* <label for="landing-page-toggle" className="landing-page__button landing-page__button--register">register</label>  */}
 
 
 

@@ -20,6 +20,10 @@ class NavBar extends React.Component {
     console.log('refetching')
     this.props.reFetch()
   }
+
+  handleClick = (e) => {
+      this.props.setHeader(e)
+  }
  
   render(){
 
@@ -29,29 +33,29 @@ class NavBar extends React.Component {
                 
                 <div className=" navBar__header menu-header select-class__menu-header">
 
-                    <div className="menu-header__logo--box">
-                        <embed src={logo_svg} alt="Logo" className="menu-header__logo"/>
+                    <div className="navBar__header-logo--box">
+                        <embed src={logo_svg} alt="Logo" className="navBar__header-logo"/>
                     </div>
 
                 </div>
 
                 <div  className="navBar__link-list" onClick={e => this.reFetch(e)}>
 
-                        <Link to={`${this.props.match.url}`} className="navBar__link-list--link">
+                        <Link to={`${this.props.match.url}`} className="navBar__link-list--link" onClick={e=>this.handleClick("Class Home Page")}>
                             <div className="navBar__link-list--link-text">Class Stats</div>
                             <svg className="navBar__link-list--link-icon">
                                 <use href={sprite + "#icon-gauge"} ></use>
                             </svg>
                         </Link>
 
-                        <Link to={`${this.props.match.url}/assess`} className="navBar__link-list--link">
+                        <Link to={`${this.props.match.url}/assess`} className="navBar__link-list--link" onClick={e=>this.handleClick("Assess Class Engagement")}>
                             <div className="navBar__link-list--link-text">Assess Class</div>
                             <svg className="navBar__link-list--link-icon">
                                 <use href={sprite + "#icon-clipboard"} ></use>
                             </svg>
                         </Link>
 
-                        <Link to={`${this.props.match.url}/edit`} className="navBar__link-list--link">
+                        <Link to={`${this.props.match.url}/edit`} className="navBar__link-list--link" onClick={e=>this.handleClick("Edit Class")}>
                             <div className="navBar__link-list--link-text">Edit Class</div>
                             <svg className="navBar__link-list--link-icon">
                                 <use href={sprite + "#icon-pencil"} ></use>

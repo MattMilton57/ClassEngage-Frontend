@@ -40,69 +40,38 @@
             }
         }
     
-        &-login { 
+        &-form { 
             justify-self: center; 
             grid-row: 2 / span 1;
             grid-column: 1 / span 1;
             width: 100%;
 
 
+            &-login{
+                // transition: transform .8s cubic-bezier(0.85, 0, 0.15, 1);
+            }
+
+            &-register{
+                // transition:all 2s;
+                display: none; 
+
+// height: 10rem;
+
+            }
+            &-checkbox {
+                display: none;
+            }
+            &-checkbox:checked ~ &-login{
+        display: none; 
+            }
+            &-checkbox:checked ~ &-register {
+                display: flex;
+            }
         }
+    
+    
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    &__checkbox {
-        display: none;
-    }
-
-    &__checkbox-login:checked ~ &-form__login{
-        transform: translatex(40vw) translateY(-25vh);
-        // background-color: royalblue;
-    }
-
-    &__checkbox-register:checked ~ &-form__register {
-        transform: translatex(40vw) translateY(-25vh);
-        // display: flex;
-    }
 
 
 
@@ -117,22 +86,22 @@
 
 
     
-    &__formbox {
+    // &__form {
 
-        &--register {
-            grid-row: 2 / 4;
-            grid-column: 2;
-            display: flex;
-            // display: none;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 20vh;
-            justify-content: center;
-            background-color: white;
-            transform: translatex(50vw);
-            transition: all 1s;
-        }
-    }
+    //     &--register {
+    //         grid-row: 2 / 4;
+    //         grid-column: 2;
+    //         display: flex;
+    //         // display: none;
+    //         flex-direction: column;
+    //         justify-content: space-between;
+    //         height: 20vh;
+    //         justify-content: center;
+    //         background-color: white;
+    //         transform: translatex(50vw);
+    //         transition: all 1s;
+    //     }
+    // }
 
     &__button {
         @include item-format;
@@ -149,14 +118,14 @@
         margin: 0 3rem;
 
 
-        &--login {
+        &-login {
             grid-row: 2;
             grid-column: 1;
             align-self: end;
             justify-self: center;
         }
 
-        &--register {
+        &-register {
             grid-row: 3;
             grid-column: 1;
             margin: 3rem;

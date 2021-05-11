@@ -3,6 +3,7 @@ import Roster from "../components/Roster";
 import RosterRemainder from "../components/RosterRemainder";
 import InfoBox from "../components/InfoBox";
 import EditClassForm from "../forms/EditClassForm"
+import TitleBox from "../components/TitleBox"
 
 
 const  EditClassContainer = ({roster, studentBody, deRegister, register, registrations, classObject, patchClassPeriod, reFetchStudentBody }) => {
@@ -32,7 +33,6 @@ const  EditClassContainer = ({roster, studentBody, deRegister, register, registr
 
     return(
       <div className="edit-class">
-        <div className="edit-class__header">Edit Class</div>
 
           <div className="edit-class__roster-container">
             <div className="edit-class__headline--roster">
@@ -48,10 +48,12 @@ const  EditClassContainer = ({roster, studentBody, deRegister, register, registr
               <RosterRemainder roster={roster} studentBody={studentBody} callback={handleAdd} registerAction="+"/>
           </div>
 
-          <div className="edit-class__class-graph">
+          <div className="edit-class__class-name">
             {classObject.subject}
-            <br></br>
-            graph
+        </div>
+
+          <div className="edit-class__message-center">
+            message center
           </div>
 
           <div className="edit-class__class-count">

@@ -2,6 +2,7 @@ import React from 'react';
 import ClassList from '../components/ClassList';
 import NewClassForm from "../forms/NewClassForm"
 import DeleteClassForm from "../forms/DeleteClassForm"
+import HeaderContainer from '../containers/HeaderContainer';
 import MenuHeader from "../components/MenuHeader"
 import MenuFooter from "../components/MenuFooter"
 import logo_svg from "../img/logo-hand.svg";
@@ -63,7 +64,7 @@ class SelectClass extends React.Component {
   }
 
   showList = () => {
-    if (this.state.allclasses == ''){return <div class="select-class__welcome">Welcome! Please create some classes.</div>}
+    if (this.state.allclasses == ''){return <div class="select-class__welcome"></div>}
     else
     {return <ClassList classNumber={this.props.classNumber} classes={this.state.allclasses}/>}
   }
@@ -73,9 +74,17 @@ class SelectClass extends React.Component {
       <div className="select-class">
          {/* <button onClick={e=> this.test(e)}>Button for tests</button> */}
           <div className="select-class__sidebar">
-            <div className="select-class__header select-class__sidebar--header">
+            {/* <div className="select-class__header select-class__sidebar--header">
               <MenuHeader/>
-            </div>
+            </div> */}
+
+<div className=" navBar__header menu-header select-class__menu-header">
+
+<div className="navBar__header-logo--box">
+    <embed src={logo_svg} alt="Logo" className="navBar__header-logo"/>
+</div>
+
+</div>
 
             <div className="select-class__class-list select-class__sidebar--class-list">
               <div className="select-class__class-list select-class__sidebar--class-list-selection">
@@ -103,6 +112,8 @@ class SelectClass extends React.Component {
               {/* <MenuFooter/> */}
             </div>
           </div>
+          <HeaderContainer logOut={this.props.logOut} history={this.props.history} user={this.props.user} headerText={""}/>
+
 
           {/* <embed src={logo_svg} alt="Logo" class="select-class__logo--box"/> */}
 

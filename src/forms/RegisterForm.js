@@ -28,7 +28,7 @@ class RegisterForm extends React.Component {
         this.postUser()
         console.log(this.state.user)
     } else {
-        alert('not good')
+        alert('Password and password confirmation must match. Please try again.')
     }
   }
 
@@ -48,63 +48,73 @@ class RegisterForm extends React.Component {
 
   render(){
     return(
-        <div class="landing-form__register landing-form">
-        <form onSubmit={(e)=> this.onSubmit(e)}>
-        <h2 class="landing-form__heading">Register</h2>
+
+        <div className="landing-form__register">
 
 
-                <label class= "landing-form__label">Username</label>
-                <input 
-                    type="text" 
-                    className="landing-form__textbox" 
-                    placeholder="Username"
-                    value={this.state.username}
-                    onChange={(e) => this.onChange("username", e.target.value)}/>
+                <div className="landing-form__register-username landing-form__input">
+                    <input 
+                        type="text" 
+                        className="landing-form__textbox" 
+                        placeholder="Username"
+                        value={this.state.username}
+                        onChange={(e) => this.onChange("username", e.target.value)}/>
+                </div>
 
 
 
-                <label class= "landing-form__label">Bio</label>
-                <input 
+
+                {/* <input 
                     type="text" 
                     className="landing-form__textbox" 
                     placeholder="bio"
                     value={this.state.bio}
-                    onChange={(e) => this.onChange("bio", e.target.value)}/>
+                    onChange={(e) => this.onChange("bio", e.target.value)}/> */}
 
 
 
-                <label class= "landing-form__label">Password</label>
-                <input 
-                    type="password" 
-                    className="landing-form__textbox" 
-                    placeholder="Password"
-                    value={this.state.password}
-                    onChange={(e) => this.onChange("password", e.target.value)}/>
+                {/* <label class= "landing-form__label">Password</label> */}
+                <div className="landing-form__register-password landing-form__input">
+                    <input 
+                        type="password" 
+                        className="landing-form__textbox" 
+                        placeholder="Password"
+                        value={this.state.password}
+                        onChange={(e) => this.onChange("password", e.target.value)}/>
+                </div>
 
 
 
-                <label class= "landing-form__label">Confirm Password</label>
-                <input 
-                    type="password" 
-                    className="landing-form__textbox" 
-                    placeholder="Confirm Password"
-                    value={this.state.confirmedpassword}
-                    onChange={(e) => this.setState({password_confirmation:e.target.value})}/>
+                {/* <label class= "landing-form__label">Confirm Password</label> */}
+                <div className="landing-form__register-confirm-password landing-form__input">
+                    <input 
+                        type="password" 
+                        className="landing-form__textbox" 
+                        placeholder="Confirm Password"
+                        value={this.state.password_confirmation}
+                        onChange={(e) => this.setState({password_confirmation:e.target.value})}/>
+                        {/* onChange={(e) => this.onChange("password_confirmation", e.target.value)}/> */}
+
+                </div>
 
 
 
-                <label class= "landing-form__label">Avatar</label>
-                <input 
+                {/* <input 
                     type="text" 
                     className="landing-form__textbox"
                     placeholder="Avatar"
                     value={this.state.password}
-                    onChange={(e) => this.onChange("avatar", e.target.value)}/>
+                    onChange={(e) => this.onChange("avatar", e.target.value)}/> */}
 
 
 
-            <button className="btn btn-dark" type="submit" value="Sign Up" >Sign Up</button>
-        </form>
+            {/* <button className="btn btn-dark" type="submit" value="Sign Up" >Sign Up</button> */}
+            <div className="landing-form__register-submit">
+          <input className="btn btn-dark" type="submit" value="Sign Up" onClick={this.onSubmit}/>
+        </div>
+          <label for="landing-page-toggle" className="landing-page__button landing-form__register-switch">Sign In</label> 
+
+        {/* </form> */}
         </div>
     )
   }

@@ -1,5 +1,7 @@
 import React from 'react';
 import NavBarContainer from '../containers/NavBarContainer';
+import HeaderContainer from '../containers/HeaderContainer';
+
 import AssessClassContainer from '../containers/AssessClassContainer';
 import EditClassContainer from '../containers/EditClassContainer.js';
 import ClassStatsContainer from '../containers/ClassStatsContainer';
@@ -34,7 +36,8 @@ class ClassHome extends React.Component {
       classObject:'',
       graphInfo:'',
       stateLables:[],
-      studentToUpdate:''
+      studentToUpdate:'',
+      headerText:'Class Home Page',
     }
   }
 
@@ -242,6 +245,10 @@ class ClassHome extends React.Component {
     
   }
 
+  setHeader = (e) => {
+    this.setState({headerText:e})
+  }
+
   releventAssessments = (assessments) => {
     let releventAssessments=[]
     assessments.forEach(assessment=>{this.state.roster.forEach(student=>{if(student.id===assessment.student_id){releventAssessments.push(assessment)}})})
@@ -272,7 +279,10 @@ class ClassHome extends React.Component {
 
             <Router>
             <div className="class-home__nav">
-              <NavBarContainer classes={this.state.allclasses} classPeriod={this.state.classPeriod} reFetch={e => this.reFetchAssessments(e)} match={match} />
+              <NavBarContainer  classes={this.state.allclasses} setHeader={e => this.setHeader(e)} classPeriod={this.state.classPeriod} reFetch={e => this.reFetchAssessments(e)} match={match} />
+          </div> 
+          <div className="class-home__header">
+              <HeaderContainer logOut={this.props.logOut} history={this.props.history} user={this.props.user} classes={this.state.allclasses} classPeriod={this.state.classPeriod} reFetch={e => this.reFetchAssessments(e)} match={match} headerText={this.state.headerText}/>
           </div> 
               <div className="class-home__content">
                 <Switch>
@@ -326,6 +336,7 @@ class ClassHome extends React.Component {
                       assessments={this.state.classAssessments} 
                       roster={this.state.roster}
                       registrations={this.state.classRegistrations}
+                      setHeader={e => this.setHeader(e)}
                       studentBody={this.state.allStudents}
                       classPeriod={this.state.classPeriod}
                       graphInfoData={this.state.data}
