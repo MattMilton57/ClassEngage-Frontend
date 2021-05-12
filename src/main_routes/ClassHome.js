@@ -125,9 +125,10 @@ class ClassHome extends React.Component {
     .then(res => {this.fetchClass()})
   }
 
-  patchClassPeriod = (e) => {
-    // console.log(e)
-    api.patch.patchClassPeriod(e)
+  patchClassPeriod = (classPeriod) => {
+    let id =classPeriod.id
+
+    api.patch.patchClassPeriod(classPeriod, id)
     .then(res => {this.componentDidMount()})
   }
 
@@ -316,6 +317,7 @@ class ClassHome extends React.Component {
                   <Route exact path={`${match.url}/edit`} render={props =>
                     <EditClassContainer
                       {...props}
+                      user={this.props.user}
                       classObject={this.state.classObject} 
                       roster={this.state.roster}
                       registrations={this.state.classRegistrations}
@@ -360,7 +362,8 @@ class ClassHome extends React.Component {
           roster={this.state.roster} /> */}
 
         <NewStudentForm 
-          reFetchStudentBody={e => this.reFetchStudentBody(e)}/>
+          reFetchStudentBody={e => this.reFetchStudentBody(e)}
+          user={this.props.user}/>
 
         <DeleteStudentForm 
           roster={this.state.roster}

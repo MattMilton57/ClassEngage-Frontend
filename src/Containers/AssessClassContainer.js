@@ -73,8 +73,6 @@ class AssessClass extends React.Component {
   render(){
     return(
       <div className="assess-class">
-      <div className="assess-class__header">Assess Class</div>
-
         {this.makeCards()}
       </div>
     )

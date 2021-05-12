@@ -8,8 +8,17 @@ export default class NewStudentForm extends React.Component {
         this.state={
             student:{
                 name:'',
+                user:''
             }
         }
+    }
+
+    componentDidMount(){
+        this.setState({
+            student:{
+                user:this.props.user.id
+            }
+        })
     }
 
     onChange(state,value){

@@ -6,7 +6,7 @@ import EditClassForm from "../forms/EditClassForm"
 import TitleBox from "../components/TitleBox"
 
 
-const  EditClassContainer = ({roster, studentBody, deRegister, register, registrations, classObject, patchClassPeriod, reFetchStudentBody }) => {
+const  EditClassContainer = ({roster, studentBody, deRegister, user, register, registrations, classObject, patchClassPeriod, reFetchStudentBody }) => {
 
     // const register = (student) => {
     //     console.log(student)
@@ -31,6 +31,11 @@ const  EditClassContainer = ({roster, studentBody, deRegister, register, registr
         })
       }
 
+    const maxSize = (e) => {
+      let max = classObject.max
+      if(classObject){return roster.length+"/"+max }
+    }
+
     return(
       <div className="edit-class">
 
@@ -45,7 +50,7 @@ const  EditClassContainer = ({roster, studentBody, deRegister, register, registr
             <div className="edit-class__headline--student-body">
               <div className="edit-class__headline--title">Student Body</div>
             </div>
-              <RosterRemainder roster={roster} studentBody={studentBody} callback={handleAdd} registerAction="+"/>
+              <RosterRemainder user={user} roster={roster} studentBody={studentBody} callback={handleAdd} registerAction="+"/>
           </div>
 
           <div className="edit-class__class-name">
@@ -57,7 +62,7 @@ const  EditClassContainer = ({roster, studentBody, deRegister, register, registr
           </div>
 
           <div className="edit-class__class-count">
-            <InfoBox text={"class size"} data={roster.length}/>
+            <InfoBox text={"class size"} data={maxSize()}/>
           </div>
 
           {/* <div className="edit-class__new-student">

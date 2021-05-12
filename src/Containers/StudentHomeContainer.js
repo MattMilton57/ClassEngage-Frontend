@@ -72,7 +72,6 @@ class StudentHomeContainer extends React.Component{
     return(
       <div className="">
       <div className="student-home">
-        <div className="student-home__header">Student Home</div>
         <div className="student-home__name">
           <TitleBox title={this.state.thisStudent.name} />
         </div>

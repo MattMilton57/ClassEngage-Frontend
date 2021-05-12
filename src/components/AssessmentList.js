@@ -15,7 +15,9 @@ const AssessmentList = ({thisStudent, thisClass, assessments}) => {
 
     return(
     <div className='assessment-list'>
+        <div className="assessment-list-assessments">
                 {filterAssessments()}
+        </div>
     </div>
     )
     

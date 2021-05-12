@@ -83,8 +83,9 @@ const patchStudent = (student) => {
     .then(res => res.json())
 }
 
-const patchClassPeriod = (classPeriod) => {
-    return fetch((`${API_ROOT}/class_periods/${classPeriod.id}/`), {
+const patchClassPeriod = (classPeriod, id) => {
+    // console.log(id)
+    return fetch((`${API_ROOT}/class_periods/${id}/`), {
         method:"PUT",
         headers:headers(),
         body: JSON.stringify(classPeriod)
