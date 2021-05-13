@@ -1,57 +1,100 @@
 .delete-class-form {
     &__content{
-        height: 100vh;
-        width: 100vw;
-        // display: none;
-        display: grid;
-        grid-template-rows: repeat(3, 1fr);
-        grid-template-columns: repeat(3, 1fr);
-        position: fixed;
-        top: 0;
-        left: 0;
-        opacity: 0;
-        visibility: hidden;
-        z-index: 2500;
-        // background-color: rgba(#000000, .8);
-        // background-image: $copper-gradient;
-        transform: scale(.51);
+        // height: 100vh;
+        // width: 100vw;
+        // // display: none;
+        // display: grid;
+        // grid-template-rows: repeat(3, 1fr);
+        // grid-template-columns: repeat(3, 1fr);
+        // position: fixed;
+        // top: 0;
+        // left: 0;
+        // opacity: 0;
+        // visibility: hidden;
+        // z-index: 2500;
+        // background-color: rgba(#000000, .5);
+        // // background-image: $copper-gradient;
+        // transform: scale(.51);
         
-        transition: all .25s;
+        // transition: all .25s;
+
+        @include form-background;
         
         &--form{
-            @include component-format;
+            @include form;
+
+            // @include component-format;
+            // background-color: $color-grey-mid;
             grid-row: 2 / span 1;
             grid-column: 2 / span 1;
             display: grid;
-            z-index: 9950;
+            // z-index: 9950;
             grid-template-rows: min-content;
             grid-template-columns: repeat(2, min-content);
-            justify-items: center;
-            align-items: center;
-            padding: 3rem;
-            border: 1px solid $color-copper-2;
-            position: absolute;
+            // justify-items: center;
+            // align-items: center;
+            // padding: 3rem;
+            // border: 1px solid $color-copper-2;
+            // position: absolute;
     
     
-            &-class-list {
+            &-class-list-container {
                 grid-row: 1 / span 1;
                 grid-column: 1 / span 1;
+                @include component-format;
                 width: 20rem;
                 font-size: 2rem;
                 font-weight: 100;
                 color: $color-copper-2;
+                list-style: none;
+                // font-size: 2rem;
+                padding: 1rem;
+                width: 32rem;
+
+                &-class-period{
+                    border-radius: $border;
+                    background-color: black;
+                    display: flex;
+                    margin: .5rem 0rem;
+                    padding: .5rem;
+                    width: 100%;
+
+                    &-selected{
+                        background-color: $color-grey-mid;
+                        transform: scale(1.02);
+                        // font-weight: 400;
+                    }
+
+                    &-period{
+                        color:white;
+                        margin-left: 1rem;
+                    }
+
+                    &-subject{
+                        margin-left: 1rem;
+
+                    }
+                }
+
+
             }
     
             &-confirm {
-                grid-row: 1 / span 1;
-                grid-column: 2 / span 1;
+                grid-row: 2 / span 1;
+                grid-column: 1 / span 1;
                 // height: 5rem;
-                font-size: 4rem;
-                border: 1px solid $color-grey-mid;
-                background-color: $color-grey-mid;
-                border-radius: 1rem;
-                color: white;
-                text-align: center;
+                // font-size: 4rem;
+                // border: 1px solid $color-grey-mid;
+                // background-color: $color-grey-mid;
+                // border-radius: 1rem;
+                // color: white;
+                // text-align: center;
+
+                &-submit{
+                    @include button-copper;
+                    font-size:3rem;
+                }
+ 
             }
 
 
@@ -71,7 +114,7 @@
                 border-radius: 1rem;
                 box-shadow: 0 1rem 3rem rgba(black, .8);
                 font-weight: 200;
-                font-size: 4rem;
+                // font-size: 4rem;
                 transition: all .25s;
 
                 &:hover{
@@ -118,6 +161,5 @@
         transform: scale(1);
         // background-color: rebeccapurple;
     }
-
 
 }

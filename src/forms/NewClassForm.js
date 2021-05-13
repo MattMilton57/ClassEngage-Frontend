@@ -10,6 +10,7 @@ constructor(props){
             subject:'',
             period:'',
             level:0,
+            max:'',
             user_id:this.props.id,
         }
     }
@@ -88,6 +89,13 @@ render(){
                             placeholder="period"
                             value={this.state.class_period.period}
                             onChange={(e) => this.onChange("period", e.target.value)}/>
+
+                        <input 
+                            type="text" 
+                            className="new-class-form__content--form-max new-class-form__content--form-input"
+                            placeholder="maximum class size"
+                            value={this.state.class_period.max}
+                            onChange={(e) => this.onChange("max", e.target.value)}/>
 
 
                     {/* <div className="form-group">

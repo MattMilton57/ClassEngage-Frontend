@@ -58,7 +58,12 @@ const  EditClassContainer = ({roster, studentBody, deRegister, user, register, r
         </div>
 
           <div className="edit-class__message-center">
-            message center
+            <div className="">
+              Select a student from your roster to remove them from this class.
+            </div>
+            <div className="">
+              Select a student from the student body to register them.
+            </div>
           </div>
 
           <div className="edit-class__class-count">

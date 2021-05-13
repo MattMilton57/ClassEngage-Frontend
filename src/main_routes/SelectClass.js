@@ -37,7 +37,15 @@ class SelectClass extends React.Component {
 
   gatherList = () => {
     api.get.filteredClasses({user_id:this.state.id})
-    .then (res => this.setState({allclasses:res}))
+    .then (res => this.sortClassList(res))
+
+    // .then (res => this.setState({allclasses:res}))
+  }
+
+  sortClassList = (classList) => {
+    classList.sort((a, b) => (a.period - b.period))
+    this.setState({allclasses:classList})
+
   }
 
   deleteClassCycle = (classPeriod) => {
