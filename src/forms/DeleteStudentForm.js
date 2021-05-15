@@ -1,4 +1,5 @@
 import React from 'react';
+import FormToggle from "../components/FormToggle";
 import RosterRemainder from "../components/RosterRemainder";
 
 export default class DeleteStudentForm extends React.Component {
@@ -102,7 +103,7 @@ export default class DeleteStudentForm extends React.Component {
                 <div className="delete-student-form__content">
 
                     <label className="delete-student-form__content--form-toggle delete-student-form__toggle" htmlFor="delete-student-form__checkbox">
-                        <span className="delete-student-form__content--form-toggle">X</span>
+                        <FormToggle />
                     </label>
 
 
@@ -115,7 +116,7 @@ export default class DeleteStudentForm extends React.Component {
                             Student Body
                         </div>
                         
-                        <RosterRemainder roster={this.props.roster} studentBody={this.props.studentBody} callback={student => this.onSelect(student)} registerAction=""/>
+                        <RosterRemainder user={this.props.user}roster={this.props.roster} studentBody={this.props.studentBody} callback={student => this.onSelect(student)} registerAction=""/>
 
                     </div>
 

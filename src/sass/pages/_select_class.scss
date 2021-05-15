@@ -55,10 +55,13 @@
             display: grid;
             grid-template-columns: 1fr;
             grid-template-rows: 2fr .5fr ;
+            overflow: auto;
+
 
             &-selection {
                 grid-row: 1 / span 1;
                 grid-column: 1 /span 1;
+
             }
 
             &-create-class {

@@ -8,6 +8,37 @@ import TotalAssessments from '../components/TotalAssessments';
 
 const  ClassStatsContainer = ({assessments, roster, callback, classPeriod, classObject, url, graphInfoData, dataObject, stateLables}) => {
 
+  const checkForStudents = () => {
+    // console.log(roster)
+    if(roster.length === 0)
+    {return(<div className="class-stats__instructions" >
+        <div className="class-stats__instructions--welcome">
+          Welcome to Class Engage
+        </div>
+        <div className="class-stats__instructions--guide">
+          click on the edit class tab to the left to create and register some students
+        </div>
+      </div>)}
+    else 
+    if(assessments.length === 0)
+    {return(
+    <div className="class-stats__instructions" >
+        <div className="class-stats__instructions--welcome">
+          You have a roster!
+        </div>
+        <div className="class-stats__instructions--guide">
+        click on the assess class tab to the left to assess some students and enable statistics
+        </div>
+      </div>)}
+    else
+    {return(          
+    <ClassScore
+      roster={roster} 
+      assessments={assessments}
+      classPeriod={classPeriod}
+      />)}
+  }
+
     return(
       <div className="class-stats">
 
@@ -30,11 +61,7 @@ const  ClassStatsContainer = ({assessments, roster, callback, classPeriod, class
         </div>
 
         <div className="class-stats__total-participation">
-          <ClassScore
-            roster={roster} 
-            assessments={assessments}
-            classPeriod={classPeriod}
-            />
+          {checkForStudents()}
         </div>
 
         <div className="class-stats__graphics">

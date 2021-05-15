@@ -1,5 +1,6 @@
 import { createHashHistory } from 'history';
 import React from 'react';
+import FormToggle from "../components/FormToggle";
 import { api } from '../services/api'
 
 export default class NewStudentForm extends React.Component {
@@ -41,7 +42,7 @@ export default class NewStudentForm extends React.Component {
                 <div className="new-student-form__content">
 
                     <label className="new-student-form__content--form-toggle" for="new-student-form__checkbox">
-                        <span className="new-student-form__content--form-toggle">X</span>
+                        <FormToggle />
                     </label>
 
 

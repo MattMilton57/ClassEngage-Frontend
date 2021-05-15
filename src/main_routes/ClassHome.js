@@ -55,7 +55,6 @@ class ClassHome extends React.Component {
     this.setState({
       classPeriod:id
     })
-
   }
 
     ////////////////////////////////////////fetches////////////////////////////////////////
@@ -280,10 +279,26 @@ class ClassHome extends React.Component {
 
             <Router>
             <div className="class-home__nav">
-              <NavBarContainer  classes={this.state.allclasses} setHeader={e => this.setHeader(e)} classPeriod={this.state.classPeriod} reFetch={e => this.reFetchAssessments(e)} match={match} />
+              <NavBarContainer  
+                classAssessments={this.state.classAssessments} 
+                roster={this.state.roster} 
+                classes={this.state.allclasses} 
+                setHeader={e => this.setHeader(e)} 
+                classPeriod={this.state.classPeriod} 
+                reFetch={e => this.reFetchAssessments(e)}
+                studentBody={this.state.allStudents} 
+                match={match} />
           </div> 
           <div className="class-home__header">
-              <HeaderContainer logOut={this.props.logOut} history={this.props.history} user={this.props.user} classes={this.state.allclasses} classPeriod={this.state.classPeriod} reFetch={e => this.reFetchAssessments(e)} match={match} headerText={this.state.headerText}/>
+              <HeaderContainer 
+                logOut={this.props.logOut} 
+                history={this.props.history} 
+                user={this.props.user} 
+                classes={this.state.allclasses} 
+                classPeriod={this.state.classPeriod} 
+                reFetch={e => this.reFetchAssessments(e)} 
+                match={match} 
+                headerText={this.state.headerText}/>
           </div> 
               <div className="class-home__content">
                 <Switch>
@@ -306,10 +321,13 @@ class ClassHome extends React.Component {
 
                   <Route exact path={`${match.url}/assess`} render={props =>
                       <AssessClassContainer
-                      {...props}
+                      // {...props}
+                      all={e=>this.componentDidMount()}
+                      reFetch={e => this.reFetchAssessments(e)}
                       roster={this.state.roster}
                       assessments={this.state.classAssessments}
                       classPeriod={this.state.classPeriod}
+                      classObject={this.state.classObject} 
                       />
                       }>    
                   </Route>
@@ -328,6 +346,10 @@ class ClassHome extends React.Component {
                       reFetchStudentBody={e => this.reFetchStudentBody(e)}
                       patchClassPeriod={e => this.patchClassPeriod(e)}
                       test={e => this.test(e)}
+                      assessments={this.state.allAssessments}
+                      classes={this.state.allclasses}
+                      allRegistrations={this.state.allRegistrations}
+                      deleteStudent={(student,registrations,assessments) => this.deleteStudentAssessments(student,registrations,assessments)}
                       />
                   }>     
                   </Route>
@@ -361,11 +383,12 @@ class ClassHome extends React.Component {
           reFetchStudentBody={e => this.reFetchStudentBody(e)}
           roster={this.state.roster} /> */}
 
-        <NewStudentForm 
+        {/* <NewStudentForm 
           reFetchStudentBody={e => this.reFetchStudentBody(e)}
-          user={this.props.user}/>
+          user={this.props.user}
+          /> */}
 
-        <DeleteStudentForm 
+        {/* <DeleteStudentForm 
           roster={this.state.roster}
           studentBody={this.state.allStudents}
           assessments={this.state.allAssessments}
@@ -373,7 +396,7 @@ class ClassHome extends React.Component {
           registrations={this.state.allRegistrations}
           callback={e => this.callback(e)}
           deleteStudent={(student,registrations,assessments) => this.deleteStudentAssessments(student,registrations,assessments)}
-          user={this.props.user}/>
+          user={this.props.user}/> */}
       </div>
     )
   }

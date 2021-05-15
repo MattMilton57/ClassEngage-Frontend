@@ -1,4 +1,6 @@
 import React from 'react';
+import FormToggle from "../components/FormToggle";
+
 
 class DeleteClassForm extends React.Component{
 
@@ -60,7 +62,7 @@ confirm = () => {
     {return(
         <div className="delete-class-form__content--form-title">
             <button onClick={(e)=> this.onSubmit(e)} className="delete-class-form__content--form-confirm-submit btn" >
-                <span className="">delete</span> 
+                <span className="">delete class</span> 
             </button>
         </div>
     )}
@@ -74,7 +76,7 @@ render(){
             <div className="delete-class-form__content">
 
                 <label className="new-student-form__content--form-toggle" for="delete-class-form__checkbox">
-                        <span className="delete-class-form__content--form-toggle">X</span>
+                <FormToggle />
                 </label>
 
                 <form className="delete-class-form__content--form" onSubmit={(e)=> this.onSubmit(e)}>

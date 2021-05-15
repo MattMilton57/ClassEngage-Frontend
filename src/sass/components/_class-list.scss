@@ -7,6 +7,8 @@
     display: flex;
     flex-direction: column;
     border-radius: 1rem;
+    overflow: auto;
+
 
     &__container {
         list-style: none;
@@ -26,8 +28,14 @@
         background-image: $gradient-dark-mid;
         text-decoration: none;
         text-transform: uppercase;
-        align-content: center;
+        align-items: center;
+        justify-items: start;
 
+
+        &-highlighted{
+            animation: pulsate 1s infinite;
+        }
+        
         &::before {
             content: "";
             position: absolute;
@@ -61,6 +69,22 @@
             font-size: 1.5rem;
             align-content: center;
             font-weight: 200;
+            display: flex;
+            // max-width: 15rem;
+            // height: min-content;
+
+            @include wrap-text
+
+            // overflow-wrap: break-word;
+            // word-wrap: break-word;
+            // word-break: break-all;
+            // word-break: break-word;
+            // -ms-hyphens: auto;
+            // -moz-hyphens: auto;
+            // -webkit-hyphens: auto;
+            // hyphens: auto;
+
+            // flex-wrap: wrap;
 
             // background-color: violet;
         }

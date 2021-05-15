@@ -54,7 +54,7 @@ this.setState({user: newState})
   render(){
     return(
       
-      <div className="landing-form__login">
+      <form className="landing-form__login">
 
         <div className="landing-form__login-username landing-form__input">
           <input className= "landing-form__textbox" type="text" placeholder="Username" onChange={ (e) => this.onChange("username", e.target.value)}/>
@@ -69,14 +69,14 @@ this.setState({user: newState})
         </div>
 
         <div className="landing-form__login-forgot-password">
-          <div>Forgot Password?</div>
+          {/* <div>Forgot Password?</div> */}
         </div>
 
         <div className="landing-form__login-register">
-        <label for="landing-page-toggle" className="landing-page__button landing-page__button--register">New Account</label> 
+        <label for="landing-page-toggle" className="landing-page__button landing-page__button--register">Create Account</label> 
         </div>
 
-      </div>
+      </form>
     )
   }
 } export default LogInForm

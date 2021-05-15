@@ -77,6 +77,14 @@ class SelectClass extends React.Component {
     {return <ClassList classNumber={this.props.classNumber} classes={this.state.allclasses}/>}
   }
 
+  hilight = () => {
+    if (this.state.allclasses == '')
+    {return "select-class__sidebar--class-list-create-class-button class-list__class class-list__class-highlighted"}
+    else
+    {return "select-class__sidebar--class-list-create-class-button class-list__class"}
+    
+  }
+
   render(){
     return(
       <div className="select-class">
@@ -101,7 +109,7 @@ class SelectClass extends React.Component {
               <div className="select-class__header select-class__sidebar--class-list-create-class">
 
                 {/* <input type="checkBox" className="select-class__sidebar--class-list-create-class-checkBox" id="new-class-form__checkbox" /> */}
-                <label for="new-class-form__checkbox" className="select-class__sidebar--class-list-create-class-button class-list__class">
+                <label for="new-class-form__checkbox" className={this.hilight()}>
                   <span className="select-class__sidebar--class-list-create-class-button-span">Create a Class</span>
                 </label>
                 <label for="delete-class-form__checkbox" className="select-class__sidebar--class-list-create-class-button class-list__class">

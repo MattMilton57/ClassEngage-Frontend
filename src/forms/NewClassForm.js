@@ -1,4 +1,6 @@
 import React from 'react';
+import sprite from "../img/sprite.svg";
+import FormToggle from "../components/FormToggle";
 import { api } from '../services/api'
 
 class NewClassForm extends React.Component{
@@ -59,6 +61,7 @@ postClass = () => {
                 subject:'',
                 period:'',
                 level:0,
+                max:'',
                 user_id:this.props.id,}})})
 }
 
@@ -69,12 +72,17 @@ render(){
 
             <div className="new-class-form__content">
 
-                <label className="new-student-form__content--form-toggle" for="new-class-form__checkbox">
-                        <span className="new-class-form__content--form-toggle">X</span>
+                <label className="new-student-form__content--form-toggle form-toggle" for="new-class-form__checkbox">
+                        {/* <span className="form-toggle">
+                            <svg className="form-toggle-icon">
+                                    <use href={sprite + "#icon-cross"} ></use>
+                                </svg>
+                            </span> */}
+                            <FormToggle />
                 </label>
 
                 <form className="new-class-form__content--form" onSubmit={(e)=> this.onSubmit(e)}>
-                    <div className="new-class-form__content--form-title" >Create a class</div>
+                    <div className="new-class-form__content--form-title" >Add a class</div>
 
                         <input 
                             type="text" 
@@ -96,17 +104,6 @@ render(){
                             placeholder="maximum class size"
                             value={this.state.class_period.max}
                             onChange={(e) => this.onChange("max", e.target.value)}/>
-
-
-                    {/* <div className="form-group">
-                        <label>level</label>
-                        <input 
-                            type="level" 
-                            className="form-control" 
-                            placeholder="level"
-                            value={this.state.class_period.level}
-                            onChange={(e) => this.onChange("level", e.target.value)}/>
-                    </div> */}
 
                     <button onClick={(e)=> this.onSubmit(e)} className="new-class-form__content--form-submit" >
                         <span className="">Submit</span> 

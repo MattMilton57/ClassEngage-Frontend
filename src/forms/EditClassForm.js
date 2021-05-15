@@ -1,4 +1,5 @@
 import React from 'react';
+import FormToggle from "../components/FormToggle";
 
 export default class EditClassForm extends React.Component {
     
@@ -89,7 +90,7 @@ export default class EditClassForm extends React.Component {
                 <div className="edit-class-form__content">
 
                     <label className="edit-class-form__content--form-toggle" for="edit-class-form__checkbox">
-                        <span className="edit-class-form__content--form-toggle">X</span>
+                        <FormToggle />
                     </label>
 
 

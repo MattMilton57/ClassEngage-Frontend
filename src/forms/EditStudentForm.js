@@ -1,4 +1,5 @@
 import React from 'react';
+import FormToggle from "../components/FormToggle";
 
 export default class EditStudentForm extends React.Component {
     
@@ -29,6 +30,7 @@ export default class EditStudentForm extends React.Component {
         let student = {name:this.state.name, id:this.props.student.id}
         this.props.patchStudent(student);
         this.props.handleEdit(student)
+        this.setState({name:''})
     }
     
     postStudent = () => {
@@ -49,7 +51,7 @@ export default class EditStudentForm extends React.Component {
                 <div className="edit-student-form__content">
 
                     <label className="edit-student-form__content--form-toggle" for="edit-student-form__checkbox">
-                        <span className="edit-student-form__content--form-toggle">X</span>
+                        <FormToggle />
                     </label>
 
 

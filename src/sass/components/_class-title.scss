@@ -3,13 +3,9 @@
     height: 100%;
     width: 100%;
     padding: 1rem;
-
-
-    &__class-period {
-        font-weight: 200;
-        font-size: 7rem;
-
-    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     &__class-subject {
         font-weight: 200;
@@ -17,9 +13,9 @@
         margin-left: 2rem;
         color: $color-copper-2;
         // align-items: baseline;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        // display: flex;
+        // justify-content: center;
+        // align-items: center;
     }
 
 }
