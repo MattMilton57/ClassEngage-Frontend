@@ -1,7 +1,7 @@
 import React from 'react';
 import { api } from '../services/api'
 
-class RegisterForm extends React.Component {
+class UserPreferencesForm extends React.Component {
 
   constructor(props) {
     super(props);
@@ -111,4 +111,4 @@ class RegisterForm extends React.Component {
     )
   }
 
-} export default RegisterForm
+} export default UserPreferencesForm

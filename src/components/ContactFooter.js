@@ -16,12 +16,12 @@ const ContactFooter = ({}) => {
         // </div>
 
 <div className="navBar__profile">
-<a href="https://www.github.com/MattMilton57">
+{/* <a href="https://www.github.com/MattMilton57">
             <div className="">github</div>
             <svg className="">
                 <use href={sprite + "#icon-graduation-cap"} ></use>
             </svg>
-</a>
+</a> */}
 </div>
 
 

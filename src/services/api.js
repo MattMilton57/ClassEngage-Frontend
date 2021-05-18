@@ -36,6 +36,21 @@ const fetchCurrentUser = () => {
 }  
 
 /////////////Post Fetches/////////////
+
+const postUser = (newUser) => {
+    fetch((`${API_ROOT}/users`), {
+        method:"POST",
+        headers: {"Content-Type": "application/json", Accept: "application/json"},
+        body: JSON.stringify(newUser)
+    })
+    .then(res => res.json())
+    // .then(res => {console.log(res)
+    // })
+    // if (!res.error) {
+    //     this.props.logIn(res); this.props.history.push('/selectClass')
+    // }}) 
+}
+
 const postClass = (newClass) => {
     return fetch((`${API_ROOT}/class_periods`), {
         method:"POST",
@@ -123,6 +138,15 @@ const deleteAssessment = (toDelete) => {
 
 const deleteClassPeriod = (toDelete) => {
     return fetch((`${API_ROOT}/class_periods/${toDelete}`), {
+        method:"DELETE",
+        headers:headers()
+    })
+    .then(res => res.json())
+}
+
+const deleteUser = (toDelete) => {
+    console.log(toDelete)
+    return fetch((`${API_ROOT}/users/${toDelete}`), {
         method:"DELETE",
         headers:headers()
     })
@@ -225,6 +249,7 @@ export const api = {
         postStudent,
         postRegistration,
         postAssessment,
+        postUser,
     },
 
     get: {
@@ -246,6 +271,7 @@ export const api = {
     },
 
     delete: {
+        deleteUser,
         deleteRegistration,
         deleteStudent,
         deleteAssessment,
