@@ -44,6 +44,19 @@
     font-size: 3rem;
 }
 
+@mixin form-input {
+    height: 5rem;
+    font-size: 2.5rem;
+    border:none;
+    // border: 1px solid $color-grey-mid;
+    background-color: $color-grey-light;
+    border-radius: 1rem;
+    color: white;
+    text-align: center;
+    width: 100%;
+    font-weight: 100;
+}
+
 @mixin button-copper {
     color: $color-copper-2;
     padding: .5rem 1rem;

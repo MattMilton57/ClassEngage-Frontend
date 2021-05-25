@@ -1,23 +1,15 @@
 .assess-class {
-    // max-height: 90vh;
-    // min-height: 0;  /* NEW */
-    // min-width: 0; 
     height: 85vh;
-    min-height: 0;  /* NEW */
+    min-height: 0;
     min-width: 0; 
     justify-content: stretch;
     overflow: auto;
     padding: 2rem;
-
-
-
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: .25fr 1fr .25fr .25fr ;
     grid-column-gap: 2rem;
     grid-row-gap: 2rem;
-    // background-color: rgb(81, 30, 133);
-
 
     &__card-container {
         grid-row: 1 / span 4;
@@ -26,25 +18,16 @@
         grid-template-rows: repeat(5, 1fr);
         grid-template-columns: 1fr;
         justify-content: stretch;
-        // grid-row-gap: 2rem;
-        // margin: 2rem;
         padding: 2rem;
-
-        // margin: 0 2rem 0 2rem;
         height: 100;
         justify-content: stretch;
         align-items: center;
-        // min-height: 0;  /* NEW */
-        // min-width: 0; 
         list-style: none;
         transition: all 1s;
-        // overflow: hidden;  /* NEW */
-        // margin-bottom: 2rem;
-                    @include component-format;
-
+        @include component-format;
 
         &--card {
-            // @include component-format;
+
         }
     }
 
@@ -128,8 +111,6 @@
         @include component-format;
         height: 100%;
     }
-
-
 
     &__last-assessment {
         grid-row: 3 / span 1;

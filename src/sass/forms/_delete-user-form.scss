@@ -15,17 +15,23 @@ place-items: center;
         text-transform: uppercase;
         width: 100%;
     }
-
+    
     &__confirm{
         // background-color: rebeccapurple;
-
+        
         display: none;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, min-width);
+        grid-row-gap: 1rem;
+        
+        // flex-direction: column;
+        // justify-content: center;
+        // align-items: center;
 
 
         &-warning{
+            grid-row: 1/span 1;
+            grid-column: 1/span 1;
             width: 100;
             text-transform: uppercase;
             text-align: center;
@@ -41,6 +47,30 @@ place-items: center;
                 font-weight: 400;
             }
         }  
+
+        &-confirmation{
+            grid-row: 2/span 1;
+            grid-column: 1/span 1;
+            // height: 5rem;
+            // font-size: 2.5rem;
+            // border:none;
+            // // border: 1px solid $color-grey-mid;
+            // background-color: $color-grey-light;
+            // border-radius: 1rem;
+            // color: white;
+            // text-align: center;
+            // width: 100%;
+            // font-weight: 100;
+            @include form-input
+
+        }
+
+        &-submit{
+            grid-row: 3/span 1;
+            grid-column: 1/span 1;
+            background-color: red;
+            @include button-copper
+        }
     }
     
     &__checkbox {
@@ -49,7 +79,7 @@ place-items: center;
     
     &__checkbox:checked + &__confirm {
         // opacity: 1;
-        display: flex;
+        display: grid;
         // background-color: royalblue;
     }
     

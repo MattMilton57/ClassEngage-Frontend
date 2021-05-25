@@ -7,7 +7,9 @@ export default class DeleteUserForm extends React.Component {
         super(props);
         this.state={
             user:'',
-            name:''
+            name:'',
+            confirmation:'',
+            improper:""
         }
     }
 
@@ -31,22 +33,16 @@ export default class DeleteUserForm extends React.Component {
     
     onSubmit = (e) =>{
         e.preventDefault()
-        // let student = {name:this.state.name, id:this.props.student.id}
-        // this.props.patchStudent(student);
-        // this.props.handleEdit(student)
-        // let classPeriod = this.state.classPeriod
-        // let id = this.props.classObject.id
-        // console.log(id)
-        // this.props.patchClassPeriod(classPeriod, id)
-        // this.setState({
-        //     classPeriod:{
-        //     ...this.state.classPeriod,
-        //     subject:"Change Successful"
-        //       }
-        //   })
-        api.delete.deleteUser(this.state.user.id)
-        .then(res => this.props.logOutRedirect())
-        // console.log(this.state.user.id)
+        if (this.state.confirmation === "DELETE") {
+            api.delete.deleteUser(this.state.user.id)
+            .then(res => this.props.logOutRedirect())
+        }else{
+            this.setState({confirmation:'', improper:"Incorrect"})
+        }
+
+
+
+
     }
     
     postUser = () => {
@@ -74,13 +70,15 @@ export default class DeleteUserForm extends React.Component {
                             <div className="delete-user-form__confirm-warning-text">
                                 This will delete your account, as well as all classes, students, and assessments that you have created. 
                                 This action cannot be undone.
+                                <br className=""/>
+                                to delete your account type Delete in the box below and press submit.
                             </div>
                         </div>
                         <input 
                             type="text" 
                             id="delete-user-form__confirm-confirmation"
                             className="delete-user-form__confirm-confirmation" 
-                            placeholder="Type DELETE and press submit"
+                            placeholder={this.state.improper}
                             value={this.state.confirmation}
                             onChange={(e) => this.onChange("confirmation", e.target.value)}/>
                         <button onClick={(e)=> this.onSubmit(e)} className="delete-user-form__confirm-submit" >
