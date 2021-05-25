@@ -90,7 +90,8 @@ class App extends React.Component {
                     <SelectClass 
                       {...props}
                       user={this.state.currentUser}
-                      logOut={this.onLogout} 
+                      logOut={this.onLogout}
+                      getUser={this.setUser} 
                       />
                   }/>
 
@@ -100,7 +101,7 @@ class App extends React.Component {
                       {...props}
                       user={this.state.currentUser}
                       logOut={this.onLogout} 
-
+                      getUser={this.setUser} 
                       />
                   }/>
 

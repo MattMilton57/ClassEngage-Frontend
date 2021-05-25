@@ -1,4 +1,7 @@
 import React from 'react';
+import EditUserForm from "../forms/EditUserForm";
+import DeleteUserForm from "../forms/DeleteUserForm";
+import FormToggle from "../components/FormToggle";
 import { api } from '../services/api'
 
 class UserPreferencesForm extends React.Component {
@@ -66,9 +69,26 @@ class UserPreferencesForm extends React.Component {
   render(){
     return(
 
-        <form className="landing-form__register">
+        <form className="user-preferences-form">
 
-                <div className="landing-form__register-username landing-form__input">
+          <input type="checkbox" id="user-preferences-form__checkbox" className="user-preferences-form__checkbox"/>
+                <div className="user-preferences-form__content">
+                  <div className="user-preferences-form__content--form">
+                    <div className="user-preferences-form__content--form-edit">
+                      <EditUserForm getUser={this.props.getUser} user={this.props.user}/>
+                    </div>
+                    <div className="user-preferences-form__content--form-delete">
+                      <DeleteUserForm user={this.props.user} history={this.props.history} logOutRedirect={this.props.logOutRedirect} logout={this.props.logOut}/>
+                    </div>
+                  </div>
+
+
+                    <label className="user-preferences-form__content--form-toggle" htmlFor="user-preferences-form__checkbox">
+                        <FormToggle />
+                    </label>
+
+
+                {/* <div className="landing-form__register-username landing-form__input">
                     <input 
                         type="text" 
                         className="landing-form__textbox" 
@@ -93,20 +113,17 @@ class UserPreferencesForm extends React.Component {
                         placeholder="Confirm Password"
                         value={this.state.password_confirmation}
                         onChange={(e) => this.setState({password_confirmation:e.target.value})}/>
-                        {/* onChange={(e) => this.onChange("password_confirmation", e.target.value)}/> */}
 
                 </div>
-
-                {/* <button className="btn btn-dark" type="submit" value="Sign Up" >Sign Up</button> */}
                 <div className="landing-form__register-submit">
                   <input className="btn btn-dark" type="submit" value="Sign Up" onClick={this.onSubmit}/>
                 </div>
 
                 <div className="">
                   <label for="landing-page-toggle" className="landing-page__button landing-form__register-switch">Existing Account</label> 
-                </div>
+                </div> */}
+                                    </div>
 
-        {/* </form> */}
         </form>
     )
   }

@@ -41,6 +41,7 @@ class AssessmentCard extends React.Component{
             comment:this.state.note,
             student_id:this.props.student.id,
             class_period_id:this.props.classID,
+            user_id:this.props.user.id
         }
         api.posts.postAssessment(assessment)
         .then(res=>this.props.reFetch()) 

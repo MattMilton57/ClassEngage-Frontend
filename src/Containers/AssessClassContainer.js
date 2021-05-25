@@ -76,7 +76,8 @@ class AssessClass extends React.Component {
       return(
         <ul className="assess-class__card-container">
             {students.map(student => <li key={student.name} className="assess-class__card-container--card">
-                                        <AssessmentCard 
+                                        <AssessmentCard
+                                          user={this.props.user}  
                                           reFetch={this.props.reFetch}
                                           classID={this.props.classPeriod} 
                                           index={student[1]} 

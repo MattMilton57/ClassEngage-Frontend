@@ -89,6 +89,15 @@ const postAssessment = (newRegistration) => {
 
 /////////////Patch Fetches//////////////
 
+const patchUser = (user) => {
+    return fetch((`${API_ROOT}/users/${user.id}/`), {
+        method:"PUT",
+        headers:headers(),
+        body: JSON.stringify(user)
+    })
+    .then(res => res.json())
+}
+
 const patchStudent = (student) => {
     return fetch((`${API_ROOT}/students/${student.id}/`), {
         method:"PUT",
@@ -148,7 +157,8 @@ const deleteUser = (toDelete) => {
     console.log(toDelete)
     return fetch((`${API_ROOT}/users/${toDelete}`), {
         method:"DELETE",
-        headers:headers()
+        headers:headers(),
+        body: JSON.stringify({user_id:toDelete})
     })
     .then(res => res.json())
 }
@@ -157,6 +167,16 @@ const deleteUser = (toDelete) => {
 const currentStudent = (id) => {
     return fetch((`${API_ROOT}/current_student/${id}/`), {
         headers:headers(),
+    })
+    .then(res=>res.json())
+}
+
+const usersStudents = (id) => {
+    console.log(id)
+    return fetch((`${API_ROOT}/filterStudents/`), {
+        method:"POST",
+        headers:headers(),
+        body: JSON.stringify(id)
     })
     .then(res=>res.json())
 }
@@ -262,12 +282,14 @@ export const api = {
         classList,
         classesAssessments,
         studentsAssessments,
-        currentStudent
+        currentStudent,
+        usersStudents,
     },
 
     patch: {
-        patchStudent,
         patchClassPeriod,
+        patchStudent,
+        patchUser,
     },
 
     delete: {

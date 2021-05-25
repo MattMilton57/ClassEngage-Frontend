@@ -99,7 +99,7 @@ class RegisterForm extends React.Component {
 
                 {/* <button className="btn btn-dark" type="submit" value="Sign Up" >Sign Up</button> */}
                 <div className="landing-form__register-submit">
-                  <input className="btn btn-dark" type="submit" value="Sign Up" onClick={this.onSubmit}/>
+                  <input className="btn-dark" type="submit" value="Sign Up" onClick={this.onSubmit}/>
                 </div>
 
                 <div className="">

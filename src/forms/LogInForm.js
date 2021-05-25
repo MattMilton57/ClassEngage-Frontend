@@ -65,7 +65,7 @@ this.setState({user: newState})
         </div>
 
         <div className="landing-form__login-submit">
-          <input className="btn btn-dark" type="submit" value="Log In" onClick={this.onSubmit}/>
+          <input className="btn-dark" type="submit" value="Log In" onClick={this.onSubmit}/>
         </div>
 
         <div className="landing-form__login-forgot-password">

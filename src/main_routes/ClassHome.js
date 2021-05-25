@@ -48,7 +48,7 @@ class ClassHome extends React.Component {
     // this.fetchClassesAssessments()
     this.fetchClass()
     this.checkUser(id)
-    this.fetchStudents()
+    this.fetchStudents(id)
     this.fetchAssessments()
     this.fetchRegistrations()
     this.fetchClassRegistrations(id)
@@ -77,8 +77,9 @@ class ClassHome extends React.Component {
     .then(res => this.fetchClassesAssessments())
   }
 
-  fetchStudents = () => {
-    api.get.fetchStudents()
+  fetchStudents = (id) => {
+    // api.get.fetchStudents()
+    api.get.usersStudents({user_id:this.props.user.id})
     .then(res => this.setState({allStudents:res}))
   }
 
@@ -113,7 +114,7 @@ class ClassHome extends React.Component {
   postRegistration = (e) => {
     const {match} = this.props
     const id = (parseInt(match.params.id))
-    api.posts.postRegistration({class_period_id:id, student_id:e.id})
+    api.posts.postRegistration({class_period_id:id, student_id:e.id, user_id:this.props.user.id})
     .then(res => {this.fetchClass(); this.fetchClassRegistrations(id)})
   }
 
@@ -298,8 +299,11 @@ class ClassHome extends React.Component {
                 classPeriod={this.state.classPeriod} 
                 reFetch={e => this.reFetchAssessments(e)} 
                 match={match} 
+                getUser={this.props.getUser} 
                 headerText={this.state.headerText}/>
+                
           </div> 
+          {/* <button onClick={e => this.fetchStudents()}>test</button> */}
               <div className="class-home__content">
                 <Switch>
                   <Route exact path={`${match.url}`} render={props =>
@@ -322,6 +326,7 @@ class ClassHome extends React.Component {
                   <Route exact path={`${match.url}/assess`} render={props =>
                       <AssessClassContainer
                       // {...props}
+                      user={this.props.user} 
                       all={e=>this.componentDidMount()}
                       reFetch={e => this.reFetchAssessments(e)}
                       roster={this.state.roster}

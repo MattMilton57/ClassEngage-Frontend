@@ -18,14 +18,71 @@
         font-size: 1.5rem;
         font-weight: 300;
         display: flex;
+        align-items: center;
+
 
         &-name {
             margin-right: 1rem;
         }
 
-        &-menu {
-            &-log-out{
-                color: $color-copper-2;
+        // &-menu {
+        //     &-log-out{
+        //         // color: $color-copper-2;
+        //         text-align: right;
+        //     }
+        // }
+
+        // &-preferences {
+        //     &-log-out{
+        //         // color: $color-copper-2;
+        //         text-align: right;
+        //     }
+        // }
+        &-dropdown-toggle {
+            grid-column: 1 / span 1;
+            grid-row: 1;
+            display: flex;
+            z-index: 200;
+            transition: all .35s;
+            // margin-left: .1rem;
+            fill: $color-copper-2;
+            background-color: transparent;
+            border-style: none;
+            width: 3rem;
+            height: 3rem;
+            font-weight: 200;
+            align-items: center;
+            justify-content: center;
+            transition: all .2s;
+
+            &:hover{
+                // background-color: $color-grey-mid;
+                fill: $color-grey-light;
+                transform: scale(1.05);
+
+            }
+        }
+
+        &-dropdown-menu {
+            padding: .25rem;
+            background-color: $color-grey-light;
+            border: solid 1px black;
+        }
+
+        &-dropdown-item {
+            font-weight: 300;
+            // background-color: $color-grey-mid;
+            color: $color-copper-2;
+            transition: all .25s;
+            text-align: right;
+            margin: 4px 0;
+            padding: .5rem;
+
+            &:hover{
+
+                color: $color-grey-dark;
+                background-color: $color-copper-2;
+
             }
         }
     }
@@ -34,75 +91,47 @@
         display: none;
     }
 
-    &__dropdown{
-        grid-column: 2 / span 1;
-        // grid-row: 2 / span 1;
-        z-index: 9000;
-        // transform: translateY(2rem);
-        display: none;
-        // position: absolute;
-        // top: 6rem;
-        // right: 6rem;
-        // transform: scaleX(0);
-        transition: all .2s;
-        background-color: rebeccapurple;
-
-        &-log-out{
-
-        }
-
-        &-edit-profile{
-
-        }
-    }
-
-    &__controll-toggle:checked ~ &__dropdown {
-        // transform: scaleY(0);
-        display: flex;
-    }
-}
-
-/* Dropdown Button */
-.dropbtn {
-    background-color: #3498DB;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
+    &-dropdown-button{
+    height: 1.5rem;
+    color: $color-copper-2;
+    // background-image: $gradient-dark;
+    background-image: transparent;
+    background-color: transparent;
     border: none;
-    cursor: pointer;
-  }
-  
-  /* Dropdown button on hover & focus */
-  .dropbtn:hover, .dropbtn:focus {
-    background-color: #2980B9;
-  }
-  
-  /* The container <div> - needed to position the dropdown content */
-  .dropdown {
+    // border-radius: 1rem;
+    // width: 30rem;
+    font-size: 1.5rem;
+    font-weight: 100;
+    transition: all .05s;
     position: relative;
-    display: inline-block;
-  }
-  
-  /* Dropdown Content (Hidden by Default) */
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  
-  /* Links inside the dropdown */
-  .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-  }
-  
-  /* Change color of dropdown links on hover */
-  .dropdown-content a:hover {background-color: #ddd}
-  
-  /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-  .show {display:block;}
+    display: flex;
+    align-self: flex-end;
+    }
+
+    // &__dropdown{
+    //     grid-column: 2 / span 1;
+    //     // grid-row: 2 / span 1;
+    //     z-index: 9000;
+    //     // transform: translateY(2rem);
+    //     display: none;
+    //     // position: absolute;
+    //     // top: 6rem;
+    //     // right: 6rem;
+    //     // transform: scaleX(0);
+    //     transition: all .2s;
+    //     background-color: rebeccapurple;
+
+    //     &-log-out{
+
+    //     }
+
+    //     &-edit-profile{
+
+    //     }
+    // }
+
+    // &__controll-toggle:checked ~ &__dropdown {
+    //     // transform: scaleY(0);
+    //     display: flex;
+    // }
+}

@@ -24,7 +24,7 @@ const  RosterRemainder = ({roster, user, studentBody, callback, registerAction})
         registerNumbers.map( number => {
           studentBody.map( student => {
             if(user){
-              if((number == student.id)&&(student.user==user.id)){  
+              if((number == student.id)&&(student.user_id==user.id)){  
                 registerFrom.push(student)
               }
             }

@@ -128,7 +128,7 @@ class SelectClass extends React.Component {
               {/* <MenuFooter/> */}
             </div>
           </div>
-          <HeaderContainer logOut={this.props.logOut} history={this.props.history} user={this.props.user} headerText={""}/>
+          <HeaderContainer getUser={this.props.getUser} logOut={this.props.logOut} history={this.props.history} user={this.props.user} headerText={""}/>
 
 
           {/* <embed src={logo_svg} alt="Logo" class="select-class__logo--box"/> */}

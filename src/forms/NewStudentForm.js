@@ -9,7 +9,7 @@ export default class NewStudentForm extends React.Component {
         this.state={
             student:{
                 name:'',
-                user:''
+                user_id:''
             }
         }
     }
@@ -17,7 +17,7 @@ export default class NewStudentForm extends React.Component {
     componentDidMount(){
         this.setState({
             student:{
-                user:this.props.user.id
+                user_id:this.props.user.id
             }
         })
     }
