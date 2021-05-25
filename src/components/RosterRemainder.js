@@ -1,7 +1,7 @@
 import React from 'react';
 import Roster from "../components/Roster";
 
-const  RosterRemainder = ({roster, studentBody, callback, registerAction}) => {
+const  RosterRemainder = ({roster, user, studentBody, callback, registerAction}) => {
 
     const remainingStudents = () => {
         ///create array of enrolled student ID numbers///
@@ -19,12 +19,14 @@ const  RosterRemainder = ({roster, studentBody, callback, registerAction}) => {
           {registerNumbers.push(student)}
         }) 
     
-        ///translate that array into list of non enrolled students///
+        ///translate that array into list of non enrolled students who were created by the user///
         let registerFrom = [] 
         registerNumbers.map( number => {
           studentBody.map( student => {
-            if(number == student.id){
-              registerFrom.push(student)
+            if(user){
+              if((number == student.id)&&(student.user_id==user.id)){  
+                registerFrom.push(student)
+              }
             }
           })
         })

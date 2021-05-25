@@ -13,3 +13,17 @@
         transform: translate(0);
     }
 }
+
+@keyframes pulsate {
+    0% {
+        box-shadow: 0px 0px 6px 5px $color-pulsate;
+    }
+
+    50% {
+        box-shadow: 0px 0px 12px 8px $color-pulsate;
+    }
+
+    100% {
+        box-shadow: 0px 0px 6px 5px $color-pulsate;
+    }
+}

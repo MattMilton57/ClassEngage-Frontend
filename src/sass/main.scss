@@ -8,10 +8,12 @@
 
 @import "components/assessment-card";
 @import "components/assessment-list";
+@import "components/button";
 @import "components/class-list";
 @import "components/class-rank";
 @import "components/class-score";
 @import "components/class-title";
+@import "components/form-toggle";
 @import "components/graphics";
 @import "components/info-box";
 @import "components/last-assessment";
@@ -25,15 +27,20 @@
 @import "containers/assess-class";
 @import "containers/class-stats";
 @import "containers/edit-class";
+@import "containers/header";
 @import "containers/student-home";
 
 @import "forms/delete-class-form";
 @import "forms/delete-student-form";
+@import "forms/delete-user-form";
 @import "forms/edit-class-form";
 @import "forms/edit-student-form";
+@import "forms/edit-user-form";
 @import "forms/landing-form";
 @import "forms/new-class-form";
 @import "forms/new-student-form";
+@import "forms/register-form";
+@import "forms/user-preferences-form";
 
 @import "pages/class_home";
 @import "pages/landing_page";

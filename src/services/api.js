@@ -1,4 +1,5 @@
 const API_ROOT = "http://localhost:3000/api/v1"
+// const API_ROOT = "https://vast-badlands-82169.herokuapp.com/api/v1"
 
 const userToken = () => {return localStorage.getItem("token")}
 
@@ -36,6 +37,21 @@ const fetchCurrentUser = () => {
 }  
 
 /////////////Post Fetches/////////////
+
+const postUser = (newUser) => {
+    fetch((`${API_ROOT}/users`), {
+        method:"POST",
+        headers: {"Content-Type": "application/json", Accept: "application/json"},
+        body: JSON.stringify(newUser)
+    })
+    .then(res => res.json())
+    // .then(res => {console.log(res)
+    // })
+    // if (!res.error) {
+    //     this.props.logIn(res); this.props.history.push('/selectClass')
+    // }}) 
+}
+
 const postClass = (newClass) => {
     return fetch((`${API_ROOT}/class_periods`), {
         method:"POST",
@@ -74,6 +90,15 @@ const postAssessment = (newRegistration) => {
 
 /////////////Patch Fetches//////////////
 
+const patchUser = (user) => {
+    return fetch((`${API_ROOT}/users/${user.id}/`), {
+        method:"PUT",
+        headers:headers(),
+        body: JSON.stringify(user)
+    })
+    .then(res => res.json())
+}
+
 const patchStudent = (student) => {
     return fetch((`${API_ROOT}/students/${student.id}/`), {
         method:"PUT",
@@ -83,8 +108,9 @@ const patchStudent = (student) => {
     .then(res => res.json())
 }
 
-const patchClassPeriod = (classPeriod) => {
-    return fetch((`${API_ROOT}/class_periods/${classPeriod.id}/`), {
+const patchClassPeriod = (classPeriod, id) => {
+    // console.log(id)
+    return fetch((`${API_ROOT}/class_periods/${id}/`), {
         method:"PUT",
         headers:headers(),
         body: JSON.stringify(classPeriod)
@@ -128,10 +154,30 @@ const deleteClassPeriod = (toDelete) => {
     .then(res => res.json())
 }
 
+const deleteUser = (toDelete) => {
+    console.log(toDelete)
+    return fetch((`${API_ROOT}/users/${toDelete}`), {
+        method:"DELETE",
+        headers:headers(),
+        body: JSON.stringify({user_id:toDelete})
+    })
+    .then(res => res.json())
+}
+
 /////////////Specialty Fetches/////////////
 const currentStudent = (id) => {
     return fetch((`${API_ROOT}/current_student/${id}/`), {
         headers:headers(),
+    })
+    .then(res=>res.json())
+}
+
+const usersStudents = (id) => {
+    console.log(id)
+    return fetch((`${API_ROOT}/filterStudents/`), {
+        method:"POST",
+        headers:headers(),
+        body: JSON.stringify(id)
     })
     .then(res=>res.json())
 }
@@ -224,6 +270,7 @@ export const api = {
         postStudent,
         postRegistration,
         postAssessment,
+        postUser,
     },
 
     get: {
@@ -236,15 +283,18 @@ export const api = {
         classList,
         classesAssessments,
         studentsAssessments,
-        currentStudent
+        currentStudent,
+        usersStudents,
     },
 
     patch: {
-        patchStudent,
         patchClassPeriod,
+        patchStudent,
+        patchUser,
     },
 
     delete: {
+        deleteUser,
         deleteRegistration,
         deleteStudent,
         deleteAssessment,

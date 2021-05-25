@@ -1,5 +1,7 @@
 import React from 'react';
 import NavBarContainer from '../containers/NavBarContainer';
+import HeaderContainer from '../containers/HeaderContainer';
+
 import AssessClassContainer from '../containers/AssessClassContainer';
 import EditClassContainer from '../containers/EditClassContainer.js';
 import ClassStatsContainer from '../containers/ClassStatsContainer';
@@ -34,7 +36,8 @@ class ClassHome extends React.Component {
       classObject:'',
       graphInfo:'',
       stateLables:[],
-      studentToUpdate:''
+      studentToUpdate:'',
+      headerText:'Class Home Page',
     }
   }
 
@@ -45,14 +48,13 @@ class ClassHome extends React.Component {
     // this.fetchClassesAssessments()
     this.fetchClass()
     this.checkUser(id)
-    this.fetchStudents()
+    this.fetchStudents(id)
     this.fetchAssessments()
     this.fetchRegistrations()
     this.fetchClassRegistrations(id)
     this.setState({
       classPeriod:id
     })
-
   }
 
     ////////////////////////////////////////fetches////////////////////////////////////////
@@ -75,8 +77,9 @@ class ClassHome extends React.Component {
     .then(res => this.fetchClassesAssessments())
   }
 
-  fetchStudents = () => {
-    api.get.fetchStudents()
+  fetchStudents = (id) => {
+    // api.get.fetchStudents()
+    api.get.usersStudents({user_id:this.props.user.id})
     .then(res => this.setState({allStudents:res}))
   }
 
@@ -111,7 +114,7 @@ class ClassHome extends React.Component {
   postRegistration = (e) => {
     const {match} = this.props
     const id = (parseInt(match.params.id))
-    api.posts.postRegistration({class_period_id:id, student_id:e.id})
+    api.posts.postRegistration({class_period_id:id, student_id:e.id, user_id:this.props.user.id})
     .then(res => {this.fetchClass(); this.fetchClassRegistrations(id)})
   }
 
@@ -122,9 +125,10 @@ class ClassHome extends React.Component {
     .then(res => {this.fetchClass()})
   }
 
-  patchClassPeriod = (e) => {
-    // console.log(e)
-    api.patch.patchClassPeriod(e)
+  patchClassPeriod = (classPeriod) => {
+    let id =classPeriod.id
+
+    api.patch.patchClassPeriod(classPeriod, id)
     .then(res => {this.componentDidMount()})
   }
 
@@ -242,6 +246,10 @@ class ClassHome extends React.Component {
     
   }
 
+  setHeader = (e) => {
+    this.setState({headerText:e})
+  }
+
   releventAssessments = (assessments) => {
     let releventAssessments=[]
     assessments.forEach(assessment=>{this.state.roster.forEach(student=>{if(student.id===assessment.student_id){releventAssessments.push(assessment)}})})
@@ -272,8 +280,30 @@ class ClassHome extends React.Component {
 
             <Router>
             <div className="class-home__nav">
-              <NavBarContainer classes={this.state.allclasses} classPeriod={this.state.classPeriod} reFetch={e => this.reFetchAssessments(e)} match={match} />
+              <NavBarContainer  
+                classAssessments={this.state.classAssessments} 
+                roster={this.state.roster} 
+                classes={this.state.allclasses} 
+                setHeader={e => this.setHeader(e)} 
+                classPeriod={this.state.classPeriod} 
+                reFetch={e => this.reFetchAssessments(e)}
+                studentBody={this.state.allStudents} 
+                match={match} />
           </div> 
+          <div className="class-home__header">
+              <HeaderContainer 
+                logOut={this.props.logOut} 
+                history={this.props.history} 
+                user={this.props.user} 
+                classes={this.state.allclasses} 
+                classPeriod={this.state.classPeriod} 
+                reFetch={e => this.reFetchAssessments(e)} 
+                match={match} 
+                getUser={this.props.getUser} 
+                headerText={this.state.headerText}/>
+                
+          </div> 
+          {/* <button onClick={e => this.fetchStudents()}>test</button> */}
               <div className="class-home__content">
                 <Switch>
                   <Route exact path={`${match.url}`} render={props =>
@@ -295,10 +325,14 @@ class ClassHome extends React.Component {
 
                   <Route exact path={`${match.url}/assess`} render={props =>
                       <AssessClassContainer
-                      {...props}
+                      // {...props}
+                      user={this.props.user} 
+                      all={e=>this.componentDidMount()}
+                      reFetch={e => this.reFetchAssessments(e)}
                       roster={this.state.roster}
                       assessments={this.state.classAssessments}
                       classPeriod={this.state.classPeriod}
+                      classObject={this.state.classObject} 
                       />
                       }>    
                   </Route>
@@ -306,6 +340,7 @@ class ClassHome extends React.Component {
                   <Route exact path={`${match.url}/edit`} render={props =>
                     <EditClassContainer
                       {...props}
+                      user={this.props.user}
                       classObject={this.state.classObject} 
                       roster={this.state.roster}
                       registrations={this.state.classRegistrations}
@@ -316,6 +351,10 @@ class ClassHome extends React.Component {
                       reFetchStudentBody={e => this.reFetchStudentBody(e)}
                       patchClassPeriod={e => this.patchClassPeriod(e)}
                       test={e => this.test(e)}
+                      assessments={this.state.allAssessments}
+                      classes={this.state.allclasses}
+                      allRegistrations={this.state.allRegistrations}
+                      deleteStudent={(student,registrations,assessments) => this.deleteStudentAssessments(student,registrations,assessments)}
                       />
                   }>     
                   </Route>
@@ -326,6 +365,7 @@ class ClassHome extends React.Component {
                       assessments={this.state.classAssessments} 
                       roster={this.state.roster}
                       registrations={this.state.classRegistrations}
+                      setHeader={e => this.setHeader(e)}
                       studentBody={this.state.allStudents}
                       classPeriod={this.state.classPeriod}
                       graphInfoData={this.state.data}
@@ -348,10 +388,12 @@ class ClassHome extends React.Component {
           reFetchStudentBody={e => this.reFetchStudentBody(e)}
           roster={this.state.roster} /> */}
 
-        <NewStudentForm 
-          reFetchStudentBody={e => this.reFetchStudentBody(e)}/>
+        {/* <NewStudentForm 
+          reFetchStudentBody={e => this.reFetchStudentBody(e)}
+          user={this.props.user}
+          /> */}
 
-        <DeleteStudentForm 
+        {/* <DeleteStudentForm 
           roster={this.state.roster}
           studentBody={this.state.allStudents}
           assessments={this.state.allAssessments}
@@ -359,7 +401,7 @@ class ClassHome extends React.Component {
           registrations={this.state.allRegistrations}
           callback={e => this.callback(e)}
           deleteStudent={(student,registrations,assessments) => this.deleteStudentAssessments(student,registrations,assessments)}
-          user={this.props.user}/>
+          user={this.props.user}/> */}
       </div>
     )
   }

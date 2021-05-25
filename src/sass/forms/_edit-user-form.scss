@@ -1,0 +1,16 @@
+.edit-user-form {
+
+    &__heading{
+        font-size: 3rem;
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    &__name{
+        @include form-input
+    }
+
+    &__submit{
+        @include button-copper
+    }
+}

@@ -24,6 +24,7 @@ class StudentHomeContainer extends React.Component{
   componentDidMount(){
     const {match} = this.props
     const id = (parseInt(match.params.id))
+    this.props.setHeader("Student Page")
     // console.log(id)
     // this.getAssessments()
     api.get.currentStudent(id)
@@ -71,7 +72,6 @@ class StudentHomeContainer extends React.Component{
     return(
       <div className="">
       <div className="student-home">
-        <div className="student-home__header">Student Home</div>
         <div className="student-home__name">
           <TitleBox title={this.state.thisStudent.name} />
         </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import ClassList from '../components/ClassList';
 import NewClassForm from "../forms/NewClassForm"
 import DeleteClassForm from "../forms/DeleteClassForm"
+import HeaderContainer from '../containers/HeaderContainer';
 import MenuHeader from "../components/MenuHeader"
 import MenuFooter from "../components/MenuFooter"
 import logo_svg from "../img/logo-hand.svg";
@@ -36,7 +37,15 @@ class SelectClass extends React.Component {
 
   gatherList = () => {
     api.get.filteredClasses({user_id:this.state.id})
-    .then (res => this.setState({allclasses:res}))
+    .then (res => this.sortClassList(res))
+
+    // .then (res => this.setState({allclasses:res}))
+  }
+
+  sortClassList = (classList) => {
+    classList.sort((a, b) => (a.period - b.period))
+    this.setState({allclasses:classList})
+
   }
 
   deleteClassCycle = (classPeriod) => {
@@ -63,9 +72,17 @@ class SelectClass extends React.Component {
   }
 
   showList = () => {
-    if (this.state.allclasses == ''){return <div class="select-class__welcome">Welcome! Please create some classes.</div>}
+    if (this.state.allclasses == ''){return <div class="select-class__welcome"></div>}
     else
     {return <ClassList classNumber={this.props.classNumber} classes={this.state.allclasses}/>}
+  }
+
+  hilight = () => {
+    if (this.state.allclasses == '')
+    {return "select-class__sidebar--class-list-create-class-button class-list__class class-list__class-highlighted"}
+    else
+    {return "select-class__sidebar--class-list-create-class-button class-list__class"}
+    
   }
 
   render(){
@@ -73,9 +90,17 @@ class SelectClass extends React.Component {
       <div className="select-class">
          {/* <button onClick={e=> this.test(e)}>Button for tests</button> */}
           <div className="select-class__sidebar">
-            <div className="select-class__header select-class__sidebar--header">
+            {/* <div className="select-class__header select-class__sidebar--header">
               <MenuHeader/>
-            </div>
+            </div> */}
+
+<div className=" navBar__header menu-header select-class__menu-header">
+
+<div className="navBar__header-logo--box">
+    <embed src={logo_svg} alt="Logo" className="navBar__header-logo"/>
+</div>
+
+</div>
 
             <div className="select-class__class-list select-class__sidebar--class-list">
               <div className="select-class__class-list select-class__sidebar--class-list-selection">
@@ -84,7 +109,7 @@ class SelectClass extends React.Component {
               <div className="select-class__header select-class__sidebar--class-list-create-class">
 
                 {/* <input type="checkBox" className="select-class__sidebar--class-list-create-class-checkBox" id="new-class-form__checkbox" /> */}
-                <label for="new-class-form__checkbox" className="select-class__sidebar--class-list-create-class-button class-list__class">
+                <label for="new-class-form__checkbox" className={this.hilight()}>
                   <span className="select-class__sidebar--class-list-create-class-button-span">Create a Class</span>
                 </label>
                 <label for="delete-class-form__checkbox" className="select-class__sidebar--class-list-create-class-button class-list__class">
@@ -103,6 +128,8 @@ class SelectClass extends React.Component {
               {/* <MenuFooter/> */}
             </div>
           </div>
+          <HeaderContainer getUser={this.props.getUser} logOut={this.props.logOut} history={this.props.history} user={this.props.user} headerText={""}/>
+
 
           {/* <embed src={logo_svg} alt="Logo" class="select-class__logo--box"/> */}
 

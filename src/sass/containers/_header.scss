@@ -1,0 +1,89 @@
+.header {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    align-items: center;
+
+    &__text{
+        grid-column: 1 / span 1;
+        margin-left: 2rem;
+        font-size: 3rem;
+        font-weight: 200;
+    }
+
+    &__user{
+        grid-column: 2 / span 1;
+        margin-right: 2rem;
+        justify-self: end;
+        font-size: 1.5rem;
+        font-weight: 300;
+        display: flex;
+        align-items: center;
+
+
+        &-name {
+            margin-right: 1rem;
+        }
+
+        &-dropdown-toggle {
+            grid-column: 1 / span 1;
+            grid-row: 1;
+            display: flex;
+            z-index: 200;
+            transition: all .35s;
+            fill: $color-copper-2;
+            background-color: transparent;
+            border-style: none;
+            width: 3rem;
+            height: 3rem;
+            font-weight: 200;
+            align-items: center;
+            justify-content: center;
+            transition: all .2s;
+
+            &:hover{
+                fill: $color-grey-light;
+                transform: scale(1.05);
+
+            }
+        }
+
+        &-dropdown-menu {
+            padding: 1rem;
+            background-color: $color-grey-light;
+            border: solid 1px black;
+        }
+
+        &-dropdown-item {
+            font-weight: 300;
+            color: $color-copper-2;
+            transition: all .25s;
+            text-align: right;
+            margin: 4px 0;
+            padding: .5rem;
+            transform: translateY(-1rem);
+
+            &:hover{
+                color: $color-grey-dark;
+                background-color: $color-copper-2;
+            }
+        }
+    }
+
+    &__controll-toggle{
+        display: none;
+    }
+
+    &-dropdown-button{
+    height: 1.5rem;
+    color: $color-copper-2;
+    background-image: transparent;
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+    font-weight: 100;
+    transition: all .05s;
+    display: flex;
+    align-self: flex-end;
+    }
+}

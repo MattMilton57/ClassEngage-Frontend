@@ -1,4 +1,6 @@
 import React from 'react';
+import FormToggle from "../components/FormToggle";
+
 
 class DeleteClassForm extends React.Component{
 
@@ -10,18 +12,10 @@ constructor(props){
 }
 
 componentDidMount(){
-    // let hat = (this.props.id)
-    // console.log(hat)
-    // const newState = {...this.state.class_period, user_id:this.props.id}
-    // console.log(newState)
-    // this.setState({class_period:newState})
-    // console.log(props.id)
     this.setUser()
 }
 
 setUser = () => {
-        let hat = (this.props.id)
-    console.log(hat)
     let newState = {...this.state.class_period, user_id:this.props.id}
     console.log(newState)
     this.setState({class_period:newState})
@@ -35,56 +29,41 @@ onChange(state,value){
 
 onSubmit = (e) =>{
     e.preventDefault(e)
-    // let newState = {...this.state.class_period, user_id:this.props.id}
-    // console.log(newState)
-    // this.postClass()
-
-    // console.log(this.state.selected.id)
-
     this.props.deleteClass(this.state.selected.id)
-
-    // this.props.gatherList()
+    this.setState({selected:''})
 }
 
 onSelect = (selected) =>{
     this.setState({selected:selected})
-
-    // let newState = {...this.state.class_period, user_id:this.props.id}
-    // console.log(newState)
-
-
-    // this.props.gatherList()
 }
 
-// postClass = () => {
-//     let newClass = {...this.state.class_period, user_id:this.props.id}
-//     api.posts.postClass(newClass)
-//     .then(res => 
-//         {this.props.gatherList();
-//         this.setState({        
-//             class_period:{
-//                 subject:'',
-//                 period:'',
-//                 level:0,
-//                 user_id:this.props.id,}})})
-// }
+highlight = (id) => {
+    if (this.state.selected.id === id){
+        return "delete-class-form__content--form-class-list-container-class-period delete-class-form__content--form-class-list-container-class-period-selected"
+    }else{
+        return "delete-class-form__content--form-class-list-container-class-period"
+    }
+}
 
 listClasses = () => {
     if (this.props.classes === ''){return <div class="select-class__welcome">Welcome! Please create some classes.</div>}
     else
-    {return this.props.classes.map(classPeriod => {return(<li onClick={e => this.onSelect(classPeriod)}>Class period {classPeriod.period}: {classPeriod.subject}</li>)})}
+    {return this.props.classes.map(classPeriod => {
+        return(<li className={this.highlight(classPeriod.id)} onClick={e => this.onSelect(classPeriod)}>
+            <div className="delete-class-form__content--form-class-list-container-class-period-period">{classPeriod.period}</div> 
+            <div className="delete-class-form__content--form-class-list-container-class-period-subject">{classPeriod.subject}</div> 
+            </li>)})}
 } 
 
 confirm = () => {
-    if (this.state.selected === ''){return <div className="delete-class-form__content--form-title" >Select a class to delete</div>}
+    if (this.state.selected === '')
+    {return <div className="delete-class-form__content--form-title" >Select a class to delete</div>}
     else
     {return(
         <div className="delete-class-form__content--form-title">
-            This will remove {this.state.selected.subject}
-        <button onClick={(e)=> this.onSubmit(e)} className="delete-class-form__content--form-confirm-submit" >
-            <span className="">Submit</span> 
-        </button>
-
+            <button onClick={(e)=> this.onSubmit(e)} className="delete-class-form__content--form-confirm-submit btn" >
+                <span className="">delete class</span> 
+            </button>
         </div>
     )}
 } 
@@ -97,14 +76,14 @@ render(){
             <div className="delete-class-form__content">
 
                 <label className="new-student-form__content--form-toggle" for="delete-class-form__checkbox">
-                        <span className="delete-class-form__content--form-toggle">X</span>
+                <FormToggle />
                 </label>
 
                 <form className="delete-class-form__content--form" onSubmit={(e)=> this.onSubmit(e)}>
                     {/* <div className="delete-class-form__content--form-title" >Select a class to delete</div> */}
 
                     <div className="delete-class-form__content--form-class-list">
-                        <ul className="">
+                        <ul className="delete-class-form__content--form-class-list-container">
                             {this.listClasses()}
                         </ul>
                     </div>
