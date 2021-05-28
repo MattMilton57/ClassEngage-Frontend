@@ -3,6 +3,7 @@
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 1fr;
     align-items: center;
+    height: 100%;
 
     &__text{
         grid-column: 1 / span 1;

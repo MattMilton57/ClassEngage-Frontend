@@ -84,6 +84,7 @@ class App extends React.Component {
                       {...props}
                       logIn={this.onLogin}/>
                   }/> */}
+                <div className="content__select-class">
 
                   <ProtectedRoute exact path = "/selectClass"
                   component={ props => 
@@ -94,6 +95,7 @@ class App extends React.Component {
                       getUser={this.setUser} 
                       />
                   }/>
+                </div>
 
                   <ProtectedRoute path = "/classhome/:id"
                   component={ props => 

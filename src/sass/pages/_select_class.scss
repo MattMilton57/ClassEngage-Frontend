@@ -1,9 +1,9 @@
 .select-class {
-    height: 90vh;
+
     background-color: rgba(gray, 0.5);
     display: grid;
-    grid-template-columns: 1fr 6fr;
-    grid-template-rows: 1fr;
+    grid-template-rows: 5rem 1fr;
+    grid-template-columns: 1fr 5fr;
     font-style: unset;
     align-content: space-between;
     @include component-format;
@@ -13,10 +13,9 @@
         rgba(black, 0.9), 
         rgba(black, 0.7)), 
         url(../img/landing-page.jpg);
-
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 
         &__logo {
             align-self: end;
@@ -28,15 +27,18 @@
                 display: flex;
                 flex-direction: row;
                 justify-content: center;
-            width: 100%;
-    
+                width: 100%;
             }
         }
+    
+    &__header {
+        grid-row: 1 / span 1;
+        grid-column: 2 /span 1;
+    }
 
-
-    &__sidebar {
+    &__nav {
         background-color: $color-grey-dark;
-        grid-row: 1 / span 3;
+        grid-row: 1 / span 2;
         grid-column: 1 /span 1;
         display: grid;
         grid-template-columns: 1fr;
@@ -46,7 +48,6 @@
             grid-row: 1 / span 1;
             grid-column: 1 /span 1;
             background-color: rgba(black, 0.2);
-            
         }
 
         &--class-list {
@@ -57,24 +58,18 @@
             grid-template-rows: 2fr .5fr ;
             overflow: auto;
 
-
             &-selection {
                 grid-row: 1 / span 1;
                 grid-column: 1 /span 1;
-
             }
 
             &-create-class {
                 grid-row: 2 / span 1;
                 grid-column: 1 /span 1;
 
-                &-checkBox {
-                // display: none;
-                }
-
                 &-button {
                     display:flex;
-                    justify-content: center;
+                    justify-content: start;
                     align-items: center;
 
                     &-span {
@@ -83,6 +78,7 @@
                         width: 100;
                         font-size: 1.5rem;
                         font-weight: 200;
+                        margin-left: 1rem;
                     }
             
                     &:hover {
@@ -98,7 +94,6 @@
                     opacity: 1;
                     display: flex;
                     transform: scale(1);
-                    // background-color: rebeccapurple;
                 }
             }
 
@@ -109,12 +104,11 @@
             grid-column: 1 /span 1;
             background-color: rgba(black, 0.2);
         }
-        
     }
 
-
-
-
-
-
+    &__content {
+        // background-color: blue;
+        grid-row: 2 / span 1;
+        grid-column: 2 /span 1;
+    }
 }

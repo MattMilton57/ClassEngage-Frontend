@@ -27,7 +27,7 @@ class LogInForm extends React.Component {
       const token = localStorage.getItem("token")
       const username = (this.state.user.username)
       const password = (this.state.user.password)
-    fetch(('http://localhost:3000/api/v1/auth'), {
+    fetch(('https://classengagedeploy-backendapi.herokuapp.com/api/v1/auth'), {
         method:"POST",
         headers: 
             {"Content-Type": "application/json", 

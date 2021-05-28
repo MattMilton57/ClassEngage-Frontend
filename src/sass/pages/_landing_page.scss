@@ -11,10 +11,9 @@
         rgba(black, 0.9), 
         rgba(black, 0.7)), 
         url(../img/landing-page.jpg);
-
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 
     &__content{
         grid-row: 1 / span 1;
@@ -24,8 +23,6 @@
         place-items: center;
         grid-template-rows: repeat(2, min-content);
         grid-template-columns: min-content;
-        // width: 35rem;
-        // height:55rem;
         background-color: rgba($color-grey-light, 0.6);
         box-shadow: 0 1rem 2rem rgba(black, .5);
 
@@ -46,69 +43,28 @@
             grid-column: 1 / span 1;
             width: 100%;
 
-
-            &-login{
-                // transition: transform .8s cubic-bezier(0.85, 0, 0.15, 1);
-            }
+            &-login{}
 
             &-register{
-                // transition:all 2s;
                 display: none; 
-
-// height: 10rem;
-
             }
             &-checkbox {
                 display: none;
             }
             &-checkbox:checked ~ &-login{
-        display: none; 
+                display: none; 
             }
             &-checkbox:checked ~ &-register {
                 display: flex;
             }
         }
-    
-    
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    // &__form {
-
-    //     &--register {
-    //         grid-row: 2 / 4;
-    //         grid-column: 2;
-    //         display: flex;
-    //         // display: none;
-    //         flex-direction: column;
-    //         justify-content: space-between;
-    //         height: 20vh;
-    //         justify-content: center;
-    //         background-color: white;
-    //         transform: translatex(50vw);
-    //         transition: all 1s;
-    //     }
-    // }
 
     &__button {
         @include item-format;
         display: flex;
         justify-content: center;
         align-items: center;
-        // font-size: 2.75rem;
         color: black;
         text-transform: uppercase;
         background-image: $copper-gradient;

@@ -88,52 +88,49 @@ class SelectClass extends React.Component {
   render(){
     return(
       <div className="select-class">
-         {/* <button onClick={e=> this.test(e)}>Button for tests</button> */}
-          <div className="select-class__sidebar">
-            {/* <div className="select-class__header select-class__sidebar--header">
-              <MenuHeader/>
-            </div> */}
 
-<div className=" navBar__header menu-header select-class__menu-header">
+        <div className="select-class__header">
+          <HeaderContainer 
+            getUser={this.props.getUser} 
+            logOut={this.props.logOut} 
+            history={this.props.history} 
+            user={this.props.user} 
+            headerText={""}/>
+        </div>
+        
 
-<div className="navBar__header-logo--box">
-    <embed src={logo_svg} alt="Logo" className="navBar__header-logo"/>
-</div>
-
-</div>
-
-            <div className="select-class__class-list select-class__sidebar--class-list">
-              <div className="select-class__class-list select-class__sidebar--class-list-selection">
-                {this.showList()}
-              </div>
-              <div className="select-class__header select-class__sidebar--class-list-create-class">
-
-                {/* <input type="checkBox" className="select-class__sidebar--class-list-create-class-checkBox" id="new-class-form__checkbox" /> */}
-                <label for="new-class-form__checkbox" className={this.hilight()}>
-                  <span className="select-class__sidebar--class-list-create-class-button-span">Create a Class</span>
-                </label>
-                <label for="delete-class-form__checkbox" className="select-class__sidebar--class-list-create-class-button class-list__class">
-                  <span className="select-class__sidebar--class-list-create-class-button-span">Delete a Class</span>
-                </label>
-                {/* <div className="select-class__sidebar--class-list-create-class-form">
-                  form display
-                </div> */}
-              </div>
-            </div>
-
-
-            <div className="select-class__footer select-class__sidebar--footer">
-              ©MattMilton 2021
-              <br></br>
-              {/* <MenuFooter/> */}
+        <div className="select-class__nav">
+          <div className=" navBar__header menu-header select-class__menu-header">
+             <div className="navBar__header-logo--box">
+                <embed src={logo_svg} alt="Logo" className="navBar__header-logo"/>
             </div>
           </div>
-          <HeaderContainer getUser={this.props.getUser} logOut={this.props.logOut} history={this.props.history} user={this.props.user} headerText={""}/>
 
+           <div className="select-class__class-list select-class__nav--class-list">
+             <div className="select-class__class-list select-class__nav--class-list-selection">
+               {this.showList()}
+             </div>
 
-          {/* <embed src={logo_svg} alt="Logo" class="select-class__logo--box"/> */}
+             <div className="select-class__header select-class__nav--class-list-create-class">
+               <label for="new-class-form__checkbox" className="select-class__nav--class-list-create-class-button class-list__class">
+                 <span className="select-class__nav--class-list-create-class-button-span">New Class</span>
+              </label>
+               <label for="delete-class-form__checkbox" className="select-class__nav--class-list-create-class-button class-list__class">
+                 <span className="select-class__nav--class-list-create-class-button-span">Delete Class</span>
+               </label>
+            </div>
+          </div>
 
-          {/* <CreateAClass  gatherList={this.gatherList} id={this.state.id}/> */}
+           <div className="select-class__footer select-class__nav--footer">
+             ©MattMilton 2021
+             <br></br>
+           </div>
+        </div>
+
+        <div className="select-class__content">
+
+        </div>
+
           <NewClassForm  gatherList={this.gatherList} id={this.state.id}/>
           <DeleteClassForm classes={this.state.allclasses} gatherList={this.gatherList} deleteClass={e => this.deleteClassCycle(e)}/>
 

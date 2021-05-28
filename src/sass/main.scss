@@ -19,7 +19,6 @@
 @import "components/last-assessment";
 @import "components/menu-footer";
 @import "components/menu-header";
-@import "components/navbar";
 @import "components/roster";
 @import "components/stats-display";
 @import "components/total-assessments";
@@ -28,6 +27,7 @@
 @import "containers/class-stats";
 @import "containers/edit-class";
 @import "containers/header";
+@import "containers/navbar";
 @import "containers/student-home";
 
 @import "forms/delete-class-form";
@@ -39,7 +39,6 @@
 @import "forms/landing-form";
 @import "forms/new-class-form";
 @import "forms/new-student-form";
-@import "forms/register-form";
 @import "forms/user-preferences-form";
 
 @import "pages/class_home";

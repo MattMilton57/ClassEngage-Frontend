@@ -1,0 +1,9 @@
+Attempt 1 - Heroku backend and netlify frontend
+
+Cannot create a new user, getting 401 unauthorized error, even with token stored in browser. Also cannot create new class, same issue. New user is stored in state, but "current user" state doesn't show anything, so that fetch isn't working and is saying unauthorized. Reloading page give a 404 site not found error. For some reason, user is posting in my local database.
+
+Tracing it - I forgot to change the fetch in my login and register forms to the Heroku fetch. Whoops.
+
+Rebuilding now
+
+Success!!

@@ -1,11 +1,12 @@
 .class-home {
-    height:90vh;
     display: grid;
     grid-template-rows: 5rem 1fr;
-    grid-template-columns: 1fr 6fr;
+    grid-template-columns: 1fr 5fr;
     background-color: $color-grey-mid;
     border-radius: 1rem;
     align-content: space-between;
+            // max-height: 85vh;
+
 
     &__header {
         grid-column: 2 / span 1;
@@ -19,35 +20,6 @@
         background-color: $color-grey-dark;
     }
 
-    // &__sidebar {
-    //     grid-column: 1 / span 1;
-    //     grid-row: 1 / span 1;
-    //     background-color: $color-grey-dark;
-
-    //     height: 100;
-
-    //     display: grid;
-    //     grid-template-columns: 1fr;
-    //     grid-template-rows: 1fr 4fr 1fr;
-
-    //     &--header {
-    //         grid-row: 1 / span 1;
-    //         grid-column: 1 / span 1;
-    //         background-color: rgba(black, 0.2);
-    //     }
-
-    //     &--class-list {
-    //         grid-row: 2/ span 1;
-    //         grid-column: 1 / span 1;
-    //     }
-
-    //     &--footer {
-    //         grid-row: 3 / span 1;
-    //         grid-column: 1 / span 1;
-    //         background-color: rgba(black, 0.2);
-    //     }
-    // }
-
     &__content {
         grid-row: 2 / span 1;
         grid-column: 2 / span 1;
@@ -55,6 +27,8 @@
         grid-template-rows: 1fr;
         grid-template-columns: 1fr;
         font-size: 2rem;
+        max-height: 85vh;
+        // height: 100%;
 
         &--display {
             grid-row: 1 / span 1;

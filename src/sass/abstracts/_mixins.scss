@@ -57,6 +57,32 @@
     font-weight: 100;
 }
 
+@mixin form-input-2 {
+    font-size: 1.5rem;
+    padding: 1.5rem 2rem;
+    border-radius: 2px;
+    background-color: rgba($color-grey-light, .5);
+    border: none;
+    width: 30rem;
+    display: block;
+    transition: all .3s;
+    color: white;
+
+    &:focus {
+        outline: none;
+        box-shadow: 0 1rem 2rem rgba(black, .1);
+        border: solid 1px $color-copper-2;
+    }
+
+    &:focus:invalid {
+        border-bottom: 1px solid red;
+    }
+
+    &::-webkit-input-placeholder {
+        color: rgba($color-grey-mid, 1);
+    }
+}
+
 @mixin button-copper {
     color: $color-copper-2;
     padding: .5rem 1rem;
