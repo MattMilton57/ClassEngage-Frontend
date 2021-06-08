@@ -31,18 +31,23 @@ const  ClassStatsContainer = ({assessments, roster, callback, classPeriod, class
         </div>
       </div>)}
     else
-    {return(          
-    <ClassScore
-      roster={roster} 
-      assessments={assessments}
-      classPeriod={classPeriod}
-      />)}
+    {return( 
+      <div className="class-stats__total-participation-shell ">
+
+        <ClassScore
+          roster={roster} 
+          assessments={assessments}
+          classPeriod={classPeriod}
+          />
+      </div>         
+      )}
   }
 
     return(
-      <div className="class-stats">
+      <div className="class-stats class-home__content-class-stats">
 
         <div className="class-stats__roster-container">
+          <div className="class-stats__roster-container-shell">
           <Roster
           assessments={assessments} 
           score={true} 
@@ -52,6 +57,8 @@ const  ClassStatsContainer = ({assessments, roster, callback, classPeriod, class
           linkTo={true}
           url={url}
           />
+
+          </div>
         </div>
 
         <div className="class-stats__class-name">
@@ -66,11 +73,8 @@ const  ClassStatsContainer = ({assessments, roster, callback, classPeriod, class
 
         <div className="class-stats__graphics">
           <Graphics 
-
-          graphData={graphInfoData}
-          stateLables={stateLables}
-          assessments={assessments}
-          dataObject={dataObject}
+            graphData={graphInfoData}
+            stateLables={stateLables}
           />
         </div>
 

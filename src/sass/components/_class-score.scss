@@ -1,44 +1,32 @@
 .class-score {
-    // background-color: rebeccapurple;
-    height: 100%;
-    width: 100%;
-    // padding: 1rem;
-
     display: flex;
     justify-content: center;
     align-items: center;
 
     &__caption {
-
-        font-size: 5rem;
-
+        font-size: 3.1rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: flex-end;
-
     }
 
     &__score {
         color: $color-copper-2;
-
         justify-content: center;
         align-items: flex-start;
         display: flex;
 
         &--number {
-            font-size: 22rem;
+            font-size: 13rem;
             font-weight: 100;
         }
 
         &--percent {
-            margin-top: 5rem;
-            font-size: 5rem;
+            margin-top: 3rem;
+            font-size: 3rem;
             color: white;
             font-weight: 100;
         }
-
-
-
     }
 }

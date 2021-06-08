@@ -5,7 +5,7 @@
     background-color: $color-grey-mid;
     border-radius: 1rem;
     align-content: space-between;
-            // max-height: 85vh;
+    @include page-format;
 
 
     &__header {
@@ -27,63 +27,58 @@
         grid-template-rows: 1fr;
         grid-template-columns: 1fr;
         font-size: 2rem;
-        max-height: 85vh;
-        // height: 100%;
+        padding: .5rem 2rem 2rem 2rem;
+        overflow: hidden;
+
+        &-class-stats{
+            
+            // background-color: yellow;
+        }
 
         &--display {
             grid-row: 1 / span 1;
             grid-column: 1 / span 1;
-            // background-color: gray;
         }
 
-        &--links {
-            grid-row: 2 / span 1;
-            grid-column: 1 / span 1;
-            display: flex;
-            justify-content: space-around;
-            margin: 0 2rem;
-            margin-bottom: 2rem;
+        // &--links {
+        //     grid-row: 2 / span 1;
+        //     grid-column: 1 / span 1;
+        //     display: flex;
+        //     justify-content: space-around;
+        //     margin: 0 2rem;
+        //     margin-bottom: 2rem;
 
+        //     &-link {
+        //         width: calc(100% / 3);
+        //         @include component-format;
+        //         display: flex;
+        //         flex-direction: column;
+        //         justify-content: center;
+        //         align-items: center;
+        //         font-size: 2.5rem;
+        //         transition: all, .5s;
 
-            &-link {
-                background-color: rebeccapurple;
-                width: calc(100% / 3);
-                @include component-format;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                font-size: 2.5rem;
-                transition: all, .5s;
-
-                a{
-                    color: $color-copper-1;
-                    text-decoration: none;
+        //         a{
+        //             color: $color-copper-1;
+        //             text-decoration: none;
       
-                }
+        //         }
 
-                &:not(:last-child){
-                    margin-right: 2rem;
-                }
+        //         &:not(:last-child){
+        //             margin-right: 2rem;
+        //         }
 
-                &:hover{
-                    transform: scale(1.02);
-                    box-shadow: $box-shadow-large;
-                    border: solid 1px $color-copper-2;
-                }
-            }
+        //         &:hover{
+        //             transform: scale(1.02);
+        //             box-shadow: $box-shadow-large;
+        //             border: solid 1px $color-copper-2;
+        //         }
+        //     }
 
-            &-icon {
-                height: 8rem;
-
-                fill: $color-grey-mid;
-   
-
-            }
-
-        }
-
+            // &-icon {
+            //     height: 8rem;
+            //     fill: $color-grey-mid;
+            // }
+        // }
     }
-
-
 }

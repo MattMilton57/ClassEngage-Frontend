@@ -3,8 +3,9 @@
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: 1fr .60fr;
-    max-width: 100vw;
-    height: 90vh;
+    @include page-format;
+    // max-width: 100vw;
+    // height: 90vh;
     place-items: center;
     background-image: linear-gradient(
         to right bottom, 

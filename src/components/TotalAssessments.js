@@ -7,7 +7,7 @@ const TotalAssessments = ({assessments}) => {
             return (<div></div>)
         }else{
             return(
-                <div className="total-assessments__total">
+                <div className="">
                     {assessments.length}
                 </div>
             )
@@ -19,7 +19,9 @@ const TotalAssessments = ({assessments}) => {
             <div className="total-assessments__text">
                 Total Assments
             </div>
-            {assessmentTotal()}
+            <div className="total-assessments__total">
+                {assessmentTotal()}
+            </div>
         </div>
     ) 
 }

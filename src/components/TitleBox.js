@@ -4,11 +4,8 @@ const TitleBox = ({title}) => {
 
     return(
         <div className="class-title">
-            {/* <div className="class-title__class-period">
-                P: {classObject.period}
-            </div> */}
             <div className="class-title__class-subject">
-                    {title} 
+                {title} 
             </div>
         </div>
     )

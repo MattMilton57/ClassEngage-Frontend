@@ -1,22 +1,15 @@
 import React from 'react';
-import NavBarContainer from '../containers/NavBarContainer';
-import HeaderContainer from '../containers/HeaderContainer';
 
 import AssessClassContainer from '../containers/AssessClassContainer';
-import EditClassContainer from '../containers/EditClassContainer.js';
 import ClassStatsContainer from '../containers/ClassStatsContainer';
+import EditClassContainer from '../containers/EditClassContainer.js';
+import HeaderContainer from '../containers/HeaderContainer';
+import NavBarContainer from '../containers/NavBarContainer';
 import StudentHomeContainer from '../containers/StudentHomeContainer';
-import MenuHeader from "../components/MenuHeader"
-import MenuFooter from "../components/MenuFooter"
-import EditStudentForm from "../forms/EditStudentForm"
-import NewStudentForm from "../forms/NewStudentForm"
-import DeleteStudentForm from "../forms/DeleteStudentForm"
 
-import sprite from "../img/sprite.svg"
-
-import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import { api } from '../services/api'
-import { functions } from '../services/functions'
+
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
 class ClassHome extends React.Component {
 
@@ -44,8 +37,6 @@ class ClassHome extends React.Component {
   componentDidMount(){
     const {match} = this.props
     const id = (parseInt(match.params.id))
-    // console.log(match, id)
-    // this.fetchClassesAssessments()
     this.fetchClass()
     this.checkUser(id)
     this.fetchStudents(id)
@@ -157,9 +148,7 @@ class ClassHome extends React.Component {
     .then(res => this.componentDidMount())
   }
 
-
-
-  ////////////////////////////////////////graph data////////////////////////////////////////
+  ////////////////////////////////////////build graph data////////////////////////////////////////
 
   testDate = (assessments) => {
     let dateArray = []
@@ -239,11 +228,10 @@ class ClassHome extends React.Component {
     })
   }
 
-
 //////////callbacks//////////
 
   callback = (e) => {
-    
+    console.log("test function")
   }
 
   setHeader = (e) => {
@@ -277,132 +265,113 @@ class ClassHome extends React.Component {
     const {match} = this.props
     return(
       <div className="class-home">
-
-            <Router>
-            <div className="class-home__nav">
-              <NavBarContainer  
-                classAssessments={this.state.classAssessments} 
-                roster={this.state.roster} 
-                classes={this.state.allclasses} 
-                setHeader={e => this.setHeader(e)} 
-                classPeriod={this.state.classPeriod} 
-                reFetch={e => this.reFetchAssessments(e)}
-                studentBody={this.state.allStudents} 
-                match={match} />
+        <Router>
+          <div className="class-home__nav">
+            <NavBarContainer  
+              classAssessments={this.state.classAssessments} 
+              classes={this.state.allclasses} 
+              classPeriod={this.state.classPeriod} 
+              match={match}
+              reFetch={e => this.reFetchAssessments(e)}
+              roster={this.state.roster} 
+              setHeader={e => this.setHeader(e)} 
+              studentBody={this.state.allStudents} 
+              />
           </div> 
           <div className="class-home__header">
-              <HeaderContainer 
-                logOut={this.props.logOut} 
-                history={this.props.history} 
-                user={this.props.user} 
-                classes={this.state.allclasses} 
-                classPeriod={this.state.classPeriod} 
-                reFetch={e => this.reFetchAssessments(e)} 
-                match={match} 
-                getUser={this.props.getUser} 
-                headerText={this.state.headerText}/>
-                
+            <HeaderContainer 
+              classes={this.state.allclasses} 
+              classPeriod={this.state.classPeriod} 
+              getUser={this.props.getUser} 
+              headerText={this.state.headerText}
+              history={this.props.history} 
+              logOut={this.props.logOut} 
+              match={match} 
+              reFetch={e => this.reFetchAssessments(e)} 
+              user={this.props.user} 
+              />                
           </div> 
-          {/* <button onClick={e => this.fetchStudents()}>test</button> */}
-              <div className="class-home__content">
-                <Switch>
-                  <Route exact path={`${match.url}`} render={props =>
-                    <ClassStatsContainer 
-                                          {...props}
-                      assessments={this.state.classAssessments} 
-                      score={true} 
-                      roster={this.state.roster} 
-                      callback={this.callback}
-                      classPeriod={this.state.classPeriod} 
-                      classObject={this.state.classObject} 
-                      graphInfoData={this.state.data}
-                      stateLables={this.state.stateLables}
-                      dataObject={this.state.dataObject}
-                      linkTo={true}
-                      url={`${match.url}/studenthome/`}/>
-                      }>
-                  </Route>
+          <div className="class-home__content">
+            <Switch>
+              <Route exact path={`${match.url}`} render={props =>
+                  <ClassStatsContainer 
+                    {...props}
+                    assessments={this.state.classAssessments} 
+                    callback={this.callback}
+                    classObject={this.state.classObject} 
+                    classPeriod={this.state.classPeriod} 
+                    dataObject={this.state.dataObject}
+                    graphInfoData={this.state.data}
+                    linkTo={true}
+                    roster={this.state.roster} 
+                    score={true} 
+                    stateLables={this.state.stateLables}
+                    url={`${match.url}/studenthome/`}
+                  />
+                }>
+              </Route>
 
-                  <Route exact path={`${match.url}/assess`} render={props =>
-                      <AssessClassContainer
-                      // {...props}
-                      user={this.props.user} 
-                      all={e=>this.componentDidMount()}
-                      reFetch={e => this.reFetchAssessments(e)}
-                      roster={this.state.roster}
-                      assessments={this.state.classAssessments}
-                      classPeriod={this.state.classPeriod}
-                      classObject={this.state.classObject} 
-                      />
-                      }>    
-                  </Route>
+              <Route exact path={`${match.url}/assess`} render={props =>
+                  <AssessClassContainer
+                    all={e=>this.componentDidMount()}
+                    assessments={this.state.classAssessments}
+                    classObject={this.state.classObject}
+                    classPeriod={this.state.classPeriod}
+                    reFetch={e => this.reFetchAssessments(e)}
+                    roster={this.state.roster}
+                    user={this.props.user} 
+                  />
+                }>    
+              </Route>
 
-                  <Route exact path={`${match.url}/edit`} render={props =>
-                    <EditClassContainer
-                      {...props}
-                      user={this.props.user}
-                      classObject={this.state.classObject} 
-                      roster={this.state.roster}
-                      registrations={this.state.classRegistrations}
-                      studentBody={this.state.allStudents}
-                      classPeriod={this.state.classPeriod}
-                      register={e => this.postRegistration(e)}
-                      deRegister={e => this.deleteRegistration(e)}
-                      reFetchStudentBody={e => this.reFetchStudentBody(e)}
-                      patchClassPeriod={e => this.patchClassPeriod(e)}
-                      test={e => this.test(e)}
-                      assessments={this.state.allAssessments}
-                      classes={this.state.allclasses}
-                      allRegistrations={this.state.allRegistrations}
-                      deleteStudent={(student,registrations,assessments) => this.deleteStudentAssessments(student,registrations,assessments)}
-                      />
-                  }>     
-                  </Route>
+              <Route exact path={`${match.url}/edit`} render={props =>
+                  <EditClassContainer
+                    {...props}
+                    allRegistrations={this.state.allRegistrations}
+                    assessments={this.state.allAssessments}
+                    classes={this.state.allclasses}
+                    classObject={this.state.classObject} 
+                    classPeriod={this.state.classPeriod}
+                    deleteStudent={(student,registrations,assessments) => this.deleteStudentAssessments(student,registrations,assessments)}
+                    deRegister={e => this.deleteRegistration(e)}
+                    patchClassPeriod={e => this.patchClassPeriod(e)}
+                    reFetchStudentBody={e => this.reFetchStudentBody(e)}
+                    registrations={this.state.classRegistrations}
+                    register={e => this.postRegistration(e)}
+                    roster={this.state.roster}
+                    studentBody={this.state.allStudents}
+                    test={e => this.test(e)}
+                    user={this.props.user}
+                  />
+                }>     
+              </Route>
 
-                  <Route exact path={`${match.url}/studenthome/:id`} render={props =>
-                    <StudentHomeContainer
-                      {...props}
-                      assessments={this.state.classAssessments} 
-                      roster={this.state.roster}
-                      registrations={this.state.classRegistrations}
-                      setHeader={e => this.setHeader(e)}
-                      studentBody={this.state.allStudents}
-                      classPeriod={this.state.classPeriod}
-                      graphInfoData={this.state.data}
-                      stateLables={this.state.stateLables}
-                      buildGraph={e => this.testDate(e)}
-                      fetchClass={e => this.reFetchAssessments(e)}
-                      register={e => this.postRegistration(e)}
-                      patchStudent={e => this.patchStudent(e)}
-                      deleteStudent={e => this.deleteStudent(e)}
-                      deleteRegistration={e => this.deleteRegistration(e)}
-                      test={e => this.test(e)}
-                      />
-                  }>  
-                  </Route>
-                </Switch>
-              </div>
-            </Router>
-
-        {/* <EditStudentForm 
-          reFetchStudentBody={e => this.reFetchStudentBody(e)}
-          roster={this.state.roster} /> */}
-
-        {/* <NewStudentForm 
-          reFetchStudentBody={e => this.reFetchStudentBody(e)}
-          user={this.props.user}
-          /> */}
-
-        {/* <DeleteStudentForm 
-          roster={this.state.roster}
-          studentBody={this.state.allStudents}
-          assessments={this.state.allAssessments}
-          classes={this.state.allclasses}
-          registrations={this.state.allRegistrations}
-          callback={e => this.callback(e)}
-          deleteStudent={(student,registrations,assessments) => this.deleteStudentAssessments(student,registrations,assessments)}
-          user={this.props.user}/> */}
+              <Route exact path={`${match.url}/studenthome/:id`} render={props =>
+                  <StudentHomeContainer
+                    {...props}
+                    assessments={this.state.classAssessments} 
+                    buildGraph={e => this.testDate(e)}
+                    classPeriod={this.state.classPeriod}
+                    deleteRegistration={e => this.deleteRegistration(e)}
+                    deleteStudent={e => this.deleteStudent(e)}
+                    fetchClass={e => this.reFetchAssessments(e)}
+                    graphInfoData={this.state.data}
+                    patchStudent={e => this.patchStudent(e)}
+                    register={e => this.postRegistration(e)}
+                    registrations={this.state.classRegistrations}
+                    roster={this.state.roster}
+                    setHeader={e => this.setHeader(e)}
+                    stateLables={this.state.stateLables}
+                    studentBody={this.state.allStudents}
+                    test={e => this.test(e)}
+                  />
+                }>  
+              </Route>
+            </Switch>
+          </div>
+        </Router>
       </div>
     )
   }
-} export default ClassHome
+} 
+export default ClassHome

@@ -74,17 +74,19 @@ class AssessClass extends React.Component {
       )
     }else{
       return(
-        <ul className="assess-class__card-container">
-            {students.map(student => <li key={student.name} className="assess-class__card-container--card">
-                                        <AssessmentCard
-                                          user={this.props.user}  
-                                          reFetch={this.props.reFetch}
-                                          classID={this.props.classPeriod} 
-                                          index={student[1]} 
-                                          nextAssessment={this.nextAssessment} 
-                                          student={student[0]}/></li> )}
-            {/* {students.map(student => {console.log(student)})} */}
-        </ul>
+        <div className="assess-class__card-container-shell">
+          <ul className="assess-class__card-container-shell-list">
+              {students.map(student => <li key={student.name} className="assess-class__card-container--card">
+                                          <AssessmentCard
+                                            user={this.props.user}  
+                                            reFetch={this.props.reFetch}
+                                            classID={this.props.classPeriod} 
+                                            index={student[1]} 
+                                            nextAssessment={this.nextAssessment} 
+                                            student={student[0]}/></li> )}
+          </ul>
+
+        </div>
       )
     }
   }
@@ -116,10 +118,10 @@ class AssessClass extends React.Component {
     if ((this.state.classesAssessments.length < 1)&&(this.state.instructions === 'go'))
     {return(
       <ul className="assess-class__instructions">
-        <li className="assess-class__instructions--list-item-1">to submit an assessment:</li>
-        <li className="assess-class__instructions--list-item-2">click true or false</li>
-        <li className="assess-class__instructions--list-item-3">click comment to add a comment</li>
-        <li className="assess-class__instructions--list-item-4">click submit to submit the assessment</li>
+        <li className="assess-class__instructions--list-item assess-class__instructions--list-item-1">to submit an assessment:</li>
+        <li className="assess-class__instructions--list-item assess-class__instructions--list-item-2">click true or false</li>
+        <li className="assess-class__instructions--list-item assess-class__instructions--list-item-3">click comment to add a comment</li>
+        <li className="assess-class__instructions--list-item assess-class__instructions--list-item-4">click submit to submit the assessment</li>
       </ul>
     )}
     else
@@ -133,7 +135,12 @@ class AssessClass extends React.Component {
   render(){
     return(
       <div className="assess-class">
-        {this.makeCards()}
+        <div className="assess-class__card-container">
+          
+          {this.makeCards()}
+
+
+        </div>
 
         <div className="assess-class__class-name">
           <TitleBox

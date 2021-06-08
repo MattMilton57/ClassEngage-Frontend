@@ -7,19 +7,24 @@
     grid-template-rows: 1fr;
     align-items: center;
     justify-content: center;
-    // column-gap: .5rem;
     text-transform: uppercase;
 
     &__text {
         justify-self: end;
-
-        font-size: 3rem;
+        font-size: 2.25rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         text-align: right;
-
+        height: 100%;
     }
 
     &__date {
+        display: flex;
+        justify-content: start;
+        align-items: center;
         color: $color-copper-2;
-        font-size: 7.3rem;
+        font-size: 6.3rem;
+        height: 100%;
     }
 }

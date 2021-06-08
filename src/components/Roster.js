@@ -3,7 +3,7 @@ import  Student from '../components/Student';
 import  StudentScore from '../components/StudentScore';
 
 
-const Roster = ({ url, roster, callback, score, assessments, classPeriod, linkTo, registerAction}) => {  
+const Roster = ({ url, roster, callback, score, assessments, classPeriod, linkTo, label, registerAction}) => {  
     
     const filterAssessments = (id) => {
         // console.log(assessments)
@@ -33,54 +33,56 @@ const Roster = ({ url, roster, callback, score, assessments, classPeriod, linkTo
 
     if (score===true){
         return(
-        <div className='roster'>
-            <ul>
-                {roster.map(student => 
-                    <li className="roster__student" key={student.name}>
-                        <div className="roster__student--name" id="name">
-                            <Student 
-                                url={url}
-                                totalScore={filterAssessments(student.id)} 
-                                callback={callback} 
-                                student={student} 
-                                assessments={assessments} 
-                                showScore={score}
-                                linkTo={linkTo}/>
-                        </div>
-                        <div className="roster__student--score" id="score">
-                            <StudentScore
-                                student={student}
-                                assessments={assessments}
-                                classPeriod={classPeriod}
-                            
-                            />
-                        </div>
-                    </li>)}
-            </ul>
-        </div>
-    )
-            }else{
-                return(
-                    <div className='roster'>
-                        <ul>
-                            {roster.map(student => 
-                                <li id="student" key={student.name}>
-                                    {/* <div className="roster__student--name" id="name"> */}
-                                        <Student 
-                                            totalScore={filterAssessments(student.id)} 
-                                            callback={callback} 
-                                            student={student} 
-                                            assessments={assessments} 
-                                            showScore={score}
-                                            registerAction={registerAction}/>
-                                    {/* </div> */}
-                                </li>)}
-                        </ul>
+            <div className='roster'>
+                <ul className='roster__container'>
+                    {roster.map(student => 
+                        <li className="roster__student" key={student.name}>
+                            <div className="roster__student--name" id="name">
+                                <Student 
+                                    url={url}
+                                    totalScore={filterAssessments(student.id)} 
+                                    callback={callback} 
+                                    student={student} 
+                                    assessments={assessments} 
+                                    showScore={score}
+                                    linkTo={linkTo}/>
+                            </div>
+                            <div className="roster__student--score" id="score">
+                                <StudentScore
+                                    student={student}
+                                    assessments={assessments}
+                                    classPeriod={classPeriod}
+                                
+                                />
+                            </div>
+                        </li>
+                    )}
+                </ul>
+            </div>
+        )
+    }else{
+        return(
+            <div className='roster'>
+                <ul className='roster__container'>
+                    <div className="edit-class__roster-label">
+                        {label}
                     </div>
-                )            
-            } 
-
-
-
+                    {roster.map(student => 
+                        <li className="edit__student" key={student.name}>
+                            {/* <div className="roster__student--name" id="name"> */}
+                                <Student 
+                                    totalScore={filterAssessments(student.id)} 
+                                    callback={callback} 
+                                    student={student} 
+                                    assessments={assessments} 
+                                    showScore={score}
+                                    registerAction={registerAction}/>
+                            {/* </div> */}
+                        </li>
+                    )}
+                </ul>
+            </div>
+        )            
+    } 
 }
 export default Roster;
