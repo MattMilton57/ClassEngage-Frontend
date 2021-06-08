@@ -16,6 +16,11 @@
     // transition: all .1s;
     // transform: translateY(-1.5rem);
     // transform: translateX(11.5rem);
+    margin: 2rem;
+    position: absolute;
+    z-index: 9960;
+    transform: translateY(-1.5rem);
+    transform: translateX(71.5rem);
 
     &-icon {
         // grid-column: 1 / span 1;

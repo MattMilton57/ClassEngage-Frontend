@@ -102,7 +102,7 @@ export default class DeleteStudentForm extends React.Component {
                 <input type="checkbox" id="delete-student-form__checkbox" className="delete-student-form__checkbox"/>
                 <div className="delete-student-form__content">
 
-                    <label className="delete-student-form__content--form-toggle delete-student-form__toggle" htmlFor="delete-student-form__checkbox">
+                    <label className="delete-student-form__content--form-toggle" for="delete-student-form__checkbox">
                         <FormToggle />
                     </label>
 

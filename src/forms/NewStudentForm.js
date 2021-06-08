@@ -53,15 +53,12 @@ export default class NewStudentForm extends React.Component {
                         <FormToggle />
                     </label>
 
-
-
                     <form  className="new-student-form__content--form" onSubmit={(e)=> this.onSubmit(e)}>
-
                     <div className="new-student-form__content--form-title">Create a student</div>
                         <input 
                             type="text" 
                             id="new_student-form__content--form-name"
-                            className="new-student-form__content--form-name" 
+                            className="new-student-form__content--form-input-name" 
                             placeholder="New Student"
                             value={this.state.student.name}
                             onChange={(e) => this.onChange("name", e.target.value)}/>

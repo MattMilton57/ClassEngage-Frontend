@@ -58,12 +58,12 @@ export default class EditStudentForm extends React.Component {
 
                     <form  className="edit-student-form__content--form" onSubmit={(e)=> this.onSubmit(e)}>
 
-                        <div className="edit-student-form__content--form-existing-name">Edit Student</div>
+                        <div className="edit-student-form__content--form-title">Edit Student</div>
 
                         <input 
                             type="text" 
                             id="new_student-form__content--form-name"
-                            className="edit-student-form__content--form-name" 
+                            className="edit-student-form__content--form-input-name" 
                             placeholder="name"
                             value={this.state.name}
                                 ///saved for future form expansion///

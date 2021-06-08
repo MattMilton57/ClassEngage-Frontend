@@ -29,13 +29,6 @@ export default class EditClassForm extends React.Component {
         })
     }
 
-    ///saved for future form expansion///
-
-    // onChange(state,value){
-    //     const newState = {...this.state.student, [state]:value}
-    //   this.setState({student: newState})
-    // }
-
     onChange(id, value){
         if(id==="max"){      
             this.setState({
@@ -57,9 +50,6 @@ export default class EditClassForm extends React.Component {
     
     onSubmit = (e) =>{
         e.preventDefault()
-        // let student = {name:this.state.name, id:this.props.student.id}
-        // this.props.patchStudent(student);
-        // this.props.handleEdit(student)
         let classPeriod = this.state.classPeriod
         let id = this.props.classObject.id
         console.log(id)
@@ -97,19 +87,17 @@ export default class EditClassForm extends React.Component {
 
                     <form  className="edit-class-form__content--form" onSubmit={(e)=> this.onSubmit(e)}>
 
-                        <div className="edit-class-form__content--form-existing-name">Edit Class</div>
+                        <div className="edit-class-form__content--form-title">Edit Class</div>
 
                         <input 
                             type="text" 
                             id="subject"
-                            className="edit-class-form__content--form-name" 
+                            className="edit-class-form__content--form-input-name" 
                             placeholder="name"
                             value={this.state.classPeriod.subject}
-                                ///saved for future form expansion///
-                            // onChange={(e) => this.onChange("name", e.target.value)}/>
                             onChange={(e) => this.onChange(e.target.id, e.target.value)}/>
 
-                        <input 
+                        {/* <input 
                             type="text" 
                             id="max"
                             className="edit-class-form__content--form-max" 
@@ -118,7 +106,7 @@ export default class EditClassForm extends React.Component {
                                 ///saved for future form expansion///
                             // onChange={(e) => this.onChange("name", e.target.value)}/>
                             // onChange={(e) => this.onChange(e.target.value)}/>
-                            onChange={(e) => this.onChange(e.target.id, e.target.value)}/>
+                            onChange={(e) => this.onChange(e.target.id, e.target.value)}/> */}
 
 
             

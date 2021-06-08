@@ -1,24 +1,26 @@
 import React from 'react';
+import InfoBox from "../components/InfoBox";
 import Roster from "../components/Roster";
 import RosterRemainder from "../components/RosterRemainder";
-import InfoBox from "../components/InfoBox";
+import DeleteStudentForm from "../forms/DeleteStudentForm"
 import EditClassForm from "../forms/EditClassForm";
 import NewStudentForm from "../forms/NewStudentForm";
-import DeleteStudentForm from "../forms/DeleteStudentForm"
 
-const  EditClassContainer = ({roster, 
-                              studentBody, 
-                              deRegister, 
-                              user, 
-                              register, 
-                              registrations, 
-                              classObject, 
-                              patchClassPeriod, 
-                              reFetchStudentBody, 
-                              allRegistrations, 
-                              deleteStudent, 
-                              classes, 
-                              assessments }) => {
+const  EditClassContainer = ({ 
+  allRegistrations, 
+  assessments, 
+  classes, 
+  classObject, 
+  deRegister, 
+  deleteStudent, 
+  patchClassPeriod, 
+  reFetchStudentBody, 
+  register, 
+  registrations, 
+  roster,
+  studentBody, 
+  user 
+}) => {
 
   const handleAdd = (e) => {
       register(e)
@@ -67,14 +69,25 @@ const  EditClassContainer = ({roster,
 
       <div className="edit-class__roster-container">
         <div className="edit-class__roster-container-shell">
-          <Roster label={"Registered Students"} roster={roster} callback={findReg} registerAction="-"/>
+          <Roster 
+            label={"Registered Students"} 
+            roster={roster} 
+            callback={findReg} 
+            registerAction="-"
+          />
         </div>
       </div>
 
       <div className="edit-class__student-body-container">
         <div className="edit-class__student-body-container-shell">
-          <RosterRemainder label={"Remaining Students"} user={user} roster={roster} studentBody={studentBody} callback={handleAdd} registerAction="+"/>
-
+          <RosterRemainder 
+            label={"Remaining Students"} 
+            user={user} 
+            roster={roster} 
+            studentBody={studentBody} 
+            callback={handleAdd} 
+            registerAction="+"
+          />
         </div>
       </div>
 
@@ -87,38 +100,39 @@ const  EditClassContainer = ({roster,
       </div>
 
       <div className="edit-class__class-count">
-        <InfoBox text={"class size"} data={maxSize()}/>
+        <InfoBox 
+          text={"class size"} 
+          data={maxSize()}
+        />
       </div>
 
       <div className="edit-class__controll">
-         <label for="new-student-form__checkbox" className="edit-class__controll-btn edit-class__controll-new-student">New student</label>
-        <label for="delete-student-form__checkbox" className="edit-class__controll-btn edit-class__controll-delete-student">Delete student</label>
-        <label for="edit-class-form__checkbox" className="edit-class__controll-btn edit-class__controll-rename-class">Edit class</label>
-        <label className="edit-class__controll-btn edit-class__controll-delete-class">testing</label>
+        <label for="new-student-form__checkbox" className="edit-class__controll-btn edit-class__controll-new-student">Add A Student</label>
+        <label for="delete-student-form__checkbox" className="edit-class__controll-btn edit-class__controll-delete-student">Delete A Student</label>
+        <label for="edit-class-form__checkbox" className="edit-class__controll-btn edit-class__controll-rename-class"><div>Edit Class Preferences</div></label>
       </div>
 
       <div className="edit-class__forms">
-      <EditClassForm 
-        classObject={classObject}
-        patchClassPeriod={patchClassPeriod}
-      />
+        <EditClassForm 
+          classObject={classObject}
+          patchClassPeriod={patchClassPeriod}
+        />
 
-      <NewStudentForm 
-        reFetchStudentBody={reFetchStudentBody}
-        user={user}
-      />
+        <NewStudentForm 
+          reFetchStudentBody={reFetchStudentBody}
+          user={user}
+        />
 
-       <DeleteStudentForm 
-        roster={roster}
-        studentBody={studentBody}
-        assessments={assessments}
-        classes={classes}
-        registrations={allRegistrations}
-        deleteStudent={deleteStudent}
-        user={user}
-      />
+        <DeleteStudentForm 
+          roster={roster}
+          studentBody={studentBody}
+          assessments={assessments}
+          classes={classes}
+          registrations={allRegistrations}
+          deleteStudent={deleteStudent}
+          user={user}
+        />
       </div>
-
     </div>
   )
 } 

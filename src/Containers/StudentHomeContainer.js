@@ -4,12 +4,8 @@ import ClassScore from "../components/ClassScore"
 import ClassRank from "../components/ClassRank"
 import Graphics from "../components/Graphics"
 import EditStudentForm from "../forms/EditStudentForm"
-
 import { api } from '../services/api'
 import AssessmentList from '../components/AssessmentList'
-
-
-
 class StudentHomeContainer extends React.Component{
 
   constructor(props) {
@@ -25,8 +21,6 @@ class StudentHomeContainer extends React.Component{
     const {match} = this.props
     const id = (parseInt(match.params.id))
     this.props.setHeader("Student Page")
-    // console.log(id)
-    // this.getAssessments()
     api.get.currentStudent(id)
     .then(res => this.setState({thisStudent:res}))
     .then(res => this.getAssessments())
@@ -49,18 +43,12 @@ class StudentHomeContainer extends React.Component{
       if(registration.student_id === this.state.thisStudent.id)
       {api.delete.deleteRegistration(registration.id)
       .then(res => (console.log("done with" + res)))}
-
-
     })
-    // console.log(this.state.thisStudent.id)
-    // this.props.deleteRegistration(this.state.thisStudent.id)
   }
 
   handleEdit = (e) => {
     api.get.currentStudent(this.state.thisStudent.id)
     .then(res => this.setState({thisStudent:e}))
-    // .then(res => console.log(res))
-
   }
 
   testfunct = (registration) => {
@@ -70,17 +58,21 @@ class StudentHomeContainer extends React.Component{
   
   render(){
     return(
-      <div className="">
       <div className="student-home">
-        <div className="student-home__name">
-          <TitleBox title={this.state.thisStudent.name} />
-        </div>
         <div className="student-home__assessments">
-        <AssessmentList thisClass={this.props.classPeriod} assessments={this.state.assessments} />
+          <div className="student-home__assessments-shell">
+            <AssessmentList thisClass={this.props.classPeriod} assessments={this.state.assessments} />
+          </div>
         </div>
+
+        <div className="student-home__name">
+        <TitleBox title={this.state.thisStudent.name} />
+        </div>
+
         <div className="student-home__graphics">
         <Graphics graphData={this.props.graphInfoData} stateLables={this.props.stateLables} />
         </div>
+
         <div className="student-home__score">
           <ClassScore classPeriod={this.props.classPeriod} assessments={this.state.assessments} roster={[this.state.thisStudent]}/>
         </div>
@@ -93,14 +85,15 @@ class StudentHomeContainer extends React.Component{
         </div>
 
         <div className="student-home__preferences">
-        <label for="edit-student-form__checkbox" className="edit-class__controll-btn edit-class__controll-new-student">edit student</label>
+          <label for="edit-student-form__checkbox" className="edit-class__controll-btn edit-class__controll-new-student">edit student</label>
         </div>
-      </div>
-      <EditStudentForm 
-          // reFetchStudentBody={e => this.reFetchStudentBody(e)}
-          student={this.state.thisStudent}
-          patchStudent={this.props.patchStudent}
-          handleEdit={e => this.handleEdit(e)} />
+
+        <div className="student-home__forms">
+          <EditStudentForm 
+              student={this.state.thisStudent}
+              patchStudent={this.props.patchStudent}
+              handleEdit={e => this.handleEdit(e)} />
+        </div>
       </div>
     )
   }

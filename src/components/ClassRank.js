@@ -46,45 +46,41 @@ const ClassRank = ({assessments, roster, thisStudent}) => {
         if(!finalScore){
             return(
                 <div>
-                    loading
+                    
                 </div>
             )
         }else{
             if(finalScore.tiedScores > 1)
             return(
-                <div className="class-rank">
-                    <div className="class-rank__text">
-                        Class Ranking
-                    </div>
-                    <div className="class-rank__score-tied">
-                        <div className="class-rank__score-tied-text">
-                            Tied
-                        </div>
-                        <div className="class-rank__score-tied-score">
-                        {finalScore.rawIndex}/{fullStudentInfo.length}
-                        </div>
 
-                    </div>
-                </div>
+                        <div className="class-rank__score-tied">
+                            <div className="class-rank__score-tied-text">
+                                Tied
+                            </div>
+                            <div className="class-rank__score-tied-score">
+                        {finalScore.rawIndex}/{fullStudentInfo.length}
+
+                            </div>
+                        </div>
             )
         else{
             return(
-                <div className="class-rank">
-                <div className="class-rank__text">
-                    Class Ranking
-                </div>
                 <div className="class-rank__score-singular">
                 {finalScore.rawIndex}/{fullStudentInfo.length}
                 </div>
-            </div>
             )
         }    
         }
     }
 
     return(
-        <div>
-            {setParticipation()}
+        <div className="class-rank">
+            <div className="class-rank__text">
+                Class Ranking
+            </div>
+            <div className="class-rank__score">
+                {setParticipation()}
+            </div>
         </div>
     )
 }

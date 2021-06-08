@@ -98,10 +98,15 @@
             height:100%;
             width:100%;
             @include component-format;
+            color: $color-grey-dark;
             text-transform: none;
             background-image: $copper-gradient;
-            display: grid;
-            place-items: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: gray;
+            padding-left: 1rem;
+            font-weight: 400;
         }
 
         &-new-student{
@@ -110,18 +115,13 @@
         }
 
         &-rename-class{
-            grid-row: 1 / span 1;
+            grid-row: 1 / span 2;
             grid-column: 2 / span 1;
         }
 
         &-delete-student{
             grid-row: 2 / span 1;
             grid-column: 1 / span 1;
-        }
-
-        &-delete-class{
-            grid-row: 2 / span 1;
-            grid-column: 2 / span 1;
         }
     }
 

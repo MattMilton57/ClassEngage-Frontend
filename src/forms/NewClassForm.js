@@ -72,7 +72,7 @@ render(){
 
             <div className="new-class-form__content">
 
-                <label className="new-student-form__content--form-toggle form-toggle" for="new-class-form__checkbox">
+                <label className="new-student-form__content--form-toggle" for="new-class-form__checkbox">
                         {/* <span className="form-toggle">
                             <svg className="form-toggle-icon">
                                     <use href={sprite + "#icon-cross"} ></use>

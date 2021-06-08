@@ -281,15 +281,6 @@ h2 {
           color: #CB6D51; }
         .assessment-list__assessment--score-text-negative {
           color: #595858; }
-      .assessment-list__assessment--score-icon {
-        height: 3rem;
-        width: 3rem;
-        grid-row: 1/ span 1;
-        grid-column: 2/ span 1; }
-        .assessment-list__assessment--score-icon-up {
-          fill: #CB6D51; }
-        .assessment-list__assessment--score-icon-down {
-          fill: #D4785C; }
     .assessment-list__assessment--comment {
       grid-row: 3/ span 1;
       grid-column: 1/ span 1;
@@ -312,7 +303,7 @@ h2 {
 
 .btn-dark {
   height: 5rem;
-  color: white;
+  color: #111111;
   background-image: linear-gradient(to right bottom, black, rgba(0, 0, 0, 0.9));
   border: none;
   width: 30rem;
@@ -415,41 +406,33 @@ h2 {
 .class-rank {
   height: 100%;
   width: 100%;
-  display: grid;
-  padding: 1rem;
-  grid-template-columns: 2fr 1fr;
-  grid-template-rows: 1fr;
+  display: flex;
+  padding: .5rem;
   align-items: center;
   justify-content: center;
-  text-transform: uppercase;
-  font-weight: 100; }
+  text-transform: uppercase; }
   .class-rank__text {
-    justify-self: end;
-    font-size: 3rem;
+    font-size: 2.75rem;
     text-align: right; }
   .class-rank__score {
-    font-size: 7.3rem; }
+    font-size: 6.3rem;
+    margin-left: .5rem; }
     .class-rank__score-tied {
       display: grid;
-      grid-template-rows: 1fr;
-      grid-template-columns: repeat(2, min-content);
+      grid-template-rows: repeat(2, min-content);
+      grid-template-columns: 1fr;
       align-content: center;
-      justify-content: center; }
+      justify-content: center;
+      color: #D4785C;
+      margin-right: 2rem; }
       .class-rank__score-tied-text {
-        display: flex;
-        height: 100%;
-        width: 100%;
-        justify-content: start;
-        align-items: center;
-        grid-column: 1 /span 1;
-        transform: rotate(270deg);
-        font-size: 3rem; }
+        grid-row: 1 /span 1;
+        font-size: 2rem; }
       .class-rank__score-tied-score {
-        grid-column: 2 /span 1;
-        font-size: 7.3rem;
-        color: #D4785C; }
+        grid-row: 2 /span 1;
+        font-size: 3.5rem; }
     .class-rank__score-singular {
-      font-size: 7.3rem;
+      font-size: 5.6rem;
       color: #D4785C; }
 
 .class-score {
@@ -499,7 +482,12 @@ h2 {
   margin: 2rem;
   z-index: 9960;
   width: 6rem;
-  height: 6rem; }
+  height: 6rem;
+  margin: 2rem;
+  position: absolute;
+  z-index: 9960;
+  transform: translateY(-1.5rem);
+  transform: translateX(71.5rem); }
   .form-toggle-icon {
     z-index: 200;
     transition: all .35s;
@@ -677,7 +665,8 @@ h2 {
     color: #D4785C;
     font-size: 6.3rem;
     width: 8rem;
-    margin-left: .5rem; }
+    margin-left: .5rem;
+    margin-right: 2rem; }
 
 .assess-class {
   min-height: 0;
@@ -815,28 +804,6 @@ h2 {
   grid-column-gap: 2rem;
   justify-content: stretch;
   overflow: hidden; }
-  .class-stats__instructions {
-    display: grid;
-    grid-template-rows: repeat(2, 1fr);
-    grid-template-columns: 1fr;
-    height: 90%;
-    width: 95%;
-    justify-items: center;
-    margin: 0 2rem;
-    text-align: center;
-    animation: pulsate 1s infinite; }
-    .class-stats__instructions--welcome {
-      grid-row: 1 / span 1;
-      grid-column: 1 / span 1;
-      font-size: 2.8rem;
-      font-weight: 100;
-      align-self: end; }
-    .class-stats__instructions--guide {
-      grid-row: 2 / span 1;
-      grid-column: 1 / span 1;
-      color: #CB6D51;
-      font-size: 1.75rem;
-      font-weight: 150; }
   .class-stats__roster-container {
     grid-row: 1 / span 4;
     grid-column: 1 / span 1;
@@ -898,6 +865,28 @@ h2 {
     box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
     text-transform: uppercase;
     font-weight: 200; }
+  .class-stats__instructions {
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: 1fr;
+    height: 90%;
+    width: 95%;
+    justify-items: center;
+    margin: 0 2rem;
+    text-align: center;
+    animation: pulsate 1s infinite; }
+    .class-stats__instructions--welcome {
+      grid-row: 1 / span 1;
+      grid-column: 1 / span 1;
+      font-size: 2.8rem;
+      font-weight: 100;
+      align-self: end; }
+    .class-stats__instructions--guide {
+      grid-row: 2 / span 1;
+      grid-column: 1 / span 1;
+      color: #CB6D51;
+      font-size: 1.75rem;
+      font-weight: 150; }
 
 .edit-class {
   display: grid;
@@ -999,22 +988,24 @@ h2 {
       box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
       text-transform: uppercase;
       font-weight: 200;
+      color: #111111;
       text-transform: none;
       background-image: linear-gradient(to bottom right, #cb6d51, #d4785c, #da8a68, #dd9b72);
-      display: grid;
-      place-items: center; }
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: gray;
+      padding-left: 1rem;
+      font-weight: 400; }
     .edit-class__controll-new-student {
       grid-row: 1 / span 1;
       grid-column: 1 / span 1; }
     .edit-class__controll-rename-class {
-      grid-row: 1 / span 1;
+      grid-row: 1 / span 2;
       grid-column: 2 / span 1; }
     .edit-class__controll-delete-student {
       grid-row: 2 / span 1;
       grid-column: 1 / span 1; }
-    .edit-class__controll-delete-class {
-      grid-row: 2 / span 1;
-      grid-column: 2 / span 1; }
   .edit-class__forms {
     z-index: 2000;
     position: fixed; }
@@ -1173,40 +1164,25 @@ h2 {
     background-color: #111111; }
 
 .student-home {
-  overflow: hidden;
   display: grid;
-  height: 85vh;
-  min-height: 0;
-  /* NEW */
-  min-width: 0;
-  justify-content: stretch;
-  overflow: auto;
-  grid-template-rows: 1fr 3fr 2fr .5fr;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 2fr 2fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   grid-row-gap: 2rem;
   grid-column-gap: 2rem;
-  min-height: 0;
-  /* NEW */
-  min-width: 0;
-  padding: 2rem; }
+  justify-content: stretch;
+  overflow: hidden; }
   .student-home__assessments {
     grid-row: 1 / span 4;
     grid-column: 1 / span 1;
-    overflow-x: hidden;
-    overflow-y: auto;
     background-color: #111111;
     border-radius: 1rem;
     box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
     text-transform: uppercase;
-    font-weight: 200; }
-    .student-home__assessments:hover::-webkit-scrollbar {
-      width: 10px; }
-    .student-home__assessments:hover::-webkit-scrollbar-track {
-      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); }
-    .student-home__assessments:hover::-webkit-scrollbar-thumb {
-      background-image: linear-gradient(to bottom right, #cb6d51, #d4785c, #da8a68, #dd9b72);
-      opacity: 0.5;
-      border-radius: 1rem; }
+    font-weight: 200;
+    overflow: auto; }
+    .student-home__assessments-shell {
+      height: auto;
+      overflow: hidden; }
   .student-home__name {
     grid-row: 1 / span 1;
     grid-column: 2 / span 2;
@@ -1214,7 +1190,8 @@ h2 {
     border-radius: 1rem;
     box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
     text-transform: uppercase;
-    font-weight: 200; }
+    font-weight: 200;
+    overflow: hidden; }
   .student-home__score {
     grid-row: 2 / span 1;
     grid-column: 2 / span 2;
@@ -1222,10 +1199,18 @@ h2 {
     border-radius: 1rem;
     box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
     text-transform: uppercase;
-    font-weight: 200; }
+    font-weight: 200;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
   .student-home__graphics {
     grid-row: 3 / span 1;
     grid-column: 2 / span 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-basis: fill;
     background-color: #111111;
     border-radius: 1rem;
     box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
@@ -1247,6 +1232,9 @@ h2 {
     box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
     text-transform: uppercase;
     font-weight: 200; }
+  .student-home__forms {
+    z-index: 2000;
+    position: fixed; }
 
 .delete-class-form__content {
   height: 100vh;
@@ -1261,7 +1249,7 @@ h2 {
   opacity: 0;
   visibility: hidden;
   z-index: 2500;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.8);
   transform: scale(0.51);
   transition: all .25s; }
   .delete-class-form__content--form {
@@ -1272,13 +1260,21 @@ h2 {
     align-items: center;
     padding: 3rem;
     font-size: 3rem;
-    grid-row: 2 / span 1;
-    grid-column: 2 / span 1;
+    grid-row-gap: .5rem;
+    grid-column-gap: .5rem;
     display: grid;
-    grid-template-rows: min-content;
-    grid-template-columns: repeat(2, min-content); }
-    .delete-class-form__content--form-class-list-container {
+    grid-template-rows: repeat(3, min-content);
+    grid-template-columns: min-content; }
+    .delete-class-form__content--form-title {
       grid-row: 1 / span 1;
+      grid-column: 1 / span 1;
+      font-size: 5rem;
+      font-weight: 100;
+      color: #D4785C;
+      text-align: left;
+      width: 100%; }
+    .delete-class-form__content--form-class-list-container {
+      grid-row: 2 / span 1;
       grid-column: 1 / span 1;
       background-color: #111111;
       border-radius: 1rem;
@@ -1318,8 +1314,9 @@ h2 {
         .delete-class-form__content--form-class-list-container-class-period-subject {
           margin-left: 1rem; }
     .delete-class-form__content--form-confirm {
-      grid-row: 2 / span 1;
-      grid-column: 1 / span 1; }
+      grid-row: 3 / span 1;
+      grid-column: 1 / span 1;
+      justify-self: start; }
       .delete-class-form__content--form-confirm-submit {
         color: #D4785C;
         padding: .5rem 1rem;
@@ -1331,8 +1328,9 @@ h2 {
         font-weight: 200;
         font-size: 2rem;
         transition: all .25s;
-        width: 100%;
-        height: 3rem; }
+        height: 90%;
+        padding: 1.5rem 2rem;
+        justify-self: start; }
         .delete-class-form__content--form-confirm-submit:hover {
           background-image: linear-gradient(to right bottom, black, rgba(0, 0, 0, 0.9));
           border: 0.25px solid #D4785C;
@@ -1340,34 +1338,6 @@ h2 {
           transform: scale(1.1); }
     .delete-class-form__content--form textarea:focus, .delete-class-form__content--form input:focus {
       outline: none; }
-    .delete-class-form__content--form-submit {
-      grid-row: 5/ span 1;
-      grid-column: 2 / span 1;
-      color: #D4785C;
-      padding: .5rem 1rem;
-      background-image: linear-gradient(to bottom right, #cb6d51, #d4785c, #da8a68, #dd9b72);
-      border: none;
-      color: black;
-      border-radius: 1rem;
-      box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.8);
-      font-weight: 200;
-      transition: all .25s; }
-      .delete-class-form__content--form-submit:hover {
-        background-image: linear-gradient(to right bottom, black, rgba(0, 0, 0, 0.9));
-        border: 0.25px solid #D4785C;
-        color: #D4785C;
-        transform: scale(1.1); }
-    .delete-class-form__content--form-toggle {
-      grid-row: 1 / span 1;
-      grid-column: 3 / span 1;
-      font-size: 3rem;
-      margin: 2rem;
-      position: absolute;
-      z-index: 9960;
-      transform: translateY(-1.5rem);
-      transform: translateX(11.5rem); }
-      .delete-class-form__content--form-toggle:hover {
-        color: #D4785C; }
 
 .delete-class-form__checkbox {
   display: none; }
@@ -1380,91 +1350,51 @@ h2 {
 .delete-student-form__content {
   height: 100vh;
   width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   position: fixed;
+  place-items: center;
   top: 0;
   left: 0;
   opacity: 0;
   visibility: hidden;
-  z-index: 1000;
+  z-index: 2500;
   background-color: rgba(0, 0, 0, 0.8);
-  transform: scale(0.5);
+  transform: scale(0.51);
   transition: all .25s; }
   .delete-student-form__content--form {
-    background-color: #111111;
-    border-radius: 1rem;
-    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
-    text-transform: uppercase;
-    font-weight: 200;
-    background-color: #1a1a1a;
     display: grid;
-    z-index: 9950;
     grid-template-rows: 1fr 4fr 1fr;
     grid-template-columns: repeat(2, max-content);
-    grid-row-gap: 2rem;
-    grid-column-gap: 2rem;
-    justify-items: center;
-    align-items: center;
-    padding: 1rem;
-    border: 1px solid #D4785C;
-    position: absolute;
     overflow: auto;
     max-height: 50vh;
-    max-width: max-content; }
-    .delete-student-form__content--form-roster-container {
-      grid-row: 1 / span 3;
-      grid-column: 1 / span 1;
-      background-color: #111111;
-      border-radius: 1rem;
-      box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
-      text-transform: uppercase;
-      font-weight: 200;
-      overflow-y: auto;
-      max-height: 100%;
-      padding: 2rem;
-      z-index: 9951; }
-      .delete-student-form__content--form-roster-container:hover::-webkit-scrollbar {
-        width: 10px; }
-      .delete-student-form__content--form-roster-container:hover::-webkit-scrollbar-track {
-        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); }
-      .delete-student-form__content--form-roster-container:hover::-webkit-scrollbar-thumb {
-        background-image: linear-gradient(to bottom right, #cb6d51, #d4785c, #da8a68, #dd9b72);
-        opacity: 0.5;
-        border-radius: 1rem; }
+    background-color: rgba(26, 26, 26, 0.7);
+    z-index: 9950;
+    position: absolute;
+    justify-items: center;
+    align-items: center;
+    padding: 3rem;
+    font-size: 3rem;
+    grid-row-gap: .5rem;
+    grid-column-gap: .5rem; }
     .delete-student-form__content--form-title {
       grid-row: 1 / span 1;
-      grid-column: 2 / span 1;
-      font-size: 3rem;
+      grid-column: 1 / span 1;
+      font-size: 5rem;
       font-weight: 100;
-      height: 100%;
-      width: 100%;
-      padding: 1rem;
       color: #D4785C;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #111111;
-      border-radius: 1rem;
-      box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
-      text-transform: uppercase;
-      font-weight: 200; }
+      text-align: left;
+      width: 100%; }
     .delete-student-form__content--form-info-box {
       grid-row: 2 / span 1;
-      grid-column: 2 / span 1;
-      background-color: #111111;
-      border-radius: 1rem;
-      box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
-      text-transform: uppercase;
-      font-weight: 200;
+      grid-column: 1 / span 1;
       height: 100%;
       display: flex;
       justify-content: start;
       align-items: center;
-      padding: 2rem;
-      width: 30rem;
-      font-size: 1.5rem; }
+      width: 35rem;
+      font-size: 2.5rem; }
       .delete-student-form__content--form-info-box-welcome {
         font-size: 2rem;
         font-weight: 100; }
@@ -1475,38 +1405,48 @@ h2 {
         font-size: 2rem;
         font-weight: 100; }
       .delete-student-form__content--form-info-box-remove-text {
-        font-size: 2rem;
+        font-size: 2.5rem;
         font-weight: 100; }
       .delete-student-form__content--form-info-box-remove-schedule {
         list-style: none;
-        color: #D4785C; }
+        color: #D4785C;
+        margin-left: 1rem; }
     .delete-student-form__content--form-submit {
       grid-row: 3 / span 1;
-      grid-column: 2 / span 1;
+      grid-column: 1 / span 1;
+      justify-self: start;
       color: #D4785C;
       padding: .5rem 1rem;
       background-image: linear-gradient(to bottom right, #cb6d51, #d4785c, #da8a68, #dd9b72);
       border: none;
       color: black;
-      border-radius: 20rem;
-      padding: .5rem;
+      border-radius: 1rem;
       box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.8);
       font-weight: 200;
       font-size: 2rem;
-      width: 95%;
-      transition: all .25s; }
+      transition: all .25s;
+      height: 90%;
+      padding: 1.5rem 2rem;
+      justify-self: start; }
       .delete-student-form__content--form-submit:hover {
-        transform: scale(1.04); }
-    .delete-student-form__content--form-toggle {
-      grid-row: 1 / span 1;
-      grid-column: 3 / span 1;
-      font-size: 3rem;
-      margin: 2rem;
-      z-index: 9960;
-      transform: translateY(-1.5rem);
-      transform: translateX(11.5rem); }
-      .delete-student-form__content--form-toggle:hover {
-        color: #D4785C; }
+        background-image: linear-gradient(to right bottom, black, rgba(0, 0, 0, 0.9));
+        border: 0.25px solid #D4785C;
+        color: #D4785C;
+        transform: scale(1.1); }
+    .delete-student-form__content--form-roster-container {
+      grid-row: 1 / span 3;
+      grid-column: 2 / span 1;
+      background-color: #111111;
+      border-radius: 1rem;
+      box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
+      text-transform: uppercase;
+      font-weight: 200;
+      overflow-y: auto;
+      max-height: 100%;
+      padding: 2rem;
+      z-index: 9951;
+      background-color: #111111;
+      outline: solid 0.005rem #D4785C; }
 
 .delete-student-form__checkbox {
   display: none; }
@@ -1515,12 +1455,6 @@ h2 {
   opacity: 1;
   visibility: visible;
   transform: scale(1); }
-
-.delete-student-form__toggle {
-  position: absolute;
-  top: 0;
-  left: 1000;
-  transform: translate(45vw, 3vh); }
 
 .delete-user-form {
   display: grid;
@@ -1598,52 +1532,60 @@ h2 {
   grid-template-rows: repeat(3, 1fr);
   grid-template-columns: repeat(3, 1fr);
   position: fixed;
+  place-items: center;
   top: 0;
   left: 0;
   opacity: 0;
   visibility: hidden;
-  z-index: 1000;
+  z-index: 2500;
   background-color: rgba(0, 0, 0, 0.8);
-  transform: scale(0.5);
+  transform: scale(0.51);
   transition: all .25s; }
   .edit-class-form__content--form {
-    background-color: #111111;
-    border-radius: 1rem;
-    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
-    text-transform: uppercase;
-    font-weight: 200;
-    grid-row: 2 / span 1;
-    grid-column: 2 / span 1;
     display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(2, min-content);
+    background-color: rgba(26, 26, 26, 0.7);
     z-index: 9950;
-    grid-template-rows: repeat(3, 1fr);
-    grid-template-columns: 1fr;
+    position: absolute;
     justify-items: center;
     align-items: center;
     padding: 3rem;
-    border: 1px solid #D4785C;
-    position: absolute; }
-    .edit-class-form__content--form-existing-name {
+    font-size: 3rem;
+    grid-row-gap: .5rem;
+    grid-column-gap: .5rem; }
+    .edit-class-form__content--form-title {
       grid-row: 1 / span 1;
       grid-column: 1 / span 1;
       font-size: 5rem;
       font-weight: 100;
-      color: #D4785C; }
-    .edit-class-form__content--form-name {
+      color: #D4785C;
+      text-align: left;
+      width: 100%; }
+    .edit-class-form__content--form-input-name {
       grid-row: 2 / span 1;
       grid-column: 1 / span 1;
-      height: 5rem;
-      font-size: 4rem;
-      border: 1px solid #1a1a1a;
-      background-color: #1a1a1a;
-      border-radius: 1rem;
+      font-size: 2rem;
+      padding: 1.5rem 2rem;
+      border-radius: 2px;
+      background-color: rgba(89, 88, 88, 0.5);
+      border: none;
+      width: 30rem;
+      display: block;
+      transition: all .3s;
       color: white;
-      text-align: center; }
-    .edit-class-form__content--form textarea:focus, .edit-class-form__content--form input:focus {
-      outline: none; }
+      height: 90%; }
+      .edit-class-form__content--form-input-name:focus {
+        outline: none;
+        box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+        border: solid 1px #D4785C; }
+      .edit-class-form__content--form-input-name:focus:invalid {
+        border-bottom: 1px solid red; }
+      .edit-class-form__content--form-input-name::-webkit-input-placeholder {
+        color: #1a1a1a; }
     .edit-class-form__content--form-submit {
-      grid-row: 3 / span 1;
-      grid-column: 1 / span 1;
+      grid-row: 2 / span 1;
+      grid-column: 2 / span 1;
       color: #D4785C;
       padding: .5rem 1rem;
       background-image: linear-gradient(to bottom right, #cb6d51, #d4785c, #da8a68, #dd9b72);
@@ -1652,24 +1594,16 @@ h2 {
       border-radius: 1rem;
       box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.8);
       font-weight: 200;
-      font-size: 4rem;
-      transition: all .25s; }
+      font-size: 2rem;
+      transition: all .25s;
+      height: 90%;
+      padding: 1.5rem 2rem;
+      justify-self: start; }
       .edit-class-form__content--form-submit:hover {
         background-image: linear-gradient(to right bottom, black, rgba(0, 0, 0, 0.9));
         border: 0.25px solid #D4785C;
         color: #D4785C;
         transform: scale(1.1); }
-    .edit-class-form__content--form-toggle {
-      grid-row: 1 / span 1;
-      grid-column: 3 / span 1;
-      font-size: 3rem;
-      margin: 2rem;
-      position: absolute;
-      z-index: 9960;
-      transform: translateY(-1.5rem);
-      transform: translateX(11.5rem); }
-      .edit-class-form__content--form-toggle:hover {
-        color: #D4785C; }
 
 .edit-class-form__checkbox {
   display: none; }
@@ -1686,52 +1620,60 @@ h2 {
   grid-template-rows: repeat(3, 1fr);
   grid-template-columns: repeat(3, 1fr);
   position: fixed;
+  place-items: center;
   top: 0;
   left: 0;
   opacity: 0;
   visibility: hidden;
-  z-index: 1000;
+  z-index: 2500;
   background-color: rgba(0, 0, 0, 0.8);
-  transform: scale(0.5);
+  transform: scale(0.51);
   transition: all .25s; }
   .edit-student-form__content--form {
-    background-color: #111111;
-    border-radius: 1rem;
-    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
-    text-transform: uppercase;
-    font-weight: 200;
-    grid-row: 2 / span 1;
-    grid-column: 2 / span 1;
-    display: grid;
+    background-color: rgba(26, 26, 26, 0.7);
     z-index: 9950;
-    grid-template-rows: repeat(3, 1fr);
-    grid-template-columns: 1fr;
+    position: absolute;
     justify-items: center;
     align-items: center;
     padding: 3rem;
-    border: 1px solid #D4785C;
-    position: absolute; }
-    .edit-student-form__content--form-existing-name {
+    font-size: 3rem;
+    grid-row-gap: .5rem;
+    grid-column-gap: .5rem;
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: 2fr; }
+    .edit-student-form__content--form-title {
       grid-row: 1 / span 1;
       grid-column: 1 / span 1;
       font-size: 5rem;
       font-weight: 100;
-      color: #D4785C; }
-    .edit-student-form__content--form-name {
+      color: #D4785C;
+      text-align: left;
+      width: 100%; }
+    .edit-student-form__content--form-input-name {
       grid-row: 2 / span 1;
       grid-column: 1 / span 1;
-      height: 5rem;
-      font-size: 4rem;
-      border: 1px solid #1a1a1a;
-      background-color: #1a1a1a;
-      border-radius: 1rem;
+      font-size: 2rem;
+      padding: 1.5rem 2rem;
+      border-radius: 2px;
+      background-color: rgba(89, 88, 88, 0.5);
+      border: none;
+      width: 30rem;
+      display: block;
+      transition: all .3s;
       color: white;
-      text-align: center; }
-    .edit-student-form__content--form textarea:focus, .edit-student-form__content--form input:focus {
-      outline: none; }
+      height: 90%; }
+      .edit-student-form__content--form-input-name:focus {
+        outline: none;
+        box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+        border: solid 1px #D4785C; }
+      .edit-student-form__content--form-input-name:focus:invalid {
+        border-bottom: 1px solid red; }
+      .edit-student-form__content--form-input-name::-webkit-input-placeholder {
+        color: #1a1a1a; }
     .edit-student-form__content--form-submit {
-      grid-row: 3 / span 1;
-      grid-column: 1 / span 1;
+      grid-row: 2 / span 1;
+      grid-column: 2 / span 1;
       color: #D4785C;
       padding: .5rem 1rem;
       background-image: linear-gradient(to bottom right, #cb6d51, #d4785c, #da8a68, #dd9b72);
@@ -1740,24 +1682,16 @@ h2 {
       border-radius: 1rem;
       box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.8);
       font-weight: 200;
-      font-size: 4rem;
-      transition: all .25s; }
+      font-size: 2rem;
+      transition: all .25s;
+      height: 90%;
+      padding: 1.5rem 2rem;
+      justify-self: start; }
       .edit-student-form__content--form-submit:hover {
         background-image: linear-gradient(to right bottom, black, rgba(0, 0, 0, 0.9));
         border: 0.25px solid #D4785C;
         color: #D4785C;
         transform: scale(1.1); }
-    .edit-student-form__content--form-toggle {
-      grid-row: 1 / span 1;
-      grid-column: 3 / span 1;
-      font-size: 3rem;
-      margin: 2rem;
-      position: absolute;
-      z-index: 9960;
-      transform: translateY(-1.5rem);
-      transform: translateX(11.5rem); }
-      .edit-student-form__content--form-toggle:hover {
-        color: #D4785C; }
 
 .edit-student-form__checkbox {
   display: none; }
@@ -1852,7 +1786,7 @@ h2 {
     grid-row: 5 / span 1; }
 
 .landing-form__textbox {
-  font-size: 1.5rem;
+  font-size: 2rem;
   padding: 1.5rem 2rem;
   border-radius: 2px;
   background-color: rgba(89, 88, 88, 0.5);
@@ -1860,7 +1794,8 @@ h2 {
   width: 30rem;
   display: block;
   transition: all .3s;
-  color: white; }
+  color: white;
+  height: 90%; }
   .landing-form__textbox:focus {
     outline: none;
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
@@ -1883,7 +1818,7 @@ h2 {
   opacity: 0;
   visibility: hidden;
   z-index: 2500;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.8);
   transform: scale(0.51);
   transition: all .25s; }
   .new-class-form__content--form {
@@ -1894,6 +1829,8 @@ h2 {
     align-items: center;
     padding: 3rem;
     font-size: 3rem;
+    grid-row-gap: .5rem;
+    grid-column-gap: .5rem;
     grid-row: 2 / span 1;
     grid-column: 2 / span 1;
     display: grid;
@@ -1902,18 +1839,30 @@ h2 {
     grid-row-gap: 1rem; }
     .new-class-form__content--form-title {
       grid-row: 1 / span 1;
-      font-weight: 200;
-      color: #D4785C; }
+      font-size: 5rem;
+      font-weight: 100;
+      color: #D4785C;
+      text-align: left;
+      width: 100%; }
     .new-class-form__content--form-input {
-      height: 4rem;
-      font-size: 2.5rem;
-      border: 1px solid #1a1a1a;
-      background-color: #1a1a1a;
-      border-radius: 1rem;
+      font-size: 2rem;
+      padding: 1.5rem 2rem;
+      border-radius: 2px;
+      background-color: rgba(89, 88, 88, 0.5);
+      border: none;
+      width: 30rem;
+      display: block;
+      transition: all .3s;
       color: white;
-      text-align: center;
-      width: 100%;
-      font-weight: 100; }
+      height: 90%; }
+      .new-class-form__content--form-input:focus {
+        outline: none;
+        box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+        border: solid 1px #D4785C; }
+      .new-class-form__content--form-input:focus:invalid {
+        border-bottom: 1px solid red; }
+      .new-class-form__content--form-input::-webkit-input-placeholder {
+        color: #1a1a1a; }
     .new-class-form__content--form-subject {
       grid-row: 2 / span 1; }
     .new-class-form__content--form-period {
@@ -1934,16 +1883,14 @@ h2 {
       font-weight: 200;
       font-size: 2rem;
       transition: all .25s;
-      width: 100%;
-      height: 3rem; }
+      height: 90%;
+      padding: 1.5rem 2rem;
+      justify-self: start; }
       .new-class-form__content--form-submit:hover {
         background-image: linear-gradient(to right bottom, black, rgba(0, 0, 0, 0.9));
         border: 0.25px solid #D4785C;
         color: #D4785C;
         transform: scale(1.1); }
-    .new-class-form__content--form-toggle {
-      grid-row: 1 / span 1;
-      grid-column: 1 / span 1; }
 
 .new-class-form__checkbox {
   display: none; }
@@ -1960,51 +1907,59 @@ h2 {
   grid-template-rows: repeat(3, 1fr);
   grid-template-columns: repeat(3, 1fr);
   position: fixed;
+  place-items: center;
   top: 0;
   left: 0;
   opacity: 0;
   visibility: hidden;
-  z-index: 1000;
+  z-index: 2500;
   background-color: rgba(0, 0, 0, 0.8);
-  transform: scale(0.5);
+  transform: scale(0.51);
   transition: all .25s; }
   .new-student-form__content--form {
-    background-color: #111111;
-    border-radius: 1rem;
-    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
-    text-transform: uppercase;
-    font-weight: 200;
-    grid-row: 2 / span 1;
-    grid-column: 2 / span 1;
     display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(2, min-content);
+    background-color: rgba(26, 26, 26, 0.7);
     z-index: 9950;
-    grid-template-rows: repeat(5, 1fr);
-    grid-template-columns: .5fr 1fr .5fr;
+    position: absolute;
     justify-items: center;
     align-items: center;
     padding: 3rem;
-    border: 1px solid #D4785C;
-    position: absolute; }
+    font-size: 3rem;
+    grid-row-gap: .5rem;
+    grid-column-gap: .5rem; }
     .new-student-form__content--form-title {
-      grid-row: 2 / span 1;
-      grid-column: 2 / span 1;
+      grid-row: 1 / span 1;
+      grid-column: 1 / span 2;
       font-size: 5rem;
       font-weight: 100;
-      color: #D4785C; }
-    .new-student-form__content--form-name {
-      grid-row: 3 / span 1;
-      grid-column: 2 / span 1;
-      height: 5rem;
-      font-size: 4rem;
-      border: 1px solid #1a1a1a;
-      background-color: #1a1a1a;
-      border-radius: 1rem;
+      color: #D4785C;
+      text-align: left;
+      width: 100%; }
+    .new-student-form__content--form-input-name {
+      grid-row: 2 / span 1;
+      grid-column: 1 / span 1;
+      font-size: 2rem;
+      padding: 1.5rem 2rem;
+      border-radius: 2px;
+      background-color: rgba(89, 88, 88, 0.5);
+      border: none;
+      width: 30rem;
+      display: block;
+      transition: all .3s;
       color: white;
-      text-align: center; }
-    .new-student-form__content--form textarea:focus, .new-student-form__content--form input:focus {
-      outline: none; }
+      height: 90%; }
+      .new-student-form__content--form-input-name:focus {
+        outline: none;
+        box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+        border: solid 1px #D4785C; }
+      .new-student-form__content--form-input-name:focus:invalid {
+        border-bottom: 1px solid red; }
+      .new-student-form__content--form-input-name::-webkit-input-placeholder {
+        color: #1a1a1a; }
     .new-student-form__content--form-submit {
-      grid-row: 4 / span 1;
+      grid-row: 2 / span 1;
       grid-column: 2 / span 1;
       color: #D4785C;
       padding: .5rem 1rem;
@@ -2014,24 +1969,16 @@ h2 {
       border-radius: 1rem;
       box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.8);
       font-weight: 200;
-      font-size: 4rem;
-      transition: all .25s; }
+      font-size: 2rem;
+      transition: all .25s;
+      height: 90%;
+      padding: 1.5rem 2rem;
+      justify-self: start; }
       .new-student-form__content--form-submit:hover {
         background-image: linear-gradient(to right bottom, black, rgba(0, 0, 0, 0.9));
         border: 0.25px solid #D4785C;
         color: #D4785C;
         transform: scale(1.1); }
-    .new-student-form__content--form-toggle {
-      grid-row: 1 / span 1;
-      grid-column: 3 / span 1;
-      font-size: 3rem;
-      margin: 2rem;
-      position: absolute;
-      z-index: 9960;
-      transform: translateY(-1.5rem);
-      transform: translateX(11.5rem); }
-      .new-student-form__content--form-toggle:hover {
-        color: #D4785C; }
 
 .new-student-form__checkbox {
   display: none; }
@@ -2054,7 +2001,7 @@ h2 {
   opacity: 0;
   visibility: hidden;
   z-index: 2500;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.8);
   transform: scale(0.51);
   transition: all .25s; }
   .user-preferences-form__content--form {
@@ -2068,7 +2015,9 @@ h2 {
     justify-items: center;
     align-items: center;
     padding: 3rem;
-    font-size: 3rem; }
+    font-size: 3rem;
+    grid-row-gap: .5rem;
+    grid-column-gap: .5rem; }
     .user-preferences-form__content--form-edit {
       grid-row: 1/span 1;
       grid-column: 1/span 1;

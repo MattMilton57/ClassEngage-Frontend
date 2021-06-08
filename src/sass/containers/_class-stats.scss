@@ -4,37 +4,8 @@
     grid-template-columns: repeat(3, 1fr);
     grid-row-gap: 2rem;
     grid-column-gap: 2rem;
-    // padding: 2rem;
     justify-content: stretch;
     overflow: hidden;
-
-    &__instructions {
-        display:grid;
-        grid-template-rows: repeat(2, 1fr);
-        grid-template-columns: 1fr;
-        height: 90%;
-        width: 95%;
-        justify-items: center;
-        margin: 0 2rem;
-        text-align: center;
-        animation: pulsate 1s infinite;
-
-        &--welcome {
-            grid-row: 1 / span 1;
-            grid-column: 1 / span 1;
-            font-size: 2.8rem;
-            font-weight: 100;
-            align-self: end;
-        }
-
-        &--guide {
-            grid-row: 2 / span 1;
-            grid-column: 1 / span 1;
-            color: $color-highlighted-text;
-            font-size: 1.75rem;
-            font-weight: 150;
-        }
-    }
 
     &__roster-container {
         grid-row: 1 / span 4;
@@ -85,5 +56,33 @@
         grid-row: 4 / span 1;
         grid-column: 3 / span 1;
         @include component-format;
+    }
+
+    &__instructions {
+        display:grid;
+        grid-template-rows: repeat(2, 1fr);
+        grid-template-columns: 1fr;
+        height: 90%;
+        width: 95%;
+        justify-items: center;
+        margin: 0 2rem;
+        text-align: center;
+        animation: pulsate 1s infinite;
+
+        &--welcome {
+            grid-row: 1 / span 1;
+            grid-column: 1 / span 1;
+            font-size: 2.8rem;
+            font-weight: 100;
+            align-self: end;
+        }
+
+        &--guide {
+            grid-row: 2 / span 1;
+            grid-column: 1 / span 1;
+            color: $color-highlighted-text;
+            font-size: 1.75rem;
+            font-weight: 150;
+        }
     }
 }
