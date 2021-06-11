@@ -64,16 +64,20 @@ this.setState({user: newState})
           <input className="landing-form__textbox"  type="password" name="password" placeholder="Password" value={this.state.user.password} onChange={ (e) => this.onChange("password", e.target.value)}/>
         </div>
 
-        <div className="landing-form__login-submit">
+        {/* <div className="landing-form__login-submit">
           <input className="btn-dark" type="submit" value="Log In" onClick={this.onSubmit}/>
-        </div>
+        </div> */}
+
+        <button onClick={(e)=> this.onSubmit(e)} className="landing-form__login-submit" >
+          <span >Log In</span>
+        </button>
 
         <div className="landing-form__login-forgot-password">
           {/* <div>Forgot Password?</div> */}
         </div>
 
         <div className="landing-form__login-register">
-        <label for="landing-page-toggle" className="landing-page__button landing-page__button--register">Create Account</label> 
+        <label for="landing-page-toggle" className="landing-form__button landing-page__button--register">Create New Account</label> 
         </div>
 
       </form>

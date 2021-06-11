@@ -17,6 +17,10 @@
         align-items: center;
         text-align: right;
         height: 100%;
+
+        @include respond(big-desktop) {
+            font-size: 2.5rem;
+        }
     }
 
     &__date {
@@ -26,5 +30,9 @@
         color: $color-copper-2;
         font-size: 6.3rem;
         height: 100%;
+
+        @include respond(big-desktop) {
+            font-size: 6.6rem;
+        }
     }
 }

@@ -12,6 +12,14 @@
     font-size: 2.5rem;
     background-color: black;
 
+    @include respond(big-desktop) {
+        height:13.5rem;
+    }
+
+    @include respond(big-tablet-land) {
+        height:14.7rem;
+    }
+
     &__flipcard {
         position: relative;
         transition: all .8s ease;

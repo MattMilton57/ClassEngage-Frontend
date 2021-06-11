@@ -85,6 +85,7 @@
         grid-column: 3 / span 2;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
         grid-row-gap: 1rem;
         grid-column-gap: 2rem;
         align-items: center;
@@ -95,18 +96,7 @@
         }
 
         &-btn {
-            height:100%;
-            width:100%;
-            @include component-format;
-            color: $color-grey-dark;
-            text-transform: none;
-            background-image: $copper-gradient;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: gray;
-            padding-left: 1rem;
-            font-weight: 400;
+            @include toggle-button
         }
 
         &-new-student{

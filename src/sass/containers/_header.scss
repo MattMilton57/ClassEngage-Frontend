@@ -10,6 +10,9 @@
         margin-left: 2rem;
         font-size: 3rem;
         font-weight: 200;
+        @include respond(big-desktop) {
+            font-size: 3.3rem;
+        }
     }
 
     &__user{
@@ -20,6 +23,10 @@
         font-weight: 300;
         display: flex;
         align-items: center;
+
+        @include respond(big-desktop) {
+            font-size: 1.75rem;
+        }
 
 
         &-name {
@@ -42,10 +49,13 @@
             justify-content: center;
             transition: all .2s;
 
+            @include respond(big-desktop) {
+                width:3.5rem;
+            }
+            
             &:hover{
                 fill: $color-grey-light;
                 transform: scale(1.05);
-
             }
         }
 
@@ -76,15 +86,15 @@
     }
 
     &-dropdown-button{
-    height: 1.5rem;
-    color: $color-copper-2;
-    background-image: transparent;
-    background-color: transparent;
-    border: none;
-    font-size: 1.5rem;
-    font-weight: 100;
-    transition: all .05s;
-    display: flex;
-    align-self: flex-end;
+        height: 1.5rem;
+        color: $color-copper-2;
+        background-image: transparent;
+        background-color: transparent;
+        border: none;
+        font-size: 1.5rem;
+        font-weight: 100;
+        transition: all .05s;
+        display: flex;
+        align-self: flex-end;
     }
 }

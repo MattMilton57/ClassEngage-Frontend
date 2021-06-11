@@ -11,5 +11,14 @@
         font-size: 3.5rem;
         margin-left: 2rem;
         color: $color-copper-2;
+        text-align: center;
+
+        @include respond(big-desktop) {
+            font-size: 4.5rem;
+        }
+
+        @include respond(big-tablet-land) {
+            font-size: 4.5rem;
+        }
     }
 }

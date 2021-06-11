@@ -85,7 +85,7 @@ class StudentHomeContainer extends React.Component{
         </div>
 
         <div className="student-home__preferences">
-          <label for="edit-student-form__checkbox" className="edit-class__controll-btn edit-class__controll-new-student">edit student</label>
+          <label for="edit-student-form__checkbox" className="student-home__preferences-btn">Student Preferences</label>
         </div>
 
         <div className="student-home__forms">

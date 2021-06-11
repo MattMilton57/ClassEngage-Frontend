@@ -12,15 +12,26 @@
 html {
     box-sizing: border-box;
     font-size: 62.5%;
+
+    @include respond(big-desktop) {
+        font-size: 70%;
+    }
+
+    @include respond(big-tablet-land) {
+        font-size: 66%;
+    }
+
+    @include respond(big-tablet) {
+        font-size: 80%;
+    }
+}
+
+input {
+    font-weight: 100;
 }
 
 body {
     font-weight: 300;
-    // background-image: $gradient-dark;
-    // background-size: cover;
-    // background-repeat: no-repeat;
-    // height: 100vh;
-    // width: 100vw;
     color: white;
 }
 

@@ -9,6 +9,14 @@
         flex-direction: column;
         justify-content: center;
         align-items: flex-end;
+
+        @include respond(big-desktop) {
+            font-size: 4rem;
+        }
+
+        @include respond(big-tablet-land) {
+            font-size: 4rem;
+        }
     }
 
     &__score {
@@ -20,6 +28,14 @@
         &--number {
             font-size: 13rem;
             font-weight: 100;
+
+            @include respond(big-desktop) {
+                font-size: 17.5rem;
+            }
+
+            @include respond(big-tablet-land) {
+                font-size: 17.5rem;
+            }
         }
 
         &--percent {
@@ -27,6 +43,14 @@
             font-size: 3rem;
             color: white;
             font-weight: 100;
+
+            @include respond(big-desktop) {
+                font-size: 4.5rem;
+            }
+
+            @include respond(big-tablet-land) {
+                font-size: 4.5rem;
+            }
         }
     }
 }

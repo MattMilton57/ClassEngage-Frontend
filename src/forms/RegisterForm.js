@@ -98,12 +98,16 @@ class RegisterForm extends React.Component {
                 </div>
 
                 {/* <button className="btn btn-dark" type="submit" value="Sign Up" >Sign Up</button> */}
-                <div className="landing-form__register-submit">
+                {/* <div className="landing-form__register-submit">
                   <input className="btn-dark" type="submit" value="Sign Up" onClick={this.onSubmit}/>
-                </div>
+                </div> */}
 
-                <div className="">
-                  <label for="landing-page-toggle" className="landing-page__button landing-form__register-switch">Existing Account</label> 
+                <button onClick={(e)=> this.onSubmit(e)} className="landing-form__register-submit" >
+                  <span >Sign Up</span>
+                </button>
+
+                <div className="landing-form__register-switch">
+                  <label for="landing-page-toggle" className="landing-form__button">Existing Account</label> 
                 </div>
 
         {/* </form> */}

@@ -100,9 +100,9 @@ class SelectClass extends React.Component {
         
 
         <div className="select-class__nav">
-          <div className=" navBar__header menu-header select-class__menu-header">
+          <div className=" navBar__header menu-header select-class__nav--header">
              <div className="navBar__header-logo--box">
-                <embed src={logo_svg} alt="Logo" className="navBar__header-logo"/>
+                <embed src={logo_svg} alt="Logo" className="select-class__nav--header-logo"/>
             </div>
           </div>
 

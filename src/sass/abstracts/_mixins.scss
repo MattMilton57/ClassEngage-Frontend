@@ -32,7 +32,6 @@
 
 @mixin form {
     background-color: rgba($color-grey-mid, 0.7);
-    // box-shadow: 0rem 0rem 4rem 4rem rgba($color-grey-dark, .1);
     z-index: 9950;
     position: absolute;
     justify-items: center;
@@ -47,7 +46,6 @@
     height: 5rem;
     font-size: 2.5rem;
     border:none;
-    // border: 1px solid $color-grey-mid;
     background-color: $color-grey-light;
     border-radius: 1rem;
     color: white;
@@ -67,6 +65,9 @@
     transition: all .3s;
     color: white;
     height: 90%;
+
+    @include respond(big-desktop) {
+    }
 
     &:focus {
         outline: none;
@@ -106,6 +107,46 @@
     } 
 }
 
+@mixin form-submit-dark {
+    height: 5rem;
+    color: $color-grey-light;
+    background-image: $gradient-dark;
+    border: none;
+    width: 30rem;
+    font-size: 3rem;
+    font-weight: 100;
+    transition: all .05s;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+
+    &:hover{
+        box-shadow: 0 .4rem 2rem rgba(black,.2);
+        transform: scale(1.005);
+    }
+
+    &:active,
+    &:focus  {
+        outline: none;
+        border: none;
+        transform: translateY(-1px);
+        box-shadow: 0 .2rem 1rem rgba(black, .2);
+    }
+
+    &::after {
+        content: "";
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        border-radius: 10rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        transition: all .4s;
+    }
+}
+
 @mixin button-copper {
     color: $color-copper-2;
     padding: .5rem 1rem;
@@ -122,7 +163,6 @@
 
     &:hover{
         background-image: $gradient-dark;
-        // background-color: $color-grey-mid;
         border: .25px solid $color-copper-2;
         color: $color-copper-2;
         transform: scale(1.1);
@@ -155,36 +195,69 @@
     }
 
     &::-webkit-scrollbar-thumb {
-        // background-color:rgba($color-copper-2,0.3);
         border-radius: 20px;
-
-        // border: 3px solid orange;
       }
-      
-    
-
-
-    // &:hover{
-    //     &::-webkit-scrollbar {
-    //         width: 5px;
-    //         z-index: 9000;
-    //     }
-    //     &::-webkit-scrollbar-track {
-    //         -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    //         z-index: 9000;
-    //     }
-    //     &::-webkit-scrollbar-thumb {
-    //         background-color:rgba($color-copper-2,0.5);
-    //       opacity: 0.1;
-    //       border-radius: 20px;
-    //       z-index: 9000;
-    //     }
-    // }
-    // min-width: 0;
 }
 
 @mixin page-format {
-    width: 75vw;
+    width: 96rem;
+    // height: 68rem;
     height: 90vh;
+
     box-shadow: 0 2rem 6rem rgba(0,0,0,.5);
+
+    @include respond(big-desktop) {
+        width: 110rem;
+    }
+
+    @include respond(big-tablet-land) {
+        width: 115rem;
+    }
+
+    @include respond(big-tablet) {
+        width: 100vw;
+        height: 100vh;
+    }
 }
+
+@mixin toggle-button {
+    height:100%;
+    width:100%;
+    @include component-format;
+    color: $color-grey-dark;
+    text-transform: none;
+    background-image: $copper-gradient;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    font-weight: 400;
+}
+
+@mixin respond($breakpoint) {
+    @if $breakpoint == phone {
+        @media only screen and (max-width: 24.4em) { @content };
+    }
+    @if $breakpoint == big-phone {
+        @media only screen and (max-width: 25.6em) { @content };
+    }
+    @if $breakpoint == tablet {
+        @media only screen and (max-width: 48em) { @content };
+    }
+    @if $breakpoint == big-tablet {
+        @media only screen and (max-width: 64em) { @content };
+    }
+    @if $breakpoint == big-tablet-land {
+        @media only screen and (min-width: 85em) and (min-height: 64em){ @content };
+    }
+    @if $breakpoint == big-desktop {
+        @media only screen and (min-width: 120em) { @content };
+    }
+}
+
+// iPhone 12: 390 x 844 24.4em
+// Pixel 2: 411 x 731 25.6em
+// Tablet: 768 x 1024 = 48em
+// big tablet: 1024 x 1366 = 64em
+// big tablet landscape: width:1366 = 85em height:1024 = 64em
+// High-res laptop or desktop: 1920 x 1080 = 120em
