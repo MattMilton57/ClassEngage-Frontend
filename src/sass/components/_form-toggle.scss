@@ -22,6 +22,10 @@
         transform: translateX(50rem);
     }
 
+    @include respond(tablet) {
+        transform: translateX(45rem);
+    }
+
     &-icon {
         z-index: 200;
         transition: all .35s;

@@ -42,9 +42,9 @@ export default class DeleteStudentForm extends React.Component {
         if(this.state.studentSchedule === 'welcome'){
             return(
                 <div className="delete-student-form__content--form-info-box-welcome">
-                    Select a student 
+                    Select a non-registered 
                     <br></br>
-                    to delete
+                    student to delete
                 </div>
                 )
         }
@@ -68,23 +68,27 @@ export default class DeleteStudentForm extends React.Component {
                     <div className="delete-student-form__content--form-info-box-remove-text">
                         Deleting this student will delete registrations from all classes
                     </div>
-                    <ul className="delete-student-form__content--form-info-box-remove-schedule">
+                    {this.displayIfRegistrations()}
+                    {/* <ul className="delete-student-form__content--form-info-box-remove-schedule">
+                    This student is currently registered for:
                         {this.state.studentSchedule.map(classPeriod => {return(<li>{classPeriod.subject}</li>)})}
-                    </ul>
+                    </ul> */}
                 </div>
             )
         }
+    }
 
-        // if (this.state.studentSchedule !== '' ){
-        //     return(
-        //         <div className="">
-        //             Deleting this student will also delete their registrations from the following classes:
-        //             <ul className="">
-        //                 {this.state.studentSchedule.map(classPeriod => {return(<li>{classPeriod.subject}</li>)})}
-        //             </ul>
-        //         </div>
-        //     )
-        // }
+    displayIfRegistrations = () => {
+        if (this.state.studentSchedule.length > 0 ){
+            return(
+                <ul className="delete-student-form__content--form-info-box-remove-schedule">
+                This student is currently registered for:
+                    {/* {this.state.studentSchedule.map(classPeriod => {return(<li>{classPeriod.subject}</li>)})} */}
+                    {this.state.studentSchedule.map(classPeriod => {return(<li className="delete-student-form__content--form-info-box-class">{classPeriod.subject}</li>)})}
+
+                </ul>
+            )
+        }
     }
 
     onSubmit = (e) => {

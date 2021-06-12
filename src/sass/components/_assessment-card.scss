@@ -20,6 +20,10 @@
         height:14.7rem;
     }
 
+    @include respond(big-tablet) {
+        height:13rem;
+    }
+
     &__flipcard {
         position: relative;
         transition: all .8s ease;

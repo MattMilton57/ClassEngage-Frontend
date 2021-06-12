@@ -7,15 +7,9 @@
     overflow: hidden;
     justify-content: stretch;
 
-    &__header{
-        grid-row: 1 / span 1;
-        grid-column: 1/ span 4;
-    }
-
-    &__roster-label {
-        color: $color-highlighted-text;
-        font-size: 1.75rem;
-        margin-left: 2rem;
+    @include respond(big-tablet) {
+        grid-template-rows: 1fr 2fr 1fr 1fr 2fr;
+        grid-template-columns: 1fr 1fr;
     }
 
     &__roster-container {
@@ -23,6 +17,11 @@
         grid-column: 1 / span 1;
         @include component-format;
         overflow: auto;  
+
+        @include respond(big-tablet) {
+            grid-row: 1 / span 4;
+            grid-column: 1 / span 1;
+        }
 
         &-shell{
             height: auto;
@@ -36,10 +35,21 @@
         @include component-format;
         overflow: auto; 
 
+        @include respond(big-tablet) {
+            grid-row: 1 / span 3;
+            grid-column: 2 / span 1;
+        }
+
         &-shell{
             height: auto;
             overflow: hidden; 
         }
+    }
+
+    &__roster-label {
+        color: $color-highlighted-text;
+        font-size: 1.75rem;
+        margin-left: 2rem;
     }
 
     &__class-name {
@@ -53,6 +63,10 @@
         display: flex;
         justify-content: center;
         align-items: center;
+
+        @include respond(big-tablet) {
+            display: none;
+        }
     }
 
     &__message-center {
@@ -67,6 +81,11 @@
         place-items: center;
         padding: 2rem;
 
+        @include respond(big-tablet) {
+            grid-row: 5 / span 1;
+            grid-column: 1 / span 1;
+        }
+
         &--text{
             font-size: 2.5rem;
             font-weight: 100;
@@ -78,6 +97,13 @@
         grid-row: 3 / span 1;
         grid-column: 3 / span 2;
         @include component-format;
+
+        @include respond(big-tablet) {
+            grid-row: 5 / span 1;
+            grid-column: 2 / span 1;
+            // display: none;
+
+        }
     }
 
     &__controll {
@@ -90,6 +116,14 @@
         grid-column-gap: 2rem;
         align-items: center;
         justify-items: center;
+
+        @include respond(big-tablet) {
+            grid-row: 4 / span 1;
+            grid-column: 2 / span 1;
+            // grid-row: 6 / span 1;
+            // grid-column: 2 / span 1;
+            // display: none;
+        }
 
         &-toggle{
             display: none;

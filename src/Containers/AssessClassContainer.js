@@ -1,8 +1,9 @@
 import React from 'react';
-import TitleBox from "../components/TitleBox"
-import LastAssessment from "../components/LastAssessment"
-import TotalAssessments from '../components/TotalAssessments';
 import AssessmentCard from '../components/AssessmentCard';
+import ClassScore from "../components/ClassScore"
+import LastAssessment from "../components/LastAssessment"
+import TitleBox from "../components/TitleBox"
+import TotalAssessments from '../components/TotalAssessments';
 import { api } from '../services/api'
 
 class AssessClass extends React.Component {
@@ -131,15 +132,30 @@ class AssessClass extends React.Component {
       </div>
     )}
   }
+
+  displayParticipation = () => {
+    if(this.props.roster.length === 0)
+      {
+        return(<div></div>)
+      }
+      else
+      {return( 
+        <div className="assess-class__total-participation-shell ">
+          <ClassScore
+            roster={this.props.roster} 
+            assessments={this.props.assessments}
+            classPeriod={this.props.classPeriod}
+            />
+        </div>         
+        )
+      }
+  }
  
   render(){
     return(
       <div className="assess-class">
         <div className="assess-class__card-container">
-          
           {this.makeCards()}
-
-
         </div>
 
         <div className="assess-class__class-name">
@@ -148,7 +164,7 @@ class AssessClass extends React.Component {
             />
         </div>
 
-        <div>
+        <div className="assess-class__message-shell">
           {this.instructions()}
 
         </div>
@@ -162,7 +178,10 @@ class AssessClass extends React.Component {
         <div className="assess-class__total-assessments">
           <TotalAssessments 
           assessments={this.props.assessments}/>
+        </div>
 
+        <div className="assess-class__total-participation">
+          {this.displayParticipation()}
         </div>
       </div>
     )

@@ -20,5 +20,11 @@
         @include respond(big-tablet-land) {
             font-size: 4.5rem;
         }
+
+        @include respond(big-tablet) {
+            font-size: 4rem;
+            margin-left: 0rem;
+            text-align: end;
+        }
     }
 }

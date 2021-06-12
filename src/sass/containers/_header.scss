@@ -1,8 +1,9 @@
 .header {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, max-content);
     grid-template-rows: 1fr;
     align-items: center;
+    justify-content: space-between;
     height: 100%;
 
     &__text{
@@ -12,6 +13,10 @@
         font-weight: 200;
         @include respond(big-desktop) {
             font-size: 3.3rem;
+        }
+
+        @include respond(big-tablet) {
+            
         }
     }
 
@@ -23,6 +28,8 @@
         font-weight: 300;
         display: flex;
         align-items: center;
+        // justify-items: end;
+        // background-color: blueviolet;
 
         @include respond(big-desktop) {
             font-size: 1.75rem;

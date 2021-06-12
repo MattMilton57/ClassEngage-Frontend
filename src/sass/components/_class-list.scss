@@ -6,6 +6,8 @@
     flex-direction: column;
     border-radius: 1rem;
     overflow: auto;
+    // background-color: red;
+    width: 100%;
 
 //     @include respond(big-tablet) {
 // margin-left: 6rem;
@@ -36,12 +38,15 @@
 
         @include respond(big-tablet) {
             background-image: none;
-            width: max-content;
+            max-width: max-content;
+            // background-color: blue;
             grid-template-columns: 1fr;
-            
-            
-            // display: none;
-            
+        }
+
+        @include respond(tablet) {
+            background-image: none;
+            max-width: max-content;
+            grid-template-columns: 1fr;
         }
 
         &-highlighted{
@@ -90,10 +95,11 @@
             @include respond(big-tablet) {
                 font-size: 3rem;
                 margin-left: 1rem;
-                
-                
-                // display: none;
-                
+            }
+
+            @include respond(tablet) {
+                font-size: 3rem;
+                margin-left: 1rem;
             }
         }
 
@@ -114,10 +120,10 @@
             }
             @include respond(big-tablet) {
                 font-size: 5rem;
-                
-                
-                // display: none;
-                
+            }
+
+            @include respond(tablet) {
+                font-size: 5rem;
             }
         }
     }

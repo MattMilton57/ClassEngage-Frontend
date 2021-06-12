@@ -3,6 +3,11 @@
     justify-content: center;
     align-items: center;
 
+    @include respond(big-tablet) {
+        flex-direction: column;
+        transform: translateY(1rem);
+    }
+
     &__caption {
         font-size: 3.1rem;
         display: flex;
@@ -17,6 +22,11 @@
         @include respond(big-tablet-land) {
             font-size: 4rem;
         }
+
+        @include respond(big-tablet) {
+            // background-color: gold;
+            margin-top: 2rem;
+        }
     }
 
     &__score {
@@ -24,6 +34,11 @@
         justify-content: center;
         align-items: flex-start;
         display: flex;
+
+        @include respond(big-tablet) {
+            // background-color: blue;
+            transform: translateY(-2rem);
+        }
 
         &--number {
             font-size: 13rem;
@@ -35,6 +50,10 @@
 
             @include respond(big-tablet-land) {
                 font-size: 17.5rem;
+            }
+
+            @include respond(big-tablet) {
+                font-size: 14rem;
             }
         }
 

@@ -24,6 +24,10 @@ html {
     @include respond(big-tablet) {
         font-size: 80%;
     }
+
+    @include respond(tablet) {
+        // font-size: 70%;
+    }
 }
 
 input {

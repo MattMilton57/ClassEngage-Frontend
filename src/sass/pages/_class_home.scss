@@ -7,6 +7,11 @@
     align-content: space-between;
     @include page-format;
 
+    @include respond(big-tablet) {
+        grid-template-rows: 5rem 1fr;
+        grid-template-columns: 15rem 1fr;
+    }
+
     &__header {
         grid-column: 2 / span 1;
         grid-row: 1 / span 1;
