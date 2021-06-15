@@ -3,6 +3,7 @@ import auth from '../services/auth';
 import logo_svg from "../img/logo-hand.svg";
 import LogInForm from '../forms/LogInForm';
 import RegisterForm from '../forms/RegisterForm';
+import ContactFooter from "../components/ContactFooter"
 // import { api } from '../services/api'
 
 const LandingPage = (props) => {
@@ -24,6 +25,38 @@ const LandingPage = (props) => {
             </div>
             <div className="landing-page__content-form-register">
               <RegisterForm {...props} logIn={logIn}/>
+            </div>
+          </div>
+        </div>
+        <div className="landing-page__profile">
+          <div className="landing-page__profile-text">
+              Class Engage was built by Matt Milton. It was initially concieved and created as a final project for the Flatiron School Full Stack Software Engineering Bootcamp, Seattle Campus, 2020.
+          </div>
+
+          <div className="landing-page__profile-links">
+            <div className="landing-page__profile-resume">
+                <a href="https://www.github.com/MattMilton57">
+                    <div className="">
+                        Resume
+                    </div>
+                </a>
+            </div>
+
+            <div className="landing-page__profile-github">
+                <a href="https://www.github.com/MattMilton57">
+                    <div className="">
+                        github depot
+                    </div>
+                </a>
+            </div>
+
+            <div className="landing-page__profile-specs">
+
+            <a href="https://www.github.com/MattMilton57">
+                    <div className="">
+                        Project Specifications
+                    </div>
+                </a>
             </div>
           </div>
         </div>

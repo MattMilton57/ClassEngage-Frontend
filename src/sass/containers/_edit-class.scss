@@ -12,6 +12,11 @@
         grid-template-columns: 1fr 1fr;
     }
 
+    @include respond(tablet) {
+        grid-template-rows: 1fr 2fr 1fr 1fr 2fr;
+        grid-template-columns: 1fr 1fr;
+    }
+
     &__roster-container {
         grid-row: 1 / span 4;
         grid-column: 1 / span 1;
@@ -19,6 +24,11 @@
         overflow: auto;  
 
         @include respond(big-tablet) {
+            grid-row: 1 / span 4;
+            grid-column: 1 / span 1;
+        }
+
+        @include respond(tablet) {
             grid-row: 1 / span 4;
             grid-column: 1 / span 1;
         }
@@ -36,6 +46,11 @@
         overflow: auto; 
 
         @include respond(big-tablet) {
+            grid-row: 1 / span 3;
+            grid-column: 2 / span 1;
+        }
+
+        @include respond(tablet) {
             grid-row: 1 / span 3;
             grid-column: 2 / span 1;
         }
@@ -67,6 +82,10 @@
         @include respond(big-tablet) {
             display: none;
         }
+
+        @include respond(tablet) {
+            display: none;
+        }
     }
 
     &__message-center {
@@ -86,6 +105,11 @@
             grid-column: 1 / span 1;
         }
 
+        @include respond(tablet) {
+            grid-row: 5 / span 1;
+            grid-column: 1 / span 1;
+        }
+
         &--text{
             font-size: 2.5rem;
             font-weight: 100;
@@ -101,8 +125,11 @@
         @include respond(big-tablet) {
             grid-row: 5 / span 1;
             grid-column: 2 / span 1;
-            // display: none;
+        }
 
+        @include respond(tablet) {
+            grid-row: 5 / span 1;
+            grid-column: 2 / span 1;
         }
     }
 
@@ -120,9 +147,11 @@
         @include respond(big-tablet) {
             grid-row: 4 / span 1;
             grid-column: 2 / span 1;
-            // grid-row: 6 / span 1;
-            // grid-column: 2 / span 1;
-            // display: none;
+        }
+
+        @include respond(tablet) {
+            grid-row: 4 / span 1;
+            grid-column: 2 / span 1;
         }
 
         &-toggle{

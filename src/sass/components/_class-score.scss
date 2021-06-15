@@ -2,8 +2,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    // background-color: aqua;
 
     @include respond(big-tablet) {
+        flex-direction: column;
+        transform: translateY(1rem);
+        align-items: flex-end;
+    }
+
+    @include respond(tablet) {
         flex-direction: column;
         transform: translateY(1rem);
     }
@@ -27,6 +34,11 @@
             // background-color: gold;
             margin-top: 2rem;
         }
+
+        @include respond(tablet) {
+            // background-color: gold;
+            margin-top: 2rem;
+        }
     }
 
     &__score {
@@ -36,6 +48,11 @@
         display: flex;
 
         @include respond(big-tablet) {
+            // background-color: blue;
+            transform: translateY(-2rem);
+        }
+
+        @include respond(tablet) {
             // background-color: blue;
             transform: translateY(-2rem);
         }
@@ -55,6 +72,10 @@
             @include respond(big-tablet) {
                 font-size: 14rem;
             }
+
+            @include respond(tablet) {
+                font-size: 14rem;
+            }
         }
 
         &--percent {
@@ -70,6 +91,7 @@
             @include respond(big-tablet-land) {
                 font-size: 4.5rem;
             }
+            
         }
     }
 }

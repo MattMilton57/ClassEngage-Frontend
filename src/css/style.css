@@ -61,6 +61,14 @@ h2 {
   text-decoration: none;
   color: black; }
 
+a {
+  text-decoration: none;
+  color: #595858; }
+  a:visited {
+    color: #595858; }
+  a *:hover {
+    color: #CB6D51; }
+
 .assessment-card {
   display: grid;
   grid-template-rows: .6fr .4fr;
@@ -87,6 +95,9 @@ h2 {
   @media only screen and (min-width: 64em) and (min-height: 85em) {
     .assessment-card {
       height: 13rem; } }
+  @media only screen and (max-width: 48em) {
+    .assessment-card {
+      height: 12.4rem; } }
   .assessment-card__flipcard {
     position: relative;
     transition: all .8s ease;
@@ -494,6 +505,11 @@ h2 {
   @media only screen and (min-width: 64em) and (min-height: 85em) {
     .class-score {
       flex-direction: column;
+      transform: translateY(1rem);
+      align-items: flex-end; } }
+  @media only screen and (max-width: 48em) {
+    .class-score {
+      flex-direction: column;
       transform: translateY(1rem); } }
   .class-score__caption {
     font-size: 3.1rem;
@@ -510,12 +526,18 @@ h2 {
     @media only screen and (min-width: 64em) and (min-height: 85em) {
       .class-score__caption {
         margin-top: 2rem; } }
+    @media only screen and (max-width: 48em) {
+      .class-score__caption {
+        margin-top: 2rem; } }
   .class-score__score {
     color: #D4785C;
     justify-content: center;
     align-items: flex-start;
     display: flex; }
     @media only screen and (min-width: 64em) and (min-height: 85em) {
+      .class-score__score {
+        transform: translateY(-2rem); } }
+    @media only screen and (max-width: 48em) {
       .class-score__score {
         transform: translateY(-2rem); } }
     .class-score__score--number {
@@ -528,6 +550,9 @@ h2 {
         .class-score__score--number {
           font-size: 17.5rem; } }
       @media only screen and (min-width: 64em) and (min-height: 85em) {
+        .class-score__score--number {
+          font-size: 14rem; } }
+      @media only screen and (max-width: 48em) {
         .class-score__score--number {
           font-size: 14rem; } }
     .class-score__score--percent {
@@ -564,6 +589,11 @@ h2 {
     @media only screen and (min-width: 64em) and (min-height: 85em) {
       .class-title__class-subject {
         font-size: 4rem;
+        margin-left: 0rem;
+        text-align: end; } }
+    @media only screen and (max-width: 48em) {
+      .class-title__class-subject {
+        font-size: 3.5rem;
         margin-left: 0rem;
         text-align: end; } }
 
@@ -649,6 +679,9 @@ h2 {
     @media only screen and (min-width: 120em) {
       .last-assessment__text {
         font-size: 2.5rem; } }
+    @media only screen and (min-width: 64em) and (min-height: 85em) {
+      .last-assessment__text {
+        font-size: 2.3rem; } }
   .last-assessment__date {
     display: flex;
     justify-content: start;
@@ -659,6 +692,9 @@ h2 {
     @media only screen and (min-width: 120em) {
       .last-assessment__date {
         font-size: 6.6rem; } }
+    @media only screen and (min-width: 64em) and (min-height: 85em) {
+      .last-assessment__date {
+        font-size: 5.9rem; } }
 
 .menu-footer {
   display: flex;
@@ -779,6 +815,9 @@ h2 {
     @media only screen and (min-width: 120em) {
       .total-assessments__text {
         font-size: 2.5rem; } }
+    @media only screen and (min-width: 64em) and (min-height: 85em) {
+      .total-assessments__text {
+        font-size: 2.5rem; } }
   .total-assessments__total {
     color: #D4785C;
     font-size: 5.4rem;
@@ -786,6 +825,9 @@ h2 {
     @media only screen and (min-width: 120em) {
       .total-assessments__total {
         font-size: 6.6rem; } }
+    @media only screen and (min-width: 64em) and (min-height: 85em) {
+      .total-assessments__total {
+        font-size: 6.1rem; } }
 
 .assess-class {
   min-height: 0;
@@ -798,6 +840,10 @@ h2 {
   grid-column-gap: 2rem;
   grid-row-gap: 2rem; }
   @media only screen and (min-width: 64em) and (min-height: 85em) {
+    .assess-class {
+      grid-template-rows: 1fr 2fr 1fr 1fr 2fr;
+      grid-template-columns: 1fr 1fr; } }
+  @media only screen and (max-width: 48em) {
     .assess-class {
       grid-template-rows: 1fr 2fr 1fr 1fr 2fr;
       grid-template-columns: 1fr 1fr; } }
@@ -840,6 +886,10 @@ h2 {
     text-transform: uppercase;
     font-weight: 200; }
     @media only screen and (min-width: 64em) and (min-height: 85em) {
+      .assess-class__message-shell {
+        grid-row: 5 / span 1;
+        grid-column: 1 / span 2; } }
+    @media only screen and (max-width: 48em) {
       .assess-class__message-shell {
         grid-row: 5 / span 1;
         grid-column: 1 / span 2; } }
@@ -905,6 +955,10 @@ h2 {
       .assess-class__last-assessment {
         grid-row: 4 / span 1;
         grid-column: 2 / span 1; } }
+    @media only screen and (max-width: 48em) {
+      .assess-class__last-assessment {
+        grid-row: 4 / span 1;
+        grid-column: 2 / span 1; } }
   .assess-class__total-assessments {
     grid-row: 4 / span 1;
     grid-column: 2 / span 1;
@@ -914,6 +968,10 @@ h2 {
     text-transform: uppercase;
     font-weight: 200; }
     @media only screen and (min-width: 64em) and (min-height: 85em) {
+      .assess-class__total-assessments {
+        grid-row: 3 / span 1;
+        grid-column: 2 / span 1; } }
+    @media only screen and (max-width: 48em) {
       .assess-class__total-assessments {
         grid-row: 3 / span 1;
         grid-column: 2 / span 1; } }
@@ -937,6 +995,16 @@ h2 {
         box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
         text-transform: uppercase;
         font-weight: 200; } }
+    @media only screen and (max-width: 48em) {
+      .assess-class__total-participation {
+        display: flex;
+        grid-row: 2 / span 1;
+        grid-column: 2 / span 1;
+        background-color: #111111;
+        border-radius: 1rem;
+        box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
+        text-transform: uppercase;
+        font-weight: 200; } }
 
 .class-stats {
   display: grid;
@@ -950,6 +1018,10 @@ h2 {
     .class-stats {
       grid-template-rows: 1fr 2fr 1fr 1fr 2fr;
       grid-template-columns: 1fr 1fr; } }
+  @media only screen and (max-width: 48em) {
+    .class-stats {
+      grid-template-rows: 1fr 2fr 1fr 1fr 2fr;
+      grid-template-columns: 1fr 1fr; } }
   .class-stats__roster-container {
     grid-row: 1 / span 4;
     grid-column: 1 / span 1;
@@ -960,6 +1032,10 @@ h2 {
     font-weight: 200;
     overflow: auto; }
     @media only screen and (min-width: 64em) and (min-height: 85em) {
+      .class-stats__roster-container {
+        grid-row: 1 / span 4;
+        grid-column: 1 / span 1; } }
+    @media only screen and (max-width: 48em) {
       .class-stats__roster-container {
         grid-row: 1 / span 4;
         grid-column: 1 / span 1; } }
@@ -979,6 +1055,10 @@ h2 {
       .class-stats__class-name {
         grid-row: 1 / span 1;
         grid-column: 2 / span 1; } }
+    @media only screen and (max-width: 48em) {
+      .class-stats__class-name {
+        grid-row: 1 / span 1;
+        grid-column: 2 / span 1; } }
   .class-stats__total-participation {
     grid-row: 2 / span 1;
     grid-column: 2 / span 2;
@@ -992,6 +1072,10 @@ h2 {
     justify-content: center;
     align-items: center; }
     @media only screen and (min-width: 64em) and (min-height: 85em) {
+      .class-stats__total-participation {
+        grid-row: 2 / span 1;
+        grid-column: 2 / span 1; } }
+    @media only screen and (max-width: 48em) {
       .class-stats__total-participation {
         grid-row: 2 / span 1;
         grid-column: 2 / span 1; } }
@@ -1011,6 +1095,10 @@ h2 {
       .class-stats__graphics {
         grid-row: 5 / span 1;
         grid-column: 1 / span 2; } }
+    @media only screen and (max-width: 48em) {
+      .class-stats__graphics {
+        grid-row: 5 / span 1;
+        grid-column: 1 / span 2; } }
   .class-stats__total-assessments {
     grid-row: 4 / span 1;
     grid-column: 2 / span 1;
@@ -1023,6 +1111,10 @@ h2 {
       .class-stats__total-assessments {
         grid-row: 3 / span 1;
         grid-column: 2 / span 1; } }
+    @media only screen and (max-width: 48em) {
+      .class-stats__total-assessments {
+        grid-row: 3 / span 1;
+        grid-column: 2 / span 1; } }
   .class-stats__last-assessment {
     grid-row: 4 / span 1;
     grid-column: 3 / span 1;
@@ -1032,6 +1124,10 @@ h2 {
     text-transform: uppercase;
     font-weight: 200; }
     @media only screen and (min-width: 64em) and (min-height: 85em) {
+      .class-stats__last-assessment {
+        grid-row: 4 / span 1;
+        grid-column: 2 / span 1; } }
+    @media only screen and (max-width: 48em) {
       .class-stats__last-assessment {
         grid-row: 4 / span 1;
         grid-column: 2 / span 1; } }
@@ -1070,6 +1166,10 @@ h2 {
     .edit-class {
       grid-template-rows: 1fr 2fr 1fr 1fr 2fr;
       grid-template-columns: 1fr 1fr; } }
+  @media only screen and (max-width: 48em) {
+    .edit-class {
+      grid-template-rows: 1fr 2fr 1fr 1fr 2fr;
+      grid-template-columns: 1fr 1fr; } }
   .edit-class__roster-container {
     grid-row: 1 / span 4;
     grid-column: 1 / span 1;
@@ -1080,6 +1180,10 @@ h2 {
     font-weight: 200;
     overflow: auto; }
     @media only screen and (min-width: 64em) and (min-height: 85em) {
+      .edit-class__roster-container {
+        grid-row: 1 / span 4;
+        grid-column: 1 / span 1; } }
+    @media only screen and (max-width: 48em) {
       .edit-class__roster-container {
         grid-row: 1 / span 4;
         grid-column: 1 / span 1; } }
@@ -1096,6 +1200,10 @@ h2 {
     font-weight: 200;
     overflow: auto; }
     @media only screen and (min-width: 64em) and (min-height: 85em) {
+      .edit-class__student-body-container {
+        grid-row: 1 / span 3;
+        grid-column: 2 / span 1; } }
+    @media only screen and (max-width: 48em) {
       .edit-class__student-body-container {
         grid-row: 1 / span 3;
         grid-column: 2 / span 1; } }
@@ -1124,6 +1232,9 @@ h2 {
     @media only screen and (min-width: 64em) and (min-height: 85em) {
       .edit-class__class-name {
         display: none; } }
+    @media only screen and (max-width: 48em) {
+      .edit-class__class-name {
+        display: none; } }
   .edit-class__message-center {
     grid-row: 2 / span 1;
     grid-column: 3 / span 2;
@@ -1143,6 +1254,10 @@ h2 {
       .edit-class__message-center {
         grid-row: 5 / span 1;
         grid-column: 1 / span 1; } }
+    @media only screen and (max-width: 48em) {
+      .edit-class__message-center {
+        grid-row: 5 / span 1;
+        grid-column: 1 / span 1; } }
     .edit-class__message-center--text {
       font-size: 2.5rem;
       font-weight: 100;
@@ -1159,6 +1274,10 @@ h2 {
       .edit-class__class-count {
         grid-row: 5 / span 1;
         grid-column: 2 / span 1; } }
+    @media only screen and (max-width: 48em) {
+      .edit-class__class-count {
+        grid-row: 5 / span 1;
+        grid-column: 2 / span 1; } }
   .edit-class__controll {
     grid-row: 4 / span 1;
     grid-column: 3 / span 2;
@@ -1170,6 +1289,10 @@ h2 {
     align-items: center;
     justify-items: center; }
     @media only screen and (min-width: 64em) and (min-height: 85em) {
+      .edit-class__controll {
+        grid-row: 4 / span 1;
+        grid-column: 2 / span 1; } }
+    @media only screen and (max-width: 48em) {
       .edit-class__controll {
         grid-row: 4 / span 1;
         grid-column: 2 / span 1; } }
@@ -1284,9 +1407,8 @@ h2 {
 
 .navBar {
   display: grid;
-  grid-template-rows: 1fr 4fr 1fr 1fr;
+  grid-template-rows: 8rem min-content 1fr min-content;
   grid-template-columns: 1fr;
-  align-content: space-around;
   height: 100%;
   background-color: #111111; }
   .navBar__header {
@@ -1315,6 +1437,8 @@ h2 {
       text-transform: uppercase;
       align-items: center;
       justify-items: start; }
+      .navBar__link-list--link-back {
+        transform: translateY(-1rem); }
       .navBar__link-list--link-selected {
         transform: translateX(0.2rem);
         background-image: linear-gradient(to bottom right, #cb6d51, #d4785c, #da8a68, #dd9b72);
@@ -1360,10 +1484,25 @@ h2 {
         justify-content: center; }
   .navBar__back {
     grid-row: 3 / span 1;
-    grid-column: 1 / span 1; }
+    grid-column: 1 / span 1;
+    border-bottom: solid 1px #595858; }
   .navBar__profile {
     grid-row: 4 / span 1;
-    grid-column: 1 / span 1; }
+    grid-column: 1 / span 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    color: #595858;
+    height: min-content;
+    background-color: rgba(0, 0, 0, 0.1); }
+    .navBar__profile-links {
+      padding: 1.2rem; }
+    .navBar__profile-text {
+      margin-bottom: .5rem; }
+    .navBar__profile-resume {
+      margin-bottom: .5rem; }
+    .navBar__profile-github {
+      margin-bottom: .5rem; }
 
 .student-home {
   display: grid;
@@ -1377,6 +1516,10 @@ h2 {
     .student-home {
       grid-template-rows: 1fr 2fr 1fr 1fr 2fr;
       grid-template-columns: 1fr 1fr; } }
+  @media only screen and (max-width: 48em) {
+    .student-home {
+      grid-template-rows: 1fr 2fr 1fr 1fr 2fr;
+      grid-template-columns: 1fr 1fr; } }
   .student-home__assessments {
     grid-row: 1 / span 4;
     grid-column: 1 / span 1;
@@ -1387,6 +1530,10 @@ h2 {
     font-weight: 200;
     overflow: auto; }
     @media only screen and (min-width: 64em) and (min-height: 85em) {
+      .student-home__assessments {
+        grid-row: 1 / span 4;
+        grid-column: 1 / span 1; } }
+    @media only screen and (max-width: 48em) {
       .student-home__assessments {
         grid-row: 1 / span 4;
         grid-column: 1 / span 1; } }
@@ -1406,6 +1553,10 @@ h2 {
       .student-home__name {
         grid-row: 1 / span 1;
         grid-column: 2 / span 1; } }
+    @media only screen and (max-width: 48em) {
+      .student-home__name {
+        grid-row: 1 / span 1;
+        grid-column: 2 / span 1; } }
   .student-home__score {
     grid-row: 2 / span 1;
     grid-column: 2 / span 2;
@@ -1419,6 +1570,10 @@ h2 {
     justify-content: center;
     align-items: center; }
     @media only screen and (min-width: 64em) and (min-height: 85em) {
+      .student-home__score {
+        grid-row: 2 / span 1;
+        grid-column: 2 / span 1; } }
+    @media only screen and (max-width: 48em) {
       .student-home__score {
         grid-row: 2 / span 1;
         grid-column: 2 / span 1; } }
@@ -1438,6 +1593,10 @@ h2 {
       .student-home__graphics {
         grid-row: 5 / span 1;
         grid-column: 1 / span 2; } }
+    @media only screen and (max-width: 48em) {
+      .student-home__graphics {
+        grid-row: 5 / span 1;
+        grid-column: 1 / span 2; } }
   .student-home__ranking {
     grid-row: 4 / span 1;
     grid-column: 2 / span 1;
@@ -1450,6 +1609,10 @@ h2 {
       .student-home__ranking {
         grid-row: 3 / span 1;
         grid-column: 2 / span 1; } }
+    @media only screen and (max-width: 48em) {
+      .student-home__ranking {
+        grid-row: 3 / span 1;
+        grid-column: 2 / span 1; } }
   .student-home__preferences {
     grid-row: 4 / span 1;
     grid-column: 3 / span 1;
@@ -1459,6 +1622,10 @@ h2 {
     text-transform: uppercase;
     font-weight: 200; }
     @media only screen and (min-width: 64em) and (min-height: 85em) {
+      .student-home__preferences {
+        grid-row: 4 / span 1;
+        grid-column: 2 / span 1; } }
+    @media only screen and (max-width: 48em) {
       .student-home__preferences {
         grid-row: 4 / span 1;
         grid-column: 2 / span 1; } }
@@ -1482,6 +1649,9 @@ h2 {
         .student-home__preferences-btn {
           font-size: 2.5rem; } }
       @media only screen and (min-width: 64em) and (min-height: 85em) {
+        .student-home__preferences-btn {
+          font-size: 2.5rem; } }
+      @media only screen and (max-width: 48em) {
         .student-home__preferences-btn {
           font-size: 2.5rem; } }
   .student-home__forms {
@@ -2370,17 +2540,6 @@ h2 {
       grid-row: 2/span 1;
       grid-column: 1/span 1;
       border-top: solid 2px #D4785C; }
-    .user-preferences-form__content--form-toggle {
-      grid-row: 1 / span 1;
-      grid-column: 3 / span 1;
-      font-size: 3rem;
-      margin: 2rem;
-      position: absolute;
-      z-index: 9960;
-      transform: translateY(-1.5rem);
-      transform: translateX(11.5rem); }
-      .user-preferences-form__content--form-toggle:hover {
-        color: #D4785C; }
 
 .user-preferences-form__checkbox {
   display: none; }
@@ -2414,7 +2573,15 @@ h2 {
     .class-home {
       width: 100vw;
       height: 100vh; } }
+  @media only screen and (max-width: 25.6em) {
+    .class-home {
+      width: 10vw;
+      height: 10vh; } }
   @media only screen and (min-width: 64em) and (min-height: 85em) {
+    .class-home {
+      grid-template-rows: 5rem 1fr;
+      grid-template-columns: 15rem 1fr; } }
+  @media only screen and (max-width: 48em) {
     .class-home {
       grid-template-rows: 5rem 1fr;
       grid-template-columns: 15rem 1fr; } }
@@ -2442,7 +2609,7 @@ h2 {
 .landing-page {
   overflow: hidden;
   display: grid;
-  grid-template-rows: 1fr;
+  grid-template-rows: 1fr min-content;
   grid-template-columns: 1fr .60fr;
   width: 96rem;
   height: 90vh;
@@ -2466,6 +2633,10 @@ h2 {
     .landing-page {
       width: 100vw;
       height: 100vh; } }
+  @media only screen and (max-width: 25.6em) {
+    .landing-page {
+      width: 10vw;
+      height: 10vh; } }
   .landing-page__content {
     grid-row: 1 / span 1;
     display: grid;
@@ -2496,6 +2667,46 @@ h2 {
         display: none; }
       .landing-page__content-form-checkbox:checked ~ .landing-page__content-form-register {
         display: flex; }
+  .landing-page__profile {
+    grid-row: 2 / span 1;
+    grid-column: 1 / span 2;
+    display: flex;
+    flex-direction: column;
+    padding: 1.2rem;
+    width: 100%;
+    color: #595858;
+    height: min-content;
+    background-color: rgba(0, 0, 0, 0.3); }
+    @media only screen and (min-width: 120em) {
+      .landing-page__profile {
+        font-size: 1.25rem; } }
+    .landing-page__profile-links {
+      display: flex;
+      justify-content: center; }
+    .landing-page__profile-text {
+      margin-bottom: .5rem;
+      align-self: center; }
+      @media only screen and (min-width: 64em) and (min-height: 85em) {
+        .landing-page__profile-text {
+          font-size: .9rem; } }
+      @media only screen and (max-width: 48em) {
+        .landing-page__profile-text {
+          font-size: .8rem; } }
+    .landing-page__profile-resume {
+      border-left: solid 1px #595858;
+      border-right: solid 1px #595858;
+      padding: 0 1rem;
+      margin: 0 1rem; }
+    .landing-page__profile-github {
+      border-left: solid 1px #595858;
+      border-right: solid 1px #595858;
+      padding: 0 1rem;
+      margin: 0 1rem; }
+    .landing-page__profile-specs {
+      border-left: solid 1px #595858;
+      border-right: solid 1px #595858;
+      padding: 0 1rem;
+      margin: 0 1rem; }
 
 .select-class {
   background-color: rgba(128, 128, 128, 0.5);
@@ -2531,6 +2742,10 @@ h2 {
     .select-class {
       width: 100vw;
       height: 100vh; } }
+  @media only screen and (max-width: 25.6em) {
+    .select-class {
+      width: 10vw;
+      height: 10vh; } }
   @media only screen and (min-width: 64em) and (min-height: 85em) {
     .select-class {
       grid-template-columns: 1fr;

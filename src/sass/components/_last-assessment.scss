@@ -21,6 +21,10 @@
         @include respond(big-desktop) {
             font-size: 2.5rem;
         }
+
+        @include respond(big-tablet) {
+            font-size: 2.3rem;
+        }
     }
 
     &__date {
@@ -33,6 +37,10 @@
 
         @include respond(big-desktop) {
             font-size: 6.6rem;
+        }
+
+        @include respond(big-tablet) {
+            font-size: 5.9rem;
         }
     }
 }

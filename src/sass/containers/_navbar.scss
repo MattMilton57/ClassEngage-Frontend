@@ -1,8 +1,8 @@
 .navBar {
     display: grid;
-    grid-template-rows: 1fr 4fr 1fr 1fr ;
+    grid-template-rows: 8rem min-content 1fr min-content ;
     grid-template-columns: 1fr;
-    align-content: space-around;
+    // align-content: space-around;
     height: 100%;
     background-color: $color-grey-dark;
 
@@ -38,6 +38,10 @@
             text-transform: uppercase;
             align-items: center;
             justify-items: start;
+
+            &-back {
+                transform: translateY(-1rem);
+            }
 
             &-selected{
                 transform: translateX(.2rem);
@@ -102,10 +106,41 @@
     &__back {
         grid-row: 3 / span 1;
         grid-column: 1 / span 1;
+        border-bottom: solid 1px $color-grey-light;
     }
 
     &__profile {
         grid-row: 4 / span 1;
         grid-column: 1 / span 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        // padding: 1.2rem;
+        color: $color-grey-light;
+        height: min-content;
+        background-color: rgba(black, 0.1);
+        
+        // border-top: solid 1px $color-grey-light;
+
+        &-links{
+            padding: 1.2rem;
+        }
+
+        &-text {
+            margin-bottom:.5rem;
+        }
+
+        &-resume {
+            margin-bottom:.5rem;
+        }
+
+        &-github {
+            margin-bottom:.5rem;
+        }
+
+        &-specs {
+
+        }
+        // background-color: aqua;
     }
 }

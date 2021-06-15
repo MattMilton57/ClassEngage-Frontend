@@ -14,6 +14,10 @@
         @include respond(big-desktop) {
             font-size: 2.5rem;
         }
+
+        @include respond(big-tablet) {
+            font-size: 2.5rem;
+        }
     }
 
     &__total {
@@ -23,6 +27,10 @@
 
         @include respond(big-desktop) {
             font-size: 6.6rem;
+        }
+
+        @include respond(big-tablet) {
+            font-size: 6.1rem;
         }
 
     }

@@ -84,13 +84,10 @@ highlightIfNew = (id) => {
                                 <use href={sprite + "#icon-pencil"} ></use>
                             </svg>
                         </Link>
-
-
-
                 </div>
 
                 <div className="navBar__back">
-                    <a href="/selectClass" className="navBar__link-list--link">
+                    <a href="/selectClass" className="navBar__link-list--link navBar__link-list--link-back">
                                 <div className="navBar__link-list--link-text">All Classes</div>
                                 <svg className="navBar__link-list--link-icon">
                                     <use href={sprite + "#icon-graduation-cap"} ></use>

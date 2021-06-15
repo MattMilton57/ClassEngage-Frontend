@@ -12,6 +12,11 @@
         grid-template-columns: 1fr 1fr;
     }
 
+    @include respond(tablet) {
+        grid-template-rows: 1fr 2fr 1fr 1fr 2fr;
+        grid-template-columns: 1fr 1fr;
+    }
+
     &__roster-container {
         grid-row: 1 / span 4;
         grid-column: 1 / span 1;
@@ -19,6 +24,11 @@
         overflow: auto;
 
         @include respond(big-tablet) {
+            grid-row: 1 / span 4;
+            grid-column: 1 / span 1;
+        }
+
+        @include respond(tablet) {
             grid-row: 1 / span 4;
             grid-column: 1 / span 1;
         }
@@ -39,6 +49,11 @@
             grid-row: 1 / span 1;
             grid-column: 2 / span 1;
         }
+
+        @include respond(tablet) {
+            grid-row: 1 / span 1;
+            grid-column: 2 / span 1;
+        }
     }
 
     &__total-participation {
@@ -51,6 +66,11 @@
         align-items: center;
 
         @include respond(big-tablet) {
+            grid-row: 2 / span 1;
+            grid-column: 2 / span 1;
+        }
+
+        @include respond(tablet) {
             grid-row: 2 / span 1;
             grid-column: 2 / span 1;
         }
@@ -69,6 +89,11 @@
             grid-row: 5 / span 1;
             grid-column: 1 / span 2;
         }
+
+        @include respond(tablet) {
+            grid-row: 5 / span 1;
+            grid-column: 1 / span 2;
+        }
     }
 
     &__total-assessments {
@@ -80,6 +105,12 @@
             grid-row: 3 / span 1;
             grid-column: 2 / span 1;
         }
+
+        @include respond(tablet) {
+            grid-row: 3 / span 1;
+            grid-column: 2 / span 1;
+        }
+
     }
 
     &__last-assessment {
@@ -89,6 +120,11 @@
         
 
         @include respond(big-tablet) {
+            grid-row: 4 / span 1;
+            grid-column: 2 / span 1;
+        }
+
+        @include respond(tablet) {
             grid-row: 4 / span 1;
             grid-column: 2 / span 1;
         }

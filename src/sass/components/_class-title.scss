@@ -26,5 +26,11 @@
             margin-left: 0rem;
             text-align: end;
         }
+
+        @include respond(tablet) {
+            font-size: 3.5rem;
+            margin-left: 0rem;
+            text-align: end;
+        }
     }
 }

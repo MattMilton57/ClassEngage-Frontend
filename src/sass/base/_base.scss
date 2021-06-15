@@ -28,6 +28,10 @@ html {
     @include respond(tablet) {
         // font-size: 70%;
     }
+
+    @include respond(big-phone) {
+        // font-size: 70%;
+    }
 }
 
 input {

@@ -14,7 +14,8 @@ const LastAssessment = ({assessment}) => {
             const day = dateSplit[2]
             return(
                 <div>
-                    {parsedDate(month)}/{parsedDate(day)}
+                    {/* {parsedDate(month)}/{parsedDate(day)} */}
+                    12/32
                 </div>
             )
         }
