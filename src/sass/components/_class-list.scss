@@ -26,7 +26,7 @@
         display: grid;
         grid-template-columns: 1fr 3fr;
         grid-template-rows: 1fr;
-        width: 100;
+        width: 100%;
         padding: .5rem;
         color: $color-copper-1;
         margin: 1rem 0rem;
@@ -35,6 +35,7 @@
         text-transform: uppercase;
         align-items: center;
         justify-items: start;
+        min-height: 4.5rem;
 
         @include respond(big-tablet) {
             background-image: none;
@@ -101,6 +102,11 @@
                 font-size: 3rem;
                 margin-left: 1rem;
             }
+
+            @include respond(big-phone) {
+                font-size: 3rem;
+                // margin-left: 1rem;
+            }
         }
 
         &--period {
@@ -124,6 +130,10 @@
 
             @include respond(tablet) {
                 font-size: 5rem;
+            }
+
+            @include respond(big-phone) {
+                font-size: 4rem;
             }
         }
     }

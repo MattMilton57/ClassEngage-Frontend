@@ -19,12 +19,23 @@
         grid-template-columns: 1fr 1fr;
     }
 
+    @include respond(big-phone) {
+        grid-template-rows: repeat(3, max-content);
+        grid-template-columns: 1fr; 
+        overflow: visible;
+    }
+
 
     &__card-container {
         grid-row: 1 / span 4;
         grid-column: 1 / span 1;
         overflow: auto;
         @include component-format;
+
+        @include respond(big-phone) {
+            grid-row: 2 / span 1;
+            grid-column: 1 / span 1;
+        }
 
         &-shell {
             &-list {
@@ -48,6 +59,11 @@
         grid-row: 1 / span 1;
         grid-column: 2 / span 1;
         @include component-format;
+
+        @include respond(big-phone) {
+            grid-row: 1 / span 1;
+            grid-column: 1 / span 1;
+        }
     }
 
     &__message-shell {
@@ -63,6 +79,10 @@
         @include respond(tablet) {
             grid-row: 5 / span 1;
             grid-column: 1 / span 2;
+        }
+
+        @include respond(big-phone) {
+            display: none;
         }
     }
 
@@ -150,6 +170,10 @@
             grid-row: 4 / span 1;
             grid-column: 2 / span 1;
         }
+
+        @include respond(big-phone) {
+            display: none;
+        }
     }
 
     &__total-assessments {
@@ -165,6 +189,10 @@
         @include respond(tablet) {
             grid-row: 3 / span 1;
             grid-column: 2 / span 1;
+        }
+
+        @include respond(big-phone) {
+            display: none;
         }
     }
 
@@ -187,6 +215,11 @@
             grid-row: 2 / span 1;
             grid-column: 2 / span 1;
             @include component-format;
+        }
+
+        @include respond(big-phone) {
+            grid-row: 3/ span 1;
+            grid-column: 1 / span 1;
         }
     }
 }

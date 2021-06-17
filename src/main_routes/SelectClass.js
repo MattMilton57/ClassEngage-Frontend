@@ -5,6 +5,9 @@ import DeleteClassForm from "../forms/DeleteClassForm"
 import HeaderContainer from '../containers/HeaderContainer';
 import MenuHeader from "../components/MenuHeader"
 import MenuFooter from "../components/MenuFooter"
+import sprite from "../img/sprite.svg";
+import ContactFooter from "../components/ContactFooter"
+import PhoneFooter from "../components/PhoneFooter"
 import logo_svg from "../img/logo-hand.svg";
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { api } from '../services/api'
@@ -121,10 +124,20 @@ class SelectClass extends React.Component {
             </div>
           </div>
 
-           <div className="select-class__footer select-class__nav--footer">
-             ©MattMilton 2021
-             <br></br>
-           </div>
+          <div className="select-class__footer select-class__nav--footer">
+           <ContactFooter />
+          </div>
+
+
+          <div className="select-class__nav--profile">
+            <PhoneFooter />
+          </div>
+
+
+
+           
+
+           
         </div>
 
         <div className="select-class__content">

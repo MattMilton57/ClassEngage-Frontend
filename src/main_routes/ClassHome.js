@@ -6,6 +6,7 @@ import EditClassContainer from '../containers/EditClassContainer.js';
 import HeaderContainer from '../containers/HeaderContainer';
 import NavBarContainer from '../containers/NavBarContainer';
 import StudentHomeContainer from '../containers/StudentHomeContainer';
+import PhoneFooter from "../components/PhoneFooter"
 
 import { api } from '../services/api'
 
@@ -291,6 +292,10 @@ class ClassHome extends React.Component {
               user={this.props.user} 
               />                
           </div> 
+
+          <div className="class-home__phone-profile">
+            <PhoneFooter />
+          </div>
           <div className="class-home__content">
             <Switch>
               <Route exact path={`${match.url}`} render={props =>

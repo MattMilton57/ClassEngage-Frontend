@@ -9,11 +9,18 @@
             overflow: auto;
             max-height: 50vh;
             @include form;
+
+            @include respond(big-phone) {
+                grid-template-rows: repeat(4, max-content);
+                grid-template-columns: 1fr;
+                max-height: 100vh;
+            }
         
             &-title {
                 grid-row: 1 / span 1;
                 grid-column: 1 / span 1;
                 @include form-title;
+                font-size: 4.5rem;
             }
     
             &-info-box{
@@ -29,6 +36,10 @@
                 &-welcome{
                     font-size: 4rem;
                     font-weight: 100;
+
+                    @include respond(big-phone) {
+                        font-size: 3rem;
+                    }
                 }
 
                 &-deleted{
@@ -81,6 +92,13 @@
                 grid-column: 1 / span 1;
                 justify-self: start;
                 @include form-submit;
+
+                @include respond(big-phone) {
+                    grid-row: 4 / span 1;
+                    grid-column: 1 / span 1;
+                    justify-self: center;
+                    width: 100%;
+                }
             }
             
             &-roster-container {
@@ -95,6 +113,12 @@
                 z-index: 9951;
                 background-color: $color-grey-dark;
                 outline: solid .005rem $color-copper-2;
+
+                @include respond(big-phone) {
+                    grid-row: 3 / span 1;
+                    grid-column: 1 / span 1;
+                    width: 100%;
+                }
             }
         }
     }

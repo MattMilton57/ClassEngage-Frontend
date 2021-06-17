@@ -18,13 +18,13 @@ color: black;
 
 a {
     text-decoration: none;
-    color: $color-grey-light;
+    // color: $color-grey-light;
 
     &:visited{
-        color: $color-grey-light;
+        // color: $color-grey-light;
     }
 
     *:hover {
-        color: $color-highlighted-text;
+        // color: $color-highlighted-text;
       }
 }

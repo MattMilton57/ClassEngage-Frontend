@@ -22,6 +22,18 @@
         &-submit{
             grid-row: 3 / span 1;
             @include form-submit-dark;
+
+            @include respond(big-phone) {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: black;
+                text-transform: uppercase;
+                background-image: $copper-gradient;
+                transition: .1s;
+                padding: 1rem;
+                font-size: 2rem;
+             }
         }
     
         &-forgot-password{
@@ -66,7 +78,19 @@
 
         &-submit{
             grid-row: 4 / span 1;
-            @include form-submit-dark
+            @include form-submit-dark;
+
+            @include respond(big-phone) {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: black;
+                text-transform: uppercase;
+                background-image: $copper-gradient;
+                transition: .1s;
+                padding: 1rem;
+                font-size: 2rem;
+             }
         }
     
     
@@ -86,6 +110,10 @@
         transition: .1s;
         height: 4rem;
         padding: 1rem;
+
+        @include respond(big-phone) {
+            @include phone-button
+         }
         
         &-login {
             grid-row: 2;
@@ -100,6 +128,10 @@
     }
 
     &__textbox {
-        @include form-input-2
+        @include form-input-2;
+
+        @include respond(big-phone) {
+            background-color: rgba($color-grey-light, .8);
+         }
     }
 }

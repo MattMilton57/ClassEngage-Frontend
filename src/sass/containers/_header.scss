@@ -6,6 +6,13 @@
     justify-content: space-between;
     height: 100%;
 
+    @include respond(big-phone) {
+        grid-template-columns: 80vw 20vw;
+        height: max-content;
+        // margin-top: 1rem;
+        // grid-template-columns: max-content;
+    }
+
     &__text{
         grid-column: 1 / span 1;
         margin-left: 2rem;
@@ -15,9 +22,11 @@
             font-size: 3.3rem;
         }
 
-        @include respond(big-tablet) {
-            
+        @include respond(big-phone) {
+            font-size: 2.25rem;
+
         }
+
     }
 
     &__user{
@@ -29,11 +38,17 @@
         display: flex;
         align-items: center;
         // justify-items: end;
-        // background-color: blueviolet;
+
 
         @include respond(big-desktop) {
             font-size: 1.75rem;
+            align-items: start;
         }
+
+        // @include respond(big-phone) {
+        //     grid-row: 1 / span 1;
+        //     grid-column: 1 / span 1;
+        // }
 
 
         &-name {

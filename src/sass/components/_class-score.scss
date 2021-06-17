@@ -15,12 +15,20 @@
         transform: translateY(1rem);
     }
 
+    @include respond(big-phone) {
+        flex-direction: row;
+        align-items: center;
+        // background-color: pink;
+        transform: translateY(0);
+    }
+
     &__caption {
         font-size: 3.1rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: flex-end;
+        // background-color: cadetblue;
 
         @include respond(big-desktop) {
             font-size: 4rem;
@@ -39,6 +47,11 @@
             // background-color: gold;
             margin-top: 2rem;
         }
+
+        @include respond(big-phone) {
+            margin-top: 0;
+            font-size: 2.4rem;
+        }
     }
 
     &__score {
@@ -48,13 +61,15 @@
         display: flex;
 
         @include respond(big-tablet) {
-            // background-color: blue;
             transform: translateY(-2rem);
         }
 
         @include respond(tablet) {
-            // background-color: blue;
             transform: translateY(-2rem);
+        }
+
+        @include respond(big-phone) {
+            transform: translateY(0);
         }
 
         &--number {
@@ -76,6 +91,10 @@
             @include respond(tablet) {
                 font-size: 14rem;
             }
+
+            @include respond(big-phone) {
+                font-size: 11rem;
+            }
         }
 
         &--percent {
@@ -90,6 +109,10 @@
 
             @include respond(big-tablet-land) {
                 font-size: 4.5rem;
+            }
+
+            @include respond(big-phone) {
+                font-size: 3rem;
             }
             
         }

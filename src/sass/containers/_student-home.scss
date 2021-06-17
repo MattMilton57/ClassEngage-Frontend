@@ -17,6 +17,12 @@
         grid-template-columns: 1fr 1fr;
     }
 
+    @include respond(big-phone) {
+        grid-template-rows: repeat(4, max-content);
+        grid-template-columns: 1fr; 
+        overflow: visible;
+    }
+
     &__assessments {
         grid-row: 1 / span 4;
         grid-column: 1 / span 1;
@@ -30,6 +36,11 @@
 
         @include respond(tablet) {
             grid-row: 1 / span 4;
+            grid-column: 1 / span 1;
+        }
+
+        @include respond(big-phone) {
+            grid-row: 3/ span 1;
             grid-column: 1 / span 1;
         }
 
@@ -54,6 +65,11 @@
             grid-row: 1 / span 1;
             grid-column: 2 / span 1;
         }
+
+        @include respond(big-phone) {
+            grid-row: 1 / span 1;
+            grid-column: 1 / span 1;
+        }
     }
 
     &__score {
@@ -73,6 +89,11 @@
         @include respond(tablet) {
             grid-row: 2 / span 1;
             grid-column: 2 / span 1;
+        }
+
+        @include respond(big-phone) {
+            grid-row: 2 / span 1;
+            grid-column: 1 / span 1;
         }
     }
 
@@ -94,6 +115,10 @@
             grid-row: 5 / span 1;
             grid-column: 1 / span 2;
         }
+
+        @include respond(big-phone) {
+            display: none;
+        }
     }
 
     &__ranking {
@@ -110,6 +135,10 @@
             grid-row: 3 / span 1;
             grid-column: 2 / span 1;
         }
+
+        @include respond(big-phone) {
+            display: none;
+        }
     }
 
     &__preferences {
@@ -125,6 +154,11 @@
         @include respond(tablet) {
             grid-row: 4 / span 1;
             grid-column: 2 / span 1;
+        }
+
+        @include respond(big-phone) {
+            grid-row: 4 / span 1;
+            grid-column: 1 / span 1;
         }
 
         &-btn {

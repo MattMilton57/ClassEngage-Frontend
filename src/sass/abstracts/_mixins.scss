@@ -177,6 +177,19 @@
     width: 100%;
 }
 
+@mixin phone-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    text-transform: uppercase;
+    background-image: $copper-gradient;
+    transition: .1s;
+    height: 4rem;
+    padding: 1rem;
+    border-radius: 10rem;
+}
+
 @mixin wrap-text{
     overflow-wrap: break-word;
     word-wrap: break-word;
@@ -225,8 +238,8 @@
     }
 
     @include respond(big-phone) {
-        width: 10vw;
-        height: 10vh;
+        width: 100vw;
+        // height: max-content;
     }
 }
 
@@ -249,7 +262,7 @@
         @media only screen and (max-width: 24.4em) { @content };
     }
     @if $breakpoint == big-phone {
-        @media only screen and (max-width: 25.6em) { @content };
+        @media only screen and (max-width: 25.7em) { @content };
     }
     @if $breakpoint == tablet {
         @media only screen and (max-width: 48em) { @content };

@@ -5,6 +5,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @include respond(big-phone) {
+        height: 100%;
+        width:100%
+    }
 }
 
 .content {

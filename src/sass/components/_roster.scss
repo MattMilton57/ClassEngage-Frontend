@@ -6,6 +6,10 @@
     list-style: none;
     -webkit-list-style: none;
 
+    @include respond(big-phone) {
+       font-size: 2.25rem;
+    }
+
     &__container {
         margin: 1rem;
         overflow: hidden;

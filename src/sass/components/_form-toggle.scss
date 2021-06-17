@@ -26,6 +26,10 @@
         transform: translateX(45rem);
     }
 
+    @include respond(big-phone) {
+        transform: translate(25rem, -12rem);
+    }
+
     &-icon {
         z-index: 200;
         transition: all .35s;

@@ -15,6 +15,9 @@
         background-color: black;
         align-content: center;
         justify-content: center;
+        @include respond(big-phone) {
+            font-size: 3rem;
+        }
 
         &-no-comment {
             display: grid;
@@ -54,6 +57,10 @@
                 font-weight: 400;
                 font-size: 1.5rem;
 
+                @include respond(big-phone) {
+                    font-size: 2rem;
+                }
+
                 &-positive {
                     color: $color-copper-1;
                 }
@@ -72,6 +79,10 @@
             padding: .2rem;
             font-weight: 400;
             font-size: 1.5rem;
+
+            @include respond(big-phone) {
+                font-size: 2rem;
+            }
 
             &-trigger{
                 background-color: white;
