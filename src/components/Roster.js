@@ -62,6 +62,10 @@ const Roster = ({ url, roster, callback, score, assessments, classPeriod, linkTo
                     <div className="edit-class__roster-label">
                         {label}
                     </div>
+                    {/* <div className="edit-class__roster-instructions"> */}
+                        {/* {instructions} */}
+                        {/* Click on a student to remove them from this class */}
+                    {/* </div> */}
                     {roster.map(student => 
                         <li className="edit__student" key={student.name}>
                             <Student 

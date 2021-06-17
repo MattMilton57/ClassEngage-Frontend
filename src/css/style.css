@@ -1311,7 +1311,7 @@ a {
       grid-template-columns: 1fr 1fr; } }
   @media only screen and (max-width: 25.7em) {
     .edit-class {
-      grid-template-rows: repeat(4, max-content);
+      grid-template-rows: repeat(5, max-content);
       grid-template-columns: 1fr;
       overflow: visible; } }
   .edit-class__roster-container {
@@ -1333,7 +1333,7 @@ a {
         grid-column: 1 / span 1; } }
     @media only screen and (max-width: 25.7em) {
       .edit-class__roster-container {
-        grid-row: 2 / span 1;
+        grid-row: 3 / span 1;
         grid-column: 1 / span 1; } }
     .edit-class__roster-container-shell {
       height: auto;
@@ -1357,7 +1357,7 @@ a {
         grid-column: 2 / span 1; } }
     @media only screen and (max-width: 25.7em) {
       .edit-class__student-body-container {
-        grid-row: 3 / span 1;
+        grid-row: 4 / span 1;
         grid-column: 1 / span 1; } }
     .edit-class__student-body-container-shell {
       height: auto;
@@ -1366,6 +1366,10 @@ a {
     color: #CB6D51;
     font-size: 1.75rem;
     margin-left: 2rem; }
+  .edit-class__roster-instructions {
+    color: white;
+    font-size: 1.75rem;
+    margin: .5rem 3rem; }
   .edit-class__class-name {
     grid-row: 1 / span 1;
     grid-column: 3 / span 2;
@@ -1401,11 +1405,11 @@ a {
     text-transform: uppercase;
     font-weight: 200;
     display: grid;
-    grid-template-rows: repeat(1, 1fr);
+    grid-template-rows: repeat(2, max-content);
     grid-template-columns: 1fr;
     height: 100%;
     width: 100%;
-    place-items: center;
+    place-content: center;
     padding: 2rem; }
     @media only screen and (min-width: 64em) and (min-height: 85em) {
       .edit-class__message-center {
@@ -1417,11 +1421,32 @@ a {
         grid-column: 1 / span 1; } }
     @media only screen and (max-width: 25.7em) {
       .edit-class__message-center {
-        display: none; } }
-    .edit-class__message-center--text {
-      font-size: 2.5rem;
+        grid-row: 2 / span 1;
+        grid-column: 1 / span 1; } }
+    .edit-class__message-center-text {
+      font-size: 2.1rem;
       font-weight: 100;
       text-align: center; }
+      @media only screen and (min-width: 64em) and (min-height: 85em) {
+        .edit-class__message-center-text {
+          font-size: 2.2rem;
+          font-weight: 100;
+          text-align: center; } }
+      @media only screen and (max-width: 48em) {
+        .edit-class__message-center-text {
+          font-size: 2.1rem;
+          font-weight: 100;
+          text-align: center; } }
+      @media only screen and (max-width: 25.7em) {
+        .edit-class__message-center-text {
+          font-size: 2rem;
+          font-weight: 100;
+          text-align: center; } }
+    .edit-class__message-center-add {
+      border-bottom: solid 1px #CB6D51;
+      padding-bottom: .5rem; }
+    .edit-class__message-center-remove {
+      padding-top: .5rem; }
   .edit-class__class-count {
     grid-row: 3 / span 1;
     grid-column: 3 / span 2;
@@ -1461,7 +1486,7 @@ a {
         grid-column: 2 / span 1; } }
     @media only screen and (max-width: 25.7em) {
       .edit-class__controll {
-        grid-row: 4 / span 1;
+        grid-row: 5 / span 1;
         grid-column: 1 / span 1; } }
     .edit-class__controll-toggle {
       display: none; }
