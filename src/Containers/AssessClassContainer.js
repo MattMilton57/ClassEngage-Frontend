@@ -77,16 +77,19 @@ class AssessClass extends React.Component {
       return(
         <div className="assess-class__card-container-shell">
           <ul className="assess-class__card-container-shell-list">
-              {students.map(student => <li key={student.name} className="assess-class__card-container--card">
-                                          <AssessmentCard
-                                            user={this.props.user}  
-                                            reFetch={this.props.reFetch}
-                                            classID={this.props.classPeriod} 
-                                            index={student[1]} 
-                                            nextAssessment={this.nextAssessment} 
-                                            student={student[0]}/></li> )}
+              {students.map(student => 
+                <li key={student.name} className="assess-class__card-container--card">
+                  <AssessmentCard
+                    user={this.props.user}  
+                    reFetch={this.props.reFetch}
+                    classID={this.props.classPeriod} 
+                    index={student[1]} 
+                    nextAssessment={this.nextAssessment} 
+                    student={student[0]}
+                  />
+                </li> 
+              )}
           </ul>
-
         </div>
       )
     }
@@ -94,61 +97,57 @@ class AssessClass extends React.Component {
 
   needInstructions= () => {
     api.get.classesAssessments({class_period_id:this.props.classPeriod})
-    // .then(res => {this.setState({classAssessments:res}); this.testDate(res)})
-    // .then(res => {this.setState({instructions:'go'})})
     .then(res => {this.setClassesAssessments(res)})
   }
 
   setClassesAssessments = (assessments) => {
     let classesAssessments = []
-    assessments.forEach(assessment => {this.props.roster.forEach(student=>{if(student.id === assessment.student_id){classesAssessments.push(assessment)}})})
+      assessments.forEach(assessment => {this.props.roster.forEach(student=>{if(student.id === assessment.student_id){classesAssessments.push(assessment)}})})
     this.setState({classesAssessments:classesAssessments, instructions:'go'})
   }
 
   instructions = () => {
-    if(this.props.roster.length === 0)
-    {return(<div className="assess-class__new" >
-        <div className="assess-class__new--welcome">
-          Welcome to Class Engage
+    if(this.props.roster.length === 0){
+      return(
+        <div className="assess-class__new" >
+          <div className="assess-class__new--welcome">
+            Welcome to Class Engage
+          </div>
+          <div className="assess-class__new--guide">
+            click on the edit class tab in the navbar to create and register some students
+          </div>
         </div>
-        <div className="assess-class__new--guide">
-          click on the edit class tab in the navbar to create and register some students
-        </div>
-      </div>)}
-    else 
-    if ((this.state.classesAssessments.length < 1)&&(this.state.instructions === 'go'))
-    {return(
-      <ul className="assess-class__instructions">
-        <li className="assess-class__instructions--list-item assess-class__instructions--list-item-1">to submit an assessment:</li>
-        <li className="assess-class__instructions--list-item assess-class__instructions--list-item-2">click true or false</li>
-        <li className="assess-class__instructions--list-item assess-class__instructions--list-item-3">click comment to add a comment</li>
-        <li className="assess-class__instructions--list-item assess-class__instructions--list-item-4">click submit to submit the assessment</li>
-      </ul>
-    )}
-    else
-    {return(
-      <div className="assess-class__future-expansion">
-
-      </div>
-    )}
+      )
+    }else if ((this.state.classesAssessments.length < 1)&&(this.state.instructions === 'go')){
+      return(
+        <ul className="assess-class__instructions">
+          <li className="assess-class__instructions--list-item assess-class__instructions--list-item-1">to submit an assessment:</li>
+          <li className="assess-class__instructions--list-item assess-class__instructions--list-item-2">click true or false</li>
+          <li className="assess-class__instructions--list-item assess-class__instructions--list-item-3">click comment to add a comment</li>
+          <li className="assess-class__instructions--list-item assess-class__instructions--list-item-4">click submit to submit the assessment</li>
+        </ul>
+      )
+    }else{
+      return(
+        <div className="assess-class__future-expansion"></div>
+      )
+    }
   }
 
   displayParticipation = () => {
-    if(this.props.roster.length === 0)
-      {
-        return(<div></div>)
-      }
-      else
-      {return( 
+    if(this.props.roster.length === 0){
+      return(<div></div>)
+    }else{
+      return( 
         <div className="assess-class__total-participation-shell ">
           <ClassScore
             roster={this.props.roster} 
             assessments={this.props.assessments}
             classPeriod={this.props.classPeriod}
-            />
+          />
         </div>         
-        )
-      }
+      )
+    }
   }
  
   render(){
@@ -157,35 +156,22 @@ class AssessClass extends React.Component {
         <div className="assess-class__card-container">
           {this.makeCards()}
         </div>
-
         <div className="assess-class__class-name">
-          <TitleBox
-            title={this.props.classObject.subject}
-            />
+          <TitleBox title={this.props.classObject.subject}/>
         </div>
-
         <div className="assess-class__message-shell">
           {this.instructions()}
-
         </div>
-
         <div className="assess-class__last-assessment">
-          <LastAssessment
-            assessment={this.props.assessments[this.props.assessments.length-1]}
-            />
+          <LastAssessment assessment={this.props.assessments[this.props.assessments.length-1]}/>
         </div>
-
         <div className="assess-class__total-assessments">
-          <TotalAssessments 
-          assessments={this.props.assessments}/>
+          <TotalAssessments assessments={this.props.assessments}/>
         </div>
-
         <div className="assess-class__total-participation">
           {this.displayParticipation()}
         </div>
       </div>
     )
   }
-  
-
 } export default AssessClass
