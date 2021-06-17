@@ -1,5 +1,6 @@
 import React from 'react';
-import { api } from '../services/api'
+import { api } from '../services/api';
+
 class AssessmentCard extends React.Component{
 
     constructor(props) {
@@ -21,7 +22,7 @@ class AssessmentCard extends React.Component{
     }
 
     handleChange = (value) => {
-    this.setState({note:value})
+        this.setState({note:value})
     }
 
     handleSubmit = (e) => {

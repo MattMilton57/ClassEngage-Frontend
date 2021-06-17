@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Class = ({ listType, subject, level, classNumber, period, classObject, callback}) => {
+const Class = ({listType, subject, period, classObject}) => {
     
     if (listType === "home") {
         return(
@@ -16,9 +16,7 @@ const Class = ({ listType, subject, level, classNumber, period, classObject, cal
                 </Link>
             </li>
         ) 
-
     }else{
-
         return(
             <li className="class-list__class-item">
                 <Link className="class-list__class" key={Math.random()} to={`/classhome/${classObject.id}`}>
@@ -30,9 +28,7 @@ const Class = ({ listType, subject, level, classNumber, period, classObject, cal
                     </div>
                 </Link>
             </li>
-
         ) 
     }
 }
-
-export default Class;
+export default Class

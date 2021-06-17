@@ -8,13 +8,13 @@ const PhoneFooter = () => {
                 Class Engage was built by Matt Milton. It was initially concieved and created as a final project for the Flatiron School Full Stack Software Engineering Bootcamp, Seattle Campus, 2020.
             </div>
             <div className="phone-footer__links">
-                {/* <div className="phone-footer__resume">
-                    <a href="https://www.github.com/MattMilton57">
+                <div className="phone-footer__resume">
+                    <a href="">
                         <div className="">
-                            Resume
+                            Future Resume Link
                         </div>
                     </a>
-                </div> */}
+                </div>
                 <div className="phone-footer__github">
                     <a href="https://github.com/MattMilton57/ClassEngage-Frontend">
                         <div className="">
@@ -30,13 +30,6 @@ const PhoneFooter = () => {
                         </div>
                     </a>
                 </div>
-                {/* <div className="phone-footer__specs">
-                    <a href="https://www.github.com/MattMilton57">
-                        <div className="">
-                            Project Specifications
-                        </div>
-                    </a>
-                </div> */}
             </div>
         </div>
     ) 

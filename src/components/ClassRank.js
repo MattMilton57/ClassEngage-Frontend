@@ -36,7 +36,7 @@ const ClassRank = ({assessments, roster, thisStudent}) => {
         studentScoreIndexTieIndex.forEach(student => {scoreCounter.forEach(score => {if(student.score===score[0])fullStudentInfo.push({student:student.student, score:student.score, rawIndex:student.rawIndex, tieIndex:student.tieIndex, tiedScores:score[1]})})})
 
         let currentStudentObject =[]
-        if(thisStudent){fullStudentInfo.forEach(student =>{if(student.student.id===thisStudent.id){currentStudentObject.push(student)}}) }
+        if(thisStudent){fullStudentInfo.forEach(student =>{if(student.student.id===thisStudent.id){currentStudentObject.push(student)}})}
         
         let compatriots = []
         if(thisStudent){fullStudentInfo.forEach(student=>{if(student.score===currentStudentObject[0].score){compatriots.push(student)}})}
@@ -44,34 +44,28 @@ const ClassRank = ({assessments, roster, thisStudent}) => {
         let finalScore=compatriots[0]
 
         if(!finalScore){
-            return(
-                <div>
-                    
-                </div>
-            )
-        }else{
-            if(finalScore.tiedScores > 1)
-            return(
-
+                return(<div></div>)
+            }else{
+                if(finalScore.tiedScores > 1){
+                    return(
                         <div className="class-rank__score-tied">
                             <div className="class-rank__score-tied-text">
                                 Tied
                             </div>
                             <div className="class-rank__score-tied-score">
-                        {finalScore.rawIndex}/{fullStudentInfo.length}
-
+                                {finalScore.rawIndex}/{fullStudentInfo.length}
                             </div>
                         </div>
-            )
-        else{
-            return(
-                <div className="class-rank__score-singular">
-                {finalScore.rawIndex}/{fullStudentInfo.length}
-                </div>
-            )
-        }    
+                    )
+                }else{
+                    return(
+                        <div className="class-rank__score-singular">
+                            {finalScore.rawIndex}/{fullStudentInfo.length}
+                        </div>
+                    )
+                }    
+            }
         }
-    }
 
     return(
         <div className="class-rank">
