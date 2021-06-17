@@ -85,9 +85,7 @@ const  ClassStatsContainer = ({
       </div>
 
       <div className="class-stats__total-assessments">
-        <TotalAssessments 
-          assessments={assessments}
-        />
+        <TotalAssessments assessments={assessments}/>
       </div>
 
       <div className="class-stats__last-assessment">
