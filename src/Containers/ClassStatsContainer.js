@@ -70,9 +70,7 @@ const  ClassStatsContainer = ({
       </div>
 
       <div className="class-stats__class-name">
-        <TitleBox
-          title={classObject.subject}
-          />
+        <TitleBox title={classObject.subject}/>
       </div>
 
       <div className="class-stats__total-participation">
