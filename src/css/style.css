@@ -1716,10 +1716,25 @@ a {
       padding: 1.2rem; }
     .navBar__profile-text {
       margin-bottom: .5rem; }
+      .navBar__profile-text-email {
+        color: #CB6D51; }
     .navBar__profile-resume {
       margin-bottom: .5rem; }
     .navBar__profile-github {
-      margin-bottom: .5rem; }
+      margin-bottom: .5rem;
+      transition: all .1s; }
+      .navBar__profile-github:hover {
+        color: #CB6D51;
+        transform: scale(1.03); }
+      .navBar__profile-github-link:link {
+        color: #CB6D51; }
+      .navBar__profile-github-link:visited {
+        color: #CB6D51; }
+      .navBar__profile-github-link:hover {
+        color: #CB6D51;
+        transform: scale(1.1); }
+      .navBar__profile-github-link:active {
+        color: red; }
 
 .student-home {
   display: grid;

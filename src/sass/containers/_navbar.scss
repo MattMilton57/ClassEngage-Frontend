@@ -150,6 +150,10 @@
 
         &-text {
             margin-bottom:.5rem;
+
+            &-email {
+                color: $color-highlighted-text;
+            }
         }
 
         &-resume {
@@ -158,6 +162,28 @@
 
         &-github {
             margin-bottom:.5rem;
+            transition: all .1s;
+
+            &:hover {
+                color: $color-copper-1;
+                transform:scale(1.03);
+              }
+
+            &-link{
+                &:link {
+                    color: $color-highlighted-text;
+                }
+                &:visited {
+                    color: $color-highlighted-text;
+                  }
+                &:hover {
+                  color: $color-copper-1;
+                  transform:scale(1.1);
+                }
+                &:active {
+                    color: red;
+                  }
+            }
         }
 
         &-specs {
@@ -166,3 +192,18 @@
         // background-color: aqua;
     }
 }
+
+// a {
+//     &:link {
+//         color: bisque;
+//     }
+//     &:visited {
+//         color: green;
+//       }
+//     &:hover {
+//       color: hotpink;
+//     }
+//     &:active {
+//         color: red;
+//       }
+// }
