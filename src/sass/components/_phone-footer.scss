@@ -29,6 +29,10 @@
         align-self: center;
         text-align: center;
 
+        &-email {
+            color: $color-highlighted-text;
+        }
+
         @include respond(big-tablet) {
            font-size: .9rem;
         }
@@ -52,6 +56,27 @@
         border-right: solid 1px $color-grey-light;
         padding: 0 1rem;
         margin: 0 1rem;
+
+        &:hover {
+            color: $color-copper-1;
+            transform:scale(1.03);
+          }
+
+        &-link{
+            &:link {
+                color: $color-highlighted-text;
+            }
+            &:visited {
+                color: $color-highlighted-text;
+              }
+            &:hover {
+              color: $color-copper-1;
+              transform:scale(1.1);
+            }
+            &:active {
+                color: red;
+              }
+        }
     }
 
     &__specs {

@@ -774,6 +774,8 @@ a {
     margin-bottom: .5rem;
     align-self: center;
     text-align: center; }
+    .phone-footer__text-email {
+      color: #CB6D51; }
     @media only screen and (min-width: 64em) and (min-height: 85em) {
       .phone-footer__text {
         font-size: .9rem; } }
@@ -790,6 +792,18 @@ a {
     border-right: solid 1px #595858;
     padding: 0 1rem;
     margin: 0 1rem; }
+    .phone-footer__github:hover {
+      color: #CB6D51;
+      transform: scale(1.03); }
+    .phone-footer__github-link:link {
+      color: #CB6D51; }
+    .phone-footer__github-link:visited {
+      color: #CB6D51; }
+    .phone-footer__github-link:hover {
+      color: #CB6D51;
+      transform: scale(1.1); }
+    .phone-footer__github-link:active {
+      color: red; }
   .phone-footer__specs {
     border-left: solid 1px #595858;
     border-right: solid 1px #595858;

@@ -87,7 +87,7 @@ export default class EditClassForm extends React.Component {
 
                     <form  className="edit-class-form__content--form" onSubmit={(e)=> this.onSubmit(e)}>
 
-                        <div className="edit-class-form__content--form-title">Edit Class</div>
+                        <div className="edit-class-form__content--form-title">Edit Class Name</div>
 
                         <input 
                             type="text" 
